@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+.admin-login-area{
+    width : 1190px;
+    margin : 250px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-login-area>p{
+    font-size : 20px;
+    font-weight : bold;
+    margin : 30px 0 30px 0;
+}
+
+.login-area>input,
+.login-area>button{
+    width : 280px;
+    height : 40px;
+    margin : -7px;
+    padding-left : 7px;
+}
+
+.login-area>button{
+    background-color : #6363FF;
+    color : white;
+    border-style : none;
+    cursor: pointer;
+    border-radius: 5px;;
+}

@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.content-wrap{
+    display : flex;
+    flex-direction: row;
+}
+
+.left{
+    width : 250px;
+    height : 500px;
+}
+
+.right{
+	padding : 30px 0 0 30px;
+}
