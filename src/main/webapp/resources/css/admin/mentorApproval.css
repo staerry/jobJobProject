@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+.right{
+    min-width : 800px;
+    width : 100%;
+    padding : 30px;
+}
+
+.right>h3{
+    font-weight : bold;
+    color : #6363ff;
+}
+
+table{
+    width : 100%;
+    margin-top : 40px;
+    font-size : 14px;
+    text-align : center;
+}
+
+table>tbody>tr{
+    cursor: pointer;
+}
+
+
+.right>.paging-area{
+    text-align: center;
+}
+
+.right>.paging-area>a{
+    width : 40px;
+    height : 40px;
+    display: inline-block;
+    background-color: rgb(236, 236, 236);
+    color : black;
+    line-height: 40px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.right>.paging-area>a:hover{
+    background-color :#6363ff;
+    color : white;
+}
