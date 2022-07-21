@@ -9,8 +9,14 @@
 }
 
 #dash{
-    text-decoration: none;
+    margin-left: 10%;
+    color: white;
+    font-size: 20px;
+    font-weight:bold;
+
 }
+
+
 
 .menu{
     margin-left: 10%;
