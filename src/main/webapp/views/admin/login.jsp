@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<% if(true){ %>
+	<% if(false){ %>
 		<div style="display : none;">
 			<%@ include file="common/topbar.jsp" %>
 		</div>
@@ -33,9 +33,10 @@
 				<%@ include file="common/menubar.jsp" %>
 			</div>
 	
-	    <!--이 부분은 우측 컨텐츠 입니다.-->
-	    <div class="right">
-	        <h3>멘토 가입 정보</h3>
+		    <!--이 부분은 우측 컨텐츠 입니다.-->
+		    <div class="right">
+		        <h3 style="color : #6363ff">멘토 가입 정보</h3>
+		    </div>
 	    </div>
 	<% } %>
 
