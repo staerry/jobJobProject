@@ -17,6 +17,9 @@
 <!--jQuery-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/ea8287c514.js" crossorigin="anonymous"></script>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -35,7 +38,7 @@
                 <% } %>
             </div>
             <div class="logo-area">
-                <img src="resources/image/logo.png" alt="logo">
+                <img src="resources/image/logo.png" alt="logo" width="130">
             </div>
             <ul class="main-menu-area">
                 <li><a href="">강의조회</a></li>
