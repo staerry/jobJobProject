@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.jj.admin.model.vo.UserInfoAd"%>
+<%
+	UserInfoAd u = (UserInfoAd)session.getAttribute("UserInfoAd");
+	String alertMsg = (String)session.getAttribute("alertMsg");
+	String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,15 +15,21 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<% if(alertMsg != null) { %>
+		<script>
+			alert("<%=alertMsg%>");
+		</script>
+		<% session.removeAttribute("alertMsg"); %>
+	<% } %>
 
-	<% if(false){ %>
+	<% if(u == null){ %>
 		<div style="display : none;">
 			<%@ include file="common/topbar.jsp" %>
 		</div>
 	    <div class="admin-login-area">
 	        <img src="resources/image/logo.png" alt="logo" width="150">
 	        <p>관리자로그인</p>
-	        <form action="" method="post" class="login-area">
+	        <form action="adLogin.do" method="post" class="login-area">
 	            <input type="text" name="adminId" class="form-control" placeholder="아이디" required><br>
 	            <input type="password" name="adminPwd" class="form-control" placeholder="비밀번호" required><br>
 	            <button type="submit">로그인</button>
