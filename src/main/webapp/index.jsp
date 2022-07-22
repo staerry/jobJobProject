@@ -8,6 +8,9 @@
 </head>
 <body>
 
-	test~ 뜨는지 확인~
+	<%@ include file="views/common/menubar.jsp" %>
+	
+	<%@ include file="views/common/footer.jsp" %>
+	
 </body>
 </html>

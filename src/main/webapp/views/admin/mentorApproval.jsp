@@ -17,9 +17,9 @@
 	</div>
 	
 		<div class="right">
-		    <h3 style="color : #6363ff">멘토 가입 승인</h3>
+		    <h3>멘토 가입 승인</h3>
 		    
-		                <table class="table table-bordered table-hover">
+		    <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th width="60">번호</th>

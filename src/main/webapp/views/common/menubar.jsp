@@ -24,12 +24,15 @@
     <div class="top-menu-wrap">
         <div class="top-menu-area">
             <div class="mini-menu-area">
+            	<% if(true){ %>
                 <!--로그인전-->
                 <span><a href="">로그인</a></span>
+                <% } else { %>
                 <!--로그인후-->
-                <!-- <span><a href="">마이페이지</a></span>
+                <span><a href="">마이페이지</a></span>
                 <span><a href="">로그아웃</a></span>
-                <span><b>xxx</b>님</span> -->
+                <span><b>xxx</b>님</span>
+                <% } %>
             </div>
             <div class="logo-area">
                 <img src="resources/image/logo.png" alt="logo">
