@@ -3,7 +3,6 @@
 <%
 	UserInfoAd u = (UserInfoAd)session.getAttribute("UserInfoAd");
 	String alertMsg = (String)session.getAttribute("alertMsg");
-	String contextPath = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
@@ -19,7 +18,7 @@
 		<script>
 			alert("<%=alertMsg%>");
 		</script>
-		<% session.removeAttribute("alertMsg"); %>
+		<% session.removeAttribute("alertMsg");%>
 	<% } %>
 
 	<% if(u == null){ %>

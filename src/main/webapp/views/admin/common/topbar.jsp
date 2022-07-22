@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%String contextPath = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,7 @@
     <div class="top-menu-area">
         <div class="mini-menu-area">
             <div>
-                <a href="<%=request.getContextPath()%>/logoutAdmin.do"><i class="fas fa-sign-out-alt"></i>&nbsp로그아웃</a>
+                <a href="<%=contextPath%>/logoutAdmin.do"><i class="fas fa-sign-out-alt"></i>&nbsp로그아웃</a>
             </div>
             <span>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
             <div>
