@@ -32,7 +32,7 @@
     <div class="top-menu-area">
         <div class="mini-menu-area">
             <div>
-                <a href=""><i class="fas fa-sign-out-alt"></i>&nbsp로그아웃</a>
+                <a href="<%=request.getContextPath()%>/logoutAdmin.do"><i class="fas fa-sign-out-alt"></i>&nbsp로그아웃</a>
             </div>
             <span>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
             <div>
