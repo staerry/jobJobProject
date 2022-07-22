@@ -11,11 +11,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<%@ include file="views/common/menubar.jsp" %>
 	
 	<div class="main-banner-wrap">
-		<div class="main-slide-area"></div>
+		<ul class="main-slide-area">
+			<li class="prev">
+				<i class="fas fa-angle-left"></i>
+			</li>
+			<li class="img1">슬라이드이미지1</li>
+			<li class="img2" style="display : none">슬라이드이미지2</li>
+			<li class="img3" style="display : none">슬라이드이미지3</li>
+			<li class="next">
+				<i class="fas fa-angle-right"></i>
+			</li>
+		</ul>
 		<div class="main-login-area">
 			<% if(true){ %>
 				<a href="" class="main-login-btn">로그인</a>
@@ -196,5 +205,73 @@
 	</div>
 	<%@ include file="views/common/footer.jsp" %>
 	
+	<!-- main-slide-area부분 -->
+	<script>
+		let result = 1; // 이미지 순서를 나타내는 숫자
+
+		$(".main-slide-area>.next").click(function(){
+			result += 1; // next클릭시 result 1씩 증가
+
+			switch(result){
+				case 1 : // result가 1일 때 img1제외 나머지 요소 display : none
+					$(".img1").css('display', '');
+					$(".img2").css('display', 'none');
+					$(".img3").css('display', 'none');
+					break;
+				case 2 : // result가 2일 때 img2제외 나머지 요소 display : none 
+					$(".img1").css('display', 'none');
+					$(".img2").css('display', '');
+					$(".img3").css('display', 'none');
+					break;
+				case 3 : // result가 3일 때 img3제외 나머지 요소 display : none 
+					$(".img1").css('display', 'none');
+					$(".img2").css('display', 'none');
+					$(".img3").css('display', '');
+					break;
+				default : 
+
+				// result가 3을 초과할 때  result값 1로 초기화 후 스타일 적용
+				if(result > 3){
+					result = 1;
+					$(".img1").css('display', '');
+					$(".img2").css('display', 'none');
+					$(".img3").css('display', 'none');
+				}
+			}
+		})
+
+		$(".main-slide-area>.prev").click(function(){
+			result -= 1; // prev클릭시 result 1씩 감소
+
+			switch(result){
+				case 1 : // result가 1일 때 img1제외 나머지 요소 display : none
+					$(".img1").css('display', '');
+					$(".img2").css('display', 'none');
+					$(".img3").css('display', 'none');
+					result = 4;
+					break;
+				case 2 : // result가 2일 때 img2제외 나머지 요소 display : none 
+					$(".img1").css('display', 'none');
+					$(".img2").css('display', '');
+					$(".img3").css('display', 'none');
+					break;
+				case 3 : // result가 3일 때 img3제외 나머지 요소 display : none 
+					$(".img1").css('display', 'none');
+					$(".img2").css('display', 'none');
+					$(".img3").css('display', '');
+					break;
+				default : 
+
+				// result가 1미만일 때  result값 3으로 초기화 후 스타일 적용
+				if(result < 1){
+					result = 3;
+					$(".img1").css('display', 'none');
+					$(".img2").css('display', 'none');
+					$(".img3").css('display', '');
+				}
+			}
+			console.log(result);
+		})
+	</script>
 </body>
 </html>

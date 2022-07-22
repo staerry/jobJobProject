@@ -12,12 +12,63 @@
 		align-items: center;
 	}
 
+	/*슬라이드 부분*/
 	.main-slide-area{
 		width : 870px;
 		height : 200px;
 		background-color: blueviolet;
+		display: flex;
+		flex-direction: row;
+		position: relative;
 	}
 
+	.main-slide-area>.prev,
+	.main-slide-area>.next{
+		width : 30px;
+		height : 30px;
+		background-color: white;
+		color : #6363FF;
+		border-radius: 50px;
+		text-align: center;
+		line-height: 30px;
+		opacity: 0.7;
+		cursor: pointer;
+		position: absolute;
+	}
+
+	.main-slide-area>.prev{
+		left : 15px;
+		top : 90px;
+	}
+
+	.main-slide-area>.next{
+		right : 15px;
+		top : 90px;
+	}
+
+	.main-slide-area>.img1,
+	.main-slide-area>.img2,
+	.main-slide-area>.img3{
+		width : 100%;
+		height : 100%;
+		text-align: center;
+		line-height: 200px;
+		font-size: 50px;
+	}
+
+	.main-slide-area>.img1{
+		background-color : red;
+	}
+
+	.main-slide-area>.img2{
+		background-color: blue;
+	}
+
+	.main-slide-area>.img3{
+		background-color: green;
+	}
+
+	/*로그인 부분*/
 	.main-login-area{
 		width : 230px;
 		height : 200px;
