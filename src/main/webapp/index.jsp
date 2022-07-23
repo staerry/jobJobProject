@@ -61,42 +61,80 @@
 			<p><b><a href="">더보기</a></b></p>
 		</div>
 		<div class="main-vod-list">
-			<div class="vod-slide-btn">
+			<div class="vod-slide-btn-left">
 				<i class="fas fa-angle-left"></i>
 			</div>
-			<div class="vod">
-				<h4>클래스명이 들어갈 자리</h4>
-				<p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-				<div class="class-thumbnail"></div>
-				<span>
-					<i class="fas fa-heart"></i>
-				</span>
-			</div>
-			<div class="vod">
-				<h4>클래스명이 들어갈 자리</h4>
-				<p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-				<div class="class-thumbnail"></div>
-				<span>
-					<i class="fas fa-heart"></i>
-				</span>
-			</div>
-			<div class="vod">
-				<h4>클래스명이 들어갈 자리</h4>
-				<p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-				<div class="class-thumbnail"></div>
-				<span>
-					<i class="fas fa-heart"></i>
-				</span>
-			</div>
-			<div class="vod">
-				<h4>클래스명이 들어갈 자리</h4>
-				<p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-				<div class="class-thumbnail"></div>
-				<span>
-					<i class="fas fa-heart"></i>
-				</span>
-			</div>
-			<div class="vod-slide-btn">
+
+            <div class="main-window">
+                <div class="main-container">
+                    <div class="vod">
+                        <h4>클래스명이 들어갈 자리</h4>
+                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
+                        <div class="class-thumbnail"></div>
+                        <span>
+                            <i class="fas fa-heart"></i>
+                        </span>
+                    </div>
+                    <div class="vod">
+                        <h4>클래스명이 들어갈 자리</h4>
+                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
+                        <div class="class-thumbnail"></div>
+                        <span>
+                            <i class="fas fa-heart"></i>
+                        </span>
+                    </div>
+                    <div class="vod">
+                        <h4>클래스명이 들어갈 자리</h4>
+                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
+                        <div class="class-thumbnail"></div>
+                        <span>
+                            <i class="fas fa-heart"></i>
+                        </span>
+                    </div>
+                    <div class="vod">
+                        <h4>클래스명이 들어갈 자리</h4>
+                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
+                        <div class="class-thumbnail"></div>
+                        <span>
+                            <i class="fas fa-heart"></i>
+                        </span>
+                    </div>
+                    <div class="vod">
+                        <h4>클래스명이 들어갈 자리</h4>
+                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
+                        <div class="class-thumbnail"></div>
+                        <span>
+                            <i class="fas fa-heart"></i>
+                        </span>
+                    </div>
+                    <div class="vod">
+                        <h4>클래스명이 들어갈 자리</h4>
+                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
+                        <div class="class-thumbnail"></div>
+                        <span>
+                            <i class="fas fa-heart"></i>
+                        </span>
+                    </div>
+                    <div class="vod">
+                        <h4>클래스명이 들어갈 자리</h4>
+                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
+                        <div class="class-thumbnail"></div>
+                        <span>
+                            <i class="fas fa-heart"></i>
+                        </span>
+                    </div>
+                    <div class="vod">
+                        <h4>클래스명이 들어갈 자리</h4>
+                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
+                        <div class="class-thumbnail"></div>
+                        <span>
+                            <i class="fas fa-heart"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+			<div class="vod-slide-btn-right">
 				<i class="fas fa-angle-right"></i>
 			</div>
 		</div>
@@ -107,58 +145,112 @@
 			<p><b><a href="">더보기</a></b></p>
 		</div>
 		<div class="main-mentor-list">
-			<div class="mentor-slide-btn">
+			<div class="mentor-slide-btn-left">
 				<i class="fas fa-angle-left"></i>
 			</div>
-			<div class="mentor">
-				<div class="mentor-profile-img"></div>
-				<div class="mentor-info">
-					<span>멘토명</span>
-					<span>멘토 소속</span>
-				</div>
-				<a href="">방문하기</a>
-			</div>
-			<div class="mentor">
-				<div class="mentor-profile-img"></div>
-				<div class="mentor-info">
-					<span>멘토명</span>
-					<span>멘토 소속</span>
-				</div>
-				<a href="">방문하기</a>
-			</div>
-			<div class="mentor">
-				<div class="mentor-profile-img"></div>
-				<div class="mentor-info">
-					<span>멘토명</span>
-					<span>멘토 소속</span>
-				</div>
-				<a href="">방문하기</a>
-			</div>
-			<div class="mentor">
-				<div class="mentor-profile-img"></div>
-				<div class="mentor-info">
-					<span>멘토명</span>
-					<span>멘토 소속</span>
-				</div>
-				<a href="">방문하기</a>
-			</div>
-			<div class="mentor">
-				<div class="mentor-profile-img"></div>
-				<div class="mentor-info">
-					<span>멘토명</span>
-					<span>멘토 소속</span>
-				</div>
-				<a href="">방문하기</a>
-			</div>
-			<div class="mentor">
-				<div class="mentor-profile-img"></div>
-				<div class="mentor-info">
-					<span>멘토명</span>
-					<span>멘토 소속</span>
-				</div>
-				<a href="">방문하기</a>
-			</div>
-			<div class="mentor-slide-btn">
+
+            <div class="mentor-window">
+                <div class="mentor-container">
+                    <div class="mentor">
+                        <div class="mentor-profile-img"></div>
+                        <div class="mentor-info">
+                            <span>멘토명</span>
+                            <span>멘토 소속</span>
+                        </div>
+                        <a href="">방문하기</a>
+                    </div>
+                    <div class="mentor">
+                        <div class="mentor-profile-img"></div>
+                        <div class="mentor-info">
+                            <span>멘토명</span>
+                            <span>멘토 소속</span>
+                        </div>
+                        <a href="">방문하기</a>
+                    </div>
+                    <div class="mentor">
+                        <div class="mentor-profile-img"></div>
+                        <div class="mentor-info">
+                            <span>멘토명</span>
+                            <span>멘토 소속</span>
+                        </div>
+                        <a href="">방문하기</a>
+                    </div>
+                    <div class="mentor">
+                        <div class="mentor-profile-img"></div>
+                        <div class="mentor-info">
+                            <span>멘토명</span>
+                            <span>멘토 소속</span>
+                        </div>
+                        <a href="">방문하기</a>
+                    </div>
+                    <div class="mentor">
+                        <div class="mentor-profile-img"></div>
+                        <div class="mentor-info">
+                            <span>멘토명</span>
+                            <span>멘토 소속</span>
+                        </div>
+                        <a href="">방문하기</a>
+                    </div>
+                    <div class="mentor">
+                        <div class="mentor-profile-img"></div>
+                        <div class="mentor-info">
+                            <span>멘토명</span>
+                            <span>멘토 소속</span>
+                        </div>
+                        <a href="">방문하기</a>
+                    </div>
+                    <div class="mentor">
+                        <div class="mentor-profile-img"></div>
+                        <div class="mentor-info">
+                            <span>멘토명</span>
+                            <span>멘토 소속</span>
+                        </div>
+                        <a href="">방문하기</a>
+                    </div>
+                    <div class="mentor">
+                        <div class="mentor-profile-img"></div>
+                        <div class="mentor-info">
+                            <span>멘토명</span>
+                            <span>멘토 소속</span>
+                        </div>
+                        <a href="">방문하기</a>
+                    </div>
+                    <div class="mentor">
+                        <div class="mentor-profile-img"></div>
+                        <div class="mentor-info">
+                            <span>멘토명</span>
+                            <span>멘토 소속</span>
+                        </div>
+                        <a href="">방문하기</a>
+                    </div>
+                    <div class="mentor">
+                        <div class="mentor-profile-img"></div>
+                        <div class="mentor-info">
+                            <span>멘토명</span>
+                            <span>멘토 소속</span>
+                        </div>
+                        <a href="">방문하기</a>
+                    </div>
+                    <div class="mentor">
+                        <div class="mentor-profile-img"></div>
+                        <div class="mentor-info">
+                            <span>멘토명</span>
+                            <span>멘토 소속</span>
+                        </div>
+                        <a href="">방문하기</a>
+                    </div>
+                    <div class="mentor">
+                        <div class="mentor-profile-img"></div>
+                        <div class="mentor-info">
+                            <span>멘토명</span>
+                            <span>멘토 소속</span>
+                        </div>
+                        <a href="">방문하기</a>
+                    </div>
+                </div>
+            </div>
+
+			<div class="mentor-slide-btn-right">
 				<i class="fas fa-angle-right"></i>
 			</div>
 		</div>
@@ -169,36 +261,94 @@
 			<p><b><a href="">더보기</a></b></p>
 		</div>
 		<div class="main-community-list">
-			<div class="community-slide-btn">
+			<div class="community-slide-btn-left">
 				<i class="fas fa-angle-left"></i>
 			</div>
-			<div class="community">
-				<div class="text-area">
-					<span>게시글 제목이 들어갈 자리 입니다.</span>
-					<div class="text">
-						게시글 내용이 들어갈 자리입니다.
-					</div>
-					<span>작성자</span>
-				</div>
-				<div class="reply-area">
-					<span>0</span><br>
-					<span>댓글</span>
-				</div>
-			</div>
-			<div class="community">
-				<div class="text-area">
-					<span>게시글 제목이 들어갈 자리 입니다.</span>
-					<div class="text">
-						게시글 내용이 들어갈 자리입니다.
-					</div>
-					<span>작성자</span>
-				</div>
-				<div class="reply-area">
-					<span>0</span><br>
-					<span>댓글</span>
-				</div>
-			</div>
-			<div class="community-slide-btn">
+
+            <div class="community-window">
+                <div class="community-container">
+                    <div class="community">
+                        <div class="text-area">
+                            <span>게시글 제목이 들어갈 자리 입니다.</span>
+                            <div class="text">
+                                게시글 내용이 들어갈 자리입니다.
+                            </div>
+                            <span>작성자</span>
+                        </div>
+                        <div class="reply-area">
+                            <span>0</span><br>
+                            <span>댓글</span>
+                        </div>
+                    </div>
+                    <div class="community">
+                        <div class="text-area">
+                            <span>게시글 제목이 들어갈 자리 입니다.</span>
+                            <div class="text">
+                                게시글 내용이 들어갈 자리입니다.
+                            </div>
+                            <span>작성자</span>
+                        </div>
+                        <div class="reply-area">
+                            <span>0</span><br>
+                            <span>댓글</span>
+                        </div>
+                    </div>
+                    <div class="community">
+                        <div class="text-area">
+                            <span>게시글 제목이 들어갈 자리 입니다.</span>
+                            <div class="text">
+                                게시글 내용이 들어갈 자리입니다.
+                            </div>
+                            <span>작성자</span>
+                        </div>
+                        <div class="reply-area">
+                            <span>0</span><br>
+                            <span>댓글</span>
+                        </div>
+                    </div>
+                    <div class="community">
+                        <div class="text-area">
+                            <span>게시글 제목이 들어갈 자리 입니다.</span>
+                            <div class="text">
+                                게시글 내용이 들어갈 자리입니다.
+                            </div>
+                            <span>작성자</span>
+                        </div>
+                        <div class="reply-area">
+                            <span>0</span><br>
+                            <span>댓글</span>
+                        </div>
+                    </div>
+                    <div class="community">
+                        <div class="text-area">
+                            <span>게시글 제목이 들어갈 자리 입니다.</span>
+                            <div class="text">
+                                게시글 내용이 들어갈 자리입니다.
+                            </div>
+                            <span>작성자</span>
+                        </div>
+                        <div class="reply-area">
+                            <span>0</span><br>
+                            <span>댓글</span>
+                        </div>
+                    </div>
+                    <div class="community">
+                        <div class="text-area">
+                            <span>게시글 제목이 들어갈 자리 입니다.</span>
+                            <div class="text">
+                                게시글 내용이 들어갈 자리입니다.
+                            </div>
+                            <span>작성자</span>
+                        </div>
+                        <div class="reply-area">
+                            <span>0</span><br>
+                            <span>댓글</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+			<div class="community-slide-btn-right">
 				<i class="fas fa-angle-right"></i>
 			</div>
 		</div>
@@ -273,5 +423,68 @@
 			console.log(result);
 		})
 	</script>
+	
+	    <!--vod슬라이드 부분-->
+    <script>
+        let vodPosition = 0;
+
+        $(".main-vod-list>.vod-slide-btn-right").click(function(){
+            vodPosition += 250;
+            $(".main-container").css('transform', 'translateX(-'+ vodPosition +'px)');
+            if(vodPosition >= 1000){
+                vodPosition = -250;
+            }
+        })
+
+        $(".main-vod-list>.vod-slide-btn-left").click(function(){
+            vodPosition -= 250;
+            if(vodPosition <= 0){
+                vodPosition = 1000;
+            }
+            $(".main-container").css('transform', 'translateX(-'+ vodPosition +'px)');
+        })
+    </script>
+
+    <!--mentor슬라이드 부분-->
+    <script>
+        let mentorPosition = 0;
+
+        $(".main-mentor-list>.mentor-slide-btn-right").click(function(){
+            mentorPosition += 165;
+            $(".mentor-container").css('transform', 'translateX(-'+ mentorPosition +'px)');
+            if(mentorPosition >= 825){
+                mentorPosition = -165;
+            }
+        })
+
+        $(".main-mentor-list>.mentor-slide-btn-left").click(function(){
+            mentorPosition -= 165;
+            if(mentorPosition <= 0){
+                mentorPosition = 825;
+            }
+            $(".mentor-container").css('transform', 'translateX(-'+ mentorPosition +'px)');
+        })
+    </script>
+
+    <!--community슬라이드 부분-->
+    <script>
+        let commPosition = 0;
+
+        $(".main-community-list>.community-slide-btn-right").click(function(){
+            commPosition += 496;
+            $(".community-container").css('transform', 'translateX(-'+ commPosition +'px)');
+            if(commPosition >= 1984){
+                commPosition = -496;
+            }
+        })
+
+        $(".main-community-list>.community-slide-btn-left").click(function(){
+            commPosition -= 496;
+            if(commPosition <= 0){
+                commPosition = 1984;
+            }
+            $(".community-container").css('transform', 'translateX(-'+ commPosition +'px)');
+        })
+    </script>
 </body>
 </html>
