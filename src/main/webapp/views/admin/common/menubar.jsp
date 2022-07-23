@@ -94,7 +94,9 @@
                 case 8: location.href=""; break;
                 case 9: location.href=""; break;
                 case 10: location.href=""; break;
-                case 11: location.href=""; break;
+                case 11: 
+                	location.href="<%= request.getContextPath() %>/mentorInfo.li"; 
+                	break;
                 case 12: 
                 	location.href="<%= request.getContextPath() %>/stuInfo.li"; 
                 	break;

@@ -37,7 +37,7 @@
 			<table class="table table-bordered table-hover stutable">
 				<thead>
 					<tr>
-						<th width="100">번호(회원고유변호)</th>
+						<th width="100">번호(회원고유번호)</th>
 						<th width="100">이름</th>
 						<th width="150">아이디</th>
 						<th width="150">이메일</th>
