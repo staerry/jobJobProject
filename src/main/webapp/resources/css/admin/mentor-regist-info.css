@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+	#mentor-regist-info-table{
+		width : 100%;
+    	margin-top : 40px;
+    	font-size : 14px;
+		border-spacing: 20px;
+	}
+
+	#mentor-regist-info-table th{
+		text-align: right;
+	}
+
+	#mentor-regist-info-table td{
+		text-align: left;
+	}
+
+	.mentoRegistInfo-controller-btn{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		margin-top : 50px
+	}
+
+	.mentoRegistInfo-controller-btn>.left-controller>:first-child{
+		width : 70px;
+		height : 30px;
+		background-color: rgb(231, 76, 60);
+		border-style: none;
+		color : white;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+
+	.mentoRegistInfo-controller-btn>.left-controller>:nth-child(2){
+		width : 70px;
+		height : 30px;
+		background-color: #6363ff;
+		border-style: none;
+		color : white;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+
+	.mentoRegistInfo-controller-btn>.right-controller>button{
+		width : 70px;
+		height : 30px;
+		background-color: rgb(231, 76, 60);
+		border-style: none;
+		color : white;
+		border-radius: 5px;
+		cursor: pointer;
+	}

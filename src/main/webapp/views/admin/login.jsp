@@ -45,7 +45,7 @@
 	
 		    <!--이 부분은 우측 컨텐츠 입니다.-->
 		    <div class="right">
-		        <h3 style="color : #6363ff">멘토 가입 정보</h3>
+		        <h3 style="color : #6363ff">대시보드</h3>
 		    </div>
 	    </div>
 	<% } %>

@@ -1,5 +1,6 @@
 .wrap{
     width: 100%;
+    height : 100vh;
     background-color: #6363ff;
 }
 #photo{
@@ -52,5 +53,9 @@
   margin-bottom: 3%;
   font-weight: bold;
   cursor : pointer;
+  font-size : 14px;
 }
 
+.list>li:hover{
+    color : #6363ff;
+}

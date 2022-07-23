@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="resources/css/admin/admin-table-paging.css">
+<link rel="stylesheet" href="resources/css/admin/mentor-post-management.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -17,27 +18,44 @@
 	</div>
 	
 		<div class="right">
-		    <h3>멘토 가입 승인</h3>
+		    <h3>게시글 관리</h3>
+		    
+			<ul class="mentor-post-category">
+				<li>
+					<input type="radio" name="category" id="work" value="work" checked>
+		    		<label for="work">직무질문</label>
+				</li>
+				<li>
+					<input type="radio" name="category" id="study" value="study">
+		    		<label for="study">스터디</label>
+				</li>
+				<li>
+					<input type="radio" name="category" id="worry" value="worry">
+		    		<label for="worry">고민상담</label>
+				</li>
+				<li>
+					<input type="radio" name="category" id="review" value="review">
+		    		<label for="review">수강평</label>
+				</li>
+			</ul>
 		    
 		    <table class="table table-bordered table-hover admin-table">
                 <thead>
                     <tr>
                         <th width="60">번호</th>
-                        <th width="100">이름</th>
-                        <th width="150">전화번호</th>
-                        <th width="200">소속회사</th>
-                        <th width="100">직급</th>
-                        <th width="150">이메일</th>
+                        <th>게시글 제목</th>
+                        <th width="70">댓글</th>
+                        <th width="100">작성자</th>
+                        <th width="100">등록일</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>10</td>
-                        <td>최최최</td>
-                        <td>010-9999-9999</td>
-                        <td>구디아카데미</td>
-                        <td>사장님</td>
-                        <td>ggprojectsemi@gmail.com</td>
+                        <td>아직도 진로를 결정하지 못해 헤매고 있습니다.</td>
+                        <td>0</td>
+                        <td>홍길동</td>
+                        <td>2022-12-12</td>
                     </tr>
                 </tbody>
             </table>

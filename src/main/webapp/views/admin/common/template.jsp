@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<div class="content-wrap">
-	    	<!--이 부분에 좌측메뉴 넣으세요-->
-	    	<div class="left">
+	<div class="content-wrap">
+	    <!--이 부분에 좌측메뉴 넣으세요-->
+	    <div class="left">
 
 		</div>
 	
@@ -17,5 +17,6 @@
 	    <div class="right">
 	        <h3 style="color : #6363ff"></h3>
 	    </div>
+	</div>
 </body>
 </html>
