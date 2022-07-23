@@ -27,7 +27,7 @@
 						<label for="check1">전체회원</label>
 						&nbsp;
 						<input type="checkbox" id="check2"> 
-						<label for="check2">탈퇴한회원</label> 
+						<label for="check2">탈퇴한회원</label> &nbsp;
 						<input type="text" style="line-height: 30px; width: 200px;" id="searchclick" placeholder="   이름또는 회원번호로 검색">
 						<label for="searchclick"><button id="searchbtn" style="line-height: 30px;" class="btnpurple">검색</button></label>
 					</form>
