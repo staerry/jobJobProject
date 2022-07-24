@@ -17,7 +17,7 @@
         <table border="1">
             
             <tr>
-                <th colspan="2">회원탈퇴에 앞서 <span style="color:blue">유의사항 및 안내</span>를 반드시 읽고 진행해 주세요! <br><br><br>
+                <th colspan="2">회원탈퇴에 앞서 <span style="color:#6363FF;">유의사항 및 안내</span>를 반드시 읽고 진행해 주세요! <br><br><br>
                 </th>
             </tr>
             
