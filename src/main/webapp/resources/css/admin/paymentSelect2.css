@@ -45,7 +45,7 @@ table>tbody>tr{
     border-radius: 5px;
 }
 #formwraping{
-    margin-left: 45%;
+    margin-left: 75%;
 }
 
 .checks input[type="text"]{
@@ -71,7 +71,7 @@ table>tbody>tr{
     background-color :#a0a0a0;
     color: white;
     height: 38px;
-    width: 50px;
+    width: 130px;
     border: 1px solid #cacece;
     border-radius : 5px;
     box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
@@ -126,9 +126,9 @@ table>tbody>tr{
 }
 .detailInfo{
     background-color: whitesmoke;
-    width: 500px;
-    height: 700px;
-    left: 35%;
+    width: 800px;
+    height: 950px;
+    left: 30%;
     z-index: 10;
     display: "";
     box-shadow: 10px 10px 20px grey;
@@ -231,4 +231,62 @@ table>tbody>tr{
   background: #99a1a7;
   border-radius: 100%;
   box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+}
+
+select {
+    width: 200px; 
+    padding: .8em .5em; 
+    font-family: inherit;  
+    background: url(../../image/selectimg.jpg) no-repeat 95% 50%;  
+    border: 1px solid #999; 
+    border-radius: 0px; 
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;
+  }
+.arrowL {
+    position: relative;
+}
+
+.arrowL::after {
+    position: absolute;
+    left: 0; 
+    top: 0; 
+    content: '';
+    width: 25px;
+    height: 25px; 
+    border-top: 5px solid #000; 
+    border-right: 5px solid #000; 
+    transform: rotate(225deg);
+}
+
+.arrowR {
+    position: relative;
+}
+
+.arrowR::after {
+    position: absolute;
+    left: 0; 
+    top: 0; 
+    content: '';
+    width: 25px; 
+    height: 25px; 
+    border-top: 5px solid #000;
+    border-right: 5px solid #000; 
+    transform: rotate(45deg); 
+}
+
+.close {
+position:relative;
+display:inline-block;
+display:inline;
+width:50px;
+height:50px;
+text-align:center;
+margin-right:20px;
+}
+.close2:after {
+content: "\00d7"; 
+font-size:25pt;
+line-height:45px;
 }

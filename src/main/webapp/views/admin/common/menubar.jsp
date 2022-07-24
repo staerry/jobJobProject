@@ -100,8 +100,12 @@
                 case 12: 
                 	location.href="<%= request.getContextPath() %>/stuInfo.li"; 
                 	break;
-                case 13: location.href=""; break;
-                case 14: location.href=""; break;
+                case 13: 
+                	location.href="<%= request.getContextPath() %>/paymentselect.bo"; 
+                	break;
+                case 14: 
+                	location.href="<%= request.getContextPath() %>/refundRequest.li"; 
+                	break;
             }
         }
     </script>
