@@ -17,27 +17,23 @@
 	</div>
 	
 		<div class="right">
-		    <h3>멘토 가입 승인</h3>
+		    <h3>1대1 문의 관리</h3>
 		    
 		    <table class="table table-bordered table-hover admin-table">
                 <thead>
                     <tr>
                         <th width="60">번호</th>
-                        <th width="100">이름</th>
-                        <th width="150">전화번호</th>
-                        <th width="200">소속회사</th>
-                        <th width="100">직급</th>
-                        <th width="150">이메일</th>
+                        <th width="300">1대1문의 제목</th>
+                        <th width="100">작성자</th>
+                        <th width="100">등록일</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>10</td>
-                        <td>최최최</td>
-                        <td>010-9999-9999</td>
-                        <td>구디아카데미</td>
-                        <td>사장님</td>
-                        <td>ggprojectsemi@gmail.com</td>
+                        <td>1대1문의 제목이 들어갈 자리입니다.</td>
+                        <td>user01</td>
+                        <td>2022-12-12</td>
                     </tr>
                 </tbody>
             </table>
@@ -51,6 +47,7 @@
                 <a href="">5</a>
                 <a href="">&gt</a>
             </div>
+
 		</div>
 		
 	</div>

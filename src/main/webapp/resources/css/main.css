@@ -141,7 +141,6 @@
 	.main-content-wrap{
 		width : 1190px;
 		margin : auto;
-		background-color: rgb(249, 250, 251);
 	}
 
 	.main-content-wrap>.search-bar{
@@ -192,50 +191,72 @@
 		margin-top : 20px;
 	}
 
-	.main-vod-list>.vod-slide-btn{
-		width : 40px;
-		height : 40px;
-		background-color: #6363ff;
-		display: inline-block;
-		border-radius: 50px;
-		color : white;
-		text-align: center;
-		line-height: 40px;
-		font-size : 20px
-	}
+.main-vod-list>.vod-slide-btn-left,
+.main-vod-list>.vod-slide-btn-right{
+    width : 40px;
+    height : 40px;
+    background-color: #6363ff;
+    display: inline-block;
+    border-radius: 50px;
+    color : white;
+    text-align: center;
+    line-height: 40px;
+    font-size : 20px;
+    cursor: pointer;
+}
 
-	.main-vod-list>.vod{
-		width : 250px;
-		height : 200px;
-		background-color: white;
-		box-shadow: 5px 5px 5px rgb(216, 214, 214);
-		border-radius: 10px;
-		padding : 15px;
-		transition: all 0.3s;
-		cursor: pointer;
-	}
+.main-window{
+    overflow: hidden;
+    /* border : 4px solid red; */
+    height : 220px;
+    width : 1000px;
+    position : relative;
+}
 
-	.main-vod-list>.vod:hover{
-		transform: scale(1.05);
-	}
+.main-window>.main-container{
+    position : absolute;
+    width : 2500px;
+    height : 220px;
+    /* border : 4px solid green; */
+    transition: all 1s;
+}
 
-	.main-vod-list>.vod>p{
-		font-size : 12px;
-		margin-top : 30px;
-	}
+.main-window>.main-container>.vod{
+    width : 230px;
+    height : 200px;
+    background-color: white;
+    box-shadow: 5px 5px 5px rgb(216, 214, 214);
+    border-radius: 10px;
+    padding : 15px;
+    transition: all 0.3s;
+    cursor: pointer;
 
-	.main-vod-list>.vod>.class-thumbnail{
-		width : 100%;
-		height : 70px;
-		background-color: #ccc;
-		margin : 10px 0 5px 0;
-	}
+    display: inline-block;
+    margin : 8px 8px;
+    /* border : 4px solid pink; */
+}
 
-	.main-vod-list>.vod>span{
-		font-size : 16px;
-		cursor: pointer;
-		color : #ccc;
-	}
+.main-vod-list .vod:hover{
+    transform: scale(1.05);
+}
+
+.main-vod-list .vod>p{
+    font-size : 12px;
+    margin-top : 30px;
+}
+
+.main-vod-list .vod .class-thumbnail{
+    width : 100%;
+    height : 70px;
+    background-color: #ccc;
+    margin : 10px 0 5px 0;
+}
+
+.main-vod-list .vod span{
+    font-size : 16px;
+    cursor: pointer;
+    color : #ccc;
+}
 
 	/*mentor부분*/
 	.main-mentor-title{
@@ -259,67 +280,86 @@
 		margin-top : 20px;
 	}
 
-	.main-mentor-list>.mentor-slide-btn{
-		width : 40px;
-		height : 40px;
-		background-color: #6363ff;
-		display: inline-block;
-		border-radius: 50px;
-		color : white;
-		text-align: center;
-		line-height: 40px;
-		font-size : 20px
-	}
+.main-mentor-list>.mentor-slide-btn-left,
+.main-mentor-list>.mentor-slide-btn-right{
+    width : 40px;
+    height : 40px;
+    background-color: #6363ff;
+    display: inline-block;
+    border-radius: 50px;
+    color : white;
+    text-align: center;
+    line-height: 40px;
+    font-size : 20px;
+    cursor: pointer;
+}
 
-	.main-mentor-list>.mentor{
-		width : 150px;
-		height : 200px;
-		background-color: white;
-		box-shadow: 5px 5px 5px rgb(216, 214, 214);
-		border-radius: 10px;
-		padding : 15px;
-		transition: all 0.3s;
-		text-align: center;
-		cursor: pointer;
-	}
+.mentor-window{
+    overflow: hidden;
+    height : 220px;
+    width : 1000px;
+    position : relative;
+}
 
-	.main-mentor-list>.mentor:hover{
-		transform: scale(1.05);
-	}
+.mentor-window>.mentor-container{
+    position : absolute;
+    width : 2500px;
+    height : 220px;
+    transition: all 1s;
+}
 
-	.main-mentor-list>.mentor>.mentor-profile-img{
-		width : 70px;
-		height : 70px;
-		background-color: #ccc;
-		border-radius: 50px;
-		margin : auto;
-	}
+.mentor-window>.mentor-container>.mentor{
+    width : 145px;
+    height : 200px;
+    background-color: white;
+    box-shadow: 5px 5px 5px rgb(216, 214, 214);
+    border-radius: 10px;
+    padding : 15px 0 15px 0;
+    transition: all 0.3s;
+    text-align: center;
+    cursor: pointer;
 
-	.main-mentor-list>.mentor>.mentor-info>span{
-		display: block;
-	}
+    display: inline-block;
+    margin : 8px 8px;
+}
 
-	.main-mentor-list>.mentor>.mentor-info>:first-child{
-		font-size : 16px;
-		font-weight : bold;
-		margin-top : 15px;
-	}
+.main-mentor-list .mentor:hover{
+    transform: scale(1.05);
+}
 
-	.main-mentor-list>.mentor>.mentor-info>:nth-child(2){
-		font-size : 12px;
-	}
+.main-mentor-list .mentor .mentor-profile-img{
+    width : 70px;
+    height : 70px;
+    background-color: #ccc;
+    border-radius: 50px;
+    margin : auto;
+}
 
-	.main-mentor-list>.mentor>a{
-		background-color: #6363ff;
-		width : 120px;
-		height : 30px;
-		display: inline-block;
-		line-height: 30px;
-		color : white;
-		font-size : 12px;
-		border-radius: 5px;
-		margin-top : 15px;
-	}
+.main-mentor-list .mentor .mentor-info span{
+    display: block;
+}
+
+.main-mentor-list .mentor .mentor-info :first-child{
+    font-size : 16px;
+    font-weight : bold;
+    margin-top : 15px;
+}
+
+.main-mentor-list .mentor .mentor-info :nth-child(2){
+    font-size : 12px;
+}
+
+.main-mentor-list .mentor a{
+    background-color: #6363ff;
+    width : 120px;
+    height : 30px;
+    display: inline-block;
+    line-height: 30px;
+    color : white;
+    font-size : 12px;
+    border-radius: 5px;
+    margin-top : 15px;
+}
 
 	/*community부분*/
 	.main-community-title{
@@ -344,61 +384,80 @@
 		margin : 20px 0 50px 0;
 	}
 
-	.main-community-list>.community-slide-btn{
-		width : 40px;
-		height : 40px;
-		background-color: #6363ff;
-		display: inline-block;
-		border-radius: 50px;
-		color : white;
-		text-align: center;
-		line-height: 40px;
-		font-size : 20px
-	}
+.main-community-list>.community-slide-btn-left,
+.main-community-list>.community-slide-btn-right{
+    width : 40px;
+    height : 40px;
+    background-color: #6363ff;
+    display: inline-block;
+    border-radius: 50px;
+    color : white;
+    text-align: center;
+    line-height: 40px;
+    font-size : 20px;
+    cursor: pointer;
+}
 
-	.main-community-list>.community{
-		width : 490px;
-		height : 200px;
-		background-color: white;
-		border : 1px solid #6363ff;
-		border-radius: 10px;
-		padding : 15px;
-		cursor: pointer;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-	}
+.community-window{
+    overflow: hidden;
+    height : 220px;
+    width : 1000px;
+    position : relative;
+}
 
-	.main-community-list>.community>.text-area{
-		width : 80%;
-		height : 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-	}
+.community-window>.community-container{
+    position : absolute;
+    width : 3200px;
+    height : 220px;
+    transition: all 1s;
+}
 
-	.main-community-list>.community>.text-area>:first-child{
-		font-size : 16px;
-		font-weight : bold;
-	}
+.community-window>.community-container>.community{
+    width : 480px;
+    height : 200px;
+    background-color: white;
+    border : 1px solid #6363ff;
+    border-radius: 10px;
+    padding : 15px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 
-	.main-community-list>.community>.text-area>.text{
-		height : 110px;
-		font-size : 14px;
-	}
+    float : left;
+    margin : 8px 8px;
+}
 
-	.main-community-list>.community>.text-area>:nth-child(3){
-		font-size : 12px;
-	}
+.main-community-list .community .text-area{
+    width : 80%;
+    height : 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
-	.main-community-list>.community>.reply-area{
-		border : 1px solid #6363ff;
-		width : 60px;
-		height : 60px;
-		border-radius: 50px;
-		text-align: center;
-		line-height: 25px;
-		font-size : 14px;
-		font-weight : bold;
-	}
+.main-community-list .community .text-area :first-child{
+    font-size : 16px;
+    font-weight : bold;
+}
+
+.main-community-list .community .text-area .text{
+    height : 110px;
+    font-size : 14px;
+}
+
+.main-community-list .community .text-area :nth-child(3){
+    font-size : 12px;
+}
+
+.main-community-list .community .reply-area{
+    border : 1px solid #6363ff;
+    width : 60px;
+    height : 60px;
+    border-radius: 50px;
+    text-align: center;
+    line-height: 25px;
+    font-size : 14px;
+    font-weight : bold;
+}

@@ -1,13 +1,13 @@
 @charset "UTF-8";
 
-table{
+.admin-table{
     width : 100%;
     margin-top : 40px;
     font-size : 14px;
     text-align : center;
 }
 
-table>tbody>tr{
+.admin-table>tbody>tr{
     cursor: pointer;
 }
 
@@ -30,4 +30,15 @@ table>tbody>tr{
 .right>.paging-area>a:hover{
     background-color :#6363ff;
     color : white;
+}
+
+.table-bottom-btn > button{
+	float : right;
+	background-color : #6363ff;
+	margin-top : -40px;
+    height : 40px;
+    width : 100px;
+    border-radius : 5px;
+    border-style : none;
+    color : white; 
 }

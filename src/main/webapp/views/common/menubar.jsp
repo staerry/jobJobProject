@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 
 <!--css-->
-<link rel="stylesheet" href="resources/css/member/topmenu.css">
-<link rel="stylesheet" href="resources/css/setting.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member/topmenu.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/setting.css">
 
 <!--font-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,7 +39,7 @@
                 <% } %>
             </div>
             <div class="logo-area">
-                <img src="resources/image/logo.png" alt="logo" width="130">
+                <img src="../../resources/image/logo.png" alt="logo" width="100">
             </div>
             <ul class="main-menu-area">
                 <li><a href="">강의조회</a></li>

@@ -5,14 +5,14 @@
 <head>
 <meta charset="UTF-8">
 
-<link rel="stylesheet" href="resources/css/admin/menubar.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/menubar.css">
 
 <title>Insert title here</title>
 </head>
 <body>
     <div class="wrap">
         <div id="photo">
-            
+			<img src="${pageContext.request.contextPath}/resources/image/logo.png" alt="logo" width="100">
         </div>
         <div  id="dash" onclick="linkbutton(1);">대시보드</div>
         <br><br>
@@ -26,7 +26,7 @@
 
         <div class="menu">관리<span class="menu2">></span></div>
         <ul class="list">
-            <li onclick="linkbutton(5);">강의관리</li>
+            <li onclick="linkbutton(5);">클래스관리</li>
             <li onclick="linkbutton(6);">게시글관리</li>
             <li onclick="linkbutton(7);">공지사항관리</li>
             <li onclick="linkbutton(8);">FAQ관리</li>
@@ -70,20 +70,48 @@
 
         function linkbutton(num){
             switch(num){
-                case 1: location.href=""; break;
-                case 2: location.href=""; break;
-                case 3: location.href=""; break;
-                case 4: location.href=""; break;
-                case 5: location.href=""; break;
-                case 6: location.href=""; break;
-                case 7: location.href=""; break;
-                case 8: location.href=""; break;
-                case 9: location.href=""; break;
+        		// request.getContextPath();가 변수에 안담겨서 직접 사용합니다
+                case 1: 
+                	location.href="<%= request.getContextPath() %>/login.ad";
+                	break;
+                case 2:
+                	// 페이지 이동용도 포워딩 서블릿만 작성 했습니다.
+                	location.href="<%= request.getContextPath() %>/mentorApprovalListView.ad";
+                	break;
+                case 3:
+                	location.href="<%= request.getContextPath() %>/mentorClassApprovalListView.ad";
+                	break;
+                case 4: 
+                	location.href="<%= request.getContextPath() %>/mentorVodApprovalListView.ad";
+                	break;
+                case 5:
+                	location.href="<%= request.getContextPath() %>/mentorClassListView.ad";
+                	break;
+                case 6:
+                	location.href="<%= request.getContextPath() %>/postListView.ad";
+                	break;
+                case 7: 
+                	location.href="<%= request.getContextPath() %>/noticeListView.ad";
+                	break;
+                case 8: 
+                	location.href="<%= request.getContextPath() %>/faqListView.ad";
+                	break;
+                case 9:
+                	location.href="<%= request.getContextPath() %>/mtmListView.ad";
+                	break;
                 case 10: location.href=""; break;
-                case 11: location.href=""; break;
-                case 12: location.href=""; break;
-                case 13: location.href=""; break;
-                case 14: location.href=""; break;
+                case 11: 
+                	location.href="<%= request.getContextPath() %>/mentorInfo.li"; 
+                	break;
+                case 12: 
+                	location.href="<%= request.getContextPath() %>/stuInfo.li"; 
+                	break;
+                case 13: 
+                	location.href="<%= request.getContextPath() %>/paymentselect.bo"; 
+                	break;
+                case 14: 
+                	location.href="<%= request.getContextPath() %>/refundRequest.li"; 
+                	break;
             }
         }
     </script>
