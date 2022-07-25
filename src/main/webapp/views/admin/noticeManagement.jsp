@@ -47,7 +47,7 @@
             </div>
             
             <div class="table-bottom-btn" style="float : right">
-            	<button>작성하기</button>
+            	<button type="button" onclick="location.href='<%= contextPath %>/noticeInsert.ad'">작성하기</button>
             </div>
 
 		</div>
