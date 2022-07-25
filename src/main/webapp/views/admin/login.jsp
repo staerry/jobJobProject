@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 
-<link rel="stylesheet" href="resources/css/admin/admin-login.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/admin-login.css">
 
 <title>Insert title here</title>
 </head>
@@ -26,7 +26,7 @@
 			<%@ include file="common/topbar.jsp" %>
 		</div>
 	    <div class="admin-login-area">
-	        <img src="resources/image/logo.png" alt="logo" width="150">
+	        <img src="${pageContext.request.contextPath}/resources/image/logo.png" alt="logo" width="150">
 	        <p>관리자로그인</p>
 	        <form action="adLogin.do" method="post" class="login-area">
 	            <input type="text" name="adminId" class="form-control" placeholder="아이디" required><br>

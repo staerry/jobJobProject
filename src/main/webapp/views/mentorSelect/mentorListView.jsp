@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <!-- css -->
-<link rel="stylesheet" href="../../resources/css/setting.css">
-<link rel="stylesheet" href="../../resources/css/mentorSelect/mentorListView.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/setting.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mentorSelect/mentorListView.css">
 <meta charset="UTF-8">
 
 <!-- 부트스트랩 아이콘 -->

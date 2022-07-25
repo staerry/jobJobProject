@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <!-- css -->
-<link rel="stylesheet" href="../../resources/css/setting.css">
-<link rel="stylesheet" href="../../resources/css/classSelect/classEnrollForm.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/setting.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/classSelect/classEnrollForm.css">
 
 <!-- 부트스트랩 아이콘 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">

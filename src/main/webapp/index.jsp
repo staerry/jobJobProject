@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="resources/css/setting.css">
-<link rel="stylesheet" href="resources/css/main.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/setting.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
 
 <script src="https://kit.fontawesome.com/ea8287c514.js" crossorigin="anonymous"></script>
 <title>Insert title here</title>

@@ -12,7 +12,7 @@
 <body>
     <div class="wrap">
         <div id="photo">
-            
+			<img src="${pageContext.request.contextPath}/resources/image/logo.png" alt="logo" width="100">
         </div>
         <div  id="dash" onclick="linkbutton(1);">대시보드</div>
         <br><br>

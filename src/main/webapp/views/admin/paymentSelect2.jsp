@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="resources/css/admin/paymentSelects.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/paymentSelects.css">
 <title>Insert title here</title>
 </head>
 <body>
