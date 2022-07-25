@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 
-<link rel="stylesheet" href="resources/css/admin/menubar.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/menubar.css">
 
 <title>Insert title here</title>
 </head>

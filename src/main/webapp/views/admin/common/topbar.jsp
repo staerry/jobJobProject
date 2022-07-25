@@ -7,9 +7,10 @@
 <meta charset="UTF-8">
 
 <!--css-->
-<link rel="stylesheet" href="resources/css/admin/admin-top.css">
-<link rel="stylesheet" href="resources/css/setting.css">
-<link rel="stylesheet" href="resources/css/admin/admin-setting.css">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/admin-top.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/setting.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/admin-setting.css">
 
 <!--font-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
