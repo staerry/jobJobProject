@@ -10,6 +10,7 @@
     box-shadow: 0px 5px 5px rgb(221, 221, 221);
     display : flex;
     justify-content: flex-end;
+    z-index : 99;
 }
 
 .mini-menu-area{

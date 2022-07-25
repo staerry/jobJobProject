@@ -27,5 +27,151 @@
     color : white;
     border-style : none;
     cursor: pointer;
-    border-radius: 5px;;
+    border-radius: 5px;
 }
+
+/*로그인 후 스타일*/
+	/*통계*/
+	.statistics-area{
+		width : 100%;
+		height : 100px;
+		display : flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.statistics-area>.item1,
+	.statistics-area>.item2,
+	.statistics-area>.item3,
+	.statistics-area>.item4{
+		width : 23%;
+		height : 100%;
+		box-shadow: 5px 5px 5px rgb(216, 214, 214);
+		border-radius: 10px;
+		display: flex;
+	}
+
+	.statistics-area .text{
+		margin : 30px;
+	}
+
+	.statistics-area .img{
+		font-size : 50px;
+		color : #666;
+		margin : 15px;
+	}
+
+	.statistics-area .text :first-child{
+		color : #6363ff;
+		font-weight: bold;
+		font-size : 12px;
+	}
+
+
+	.statistics-area .text :nth-child(3){
+		color : #666;
+		font-size : 20px;
+	}
+
+
+	/*게시판*/
+	.post-area{
+		margin-top : 30px;
+		width : 100%;
+		height : 230px;
+		display : flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.post-area>.item1,
+	.post-area>.item2{
+		width : 48%;
+		height : 100%;
+		box-shadow: 5px 5px 5px rgb(216, 214, 214);
+		border-radius: 10px;
+		padding : 15px;
+	}
+
+	.post-area span{
+		display : block;
+	}
+
+	.post-area .item-title{
+		height : 30px;
+		border-bottom : 2px solid rgb(184, 183, 183);
+		display : flex;
+		justify-content: space-between;
+		color : #6363ff;
+		font-weight : bold;
+	}
+
+	.post-area .item-title a{
+	    text-decoration: none;
+		color : #6363ff;
+		font-weight : bold;
+		font-size: 12px;
+		line-height: 20px;
+	}
+
+	.post-area .item-content{
+		margin : 10px 0 10px 0;
+		display : flex;
+		justify-content: space-between;
+	}
+
+	.post-area .item-content a{
+		color : black;
+		text-decoration: none;
+	}
+
+	.post-area .item-content :nth-child(2){
+		color : rgb(184, 183, 183)
+	}
+
+	.post-area .item-content a:hover{
+		text-decoration: underline;
+	}
+
+	/*통계*/
+	.notification-area{
+		margin-top : 30px;
+		width : 100%;
+		height : 100px;
+		display : flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.notification-area>.item1,
+	.notification-area>.item2,
+	.notification-area>.item3,
+	.notification-area>.item4{
+		width : 23%;
+		height : 100%;
+		box-shadow: 5px 5px 5px rgb(216, 214, 214);
+		border-radius: 10px;
+		display: flex;
+	}
+
+	.notification-area .text{
+		margin : 30px;
+	}
+
+	.notification-area .img{
+		font-size : 50px;
+		color : #666;
+		margin : 15px;
+	}
+
+	.notification-area .text :first-child{
+		color : #6363ff;
+		font-weight: bold;
+		font-size : 12px;
+	}
+
+
+	.notification-area .text :nth-child(3){
+		color : #666;
+		font-size : 20px;
+	}
