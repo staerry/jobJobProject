@@ -49,16 +49,19 @@
 		box-shadow: 5px 5px 5px rgb(216, 214, 214);
 		border-radius: 10px;
 		display: flex;
+		justify-content : space-between;
+		align-items : center;
+		padding : 0 40px;
 	}
 
 	.statistics-area .text{
-		margin : 30px;
+		display : block;
 	}
 
 	.statistics-area .img{
-		font-size : 50px;
+		display : block;
+		font-size : 40px;
 		color : #666;
-		margin : 15px;
 	}
 
 	.statistics-area .text :first-child{
@@ -115,7 +118,8 @@
 	}
 
 	.post-area .item-content{
-		margin : 10px 0 10px 0;
+		font-size : 14px;
+		margin-top : 7px;
 		display : flex;
 		justify-content: space-between;
 	}
@@ -152,17 +156,20 @@
 		box-shadow: 5px 5px 5px rgb(216, 214, 214);
 		border-radius: 10px;
 		display: flex;
-	}
-
-	.notification-area .text{
-		margin : 30px;
+		justify-content : space-between;
+		align-items : center;
+		padding : 0 50px;
 	}
 
 	.notification-area .img{
 		font-size : 50px;
 		color : #666;
-		margin : 15px;
 	}
+	
+	.notification-area .img a{
+		color : #666;
+	}
+	
 
 	.notification-area .text :first-child{
 		color : #6363ff;

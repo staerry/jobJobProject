@@ -10,7 +10,6 @@
 <meta charset="UTF-8">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/admin-login.css">
-
 <title>Insert title here</title>
 </head>
 <body>
@@ -53,7 +52,7 @@
 							<span>12321</span>
 						</div>
 						<div class="img">
-							<i class="fa-solid fa-user-group"></i>
+							<i class="fas fa-user-friends"></i>
 						</div>
 					</div>
 					<div class="item2">
@@ -62,7 +61,7 @@
 							<span>12321</span>
 						</div>
 						<div class="img">
-							<i class="fa-solid fa-user"></i>
+							<i class="fas fa-user-alt"></i>
 						</div>
 					</div>
 					<div class="item3">
@@ -71,7 +70,7 @@
 							<span>12321</span>
 						</div>
 						<div class="img">
-							<i class="fa-solid fa-user"></i>
+							<i class="fas fa-user-alt"></i>
 						</div>
 					</div>
 					<div class="item4">
@@ -80,7 +79,7 @@
 							<span>12321</span>
 						</div>
 						<div class="img">
-							<i class="fa-solid fa-user-group"></i>
+							<i class="fas fa-user-friends"></i>
 						</div>
 					</div>
 		        </div>
@@ -156,7 +155,7 @@
 						</div>
 						<div class="img">
 							<a href="">
-								<i class="fa-solid fa-angle-right"></i>
+								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>
 					</div>
@@ -167,7 +166,7 @@
 						</div>
 						<div class="img">
 							<a href="">
-								<i class="fa-solid fa-angle-right"></i>
+								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>
 					</div>
@@ -178,7 +177,7 @@
 						</div>
 						<div class="img">
 							<a href="">
-								<i class="fa-solid fa-angle-right"></i>
+								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>
 					</div>
@@ -189,7 +188,7 @@
 						</div>
 						<div class="img">
 							<a href="">
-								<i class="fa-solid fa-angle-right"></i>
+								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>
 					</div>
