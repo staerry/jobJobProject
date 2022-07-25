@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 
 <!--css-->
-<link rel="stylesheet" href="../../resources/css/member/topmenu.css">
-<link rel="stylesheet" href="../../resources/css/setting.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member/topmenu.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/setting.css">
 
 <!--font-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
