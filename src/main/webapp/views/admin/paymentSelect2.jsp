@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="resources/css/admin/paymentSelect2.css">
+<link rel="stylesheet" href="resources/css/admin/paymentSelects.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -37,7 +37,7 @@
 		    </script>
 		    <br><br>
 			
-		    <div class="checks">
+		    <div class="checks" id="formwraping2">
 		        <div id="formwraping">
 		            <form action="" style="">
 		                &nbsp;
