@@ -31,3 +31,14 @@
     background-color :#6363ff;
     color : white;
 }
+
+.table-bottom-btn > button{
+	float : right;
+	background-color : #6363ff;
+	margin-top : -40px;
+    height : 40px;
+    width : 100px;
+    border-radius : 5px;
+    border-style : none;
+    color : white; 
+}
