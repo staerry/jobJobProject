@@ -21,7 +21,7 @@
 </head>
 <body>
 
-	<%-- <%@ include file="../common/menubar.jsp" %> --%>
+	<%@ include file="../common/menubar.jsp" %>
 	
     <!-- 전체를 감싸는 div -->
     <div class="container">
@@ -293,6 +293,6 @@
     </div> 
 	
 	
-	<%-- 	<%@ include file="../common/footer.jsp" %> --%>
+	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

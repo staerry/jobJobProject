@@ -74,9 +74,9 @@ li>a{color: #abb0b5;}
     align-items: flex-end;
 }
 
-.review-header > h2 {
+.review-header h4 {
     display:inline;
-    margin-right:50px;
+    margin-right:30px;
 }
 
 

@@ -22,7 +22,7 @@
 </head>
 <body>
 	
-	<%-- <%@ include file="../common/menubar.jsp" %> --%>
+	<%@ include file="../common/menubar.jsp" %>
 
     <!-- 전체를 감싸는 div -->
     <div class="container">
@@ -32,7 +32,7 @@
 
             <!-- 클래스 제목 -->
             <div class="class-title">
-                <h2>%= 클래스제목 %</h2>
+                <h3>%= 클래스제목 %</h3>
                 <p>%= 클래스소제목 %</p>
             </div>
 
@@ -46,7 +46,7 @@
 
             <!-- 클래스 소개 -->
             <div class="class-intro">
-                <h3>강의 소개</h3>
+                <h4>강의 소개</h4>
                 <p>
                     %= 클래스소개 %
                 </p>
@@ -54,7 +54,7 @@
 
             <!-- 멘토 소개 -->
             <div class="lecturer-intro">
-                <h3>멘토 소개</h3>
+                <h4>멘토 소개</h4>
                 <div class="lecturer-set">
                     <div class="lecturer-photo">
                         %= 프로필이미지경로 (180*220) %
@@ -71,7 +71,7 @@
 
             <!-- 커리큘럼 -->
             <div class="curriculum-intro">
-                <h2>커리큘럼</h2>
+                <h4>커리큘럼</h4>
                 <p>
                     %= 커리큘럼 %
                 </p>
@@ -82,7 +82,7 @@
             <!-- 수강후기 -->
             <div class="class-review">
                 <div class="review-header">
-                    <h2>수강후기</h2>
+                    <h4>수강후기</h4>
                     <span class="review-sorting">
                         <ul class="sorting-standard">
                             <li><a href="">최신 순</a></li>
@@ -167,7 +167,7 @@
                 
                 <!-- 수강료 표시 영역 -->
                 <div class="class-price">
-                    <h3>₩ %= 수강료 %</h3>
+                    <h4>₩ %= 수강료 %원</h4>
                 </div>
 
                 <div class="order-btn">
@@ -205,6 +205,6 @@
     
     <h2>/// 무한 스크롤 + top 버튼 ///</h2>
     
-    <%-- <%@ include file="../common/footer.jsp" %> --%>
+    <%@ include file="../common/footer.jsp" %>
 </body>
 </html>

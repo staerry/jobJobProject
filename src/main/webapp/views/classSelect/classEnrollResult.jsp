@@ -20,15 +20,15 @@
 </head>
 <body>
 
-	<%-- <%@ include file="../common/menubar.jsp" %> --%>
+	<%@ include file="../common/menubar.jsp" %>
 
     <div class="container">
         <div class="result-area">
                 <i class="bi bi-check2-circle bi" id="check-icon"></i>
             
-            <h1>수강신청이 완료되었습니다.</h1>
+            <h2>수강신청이 완료되었습니다.</h2>
             <br>
-            <h2>지금부터 모든 강의 콘텐츠를 이용하실 수 있습니다.</h2>
+            <h3>지금부터 모든 강의 콘텐츠를 이용하실 수 있습니다.</h3>
             <br>
             <br>
             <div class="button-area">
@@ -39,6 +39,6 @@
     </div>
 
 
-<%-- 	<%@ include file="../common/footer.jsp" %> --%>
+ 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>
