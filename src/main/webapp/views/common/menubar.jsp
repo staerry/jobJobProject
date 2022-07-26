@@ -39,7 +39,7 @@
                 <% } %>
             </div>
             <div class="logo-area">
-                <img src="../../resources/image/logo.png" alt="logo" width="100">
+                <img src="${pageContext.request.contextPath}/resources/image/logo.png" alt="logo" width="100">
             </div>
             <ul class="main-menu-area">
                 <li><a href="">강의조회</a></li>
