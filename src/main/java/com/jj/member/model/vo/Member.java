@@ -3,48 +3,33 @@ package com.jj.member.model.vo;
 import java.sql.Date;
 
 public class Member {
-	
+		
 	private int userNo;
 	private String userId;
 	private String userPwd;
 	private String userName;
-	private String phone;
-	private String email;
-	private String address;
-	private String interest;
+	private String userEmail;
+	private String userPhone;
 	private Date enrollDate;
-	private Date modifyDate;
-	private String status;
+	private String userStatus;
+	private String adminStatus;
+	private int userDivision;
 	
 	public Member() {}
-	
-	
-	
-	public Member(String userName, String userId, String userPwd,  String phone, String interest) {
-		super();
-		this.userName = userName;
-		this.userId = userId;
-		this.userPwd = userPwd;
-		this.phone = phone;
-		this.interest = interest;
-	}
 
-
-
-	public Member(int userNo, String userId, String userPwd, String userName, String phone, String email,
-			String address, String interest, Date enrollDate, Date modifyDate, String status) {
+	public Member(int userNo, String userId, String userPwd, String userName, String userEmail, String userPhone,
+			Date enrollDate, String userStatus, String adminStatus, int userDivision) {
 		super();
 		this.userNo = userNo;
 		this.userId = userId;
 		this.userPwd = userPwd;
 		this.userName = userName;
-		this.phone = phone;
-		this.email = email;
-		this.address = address;
-		this.interest = interest;
+		this.userEmail = userEmail;
+		this.userPhone = userPhone;
 		this.enrollDate = enrollDate;
-		this.modifyDate = modifyDate;
-		this.status = status;
+		this.userStatus = userStatus;
+		this.adminStatus = adminStatus;
+		this.userDivision = userDivision;
 	}
 
 	public int getUserNo() {
@@ -79,36 +64,20 @@ public class Member {
 		this.userName = userName;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getUserEmail() {
+		return userEmail;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUserPhone() {
+		return userPhone;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getInterest() {
-		return interest;
-	}
-
-	public void setInterest(String interest) {
-		this.interest = interest;
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
 	}
 
 	public Date getEnrollDate() {
@@ -119,27 +88,36 @@ public class Member {
 		this.enrollDate = enrollDate;
 	}
 
-	public Date getModifyDate() {
-		return modifyDate;
+	public String getUserStatus() {
+		return userStatus;
 	}
 
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getAdminStatus() {
+		return adminStatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setAdminStatus(String adminStatus) {
+		this.adminStatus = adminStatus;
+	}
+
+	public int getUserDivision() {
+		return userDivision;
+	}
+
+	public void setUserDivision(int userDivision) {
+		this.userDivision = userDivision;
 	}
 
 	@Override
 	public String toString() {
 		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
-				+ ", phone=" + phone + ", email=" + email + ", address=" + address + ", interest=" + interest
-				+ ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", status=" + status + "]";
+				+ ", userEmail=" + userEmail + ", userPhone=" + userPhone + ", enrollDate=" + enrollDate
+				+ ", userStatus=" + userStatus + ", adminStatus=" + adminStatus + ", userDivision=" + userDivision
+				+ "]";
 	}
-
+	
 }

@@ -1,16 +1,21 @@
 package com.jj.member.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.jj.member.model.service.MemberService;
+import com.jj.member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberSecondLoginPageController
  */
-@WebServlet("/secondLogin.me")
+@WebServlet("/secondLogin.do")
 public class MemberSecondLoginPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,8 +32,23 @@ public class MemberSecondLoginPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("views/member/memberLoginSecond.jsp").forward(request, response);
+		request.setCharacterEncoding("UTF-8");
 		
+		String userId = request.getParameter("userId");
+		String userPwd = request.getParameter("userPwd");
+		
+		Member loginUser = new MemberService().loginMember(userId, userPwd);
+		
+		HttpSession session = request.getSession();
+		if(loginUser == null) {// 로그인 실패
+			
+			request.setAttribute("alertMsg", "회원 로그인 실패");
+			response.sendRedirect(request.getContextPath() + "/userlogin.me");
+			
+		}else {// 로그인 성공
+			session.setAttribute("loginUser", loginUser);
+			response.sendRedirect(request.getContextPath() + "/userlogin.me");
+		}
 	}
 
 	/**

@@ -16,6 +16,7 @@ public class MemberService {
 		return m;
 	}
 
+	/*
 	public int insertMember(Member m) {
 		Connection conn = getConnection();
 		int result = new MemberDao().insertMember(conn, m);
@@ -28,6 +29,6 @@ public class MemberService {
 		
 		close(conn);
 		return result;	
-	}
+	}*/
 
 }

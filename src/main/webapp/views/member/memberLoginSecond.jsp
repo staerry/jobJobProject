@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.jj.member.model.vo.Member"%>
+<%
+	String contextPath = request.getContextPath(); // /job
+	
+	Member loginUser = (Member)session.getAttribute("loginUser");
+	
+	String alertMsg = (String)session.getAttribute("alertMsg");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,22 +35,51 @@
          box-sizing: border-box;
          width: 600px;
      }
+     .outer a{
+        text-decoration: none;
+        color: #6363FF;
+        font-size: 12px;
+     }
 </style>
 </head>
 <body>
 
 	<%@ include file="../common/menubar.jsp" %>
 	
+	<% if(alertMsg != null) { %>
+		<script>
+			alert("<%=alertMsg%>");
+		</script>
+		<% session.removeAttribute("alertMsg");%>
+	<% } %>
+	
 	<br><br>
 
     <div class="outer" align="center">
+    
+    	<% if(loginUser == null){ %>
+		<!-- 로그인 전 -->    
+    	<form action="<%= contextPath %>/secondLogin.do" method="post">
     	<h2>로그인</h2><br>
 
         <input type="text" name="userId" placeholder="이메일 주소 입력" required><br><br>
         
         <input type="password" name="userPwd" placeholder="비밀번호 입력" required><br><br>
-        <button>로그인</button><br><br>
-        
+        <button type="submit">로그인</button><br><br>
+        </form>
+        <% }else{ %>
+        <!-- 로그인 후 -->
+        <div>
+            <br>
+        	<b><%= loginUser.getUserName() %></b>의 방문을 환영합니다. <br><br>
+
+            <div align="center">
+                <a href="">마이페이지</a>&nbsp;&nbsp;
+                <a href="">로그아웃</a>
+            </div>
+            <br>
+        </div>
+        <% } %>
     </div>
     
     <br><br>
