@@ -8,6 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%if(session.getAttribute("UserInfoAd") == null){ %>
+	<script>
+		alert("유효하지않은 접근입니다.");
+		location.href="<%= request.getContextPath() %>/login.ad";
+	</script>
+	<%}else{ %>
 	<%@ include file="common/topbar.jsp" %>
 	
 	<div class="content-wrap">
@@ -47,11 +53,12 @@
             </div>
             
             <div class="table-bottom-btn" style="float : right">
-            	<button>작성하기</button>
+            	<button type="button" onclick="location.href='<%= contextPath %>/noticeInsert.ad'">작성하기</button>
             </div>
 
 		</div>
 		
 	</div>
+	<%} %>
 </body>
 </html>

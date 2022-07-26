@@ -1,6 +1,7 @@
 package com.jj.member.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +15,7 @@ import com.jj.member.model.vo.Member;
 /**
  * Servlet implementation class MemberSecondLoginPageController
  */
-@WebServlet("/secondLogin.me")
+@WebServlet("/secondLogin.do")
 public class MemberSecondLoginPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,36 +32,23 @@ public class MemberSecondLoginPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//request.getRequestDispatcher("views/member/memberLoginSecond.jsp").forward(request, response);
-		
 		request.setCharacterEncoding("UTF-8");
 		
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
-			
-		Member loginUser = new MemberService().loginMember(userId, userPwd);			
-			
-		if(loginUser == null) { // 조회결과 없음 == 로그인 실패 => 에러페이지 뜨도록
-				
-			/*
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-				
-			request.setAttribute("errorMsg", "로그인 실패했습니다.");
-				
-			view.forward(request, response); // * 포워딩방식 (forward) : 해당 경로로 선택된 뷰가 보여질 뿐 url은 변경되지 않음
-			*/
-			
-			HttpSession session = request.getSession();
-			session.setAttribute("alertMsg", "회원로그인에 실패했습니다.");
-			response.sendRedirect(request.getContextPath() + "/secondLogin.me");
-			
-		}else { // 로그인 성공 => 조회결과 있음 => 메인페이지(index.jsp)응답
-				
-			HttpSession session = request.getSession();
-			session.setAttribute("loginUser", loginUser);
-			response.sendRedirect(request.getContextPath());// * url재요청 방식 (redirect) : 기존에 저 페이지를 응답하는 url이 존재할 경우
-		}
 		
+		Member loginUser = new MemberService().loginMember(userId, userPwd);
+		
+		HttpSession session = request.getSession();
+		if(loginUser == null) {// 로그인 실패
+			
+			request.setAttribute("alertMsg", "회원 로그인 실패");
+			response.sendRedirect(request.getContextPath() + "/userlogin.me");
+			
+		}else {// 로그인 성공
+			session.setAttribute("loginUser", loginUser);
+			response.sendRedirect(request.getContextPath() + "/userlogin.me");
+		}
 	}
 
 	/**

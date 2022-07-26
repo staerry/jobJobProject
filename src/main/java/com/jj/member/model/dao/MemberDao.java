@@ -54,7 +54,8 @@ public class MemberDao {
 							   rset.getString("user_phone"),
 							   rset.getDate("user_enrolldate"),
 							   rset.getString("user_status"),
-							   rset.getString("admin_status")
+							   rset.getString("admin_status"),
+							   rset.getInt("user_division")
 							   ); // Member객체에 한줄의 정보를 담음
 			}
 
@@ -91,6 +92,32 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	*/
+
+	*/
+
+	/*
+	public int deleteMember(Connection conn, String userId, String userPwd) {
+		
+		   int result = 0;
+		   PreparedStatement pstmt = null;
+		   String sql = prop.getProperty("deleteMember");
+		   
+		   try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPwd);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		   return result;
+		
 	}
 	*/
 

@@ -9,6 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%if(session.getAttribute("UserInfoAd") == null){ %>
+	<script>
+		alert("유효하지않은 접근입니다.");
+		location.href="<%= request.getContextPath() %>/login.ad";
+	</script>
+	<%}else{ %>
 	<%@ include file="common/topbar.jsp" %>
 	
 	<div class="content-wrap">
@@ -47,6 +53,7 @@
                         <th width="70">댓글</th>
                         <th width="100">작성자</th>
                         <th width="100">등록일</th>
+                        <th width="100">삭제</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,6 +63,7 @@
                         <td>0</td>
                         <td>홍길동</td>
                         <td>2022-12-12</td>
+                        <td><button class="btn btn-sm btn-danger">삭제</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -72,5 +80,6 @@
 		</div>
 		
 	</div>
+	<%} %>
 </body>
 </html>

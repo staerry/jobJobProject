@@ -10,16 +10,9 @@
 <meta charset="UTF-8">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/admin-login.css">
-
 <title>Insert title here</title>
 </head>
 <body>
-	<% if(alertMsg != null) { %>
-		<script>
-			alert("<%=alertMsg%>");
-		</script>
-		<% session.removeAttribute("alertMsg");%>
-	<% } %>
 
 	<% if(u == null){ %>
 		<div style="display : none;">
@@ -53,7 +46,7 @@
 							<span>12321</span>
 						</div>
 						<div class="img">
-							<i class="fa-solid fa-user-group"></i>
+							<i class="fas fa-user-friends"></i>
 						</div>
 					</div>
 					<div class="item2">
@@ -62,7 +55,7 @@
 							<span>12321</span>
 						</div>
 						<div class="img">
-							<i class="fa-solid fa-user"></i>
+							<i class="fas fa-user-alt"></i>
 						</div>
 					</div>
 					<div class="item3">
@@ -71,7 +64,7 @@
 							<span>12321</span>
 						</div>
 						<div class="img">
-							<i class="fa-solid fa-user"></i>
+							<i class="fas fa-user-alt"></i>
 						</div>
 					</div>
 					<div class="item4">
@@ -80,7 +73,7 @@
 							<span>12321</span>
 						</div>
 						<div class="img">
-							<i class="fa-solid fa-user-group"></i>
+							<i class="fas fa-user-friends"></i>
 						</div>
 					</div>
 		        </div>
@@ -89,7 +82,7 @@
 						<ul class="item1">
 							<li class="item-title">
 								<span>1대1 문의관리</span>
-								<span><a href="">더보기</a></span>
+								<span><a href="<%= contextPath %>/mtmListView.ad">더보기</a></span>
 							</li>
 							<li class="item-content">
 								<span><a href="">문의드립니다.</a></span>
@@ -119,7 +112,7 @@
 						<ul class="item2">
 							<li class="item-title">
 								<span>공지사항 관리</span>
-								<span><a href="">더보기</a></span>
+								<span><a href="<%= contextPath %>/noticeListView.ad">더보기</a></span>
 							</li>
 							<li class="item-content">
 								<span><a href="">문의드립니다.</a></span>
@@ -155,8 +148,8 @@
 							<span>2</span>
 						</div>
 						<div class="img">
-							<a href="">
-								<i class="fa-solid fa-angle-right"></i>
+							<a href="<%= contextPath %>/mentorApprovalListView.ad">
+								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>
 					</div>
@@ -166,8 +159,8 @@
 							<span>2</span>
 						</div>
 						<div class="img">
-							<a href="">
-								<i class="fa-solid fa-angle-right"></i>
+							<a href="<%= contextPath %>/mentorVodApprovalListView.ad">
+								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>
 					</div>
@@ -177,8 +170,8 @@
 							<span>2</span>
 						</div>
 						<div class="img">
-							<a href="">
-								<i class="fa-solid fa-angle-right"></i>
+							<a href="<%= contextPath %>/paymentselect.bo">
+								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>
 					</div>
@@ -188,8 +181,8 @@
 							<span>2</span>
 						</div>
 						<div class="img">
-							<a href="">
-								<i class="fa-solid fa-angle-right"></i>
+							<a href="<%= contextPath %>/refundRequest.li">
+								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>
 					</div>

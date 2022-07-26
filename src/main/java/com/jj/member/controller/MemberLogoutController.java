@@ -29,13 +29,9 @@ public class MemberLogoutController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 로그아웃 요청 처리 => session 만료시키기 == session 무효화 (세션 싹 비운다고 생각)
 		HttpSession session = request.getSession();
 		session.invalidate();
-				
-		// /web url재요청 => 응답페이지 (index.jsp)
-		response.sendRedirect(request.getContextPath());
-	
+		response.sendRedirect(request.getContextPath() + "/userlogin.me");
 	
 	}
 

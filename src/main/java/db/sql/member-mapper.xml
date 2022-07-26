@@ -2,7 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-<entry key="loginMember">
+	<entry key="loginMember">
 		SELECT
 			   USER_NO
 			 , USER_ID
@@ -13,6 +13,7 @@
 			 , USER_ENROLLDATE
 			 , USER_STATUS
 			 , ADMIN_STATUS
+			 , USER_DIVISION
 		  FROM USERINFO
 		 WHERE USER_STATUS = 'N'
 		   AND USER_ID = ?
@@ -23,27 +24,21 @@
 		INSERT
 		  INTO MEMBER
 		  (
-		  	 USER_NO
-		   , USER_NAME
-		   , USER_ID
-		   , USER_PWD
-		   , PHONE
-		   
-		   , EMAIL
-		   , ADDRESS
-		   , INTEREST  
+		  	 
 		  )
 		  VALUES
 		  (
-			SEQ_UNO.NEXTVAL
-		  , ?
-		  , ?
-		  , ? 
-		  , ?
-		  , null
-		  , '서울'
-		  , ?
+			
 		  )
+	</entry>
+	
+	<entry key = "deleteMember">
+		UPDATE MEMBER
+		   SET STATUS = 'N'
+		     , MODIFY_DATE = SYSDATE
+		 WHERE USER_ID = ?
+		   AND USER_PWD = ?  
+	
 	</entry>
 
 

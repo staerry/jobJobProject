@@ -20,7 +20,7 @@
 </head>
 <body>
 
-	<%-- <%@ include file="../common/menubar.jsp" %> --%>
+	<%@ include file="../common/menubar.jsp" %>
 
     <!-- 전체를 감싸는 div -->
     <div class="container">
@@ -33,7 +33,7 @@
                 <tr>
                     <td rowspan="3" width="200" height="150"><img src="썸네일이미지경로" width="200" height="150"></td>
                     <td width="500">
-                        <h4>%= 강의명 %</h4>
+                        <h5>%= 강의명 %</h5>
                     </td>
                 </tr>
                 <tr>
@@ -49,7 +49,7 @@
             <!-- 왼쪽 주문 정보 -->
             <div class="user-area">
                 <div class="user-header">
-                    <h3>구매자 정보</h3>
+                    <h4>구매자 정보</h4>
                     <span>
                         <input type="checkbox" name="infoCopy" id="check-copy">
                         <label for="check-copy">회원정보와 동일</label>
@@ -142,7 +142,7 @@
                     <tr>
                         <td></td>
                         <td align="right">
-                            <h3> %= 수강료 - 할인금액 %원</h3>
+                            <h4> %= 수강료 - 할인금액 %원</h4>
                         </td>
                     </tr>
                 </table>
@@ -191,7 +191,7 @@
         </form>
     </div>
 
-<%-- 	<%@ include file="../common/footer.jsp" %> --%>
+	<%@ include file="../common/footer.jsp" %>
 
 </body>
 </html>

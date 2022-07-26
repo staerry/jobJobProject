@@ -8,6 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%if(session.getAttribute("UserInfoAd") == null){ %>
+	<script>
+		alert("유효하지않은 접근입니다.");
+		location.href="<%= request.getContextPath() %>/login.ad";
+	</script>
+	<%}else{ %>
 	<%@ include file="common/topbar.jsp" %>
 	
 	<div class="content-wrap">
@@ -22,10 +28,11 @@
 		    <table class="table table-bordered table-hover admin-table">
                 <thead>
                     <tr>
-                        <th width="60">번호</th>
-                        <th width="300">클래스명</th>
+                        <th width="30">번호</th>
+                        <th width="400">클래스명</th>
                         <th width="100">카테고리</th>
                         <th width="60">강사명</th>
+                        <th width="30">삭제</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +41,7 @@
                         <td>컴퓨터비전, 머신러닝, 딥러닝을 이용한 의료영상 분석</td>
                         <td>IT개발</td>
                         <td>홍길동</td>
+                        <td><button class="btn btn-sm btn-danger">삭제</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -50,5 +58,6 @@
 		</div>
 		
 	</div>
+	<%} %>
 </body>
 </html>

@@ -15,4 +15,20 @@ public class AdminService {
 		close(conn);
 		return u;
 	}
+	
+	public int insertFaq(String faqTitle, String faqContent, int userId) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().insertFaq(conn, faqTitle, faqContent, userId);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 }

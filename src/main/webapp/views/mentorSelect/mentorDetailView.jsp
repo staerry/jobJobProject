@@ -24,7 +24,7 @@
 </head>
 <body>
 
-	<%-- <%@ include file="../common/menubar.jsp" %> --%>
+	<%@ include file="../common/menubar.jsp" %>
 	
     <!-- 전체를 감싸는 div -->
     <div class="container">
@@ -59,19 +59,19 @@
             <!-- 오른쪽 멘토 소개 -->
             <div class="introduce-area">
                 <div class="mentor-info">
-                    <h3>대표 멘토링 분야</h3>
+                    <h4>대표 멘토링 분야</h4>
                     <p>
                         %= 분야명 %
                     </p>
                     <br>
 
-                    <h3>멘토 소개</h3>
+                    <h4>멘토 소개</h4>
                     <p>
                         %= 강의자 자기소개 %
                     </p>
                     <br>
 
-                    <h3>주요 경력</h3>
+                    <h4>주요 경력</h4>
                     <p>
                         %= 강의자 경력소개 %
                     </p>
@@ -89,7 +89,7 @@
 
         <!-- 강의 리스트 -->
         <div class="class-area">
-            <h2>강의</h2>
+            <h3>강의</h3>
             <!-- 등록된 클래스가 있을 경우 -->
             <div class="mentor-class-list">
                 <div class="class-thumbnail">
@@ -126,7 +126,7 @@
 
         <div class="question-area">
             <div class="question-header">
-                <h2>멘토에게 질문하기</h2>
+                <h3>멘토에게 질문하기</h3>
                 <ul class="question-sorting">
                     <li onclick="">최신 순</li>
                     <li onclick="">좋아요 순</li>
@@ -268,7 +268,7 @@
     </div>
 
 	
-	<%-- 	<%@ include file="../common/footer.jsp" %> --%>
+	<%@ include file="../common/footer.jsp" %>
 
 </body>
 </html>

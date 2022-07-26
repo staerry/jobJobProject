@@ -10,11 +10,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-	<div>
+	<%@ include file="../common/menubar.jsp" %>
+	<br><br>
+	<div align="center">
 		<table class="table table-striped">
 			<tr align="left">
-				<th colspan="6">결제 내역 > <span style="color: #6363FF;">결제
-						상세내역</span></th>
+				<th colspan="6"><h1>결제 내역 > <span style="color: #6363FF;">결제
+						상세내역</span></h1></th>
 			</tr>
 
 			<tr>
@@ -35,7 +37,7 @@
 				<td>xxxx</td>
 			</tr>
 
-			<tr align="left">
+			<tr>
 				<th colspan="6">결제정보</th>
 			</tr>
 
@@ -79,5 +81,7 @@
 
 		</table>
 	</div>
+	<br><br>
+    <%@ include file="../common/footer.jsp" %>
 </body>
 </html>

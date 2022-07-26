@@ -8,6 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%if(session.getAttribute("UserInfoAd") == null){ %>
+	<script>
+		alert("유효하지않은 접근입니다.");
+		location.href="<%= request.getContextPath() %>/login.ad";
+	</script>
+	<%}else{ %>
 	<%@ include file="common/topbar.jsp" %>
 	
 	<div class="content-wrap">
@@ -42,15 +48,19 @@
 						<td>gdgdgd@gmail.com</td>
 					</tr>
 					<tr>
+						<th>분야</th>
+						<td>IT개발</td>
+					</tr>
+					<tr>
 						<th>신분증</th>
 						<td>
-							첨부이미지가 없습니다.
+							<img src="" alt="신분증 이미지" height="200">
 						</td>
 					</tr>
 					<tr>
 						<th>사원증</th>
 						<td>
-							첨부이미지가 없습니다.
+							<img src="" alt="사원증 이미지" height="200">
 						</td>
 					</tr>
 			</table>
@@ -66,5 +76,6 @@
 			</div>
 	    </div>
 	</div>
+	<%} %>
 </body>
 </html>

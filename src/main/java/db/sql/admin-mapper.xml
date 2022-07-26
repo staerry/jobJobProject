@@ -15,6 +15,23 @@
 	   AND ADMIN_STATUS = 'Y'
 </entry>
 
+<entry key="insertFaq">
+	INSERT
+	  INTO FAQ
+	       (
+	       FAQ_NO
+	     , USER_NO
+	     , FAQ_TITLE
+	     , FAQ_ANSWER
+	       )
+	VALUES (
+	       SEQ_FAQ.NEXTVAL
+	     , ?
+	     , ?
+	     , ?
+	       )
+</entry>
+
 
 
 </properties>
