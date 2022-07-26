@@ -18,44 +18,16 @@
 	
 		<!--이 부분은 우측 컨텐츠 입니다.-->
 		<div class="right">
-	        <h3>멘토 가입 정보</h3>
+	        <h3>강의 등록 정보</h3>
 
 			<table class="admin-table">
 					<tr>
-						<th width="80">이름</th>
-						<td>김개똥깨</td>
+						<th width="150">강의 제목</th>
+						<td>강의 영상 제목 입니다.</td>
 					</tr>
 					<tr>
-						<th>전화번호</th>
-						<td>000-0000-0000</td>
-					</tr>
-					<tr>
-						<th>소속회사</th>
-						<td>구디아카데미</td>
-					</tr>
-					<tr>
-						<th>직급</th>
-						<td>사장님</td>
-					</tr>
-					<tr>
-						<th>이메일</th>
-						<td>gdgdgd@gmail.com</td>
-					</tr>
-					<tr>
-						<th>분야</th>
-						<td>IT개발</td>
-					</tr>
-					<tr>
-						<th>신분증</th>
-						<td>
-							<img src="" alt="신분증 이미지" height="200">
-						</td>
-					</tr>
-					<tr>
-						<th>사원증</th>
-						<td>
-							<img src="" alt="사원증 이미지" height="200">
-						</td>
+						<th>강의 영상 첨부파일</th>
+						<td>영상 첨부파일이 들어갈 자리</td>
 					</tr>
 			</table>
 

@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.admin-table textarea{
+	width : 40%;
+	height : 200px;
+	resize : none;
+	padding : 5px;
+}
+
+.mtm-controller-btn{
+	width : 40%;
+	height : 40px;
+	text-align : right;
+}
+
+.mtm-controller-btn :first-child{
+	width : 100px;
+	height : 40px;
+	border-radius : 5px;
+	border-style : none;
+	color : white;
+	background-color : rgb(231, 76, 60);
+}
+
+.mtm-controller-btn :last-child{
+	width : 100px;
+	height : 40px;
+	border-radius : 5px;
+	border-style : none;
+	color : white;
+	background-color : #6363ff;
+}
