@@ -66,7 +66,8 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return m;
-	}
+	
+}
 	
 	/*
 	public int insertMember(Connection conn, Member m) {
@@ -93,8 +94,6 @@ public class MemberDao {
 		}
 		return result;
 	}
-	*/
-
 	*/
 
 	/*

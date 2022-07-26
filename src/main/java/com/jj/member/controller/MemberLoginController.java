@@ -16,7 +16,7 @@ import com.jj.member.model.vo.Member;
 /**
  * Servlet implementation class userLoginController
  */
-@WebServlet("/login.me")
+@WebServlet("/userlogin.me")
 public class MemberLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,7 +34,7 @@ public class MemberLoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.getRequestDispatcher("views/member/memberLoginSecond.jsp").forward(request, response);
-	x
+	
 	}
 
 	/**
