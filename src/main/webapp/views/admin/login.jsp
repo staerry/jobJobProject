@@ -88,7 +88,7 @@
 						<ul class="item1">
 							<li class="item-title">
 								<span>1대1 문의관리</span>
-								<span><a href="">더보기</a></span>
+								<span><a href="<%= contextPath %>/mtmListView.ad">더보기</a></span>
 							</li>
 							<li class="item-content">
 								<span><a href="">문의드립니다.</a></span>
@@ -118,7 +118,7 @@
 						<ul class="item2">
 							<li class="item-title">
 								<span>공지사항 관리</span>
-								<span><a href="">더보기</a></span>
+								<span><a href="<%= contextPath %>/noticeListView.ad">더보기</a></span>
 							</li>
 							<li class="item-content">
 								<span><a href="">문의드립니다.</a></span>
@@ -154,7 +154,7 @@
 							<span>2</span>
 						</div>
 						<div class="img">
-							<a href="">
+							<a href="<%= contextPath %>/mentorApprovalListView.ad">
 								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>
@@ -165,7 +165,7 @@
 							<span>2</span>
 						</div>
 						<div class="img">
-							<a href="">
+							<a href="<%= contextPath %>/mentorVodApprovalListView.ad">
 								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>
@@ -176,7 +176,7 @@
 							<span>2</span>
 						</div>
 						<div class="img">
-							<a href="">
+							<a href="<%= contextPath %>/paymentselect.bo">
 								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>
@@ -187,7 +187,7 @@
 							<span>2</span>
 						</div>
 						<div class="img">
-							<a href="">
+							<a href="<%= contextPath %>/refundRequest.li">
 								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>
