@@ -100,7 +100,9 @@
                 case 9:
                 	location.href="<%= request.getContextPath() %>/mtmListView.ad";
                 	break;
-                case 10: location.href=""; break;
+                case 10: 
+                	location.href="<%= request.getContextPath() %>/couponManage.ad"; 
+                	break;
                 case 11: 
                 	location.href="<%= request.getContextPath() %>/mentorInfo.li"; 
                 	break;
