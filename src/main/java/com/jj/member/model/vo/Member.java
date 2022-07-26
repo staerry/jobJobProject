@@ -110,17 +110,7 @@ public class Member {
 
 	public void setUserDivision(int userDivision) {
 		this.userDivision = userDivision;
-	}
-
-	/*
-	public String getInterest() {
-		return interest;
-	}
-
-	public void setInterest(String interest) {
-		this.interest = interest;
-	}
-	*/
+	} 
 	
 	@Override
 	public String toString() {

@@ -80,37 +80,6 @@
                         <td></td>
                     </tr>
                  
-                    <tr>
-                        <td>관심분야 &nbsp; &nbsp;</td>
-                        <td colspan="2">
-                            <input type="checkbox" name="interest" id="computer" value="IT개발">
-                            <label for="sports">IT개발</label>
-    
-                            <input type="checkbox" name="interest" id="marketing" value="마케팅/MD/영업">
-                            <label for="climbing">마케팅/MD/영업</label>
-                            <br>
-    
-                            <input type="checkbox" name="interest" id="banking" value="회계/재무/금융">
-                            <label for="fishing">회계/재무/금융</label>
-    
-                            <input type="checkbox" name="interest" id="planning" value="전략/기획">
-                            <label for="cooking">전략/기획</label>
-                            <br>
-    
-                            <input type="checkbox" name="interest" id="trading" value="유통/무역/구매">
-                            <label for="game">유통/무역/구매</label>
-    
-                            <input type="checkbox" name="interest" id="goverment" value="공기업/공무원">
-                            <label for="movie">공기업/공무원</label>
-                            <br>
-    
-                            <input type="checkbox" name="interest" id="special" value="전문/특수">
-                            <label for="movie">전문/특수</label>
-    
-                            <input type="checkbox" name="interest" id="exploration" value="진로탐색">
-                            <label for="movie">진로탐색</label>
-                        </td>
-                    </tr>
                 </table>
     
                 <br>

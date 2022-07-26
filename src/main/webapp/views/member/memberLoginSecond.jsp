@@ -53,13 +53,6 @@
 
 	<%@ include file="../common/menubar.jsp" %>
 	
-	<% if(alertMsg != null) { %>
-		<script>
-			alert("<%=alertMsg%>");
-		</script>
-		<% session.removeAttribute("alertMsg");%>
-	<% } %>
-	
 	<br><br>
 
     <div class="outer" align="center">
@@ -88,7 +81,6 @@
         </div>
         <% } %>
     </div>
-    
     
     <br><br>
     
