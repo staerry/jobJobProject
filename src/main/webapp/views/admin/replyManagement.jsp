@@ -9,6 +9,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%if(session.getAttribute("UserInfoAd") == null){ %>
+	<script>
+		alert("유효하지않은 접근입니다.");
+		location.href="<%= request.getContextPath() %>/login.ad";
+	</script>
+	<%}else{ %>
 	<%@ include file="common/topbar.jsp" %>
 	
 	<div class="content-wrap">
@@ -55,5 +61,6 @@
 		</div>
 		
 	</div>
+	<%} %>
 </body>
 </html>
