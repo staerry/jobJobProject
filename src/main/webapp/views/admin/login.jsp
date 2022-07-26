@@ -13,12 +13,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<% if(alertMsg != null) { %>
-		<script>
-			alert("<%=alertMsg%>");
-		</script>
-		<% session.removeAttribute("alertMsg");%>
-	<% } %>
 
 	<% if(u == null){ %>
 		<div style="display : none;">
