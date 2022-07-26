@@ -29,8 +29,16 @@
 <script src="https://kit.fontawesome.com/ea8287c514.js" crossorigin="anonymous"></script>
 
 <title>Insert title here</title>
+
 </head>
 <body>
+	<% if(session.getAttribute("alertMsg") != null){ %>
+		<script>
+			alert('<%= session.getAttribute("alertMsg") %>');
+		</script>
+		<% session.removeAttribute("alertMsg"); %>
+	<% } %>
+	
     <div class="top-menu-area">
         <div class="mini-menu-area">
             <div>

@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
 	<%@ include file="common/topbar.jsp" %>
 	
 	<div class="content-wrap">

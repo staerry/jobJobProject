@@ -1,5 +1,7 @@
 package com.jj.admin.model.dao;
 
+import static com.jj.common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,7 +11,6 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import com.jj.admin.model.vo.UserInfoAd;
-import static com.jj.common.JDBCTemplate.*;
 
 public class AdminDao {
 	
@@ -53,6 +54,50 @@ public class AdminDao {
 		}
 		return u;
 	}
+	
+	public int insertFaq(Connection conn, String faqTitle, String faqContent, int userId) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertFaq");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userId);
+			pstmt.setString(2, faqTitle);
+			pstmt.setString(3, faqContent);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
