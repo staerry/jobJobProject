@@ -22,13 +22,23 @@
 	
 	<entry key="insertMember">
 		INSERT
-		  INTO MEMBER
+		  INTO USERINFO
 		  (
-		  	 
+		     USER_NO
+		   , USER_ID
+		   , USER_PWD
+		   , USER_NAME
+		   , USER_EMAIL
+		   , USER_PHONE
 		  )
 		  VALUES
 		  (
-			
+		    SEQ_USER.NEXTVAL
+		  , ?
+		  , ?
+		  , ? 
+		  , ?
+		  , ?
 		  )
 	</entry>
 	

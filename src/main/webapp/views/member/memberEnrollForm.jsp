@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath(); // /job
+	
+	String alertMsg = (String)session.getAttribute("alertMsg");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,8 +50,9 @@
             <br>
     
             <h2 align="center">니JOB 내JOB에서<br>꿈을 이뤄보세요.</h2>
+            <br>
     
-            <form action="" method="post" id="enroll-form">
+            <form action="<%= contextPath %>/insert.me" method="post" id="enroll-form">
     
                 <table>
     

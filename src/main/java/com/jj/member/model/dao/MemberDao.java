@@ -67,23 +67,23 @@ public class MemberDao {
 		}
 		return m;
 	
-}
+	}
 	
-	/*
+	
 	public int insertMember(Connection conn, Member m) {
 		// insert문 => DML문 => 처리된 행수
-		// ResultSet은 조회문
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertMember");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m.getUserName());
-			pstmt.setString(2, m.getUserId());
-			pstmt.setString(3, m.getUserPwd());
-			pstmt.setString(4, m.getPhone());
-			pstmt.setString(5, m.getInterest());
+			
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getUserPwd());
+			pstmt.setString(3, m.getUserName());
+			pstmt.setString(4, m.getUserEmail());
+			pstmt.setString(5, m.getUserPhone());
 			
 			result = pstmt.executeUpdate();
 			
@@ -94,7 +94,7 @@ public class MemberDao {
 		}
 		return result;
 	}
-	*/
+
 
 	
 

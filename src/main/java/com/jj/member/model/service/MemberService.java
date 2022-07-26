@@ -16,12 +16,11 @@ public class MemberService {
 		return m;
 	}
 
-	/*
 	public int insertMember(Member m) {
 		Connection conn = getConnection();
 		int result = new MemberDao().insertMember(conn, m);
 		
-		if(result > 0) { // result가 0보다 클 경우 뭔가가 삽입 insert된 것
+		if(result > 0) { 
 			commit(conn);
 		}else {
 			rollback(conn);
@@ -29,7 +28,7 @@ public class MemberService {
 		
 		close(conn);
 		return result;	
-	}*/
+	}
 	
 	/*
 	public int deleteMember(String userId, String userPwd) {
