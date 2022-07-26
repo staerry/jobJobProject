@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.jj.admin.model.vo.UserInfoAd"%>
 <%String contextPath = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
@@ -38,7 +38,9 @@
             </div>
             <span>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
             <div>
-                <b>xxx</b>님
+            	<%if(session.getAttribute("UserInfoAd")!=null){ %>
+                <b><%=((UserInfoAd)session.getAttribute("UserInfoAd")).getUserId() %></b>님
+                <% }%>
             </div>
         </div>
     </div>
