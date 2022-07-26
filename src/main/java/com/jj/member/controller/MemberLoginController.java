@@ -16,7 +16,7 @@ import com.jj.member.model.vo.Member;
 /**
  * Servlet implementation class userLoginController
  */
-@WebServlet("/login.me")
+@WebServlet("/userlogin.me")
 public class MemberLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
