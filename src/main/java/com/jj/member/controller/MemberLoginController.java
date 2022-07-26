@@ -34,7 +34,6 @@ public class MemberLoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.getRequestDispatcher("views/member/memberLoginSecond.jsp").forward(request, response);
-	
 	}
 
 	/**

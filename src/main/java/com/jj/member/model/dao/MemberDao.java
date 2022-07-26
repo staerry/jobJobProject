@@ -96,6 +96,8 @@ public class MemberDao {
 	}
 	*/
 
+	
+
 	/*
 	public int deleteMember(Connection conn, String userId, String userPwd) {
 		
