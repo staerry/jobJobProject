@@ -75,7 +75,7 @@
 
             <div align="center">
                 <a href="">마이페이지</a>&nbsp;&nbsp;
-                <a href="">로그아웃</a>
+                <a href="<%=contextPath%>/userlogout.me">로그아웃</a>
             </div>
             <br>
         </div>
