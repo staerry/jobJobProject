@@ -50,13 +50,11 @@ public class MemberDao {
 							   rset.getString("user_id"),
 							   rset.getString("user_pwd"),
 							   rset.getString("user_name"),
-							   rset.getString("phone"),
-							   rset.getString("email"),
-							   rset.getString("address"),
-							   rset.getString("interest"),
-							   rset.getDate("enroll_date"),
-							   rset.getDate("modify_date"),
-							   rset.getString("status")
+							   rset.getString("user_email"),
+							   rset.getString("user_phone"),
+							   rset.getDate("user_enrolldate"),
+							   rset.getString("user_status"),
+							   rset.getString("admin_status")
 							   ); // Member객체에 한줄의 정보를 담음
 			}
 
@@ -69,6 +67,7 @@ public class MemberDao {
 		return m;
 	}
 	
+	/*
 	public int insertMember(Connection conn, Member m) {
 		// insert문 => DML문 => 처리된 행수
 		// ResultSet은 조회문
@@ -93,5 +92,6 @@ public class MemberDao {
 		}
 		return result;
 	}
+	*/
 
 }

@@ -8,15 +8,13 @@
 			 , USER_ID
 			 , USER_PWD
 			 , USER_NAME
-			 , PHONE
-			 , EMAIL
-			 , ADDRESS
-			 , INTEREST
-			 , ENROLL_DATE
-			 , MODIFY_DATE
-			 , STATUS
-		  FROM MEMBER
-		 WHERE STATUS = 'Y'
+			 , USER_EMAIL
+			 , USER_PHONE
+			 , USER_ENROLLDATE
+			 , USER_STATUS
+			 , ADMIN_STATUS
+		  FROM USERINFO
+		 WHERE USER_STATUS = 'N'
 		   AND USER_ID = ?
 		   AND USER_PWD = ?
 	</entry>

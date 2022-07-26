@@ -8,18 +8,15 @@ public class Member {
 	private String userId;
 	private String userPwd;
 	private String userName;
-	private String phone;
 	private String email;
-	private String address;
-	private String interest;
+	private String phone;
 	private Date enrollDate;
-	private Date modifyDate;
-	private String status;
+	private String userStatus;
+	private String adStatus;
+	//private String interest;
 	
 	public Member() {}
-	
-	
-	
+	/*
 	public Member(String userName, String userId, String userPwd,  String phone, String interest) {
 		super();
 		this.userName = userName;
@@ -28,23 +25,21 @@ public class Member {
 		this.phone = phone;
 		this.interest = interest;
 	}
+	*/
 
-
-
-	public Member(int userNo, String userId, String userPwd, String userName, String phone, String email,
-			String address, String interest, Date enrollDate, Date modifyDate, String status) {
+	public Member(int userNo, String userId, String userPwd, String userName, String email, String phone,
+			Date enrollDate, String userStatus, String adStatus) {
 		super();
 		this.userNo = userNo;
 		this.userId = userId;
 		this.userPwd = userPwd;
 		this.userName = userName;
-		this.phone = phone;
 		this.email = email;
-		this.address = address;
-		this.interest = interest;
+		this.phone = phone;
 		this.enrollDate = enrollDate;
-		this.modifyDate = modifyDate;
-		this.status = status;
+		this.userStatus = userStatus;
+		this.adStatus = adStatus;
+		
 	}
 
 	public int getUserNo() {
@@ -79,14 +74,6 @@ public class Member {
 		this.userName = userName;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -95,20 +82,12 @@ public class Member {
 		this.email = email;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getInterest() {
-		return interest;
-	}
-
-	public void setInterest(String interest) {
-		this.interest = interest;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public Date getEnrollDate() {
@@ -119,27 +98,37 @@ public class Member {
 		this.enrollDate = enrollDate;
 	}
 
-	public Date getModifyDate() {
-		return modifyDate;
+	public String getUserStatus() {
+		return userStatus;
 	}
 
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getAdStatus() {
+		return adStatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setAdStatus(String adStatus) {
+		this.adStatus = adStatus;
 	}
 
+	/*
+	public String getInterest() {
+		return interest;
+	}
+
+	public void setInterest(String interest) {
+		this.interest = interest;
+	}
+	*/
+	
 	@Override
 	public String toString() {
 		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
-				+ ", phone=" + phone + ", email=" + email + ", address=" + address + ", interest=" + interest
-				+ ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate + ", status=" + status + "]";
+				+ ", email=" + email + ", phone=" + phone + ", enrollDate=" + enrollDate + ", userStatus=" + userStatus
+				+ ", adStatus=" + adStatus + "]";
 	}
 
 }
