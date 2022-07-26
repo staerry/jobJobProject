@@ -1,0 +1,293 @@
+@charset "UTF-8";
+
+table{
+    width : 100%;
+    margin-top : 40px;
+    font-size : 14px;
+    text-align : center;
+}
+
+table>tbody>tr{
+    cursor: pointer;
+}
+
+.paging-area{
+    text-align: center;
+}
+.paging-area>a{
+    width : 40px;
+    height : 40px;
+    display: inline-block;
+    background-color: rgb(236, 236, 236);
+    color : black;
+    line-height: 40px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.paging-area>a:hover{
+    background-color :#6363ff;
+    color : white;
+}
+
+.stutable{
+    border-radius: 5px;
+}
+
+.totalpage{
+    margin-left: 90%;
+}
+.checks{
+    width: 100%;
+    height: 60px;
+    
+    background-color:rgb(211, 211, 211);
+    line-height: 60px;
+    border-radius: 5px;
+}
+#formwraping{
+    margin-left: 75%;
+}
+
+.checks input[type="text"]{
+    background: #fafafa;
+    border: 1px solid #cacece;
+    border-radius : 5px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+}
+
+#searchbtn{
+    background-color :#6363ff;
+    color: white;
+    height: 38px;
+    width: 50px;
+    border: 1px solid #cacece;
+    border-radius : 5px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+}
+#searchbtn:hover{
+    background-color: #393990;
+}
+.button1{
+    background-color :#6363ff;
+    color: white;
+    height: 38px;
+    width: 60px;
+    border: 1px solid #cacece;
+    border-radius : 5px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+}
+.button1:hover{
+    background-color: #393990;
+}
+
+.button2{
+    background-color :#a0a0a0;
+    color: white;
+    height: 38px;
+    width: 60px;
+    border: 1px solid #cacece;
+    border-radius : 5px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+}
+.button2:hover{
+    background-color: #808080;
+}
+
+.button3{
+    background-color :#6363ff;
+    color: white;
+    height: 38px;
+    width: 100px;
+    border: 1px solid #cacece;
+    border-radius : 5px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+}
+.button3:hover{
+    background-color: #393990;
+}
+
+.outbutton{
+    background-color :#ff0000;
+    color: white;
+    height: 38px;
+    width: 60px;
+    border: 1px solid #cacece;
+    border-radius : 5px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+}
+.outbutton:hover{
+    background-color: #a51b0b;
+}
+
+.positionab{
+    position:absolute ;
+    top: 0;
+    padding: 30px;
+}
+.detailInfo{
+    background-color: whitesmoke;
+    width: 800px;
+    height: 950px;
+    left: 30%;
+    z-index: 10;
+    display: "";
+    box-shadow: 10px 10px 20px grey;
+}
+
+.checks {position: relative;}
+
+.checks input[type="checkbox"] {  
+  position: absolute;
+   width: 1px;
+   height: 1px;
+   padding: 0;
+   margin: -1px;
+   overflow: hidden;
+   clip:rect(0,0,0,0);
+   border: 0
+}
+.checks input[type="checkbox"] + label {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  
+}
+.checks input[type="checkbox"] + label:before {  
+  content: ' ';
+  display: inline-block;
+  width: 21px; 
+  height: 21px;  
+  line-height: 21px; 
+  margin: -2px 8px 0 0;
+  text-align: center; 
+  vertical-align: middle;
+  background: #fafafa;
+  border: 1px solid #cacece;
+  border-radius : 3px;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+}
+.checks input[type="checkbox"] + label:active:before,
+.checks input[type="checkbox"]:checked + label:active:before {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+.checks input[type="checkbox"]:checked + label:before {  
+  content: '\2714';  
+  color: #99a1a7;
+  text-shadow: 1px 1px #fff;
+  background: #e9ecee;
+  border-color: #adb8c0;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+}
+
+.checks2 {position: relative;}
+.checks2 input[type="radio"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
+.checks2 input[type="radio"] + label {
+  display: inline-block;
+  position: relative;
+  padding-left: 27px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.checks2 input[type="radio"] + label:before {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  width: 21px;
+  height: 21px;
+  text-align: center;
+  background: #fafafa;
+  border: 1px solid #cacece;
+  border-radius: 100%;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+}
+.checks2 input[type="radio"] + label:active:before,
+.checks2 input[type="radio"]:checked + label:active:before  {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+.checks2 input[type="radio"]:checked + label:before {
+  background: #E9ECEE;
+  border-color: #adb8c0;
+}
+.checks2 input[type="radio"]:checked + label:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 13px;
+  height: 13px;
+  background: #99a1a7;
+  border-radius: 100%;
+  box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+}
+
+select {
+    width: 200px; 
+    padding: .8em .5em; 
+    font-family: inherit;  
+    background: url(../../image/selectimg.jpg) no-repeat 95% 50%;  
+    border: 1px solid #999; 
+    border-radius: 5px; 
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+.arrowL {
+    position: relative;
+}
+
+.arrowL::after {
+    position: absolute;
+    left: 0; 
+    top: 0; 
+    content: '';
+    width: 25px;
+    height: 25px; 
+    border-top: 5px solid #000; 
+    border-right: 5px solid #000; 
+    transform: rotate(225deg);
+}
+
+.arrowR {
+    position: relative;
+}
+
+.arrowR::after {
+    position: absolute;
+    left: 0; 
+    top: 0; 
+    content: '';
+    width: 25px; 
+    height: 25px; 
+    border-top: 5px solid #000;
+    border-right: 5px solid #000; 
+    transform: rotate(45deg); 
+}
+
+.close {
+position:relative;
+display:inline-block;
+display:inline;
+width:50px;
+height:50px;
+text-align:center;
+margin-right:20px;
+}
+.close2:after {
+content: "\00d7"; 
+font-size:25pt;
+line-height:45px;
+}

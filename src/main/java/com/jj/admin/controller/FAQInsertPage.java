@@ -26,8 +26,6 @@ public class FAQInsertPage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 페이지 이동용 포워딩만 작성 했음
-		// 화면 구현 완료 후 수정 예정
 		request.getRequestDispatcher("views/admin/faqInsertPage.jsp").forward(request, response);
 	}
 

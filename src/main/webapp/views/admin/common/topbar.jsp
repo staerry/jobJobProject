@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.jj.admin.model.vo.UserInfoAd"%>
 <%String contextPath = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
@@ -29,8 +29,16 @@
 <script src="https://kit.fontawesome.com/ea8287c514.js" crossorigin="anonymous"></script>
 
 <title>Insert title here</title>
+
 </head>
 <body>
+	<% if(session.getAttribute("alertMsg") != null){ %>
+		<script>
+			alert('<%= session.getAttribute("alertMsg") %>');
+		</script>
+		<% session.removeAttribute("alertMsg"); %>
+	<% } %>
+	
     <div class="top-menu-area">
         <div class="mini-menu-area">
             <div>
@@ -38,7 +46,9 @@
             </div>
             <span>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp</span>
             <div>
-                <b>xxx</b>님
+            	<%if(session.getAttribute("UserInfoAd")!=null){ %>
+                <b><%=((UserInfoAd)session.getAttribute("UserInfoAd")).getUserId() %></b>님
+                <% }%>
             </div>
         </div>
     </div>
