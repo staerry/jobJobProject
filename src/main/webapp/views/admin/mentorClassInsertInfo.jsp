@@ -18,44 +18,32 @@
 	
 		<!--이 부분은 우측 컨텐츠 입니다.-->
 		<div class="right">
-	        <h3>멘토 가입 정보</h3>
+	        <h3>클래스 승인 정보</h3>
 
 			<table class="admin-table">
 					<tr>
-						<th width="80">이름</th>
-						<td>김개똥깨</td>
-					</tr>
-					<tr>
-						<th>전화번호</th>
-						<td>000-0000-0000</td>
-					</tr>
-					<tr>
-						<th>소속회사</th>
-						<td>구디아카데미</td>
-					</tr>
-					<tr>
-						<th>직급</th>
-						<td>사장님</td>
-					</tr>
-					<tr>
-						<th>이메일</th>
-						<td>gdgdgd@gmail.com</td>
-					</tr>
-					<tr>
-						<th>분야</th>
+						<th width="100">카테고리</th>
 						<td>IT개발</td>
 					</tr>
 					<tr>
-						<th>신분증</th>
-						<td>
-							<img src="" alt="신분증 이미지" height="200">
-						</td>
+						<th>클래스 제목</th>
+						<td>클래스 제목이 들어갈 자리</td>
 					</tr>
 					<tr>
-						<th>사원증</th>
-						<td>
-							<img src="" alt="사원증 이미지" height="200">
-						</td>
+						<th>커버 이미지</th>
+						<td><img src="" alt="썸네일 이미지" height="200"></td>
+					</tr>
+					<tr>
+						<th>클래스 소개</th>
+						<td>클래스 소개가 들어갈 자리</td>
+					</tr>
+					<tr>
+						<th>커리큘럼</th>
+						<td>커리큘럼이 들어갈 자리</td>
+					</tr>
+					<tr>
+						<th>수강료</th>
+						<td>10000</td>
 					</tr>
 			</table>
 

@@ -28,6 +28,7 @@
         <ul class="list">
             <li onclick="linkbutton(5);">클래스관리</li>
             <li onclick="linkbutton(6);">게시글관리</li>
+            <li onclick="linkbutton(15);">댓글관리</li>
             <li onclick="linkbutton(7);">공지사항관리</li>
             <li onclick="linkbutton(8);">FAQ관리</li>
             <li onclick="linkbutton(9);">1대1문의관리</li>
@@ -111,6 +112,9 @@
                 	break;
                 case 14: 
                 	location.href="<%= request.getContextPath() %>/refundRequest.li"; 
+                	break;
+                case 15: 
+                	location.href="<%= request.getContextPath() %>/replyListView.ad"; 
                 	break;
             }
         }
