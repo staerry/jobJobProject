@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.jj.notice.model.vo.Notice, com.jj.common.model.vo.PageInfo" %>
+<%
+	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("notice");
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,29 +32,60 @@
 		    
 		    <table class="table table-bordered table-hover admin-table">
                 <thead>
-                    <tr>
-                        <th width="60">번호</th>
-                        <th width="300">공지사항</th>
-                        <th width="100">등록일</th>
-                    </tr>
+	                <tr>
+	                    <th width="60">번호</th>
+	                    <th width="300">공지사항제목</th>
+	                    <th width="100">등록일</th>
+	                    <th width="30">삭제/수정</th>
+	                </tr> 
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>10</td>
-                        <td>공지사항이 들어갈 자리입니다.</td>
-                        <td>2022-12-12</td>
-                    </tr>
+                	<% for(Notice i : list){ %>
+	                    <tr>
+	                        <td><%= i.getNoticeNo() %></td>
+	                        <td class="notice-title"><%= i.getNoticeTitle() %></td>
+	                        <td><%= i.getNoticeEnrolldate() %></td>
+	                        <td>
+	                        	<button class="btn btn-sm btn-warning" onclick="">수정</button>
+	                        	<button class="btn btn-sm btn-danger" onclick="">삭제</button>
+	                        </td>
+	                    </tr>
+	                    <tr style="display : none; background-color : rgb(244, 244, 244);" class="notice-content">
+	                    	<td colspan="4">
+	                    		<%= i.getNoticeCount() %>
+	                    	</td>
+	                    </tr>
+                    <% } %>
                 </tbody>
             </table>
+            
+            <script>
+	            $(function(){
+	                $(".notice-title").click(function(){
+	                	if($(this).parent().next().css("display") == "none"){
+	                		$(this).parent().next().css('display', '');
+	                	}else{
+	                		$(this).parent().next().css('display', 'none');
+	                	}
+					
+	                })
+	            })
+            </script>
 
             <div class="paging-area">
-                <a href="">&lt</a>
-                <a href="">1</a>
-                <a href="">2</a>
-                <a href="">3</a>
-                <a href="">4</a>
-                <a href="">5</a>
-                <a href="">&gt</a>
+            	<% if(pageInfo.getCurrentPage() != 1){ %>
+                	<a href="<%= contextPath %>/noticeListView.ad?cpage=<%= pageInfo.getCurrentPage()-1 %>">&lt</a>
+                <% } %>
+                <% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++){ %>
+                	<% if(i == pageInfo.getCurrentPage()){ %>
+                		<a href="<%= contextPath %>/noticeListView.ad?cpage=<%= i %>" style="background-color : gray;"><%= i %></a>
+                	<% }else{ %>
+                		<a href="<%= contextPath %>/noticeListView.ad?cpage=<%= i %>"><%= i %></a>
+                	<% } %>
+                <% } %>
+                <% if(pageInfo.getCurrentPage() != pageInfo.getMaxPage()){ %>
+                <a href="<%= contextPath %>/noticeListView.ad?cpage=<%= pageInfo.getCurrentPage()+1 %>">&gt</a>
+ 				<% } %>
             </div>
             
             <div class="table-bottom-btn" style="float : right">

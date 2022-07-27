@@ -13,6 +13,7 @@ import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
+import com.jj.notice.model.vo.Notice;
 
 public class AdminService {
 	
@@ -179,7 +180,21 @@ public class AdminService {
 		return list;
 	}
 	
-	
+	/**
+	 * Notice게시물 리스트 조회 요청을 처리해주는 메소드
+	 * @param pageInfo : 페이징버튼 객체
+	 * @return Notice게시글 리스트
+	 * @author younheonchoi 
+	 */
+	public ArrayList<Notice> selectNoticeList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<Notice> list = new AdminDao().selectNoticeList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
 	
 	
 	

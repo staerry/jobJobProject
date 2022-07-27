@@ -113,5 +113,24 @@
 	 WHERE RNO BETWEEN ? AND ?
 </entry>
 
+<entry key="selectNoticeList">
+	SELECT *
+	  FROM (
+	      SELECT ROWNUM RNUM, A.*
+	      FROM (
+	          SELECT NOTICE_NO
+	             , USER_NO
+	             , NOTICE_TITLE
+	             , NOTICE_CONTENT
+	             , NOTICE_ENROLLDATE
+	             , NOTICE_MODIFYDATE
+	             , NOTICE_COUNT
+	          FROM NOTICE
+	         ORDER BY NOTICE_NO DESC
+	           ) A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
 
 </properties>

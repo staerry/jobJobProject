@@ -15,6 +15,7 @@ import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
+import com.jj.notice.model.vo.Notice;
 
 public class AdminDao {
 	
@@ -315,7 +316,45 @@ public class AdminDao {
 		return list;
 	}
 
-	
+	public ArrayList<Notice> selectNoticeList(Connection conn, PageInfo pageInfo){
+		ArrayList<Notice> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectNoticeList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit() + 1;
+			int endRow = startRow + pageInfo.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Notice(rset.getInt("notice_no")
+							      , rset.getInt("user_no")
+						          , rset.getString("notice_title")
+						          , rset.getString("notice_content")
+						          , rset.getDate("notice_enrolldate")
+						          , rset.getDate("notice_modifydate")
+						          , rset.getInt("notice_count")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
 	
 	
