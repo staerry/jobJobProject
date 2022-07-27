@@ -32,7 +32,7 @@
 			<% if(true){ %>
 				<a href="<%= contextPath %>/firstlogin.me" class="main-login-btn">로그인</a>
 				<p class="main-regist">
-					처음이신가요? <a href=""><b>회원가입</b></a><br>
+					처음이신가요? <a href="<%= contextPath %>/loginEnrollForm.me"><b>회원가입</b></a><br>
 					<a href=""><b>멘토가입</b></a>
 				</p>
 			<% } else { %>

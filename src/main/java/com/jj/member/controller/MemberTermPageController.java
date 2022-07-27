@@ -27,10 +27,18 @@ public class MemberTermPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 요청시 전달값 뽑기 (이름, 이메일, 비번, 폰번호) 
-		
+		// 요청시 전달값 뽑기 (이름, 이메일, 비번, 폰번호)
+		request.setCharacterEncoding("UTF-8");
+		String userName = request.getParameter("userName");
+		String userId = request.getParameter("userId");
+		String userPwd = request.getParameter("userPwd");
+		String userPhone = request.getParameter("userPhone");
 		
 		// request.setAttribute로 다시 저 뽑은 값 담기
+		request.setAttribute("userName", userName);
+		request.setAttribute("userId", userId);
+		request.setAttribute("userPwd", userPwd);
+		request.setAttribute("userPhone", userPhone);
 		
 		request.getRequestDispatcher("views/member/memberTermPage.jsp").forward(request, response);
 		

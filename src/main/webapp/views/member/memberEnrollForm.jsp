@@ -82,7 +82,7 @@
     
                     <tr>
                         <td></td>
-                        <td><input type="text" name="phone" placeholder="핸드폰번호 입력(-포함해서 입력)" required></td>
+                        <td><input type="text" name="userPhone" placeholder="핸드폰번호 입력(-포함해서 입력)" required></td>
                         <td></td>
                     </tr>
                  
@@ -108,8 +108,10 @@
                 		// 아이디 입력하는 input요소 객체
                 		const $idInput = $("#enroll-form input[name=userId]");
 
-                        let regExp = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*.[a-zA-Z]{2,3}$/i;
+                        //let regExp = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*[.]*[a-zA-Z]{2,3}$/i;
 
+                        let regExp = /^[a-z0-9A-Z]+[!#$%&*+-=?^_`/(){|}~]*[a-zA-Z0-9]*@[\w]+\.[a-zA-Z0-9-]+[.]*[a-zA-Z0-9]+$/i;
+                        
                         if(regExp.test($idInput.val())){ //조건에 맞음
 
                             $.ajax({
@@ -137,6 +139,7 @@
 
                         }else{ // 틀림
                             alert("이메일형식에 맞게 입력해주세요.");
+                            $idInput.focus();
                         }
                 		
                 	}

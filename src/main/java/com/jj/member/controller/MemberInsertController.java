@@ -39,7 +39,7 @@ public class MemberInsertController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		String userName = request.getParameter("userName");
-		String userEmail = request.getParameter("userEmail");
+		String userEmail = request.getParameter("userId");
 		String userPhone = request.getParameter("userPhone");
 		
 		Member m = new Member(userId, userPwd, userName, userEmail, userPhone);
@@ -48,10 +48,10 @@ public class MemberInsertController extends HttpServlet {
 		
 		if(result > 0) {// 성공 => 약관동의 페이지
 			
-//			HttpSession session = request.getSession();
-//			session.setAttribute("alertMsg", "성공적으로 회원가입했습니다.");
+			HttpSession session = request.getSession();
+			session.setAttribute("alertMsg", "성공적으로 회원가입했습니다.");
 			
-			response.sendRedirect(request.getContextPath() + "/agreeTerm.me");
+			response.sendRedirect(request.getContextPath());
 			
 		}else { // 실패 => 에러페이지
 			
