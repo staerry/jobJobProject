@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% 
+	String contextPath = request.getContextPath(); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,9 +75,15 @@
         
         <span style="font-size: 10px;">서비스 이용약관과 개인정보처리방침에 모두 동의해주세요</span><br><br>
         
-        <button>시작하기</button><br><br>
+        <button onclick="enrollSuccess();">시작하기</button><br><br>
 
     </div>
+    
+    <script>
+    	function enrollSuccess(){
+    		location.href = "<%= contextPath %>";
+    	}
+    </script>
     
     <br><br>
     

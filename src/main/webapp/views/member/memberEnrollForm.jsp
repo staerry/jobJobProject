@@ -91,9 +91,17 @@
                 <br>
     
                 <div align="center">
-                    <button type="submit">다음</button>
+                    <button type="submit" onclick="termPage();">다음</button>
                     <button type="reset">초기화</button>
                 </div>
+                
+                <script>
+                	function termPage(){
+                		location.href = "<%= contextPath %>/views/member/memberTermPage.jsp";
+                		
+                		location.href = "<%= contextPath %>/agreeTerm.me";
+                	}
+                </script>
     
                 <br><br>
     

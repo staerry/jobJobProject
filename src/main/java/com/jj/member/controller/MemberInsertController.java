@@ -46,12 +46,12 @@ public class MemberInsertController extends HttpServlet {
 		
 		int result = new MemberService().insertMember(m);
 		
-		if(result > 0) {// 성공 => 메인페이지
+		if(result > 0) {// 성공 => 약관동의 페이지
 			
-			HttpSession session = request.getSession();
-			session.setAttribute("alertMsg", "성공적으로 회원가입했습니다.");
+//			HttpSession session = request.getSession();
+//			session.setAttribute("alertMsg", "성공적으로 회원가입했습니다.");
 			
-			response.sendRedirect(request.getContextPath());
+			response.sendRedirect(request.getContextPath() + "/agreeTerm.me");
 			
 		}else { // 실패 => 에러페이지
 			
