@@ -32,7 +32,7 @@
 	       )
 </entry>
 
-<entry key="selectFaq">
+<entry key="selectFaqCount">
 	SELECT COUNT(*) AS "LIST_COUNT"
 	  FROM FAQ
 </entry>
@@ -58,6 +58,24 @@
 <entry key="deleteFaq">
 	DELETE
 	  FROM FAQ
+	 WHERE FAQ_NO = ?
+</entry>
+
+<entry key="selectFaq">
+	SELECT FAQ_NO
+	     , USER_NO
+	     , FAQ_TITLE
+	     , FAQ_ANSWER
+	     , FAQ_ENROLLDATE
+	     , FAQ_COUNT
+	  FROM FAQ
+	 WHERE FAQ_NO = ?
+</entry>
+
+<entry key="updateFaq">
+	UPDATE FAQ
+	   SET FAQ_TITLE = ?
+	     , FAQ_ANSWER = ?
 	 WHERE FAQ_NO = ?
 </entry>
 

@@ -52,7 +52,7 @@
 	                        <td class="faq-title"><%= i.getFaqTitle() %></td>
 	                        <td><%= i.getFaqEnrolldate() %></td>
 	                        <td>
-	                        	<button class="btn btn-sm btn-warning" onclick="">수정</button>
+	                        	<button class="btn btn-sm btn-warning" onclick="location.href='<%= contextPath %>/faqModifyView.ad?no=<%= i.getFaqNo() %>'">수정</button>
 	                        	<button class="btn btn-sm btn-danger" onclick="location.href='<%= contextPath %>/faqDelete.ad?no=<%= i.getFaqNo() %>'">삭제</button>
 	                        </td>
 	                    </tr>
