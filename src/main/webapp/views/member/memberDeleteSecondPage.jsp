@@ -15,7 +15,6 @@
 	<%@ include file="../common/menubar.jsp" %>
 	<br><br>
 	<div align="center" style="padding-top: 120px; padding-bottom: 120px;">
-
 		<table>
 
 			<tr>
@@ -45,9 +44,7 @@
 			</tr>
 		</table>
 	</div>
-
 	<br><br>	
 	<%@ include file="../common/footer.jsp" %>
-
 </body>
 </html>
