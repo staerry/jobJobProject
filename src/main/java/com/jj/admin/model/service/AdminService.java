@@ -23,6 +23,14 @@ public class AdminService {
 		return u;
 	}
 	
+	/**
+	 * FAQ작성 요청을 처리해주는 메소드
+	 * @param faqTitle : 추가할 FAQ제목
+	 * @param faqContent : 추가할 FAQ내용
+	 * @param userId : 작성자 
+	 * @return 업데이트된 행 갯수 반환
+	 * @author younheonchoi 
+	 */
 	public int insertFaq(String faqTitle, String faqContent, int userId) {
 		Connection conn = getConnection();
 		
@@ -39,6 +47,11 @@ public class AdminService {
 		return result;
 	}
 	
+	/**
+	 * FAQ목록 갯수 확인 요청을 처리해주는 메소드
+	 * @return FAQ게시물 총 갯수 반환
+	 * @author younheonchoi 
+	 */
 	public int selectFaqCount() {
 		Connection conn = getConnection();
 		
@@ -47,9 +60,14 @@ public class AdminService {
 		close(conn);
 		
 		return listCount;
-		
 	}
 	
+	/**
+	 * FAQ게시물 리스트 조회 요청을 처리해주는 메소드
+	 * @param pageInfo : 페이징버튼 객체
+	 * @return FAQ게시글 리스트
+	 * @author younheonchoi 
+	 */
 	public ArrayList<Faq> selectFaqList(PageInfo pageInfo){
 		Connection conn = getConnection();
 		
@@ -60,6 +78,12 @@ public class AdminService {
 		return list;
 	}
 	
+	/**
+	 * FAQ게시글 삭제 요청을 처리해주는 메소드
+	 * @param faqNo : 삭제할 대상 게시글 번호
+	 * @return 업데이트된 행 갯수 반환
+	 * @author younheonchoi 
+	 */
 	public int deleteFaq(int faqNo) {
 		Connection conn = getConnection();
 		
@@ -76,6 +100,12 @@ public class AdminService {
 		return result;
 	}
 	
+	/**
+	 * FAQ수정 페이지에 출력할 게시물 조회 요청을 처리해주는 메소드
+	 * @param faqNo : 수정할 대상 게시글 번호
+	 * @return FAQ게시글
+	 * @author younheonchoi 
+	 */
 	public Faq selectFaq(int faqNo) {
 		Connection conn = getConnection();
 		
@@ -86,6 +116,12 @@ public class AdminService {
 		return faq;
 	}
 	
+	/**
+	 * FAQ수정 요청을 처리해주는 메소드
+	 * @param faq : 수정한 게시글 정보
+	 * @return 업데이트된 행 갯수 반환
+	 * @author younheonchoi 
+	 */
 	public int updateFaq(Faq faq) {
 		Connection conn = getConnection();
 		
@@ -102,6 +138,11 @@ public class AdminService {
 		return result;
 	}
 	
+	/**
+	 * 공지사항 총 게시물 갯수 조회 요청을 처리해주는 메소드
+	 * @return 공지사항 게시물 총 갯수
+	 * @author younheonchoi 
+	 */
 	public int selectNoticeCount() {
 		Connection conn = getConnection();
 		
@@ -138,7 +179,6 @@ public class AdminService {
 		return list;
 	}
 	
-
 	
 	
 	
