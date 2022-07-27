@@ -41,7 +41,7 @@ public class FAQManagementPage extends HttpServlet {
 		int startPage; // 페이징바 시작 수
 		int endPage; // 페이징바 끝 수
 		
-		listCount = new AdminService().selectFaq();
+		listCount = new AdminService().selectFaqCount();
 		currentPage = Integer.parseInt(request.getParameter("cpage"));
 		pageLimit = 5;
 		boardLimit = 10;

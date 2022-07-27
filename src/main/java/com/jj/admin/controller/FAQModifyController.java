@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jj.admin.model.service.AdminService;
-import com.jj.admin.model.vo.UserInfoAd;
+import com.jj.faq.model.vo.Faq;
 
 /**
- * Servlet implementation class FAQInsertController
+ * Servlet implementation class FAQModifyController
  */
-@WebServlet("/faqWriteInsert.ad")
-public class FAQInsertController extends HttpServlet {
+@WebServlet("/faqModify.ad")
+public class FAQModifyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FAQInsertController() {
+    public FAQModifyController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,27 +30,26 @@ public class FAQInsertController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("UTF-8");
 		
+		int faqNo = Integer.parseInt(request.getParameter("faqNo"));
 		String faqTitle = request.getParameter("faqTitle");
-		String faqContent = request.getParameter("faqContent");
-		int userId = ((UserInfoAd)request.getSession().getAttribute("UserInfoAd")).getUserNo();
+		String faqAnswer = request.getParameter("faqAnswer");
 		
-		int result = new AdminService().insertFaq(faqTitle, faqContent, userId);
+		Faq faq = new Faq();
+		faq.setFaqNo(faqNo);
+		faq.setFaqTitle(faqTitle);
+		faq.setFaqAnswer(faqAnswer);
 		
+		int result = new AdminService().updateFaq(faq);
 		
 		if(result > 0) {
-			request.getSession().setAttribute("alertMsg", "작성을 완료 했습니다.");
-			response.sendRedirect(request.getContextPath() + "/faqListView.ad?cpage=1");
+			request.getSession().setAttribute("alertMsg", "수정을 완료 했습니다.");
 		}else {
-			request.getSession().setAttribute("alertMsg", "작성을 실패 했습니다.");
-			response.sendRedirect(request.getContextPath() + "/faqListView.ad?cpage=1");
+			request.getSession().setAttribute("alertMsg", "수정을 실패 했습니다.");
 		}
 		
-		
-		
-		
+		response.sendRedirect(request.getContextPath() + "/faqListView.ad?cpage=1");
 	}
 
 	/**

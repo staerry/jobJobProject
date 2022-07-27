@@ -36,20 +36,30 @@
                     <tr>
                         <th width="60">번호</th>
                         <th width="300">FAQ제목</th>
-                        <th width="100">등록일</th>
+                        <th width="50">등록일</th>
+                        <th width="30">삭제/수정</th>
                     </tr>
                 </thead>
                 <tbody>
                 	<% if(list.isEmpty()){ %>
                 		<tr>
-	                        <td colspan="3">조회된 Faq가 없습니다.</td>
+	                        <td colspan="4">조회된 FAQ가 없습니다.</td>
 	                    </tr>
                 	<% } else { %>
 	                    <% for(Faq i : list){ %>
 	                    <tr>
 	                        <td><%= i.getFaqNo() %></td>
-	                        <td><%= i.getFaqTitle() %></td>
+	                        <td class="faq-title"><%= i.getFaqTitle() %></td>
 	                        <td><%= i.getFaqEnrolldate() %></td>
+	                        <td>
+	                        	<button class="btn btn-sm btn-warning" onclick="location.href='<%= contextPath %>/faqModifyView.ad?no=<%= i.getFaqNo() %>'">수정</button>
+	                        	<button class="btn btn-sm btn-danger" onclick="location.href='<%= contextPath %>/faqDelete.ad?no=<%= i.getFaqNo() %>'">삭제</button>
+	                        </td>
+	                    </tr>
+	                    <tr style="display : none; background-color : rgb(224, 224, 224);" class="faq-content">
+	                    	<td colspan="4">
+	                    		<%= i.getFaqAnswer() %>
+	                    	</td>
 	                    </tr>
 	                    <% } %>
                 	<% } %>
@@ -57,11 +67,16 @@
             </table>
             
             <script>
-            	$(function(){
-            		$(".admin-table tr").click(function(){
-            			location.href='sdsdsd';
-            		})
-            	})
+	            $(function(){
+	                $(".faq-title").click(function(){
+	                	if($(this).parent().next().css("display") == "none"){
+	                		$(this).parent().next().css('display', '');
+	                	}else{
+	                		$(this).parent().next().css('display', 'none');
+	                	}
+					
+	                })
+	            })
             </script>
 
             <div class="paging-area">

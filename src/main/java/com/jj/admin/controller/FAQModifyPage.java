@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jj.admin.model.service.AdminService;
-import com.jj.admin.model.vo.UserInfoAd;
+import com.jj.faq.model.vo.Faq;
 
 /**
- * Servlet implementation class FAQInsertController
+ * Servlet implementation class FAQModifyPage
  */
-@WebServlet("/faqWriteInsert.ad")
-public class FAQInsertController extends HttpServlet {
+@WebServlet("/faqModifyView.ad")
+public class FAQModifyPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FAQInsertController() {
+    public FAQModifyPage() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,27 +30,13 @@ public class FAQInsertController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int faqNo = Integer.parseInt(request.getParameter("no"));
 		
-		request.setCharacterEncoding("UTF-8");
+		Faq faq = new AdminService().selectFaq(faqNo);
+		System.out.println(faq);
 		
-		String faqTitle = request.getParameter("faqTitle");
-		String faqContent = request.getParameter("faqContent");
-		int userId = ((UserInfoAd)request.getSession().getAttribute("UserInfoAd")).getUserNo();
-		
-		int result = new AdminService().insertFaq(faqTitle, faqContent, userId);
-		
-		
-		if(result > 0) {
-			request.getSession().setAttribute("alertMsg", "작성을 완료 했습니다.");
-			response.sendRedirect(request.getContextPath() + "/faqListView.ad?cpage=1");
-		}else {
-			request.getSession().setAttribute("alertMsg", "작성을 실패 했습니다.");
-			response.sendRedirect(request.getContextPath() + "/faqListView.ad?cpage=1");
-		}
-		
-		
-		
-		
+		request.setAttribute("faq", faq);
+		request.getRequestDispatcher("views/admin/faqModify.jsp").forward(request, response);
 	}
 
 	/**

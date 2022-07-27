@@ -9,19 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jj.admin.model.service.AdminService;
-import com.jj.admin.model.vo.UserInfoAd;
 
 /**
- * Servlet implementation class FAQInsertController
+ * Servlet implementation class FAQDeleteController
  */
-@WebServlet("/faqWriteInsert.ad")
-public class FAQInsertController extends HttpServlet {
+@WebServlet("/faqDelete.ad")
+public class FAQDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FAQInsertController() {
+    public FAQDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,27 +29,18 @@ public class FAQInsertController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int faqNo = Integer.parseInt(request.getParameter("no"));
 		
-		request.setCharacterEncoding("UTF-8");
-		
-		String faqTitle = request.getParameter("faqTitle");
-		String faqContent = request.getParameter("faqContent");
-		int userId = ((UserInfoAd)request.getSession().getAttribute("UserInfoAd")).getUserNo();
-		
-		int result = new AdminService().insertFaq(faqTitle, faqContent, userId);
-		
+		int result = new AdminService().deleteFaq(faqNo);
 		
 		if(result > 0) {
-			request.getSession().setAttribute("alertMsg", "작성을 완료 했습니다.");
-			response.sendRedirect(request.getContextPath() + "/faqListView.ad?cpage=1");
+			request.getSession().setAttribute("alertMsg", "삭제했습니다.");
+			
 		}else {
-			request.getSession().setAttribute("alertMsg", "작성을 실패 했습니다.");
-			response.sendRedirect(request.getContextPath() + "/faqListView.ad?cpage=1");
+			request.getSession().setAttribute("alertMsg", "삭제에 실패 했습니다.");
 		}
 		
-		
-		
-		
+		response.sendRedirect(request.getContextPath() + "/faqListView.ad?cpage=1");
 	}
 
 	/**
