@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.jj.common.model.vo.PageInfo, com.jj.member.model.vo.Member, java.util.ArrayList"%>
+<%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,52 +63,51 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>45(50)</td>
-						<td>서주원</td>
-						<td>aaaa@naver.com</td>
-						<td>--</td>
-						<td>010-1111-2222</td>
-						<td>22.02.01/--</td>
-						<td><button class="outbutton">탈퇴</button></button></td>
-					</tr>
-					<tr>
-						<td>45(50)</td>
-						<td>서주원</td>
-						<td>aaaa@naver.com</td>
-						<td>--</td>
-						<td>010-1111-2222</td>
-						<td>22.02.01/--</td>
-						<td><button class="outbutton">탈퇴</button></button></td>
-					</tr>
-					<tr>
-						<td>45(50)</td>
-						<td>서주원</td>
-						<td>aaaa@naver.com</td>
-						<td>--</td>
-						<td>010-1111-2222</td>
-						<td>22.02.01/--</td>
-						<td><button class="outbutton">탈퇴</button></button></td>
-					</tr>
+					<%if(list.isEmpty()){ %>
+					<script>
+					alert("조회된 회원이없습니다.")
+					location.href='<%=request.getHeader("REFERER") %>'
+					</script>
+				<%}else{ %>
+					<%for(Member m : list){ %>
+						<tr>
+							<td>45(<%=m.getUserNo() %>)</td>
+							<td><%=m.getUserName() %></td>
+							<td><%=m.getUserId() %></td>
+							<td><%=m.getUserEmail() %></td>
+							<td><%=m.getUserPhone() %></td>
+							<td><%=m.getEnrollDate() %></td>
+							<td><button class="outbutton">탈퇴</button></button></td>
+						</tr>
+					<%} %>
+				<%} %>	
 				</tbody>
 			</table>
 
 			<span class="totalpage">
-				x 페이지 / y 페이지 
+				<%=currentPage %> 페이지 / <%=maxPage %> 페이지 
 			</span>
 
 			<div class="paging-area">
-			    <a href="">&lt&lt</a>
-				<a href="">&lt</a>
-				<a href="">1</a>
-				<a href="">2</a>
-				<a href="">3</a>
-				<a href="">4</a>
-				<a href="">5</a>
-				<a href="">&gt</a>
+			 <%if(currentPage != 1){ %>
+				<a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=currentPage-1%>">&lt</a>
+				<%} %>
+				<%for(int i=startPage;i<=endPage;i++){ %>
+	            	<%if(i==currentPage){ %>
+	            		<a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=i%>"><%=i %></a>
+	            	<%}else{ %>
+	            		<a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=i%>"><%=i %></a>
+	            	<%} %>
+            	<%} %>
+            	<%if(currentPage != maxPage){ %>
+					<a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=currentPage+1%>">&gt</a>
+				<%} %>
 				<a href="">&gt&gt</a>
 			</div>
 		</div>
+		<script>
+			
+		</script>
 	    
 	</div>
 	<%} %>

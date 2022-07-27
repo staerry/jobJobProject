@@ -12,6 +12,7 @@ import com.jj.admin.model.dao.AdminDao;
 import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.faq.model.vo.Faq;
+import com.jj.member.model.vo.Member;
 
 public class AdminService {
 	
@@ -109,6 +110,32 @@ public class AdminService {
 		close(conn);
 		
 		return listCount;
+	}
+	
+	/**
+	 * 활동중인 수강생수를 찾는 메소드
+	 * @return 활동중인 수강생수
+	 * @author SJW
+	 */
+	public int selectStudentListCount() {
+		Connection conn = getConnection();
+		int listCount = new AdminDao().selectStudentListCount(conn);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 활동중인 수강생리스트를 페이지에 맞춰서 찾는메소드
+	 * @param pi 페이지정보를 담고있는 객체
+	 * @return 페이지에 맞는 활동중인 수강생 리스트
+	 * @author SJW
+	 */
+	public ArrayList<Member> studentInfo(PageInfo pi){
+		Connection conn = getConnection();
+		ArrayList<Member> list = new AdminDao().studentInfo(conn,pi);
+		close(conn);
+		return list;
 	}
 	
 	
