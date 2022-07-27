@@ -92,7 +92,7 @@
                 	location.href="<%= request.getContextPath() %>/postListView.ad";
                 	break;
                 case 7: 
-                	location.href="<%= request.getContextPath() %>/noticeListView.ad";
+                	location.href="<%= request.getContextPath() %>/noticeListView.ad?cpage=1";
                 	break;
                 case 8: 
                 	location.href="<%= request.getContextPath() %>/faqListView.ad?cpage=1";
