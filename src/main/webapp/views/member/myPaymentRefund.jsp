@@ -16,16 +16,16 @@
     <div align="center" style="padding-top: 130px; padding-bottom: 130px;">
         <table>
             <tr>
-                <th><h1><span style="color:#6363FF;">회원탈퇴</span>가 완료되었습니다.</h1></th>
+                <th><h1><span style="color:#6363FF;">환불신청</span>이 완료되었습니다.</h1></th>
             </tr>
 
             <tr>
                 <td><hr></td>
             </tr>
             <tr>
-                <th><h3>그동안 니JOB내JOB 서비스를 이용해 주셔서 감사합니다.
+                <th><h3>영업일 기준 최대 3~7일 이내 승인취소 또는 환불 처리됩니다.
                     <br>
-                    보다 나은 서비스로 다시 찾아 뵙겠습니다.</h3>
+                    감사합니다.</h3>
                 </th>
             </tr>
 
