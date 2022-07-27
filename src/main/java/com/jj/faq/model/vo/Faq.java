@@ -1,4 +1,4 @@
-package com.jj.admin.model.vo;
+package com.jj.faq.model.vo;
 
 import java.util.Date;
 
