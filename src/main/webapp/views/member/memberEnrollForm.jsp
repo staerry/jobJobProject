@@ -91,15 +91,11 @@
                 <br>
     
                 <div align="center">
-                    <button type="submit" onclick="termPage();" disabled>다음</button>
+                    <button type="submit" disabled>다음</button>
                     <button type="reset">초기화</button>
                 </div>
                 
                 <script>
-                	function termPage(){
-                		               		
-                		location.href = "<%= contextPath %>/agreeTerm.me";
-                	}
 
                 	function idCheck(){
                 		// 중복확인 버튼 클릭시 사용자가 입력한 아이디값을 넘겨서 "조회요청(존재하는지 안하는지)"

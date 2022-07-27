@@ -27,6 +27,11 @@ public class MemberTermPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		// 요청시 전달값 뽑기 (이름, 이메일, 비번, 폰번호) 
+		
+		
+		// request.setAttribute로 다시 저 뽑은 값 담기
+		
 		request.getRequestDispatcher("views/member/memberTermPage.jsp").forward(request, response);
 		
 	}

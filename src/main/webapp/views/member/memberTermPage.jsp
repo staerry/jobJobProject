@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	// request.getAttribute로 다시 뽑기 
+%>
 <% 
 	String contextPath = request.getContextPath(); 
 %>
@@ -83,6 +87,11 @@
 
     </div>
     
+    
+    <form action="insert시키는 servleturl매핑값" method="post" id="ttt">
+    	<!-- input type="hidden" name="" value="이전페이지에서넘어온값" -->
+    </form>
+    
     <script>
     	function enrollSuccess(){
     		// 전체동의 or check2랑 check3 동의 되면 
@@ -95,13 +104,13 @@
     		
     		
     		
+    		// 체크박스가 다 제대로 체크되었을 경우 
+    		$("#ttt").submit();
     		
     		
     		
     		
     		
-    		
-    		location.href = "<%= contextPath %>";
     	}
 
         $(".checkbox-group").on("click", "#checkAll", function(){
