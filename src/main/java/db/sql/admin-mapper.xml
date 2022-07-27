@@ -32,6 +32,26 @@
 	       )
 </entry>
 
+<entry key="selectFaq">
+	SELECT COUNT(*) AS "LIST_COUNT"
+	  FROM FAQ
+</entry>
+
+<entry key="selectFaqList">
+	SELECT *
+	  FROM (
+	      SELECT ROWNUM RNUM
+	           , FAQ_NO
+	           , USER_NO
+	           , FAQ_TITLE
+	           , FAQ_ANSWER
+	           , FAQ_ENROLLDATE
+	           , FAQ_COUNT
+	      FROM FAQ
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
 
 
 </properties>

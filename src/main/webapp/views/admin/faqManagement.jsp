@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.jj.faq.model.vo.Faq, java.util.ArrayList, com.jj.common.model.vo.PageInfo" %>
+    
+<%
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	ArrayList<Faq> list = (ArrayList<Faq>)request.getAttribute("faqList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,22 +40,42 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>10</td>
-                        <td>FAQ제목이 들어갈 자리 입니다.</td>
-                        <td>2022-12-12</td>
-                    </tr>
+                	<% if(list.isEmpty()){ %>
+                		<tr>
+	                        <td colspan="3">조회된 Faq가 없습니다.</td>
+	                    </tr>
+                	<% } else { %>
+	                    <% for(Faq i : list){ %>
+	                    <tr>
+	                        <td><%= i.getFaqNo() %></td>
+	                        <td><%= i.getFaqTitle() %></td>
+	                        <td><%= i.getFaqEnrolldate() %></td>
+	                    </tr>
+	                    <% } %>
+                	<% } %>
                 </tbody>
             </table>
+            
+            <script>
+            	$(function(){
+            		$(".admin-table tr").click(function(){
+            			location.href='sdsdsd';
+            		})
+            	})
+            </script>
 
             <div class="paging-area">
-                <a href="">&lt</a>
-                <a href="">1</a>
-                <a href="">2</a>
-                <a href="">3</a>
-                <a href="">4</a>
-                <a href="">5</a>
-                <a href="">&gt</a>
+            	<% if(pageInfo.getCurrentPage() != 1){ %>
+                	<a href="<%= contextPath %>/faqListView.ad?cpage=<%= pageInfo.getCurrentPage()-1 %>">&lt</a>
+                <% } %>
+                
+                <% for (int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++){ %>
+                	<a href="<%= contextPath %>/faqListView.ad?cpage=<%= i %>"><%= i %></a>
+                <% } %>
+                
+                <% if(pageInfo.getCurrentPage() != pageInfo.getMaxPage()){ %>
+                <a href="<%= contextPath %>/faqListView.ad?cpage=<%= pageInfo.getCurrentPage()+1 %>">&gt</a>
+            	<% } %>
             </div>
             
             <div class="table-bottom-btn" style="float : right">
@@ -59,6 +85,7 @@
 		</div>
 		
 	</div>
+	
 	<%} %>
 </body>
 </html>
