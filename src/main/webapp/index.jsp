@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +30,7 @@
 		</ul>
 		<div class="main-login-area">
 			<% if(true){ %>
-				<a href="" class="main-login-btn">로그인</a>
+				<a href="<%= contextPath %>/firstlogin.me" class="main-login-btn">로그인</a>
 				<p class="main-regist">
 					처음이신가요? <a href=""><b>회원가입</b></a><br>
 					<a href=""><b>멘토가입</b></a>

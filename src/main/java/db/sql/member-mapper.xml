@@ -42,6 +42,13 @@
 		  )
 	</entry>
 	
+	<entry key="idCheck">
+		SELECT
+			   COUNT(*) AS "COUNT"
+		  FROM USERINFO
+		 WHERE USER_ID = ?
+	</entry>
+	
 	<entry key = "deleteMember">
 		UPDATE MEMBER
 		   SET STATUS = 'N'
