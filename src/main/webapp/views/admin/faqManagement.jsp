@@ -56,7 +56,7 @@
 	                        	<button class="btn btn-sm btn-danger" onclick="location.href='<%= contextPath %>/faqDelete.ad?no=<%= i.getFaqNo() %>'">삭제</button>
 	                        </td>
 	                    </tr>
-	                    <tr style="display : none; background-color : rgb(224, 224, 224);" class="faq-content">
+	                    <tr style="display : none; background-color : rgb(244, 244, 244);" class="faq-content">
 	                    	<td colspan="4">
 	                    		<%= i.getFaqAnswer() %>
 	                    	</td>
