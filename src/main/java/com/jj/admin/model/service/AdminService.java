@@ -54,4 +54,40 @@ public class AdminService {
 		
 		return list;
 	}
+	
+	public int deleteFaq(int faqNo) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().deleteFaq(conn, faqNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

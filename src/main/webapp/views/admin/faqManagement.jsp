@@ -47,13 +47,13 @@
 	                    </tr>
                 	<% } else { %>
 	                    <% for(Faq i : list){ %>
-	                    <tr class="faq-title">
+	                    <tr>
 	                        <td><%= i.getFaqNo() %></td>
-	                        <td><%= i.getFaqTitle() %></td>
+	                        <td class="faq-title"><%= i.getFaqTitle() %></td>
 	                        <td><%= i.getFaqEnrolldate() %></td>
 	                        <td>
-	                        	<button class="btn btn-sm btn-warning" onclick="location.href='<%= contextPath %>/faqModify.ad?no=<%= i.getFaqNo() %>'">수정</button>
-	                        	<button class="btn btn-sm btn-danger">삭제</button>
+	                        	<button class="btn btn-sm btn-warning" onclick="">수정</button>
+	                        	<button class="btn btn-sm btn-danger" onclick="location.href='<%= contextPath %>/faqDelete.ad?no=<%= i.getFaqNo() %>'">삭제</button>
 	                        </td>
 	                    </tr>
 	                    <tr style="display : none; background-color : rgb(224, 224, 224);" class="faq-content">
@@ -68,11 +68,11 @@
             
             <script>
 	            $(function(){
-	                $(".admin-table .faq-title").click(function(){
-	                	if($(this).next().css("display") == "none"){
-	                		$(this).next().css('display', '');
+	                $(".faq-title").click(function(){
+	                	if($(this).parent().next().css("display") == "none"){
+	                		$(this).parent().next().css('display', '');
 	                	}else{
-	                		$(this).next().css('display', 'none');
+	                		$(this).parent().next().css('display', 'none');
 	                	}
 					
 	                })

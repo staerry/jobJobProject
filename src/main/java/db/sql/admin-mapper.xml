@@ -55,6 +55,12 @@
 	 WHERE RNUM BETWEEN ? AND ?
 </entry>
 
+<entry key="deleteFaq">
+	DELETE
+	  FROM FAQ
+	 WHERE FAQ_NO = ?
+</entry>
+
 
 
 </properties>

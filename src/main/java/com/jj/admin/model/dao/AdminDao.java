@@ -124,9 +124,6 @@ public class AdminDao {
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			
-			System.out.println(startRow);
-			System.out.println(endRow);
-			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -147,8 +144,26 @@ public class AdminDao {
 		return list;
 	}
 	
-	
-	
+	public int deleteFaq(Connection conn, int faqNo) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteFaq");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, faqNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	
