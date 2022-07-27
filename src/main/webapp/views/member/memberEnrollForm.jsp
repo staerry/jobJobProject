@@ -52,7 +52,7 @@
             <h2 align="center">니JOB 내JOB에서<br>꿈을 이뤄보세요.</h2>
             <br>
     
-            <form action="<%= contextPath %>/insert.me" method="post" id="enroll-form">
+            <form action="<%= contextPath %>/agreeTerm.me" method="post" id="enroll-form">
     
                 <table>
     
@@ -97,11 +97,10 @@
                 
                 <script>
                 	function termPage(){
-                		location.href = "<%= contextPath %>/views/member/memberTermPage.jsp";
-                		
+                		               		
                 		location.href = "<%= contextPath %>/agreeTerm.me";
                 	}
-                	
+
                 	function idCheck(){
                 		// 중복확인 버튼 클릭시 사용자가 입력한 아이디값을 넘겨서 "조회요청(존재하는지 안하는지)"
                 		// => 응답데이터 돌려받기
@@ -112,9 +111,12 @@
                 		
                 		// 아이디 입력하는 input요소 객체
                 		const $idInput = $("#enroll-form input[name=userId]");
-                		
-                		
-                		$.ajax({
+
+                        let regExp = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*.[a-zA-Z]{2,3}$/i;
+
+                        if(regExp.test($idInput.val())){ //조건에 맞음
+
+                            $.ajax({
                 			url:"<%= contextPath%>/idCheck.me",
                 			data:{checkId:$idInput.val()},
                 			success:function(result){
@@ -136,6 +138,10 @@
                 			}
                 			
                 		});
+
+                        }else{ // 틀림
+                            alert("이메일형식에 맞게 입력해주세요.");
+                        }
                 		
                 	}
                 </script>

@@ -45,15 +45,11 @@
     
     <script>
     	function loginPage(){
-    		location.href = "<%= contextPath %>/views/member/memberLoginSecond.jsp";
-    		
     		location.href = "<%= contextPath %>/userlogin.me";
     	}
     
     
     	function enrollPage(){
-    		location.href = "<%= contextPath %>/views/member/memberEnrollForm.jsp";
-    		
     		location.href = "<%= contextPath %>/loginEnrollForm.me";
     	}
     </script>
