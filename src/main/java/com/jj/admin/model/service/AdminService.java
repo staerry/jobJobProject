@@ -101,8 +101,15 @@ public class AdminService {
 		return result;
 	}
 	
-	
-	
+	public int selectNoticeCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectNoticeCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
 	
 	
 	

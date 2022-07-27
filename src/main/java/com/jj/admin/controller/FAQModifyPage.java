@@ -33,7 +33,6 @@ public class FAQModifyPage extends HttpServlet {
 		int faqNo = Integer.parseInt(request.getParameter("no"));
 		
 		Faq faq = new AdminService().selectFaq(faqNo);
-		System.out.println(faq);
 		
 		request.setAttribute("faq", faq);
 		request.getRequestDispatcher("views/admin/faqModify.jsp").forward(request, response);

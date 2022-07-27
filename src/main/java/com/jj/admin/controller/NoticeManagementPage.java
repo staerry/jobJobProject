@@ -1,11 +1,14 @@
 package com.jj.admin.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.jj.admin.model.service.AdminService;
 
 /**
  * Servlet implementation class NoticeManagementPage
@@ -26,9 +29,16 @@ public class NoticeManagementPage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 페이지 이동용 포워딩만 작성 했음
-		// 화면 구현 완료 후 수정 예정
-		request.getRequestDispatcher("views/admin/noticeManagement.jsp").forward(request, response);
+		int listCount = new AdminService().selectNoticeCount();
+		int currentPage;
+		int pageLimit;
+		int boardLimit;
+		int maxPage;
+		int startPage;
+		int endPage;
+		
+		
+		
 	}
 
 	/**

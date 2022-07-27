@@ -79,6 +79,11 @@
 	 WHERE FAQ_NO = ?
 </entry>
 
+<entry key="selectNoticeCount">
+	SELECT COUNT(*) COUNT
+	  FROM NOTICE
+</entry>
+
 
 
 </properties>
