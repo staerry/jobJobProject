@@ -48,14 +48,17 @@ public class StudentInfoController extends HttpServlet {
 		startPage = (currentPage-1) / pageLimit * pageLimit + 1;
 		endPage = startPage + pageLimit - 1;
 		
+		
 		if(endPage>maxPage) {
 			endPage = maxPage;
 		}
+		int lpage = listCount-boardLimit*(currentPage-1);
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
 		
 		ArrayList<Member> list = new ArrayList<>();
 		list = new AdminService().studentInfo(pi);
-		
+
+		request.setAttribute("lpage", lpage);
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/admin/studentInfo.jsp").forward(request, response);

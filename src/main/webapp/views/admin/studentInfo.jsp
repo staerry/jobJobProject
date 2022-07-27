@@ -5,6 +5,7 @@
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
 	
+	int lpage = (int)request.getAttribute("lpage");
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
@@ -66,17 +67,17 @@
 					<%if(list.isEmpty()){ %>
 					<script>
 					alert("조회된 회원이없습니다.")
-					location.href='<%=request.getHeader("REFERER") %>'
+					location.href= "javascript:history.back()";
 					</script>
 				<%}else{ %>
-					<%for(Member m : list){ %>
+					<%for(int i=0;i<list.size();i++){ %>
 						<tr>
-							<td>45(<%=m.getUserNo() %>)</td>
-							<td><%=m.getUserName() %></td>
-							<td><%=m.getUserId() %></td>
-							<td><%=m.getUserEmail() %></td>
-							<td><%=m.getUserPhone() %></td>
-							<td><%=m.getEnrollDate() %></td>
+							<td><%=lpage-i %>(<%=list.get(i).getUserNo() %>)</td>
+							<td><%=list.get(i).getUserName() %></td>
+							<td><%=list.get(i).getUserId() %></td>
+							<td><%=list.get(i).getUserEmail() %></td>
+							<td><%=list.get(i).getUserPhone() %></td>
+							<td><%=list.get(i).getEnrollDate() %></td>
 							<td><button class="outbutton">탈퇴</button></button></td>
 						</tr>
 					<%} %>
