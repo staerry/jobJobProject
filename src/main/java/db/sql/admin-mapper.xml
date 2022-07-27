@@ -84,6 +84,34 @@
 	  FROM NOTICE
 </entry>
 
+<entry key="selectStudentListCount">
+	SELECT COUNT(*) AS "LISTCOUNT"
+	  FROM USERINFO
+	 WHERE USER_STATUS = 'N'
+	   AND USER_DIVISION = 1
+</entry>
+
+<entry key="studentInfo">
+	SELECT *
+	  FROM (SELECT ROWNUM AS "RNO", A.*
+	          FROM (SELECT 
+	                       USER_NO
+	                     , USER_ID
+	                     , USER_PWD
+	                     , USER_NAME
+	                     , USER_EMAIL
+	                     , USER_PHONE
+	                     , USER_ENROLLDATE
+	                     , USER_STATUS
+	                     , ADMIN_STATUS
+	                     , USER_DIVISION
+	                  FROM USERINFO
+	                 WHERE USER_STATUS = 'N'
+	                   AND USER_DIVISION = 1
+	                 ORDER 
+	                    BY USER_NO DESC) A)
+	 WHERE RNO BETWEEN ? AND ?
+</entry>
 
 
 </properties>
