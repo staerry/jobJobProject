@@ -12,7 +12,6 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-
 <body>
     <%@ include file="../common/menubar.jsp" %>
     <br><br>
@@ -56,13 +55,13 @@
           <table class="table table-hover">
             <thead>
 
-                <tr style="background-color:whitesmoke">
-                    <th colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox">&nbsp;&nbsp;전체선택&nbsp;&nbsp;&nbsp;&nbsp;
+                <tr style="background-color:lightgray">
+                    <th colspan="6">
+                    <input type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;전체선택&nbsp;&nbsp;
                     <button class="btn btn-sm btn-danger">삭제</button></th>
                 </tr>
             </thead>
-            <thead align="center">
+            <thead>
               <tr>
                 <th></th>
                 <th>글 번호</th>
@@ -72,7 +71,7 @@
                 <th>조회수</th>
               </tr>
             </thead>
-            <tbody align="center">
+            <tbody>
               <tr>
                 <td><input type="checkbox"></td>
                 <td>xxxxxxx</td>
