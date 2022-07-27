@@ -85,7 +85,12 @@
                 <% } %>
                 
                 <% for (int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++){ %>
-                	<a href="<%= contextPath %>/faqListView.ad?cpage=<%= i %>"><%= i %></a>
+                	<% if(i == pageInfo.getCurrentPage()){ %>
+						<a href="<%= contextPath %>/faqListView.ad?cpage=<%= i %>" style="background-color : gray;"><%= i %></a>
+                	<% }else{ %>
+						<a href="<%= contextPath %>/faqListView.ad?cpage=<%= i %>"><%= i %></a>
+                	<% } %>
+                	
                 <% } %>
                 
                 <% if(pageInfo.getCurrentPage() != pageInfo.getMaxPage()){ %>
