@@ -40,15 +40,18 @@
 <entry key="selectFaqList">
 	SELECT *
 	  FROM (
-	      SELECT ROWNUM RNUM
-	           , FAQ_NO
-	           , USER_NO
-	           , FAQ_TITLE
-	           , FAQ_ANSWER
-	           , FAQ_ENROLLDATE
-	           , FAQ_COUNT
-	      FROM FAQ
-	       )
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT FAQ_NO
+	             , USER_NO
+	             , FAQ_TITLE
+	             , FAQ_ANSWER
+	             , FAQ_ENROLLDATE
+	             , FAQ_COUNT
+	          FROM FAQ
+	         ORDER BY FAQ_NO DESC
+	           ) A
+	        )
 	 WHERE RNUM BETWEEN ? AND ?
 </entry>
 

@@ -31,6 +31,7 @@ public class FAQInsertController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
 		
 		String faqTitle = request.getParameter("faqTitle");
 		String faqContent = request.getParameter("faqContent");
@@ -41,10 +42,10 @@ public class FAQInsertController extends HttpServlet {
 		
 		if(result > 0) {
 			request.getSession().setAttribute("alertMsg", "작성을 완료 했습니다.");
-			response.sendRedirect(request.getContextPath() + "/faqListView.ad");
+			response.sendRedirect(request.getContextPath() + "/faqListView.ad?cpage=1");
 		}else {
 			request.getSession().setAttribute("alertMsg", "작성을 실패 했습니다.");
-			response.sendRedirect(request.getContextPath() + "/faqListView.ad");
+			response.sendRedirect(request.getContextPath() + "/faqListView.ad?cpage=1");
 		}
 		
 		
