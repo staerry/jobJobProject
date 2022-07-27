@@ -57,7 +57,7 @@ public class StudentInfoController extends HttpServlet {
 		
 		ArrayList<Member> list = new ArrayList<>();
 		list = new AdminService().studentInfo(pi);
-
+		
 		request.setAttribute("lpage", lpage);
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);

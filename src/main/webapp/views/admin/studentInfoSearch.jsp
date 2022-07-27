@@ -38,8 +38,7 @@
 
 			<div class="checks">
 				<div id="formwraping">
-					<form action="<%=request.getContextPath() %>/stuInfoSearch.sr" >
-						<input type="hidden" name="p" value="1">
+					<form action="stuInfoSearch.sr" style="">
 						&nbsp;
 						<input type="checkbox" id="check1" name="check" value="1" checked> 
 						<label for="check1">활동중인회원</label>
@@ -47,7 +46,7 @@
 						<input type="checkbox" id="check2" name="check" value="2"> 
 						<label for="check2">탈퇴한회원</label> &nbsp;
 						<input type="text" style="line-height: 30px; width: 200px;" id="searchclick" placeholder="  이름또는 회원번호로 검색" id="search" name="search">
-						<label for="searchclick"><button id="searchbtn" style="line-height: 30px;" class="btnpurple" type="submit">검색</button></label>
+						<label for="searchclick"><button id="searchbtn" style="line-height: 30px;" class="btnpurple">검색</button></label>
 					</form>
 				</div>
 			</div>

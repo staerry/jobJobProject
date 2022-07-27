@@ -15,6 +15,10 @@ import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.notice.model.vo.Notice;
 
+/**
+ * @author PC
+ *
+ */
 public class AdminService {
 	
 	public UserInfoAd loginAdmin(String adminId,String adminPwd) {
@@ -167,6 +171,35 @@ public class AdminService {
 		return listCount;
 	}
 	
+	
+	/**
+	 * 사용자가 입력한 키워드에맞는 모든 수강생수를 찾는메소드
+	 * @param search 사용자가 입력한 키워드
+	 * @return 사용자가 입력한 키워드에맞는 모든 수강생수
+	 * @SJW
+	 */
+	public int stuListCountSearch(String search) {
+		Connection conn = getConnection();
+		int listCount = new AdminDao().stuListCountSearch(conn,search);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 사용자가 입력한 키워드에맞는 탈퇴한 수강생수를 찾는메소드
+	 * @param search 사용자가 입력한 키워드
+	 * @return 사용자가 입력한 키워드에맞는 탈퇴한 수강생수
+	 * @author SJW
+	 */
+	public int stuInfoOutCount(String search) {
+		Connection conn = getConnection();
+		int listCount = new AdminDao().stuInfoOutCount(conn,search);
+		close(conn);
+		
+		return listCount;
+	}
+	
 	/**
 	 * 활동중인 수강생리스트를 페이지에 맞춰서 찾는메소드
 	 * @param pi 페이지정보를 담고있는 객체
@@ -176,6 +209,34 @@ public class AdminService {
 	public ArrayList<Member> studentInfo(PageInfo pi){
 		Connection conn = getConnection();
 		ArrayList<Member> list = new AdminDao().studentInfo(conn,pi);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 사용자가 입력한 키워드에맞는 모든 수강생리스트를 페이지에 맞춰서 찾는메소드
+	 * @param pi 페이지정보를 담고있는 객체
+	 * @param search 사용자가 입력한 키워드
+	 * @return 페이지에 맞는 활동중인 수강생 리스트
+	 * @author SJW
+	 */
+	public ArrayList<Member> stuInfoAll(PageInfo pi,String search){
+		Connection conn = getConnection();
+		ArrayList<Member> list = new AdminDao().stuInfoAll(conn,pi,search);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 사용자가 입력한 키워드에맞는 모든 수강생리스트를 페이지에 맞춰서 찾는메소드
+	 * @param pi 페이지정보를 담고있는 객체
+	 * @param search 사용자가 입력한 키워드
+	 * @return 페이지에 맞는 활동중인 수강생 리스트
+	 * @SJW
+	 */
+	public ArrayList<Member> stuInfoOutSearch(PageInfo pi,String search){
+		Connection conn = getConnection();
+		ArrayList<Member> list = new AdminDao().stuInfoOutSearch(conn,pi,search);
 		close(conn);
 		return list;
 	}
@@ -195,6 +256,8 @@ public class AdminService {
 		
 		return list;
 	}
+	
+	
 	
 	
 	

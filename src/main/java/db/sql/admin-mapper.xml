@@ -91,6 +91,33 @@
 	   AND USER_DIVISION = 1
 </entry>
 
+<entry key="stuListCountSearch">
+SELECT COUNT(*) AS "LISTCOUNT"
+  FROM (SELECT ROWNUM AS "RNO", A.*
+          FROM (SELECT 
+                       USER_NO
+                     , USER_NAME
+                  FROM USERINFO
+                 WHERE  USER_DIVISION = 1
+                   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+                   ORDER 
+	                    BY USER_NO DESC) A)
+</entry>
+
+<entry key="stuInfoOutCount">
+	SELECT COUNT(*) AS "LISTCOUNT"
+	  FROM (SELECT ROWNUM AS "RNO", A.*
+	          FROM (SELECT 
+	                       USER_NO
+	                     , USER_NAME
+	                  FROM USERINFO
+	                 WHERE  USER_DIVISION = 1
+	                   AND USER_STATUS = 'Y'
+	                   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                   ORDER 
+		                    BY USER_NO DESC) A)
+</entry>
+
 <entry key="studentInfo">
 	SELECT *
 	  FROM (SELECT ROWNUM AS "RNO", A.*
@@ -110,6 +137,51 @@
 	                   AND USER_DIVISION = 1
 	                 ORDER 
 	                    BY USER_NO DESC) A)
+	 WHERE RNO BETWEEN ? AND ?
+</entry>
+
+<entry key="stuInfoAll">
+	SELECT * 
+	  FROM (SELECT ROWNUM AS "RNO", A.*
+	          FROM (SELECT 
+	                       USER_NO
+	                     , USER_ID
+	                     , USER_PWD
+	                     , USER_NAME
+	                     , USER_EMAIL
+	                     , USER_PHONE
+	                     , USER_ENROLLDATE
+	                     , USER_STATUS
+	                     , ADMIN_STATUS
+	                     , USER_DIVISION
+	                  FROM USERINFO
+	                 WHERE  USER_DIVISION = 1
+	                   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                   ORDER 
+		                    BY USER_NO DESC) A)
+	 WHERE RNO BETWEEN ? AND ?
+</entry>
+
+<entry key="stuInfoOutSearch">
+	SELECT * 
+	  FROM (SELECT ROWNUM AS "RNO", A.*
+	          FROM (SELECT 
+	                       USER_NO
+	                     , USER_ID
+	                     , USER_PWD
+	                     , USER_NAME
+	                     , USER_EMAIL
+	                     , USER_PHONE
+	                     , USER_ENROLLDATE
+	                     , USER_STATUS
+	                     , ADMIN_STATUS
+	                     , USER_DIVISION
+	                  FROM USERINFO
+	                 WHERE  USER_DIVISION = 1
+	                   AND USER_STATUS= 'Y'
+	                   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                   ORDER 
+		                    BY USER_NO DESC) A)
 	 WHERE RNO BETWEEN ? AND ?
 </entry>
 
