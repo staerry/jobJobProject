@@ -46,7 +46,7 @@
           <span>검색결과 조회</span>
           <br><br>
           <table class="table table-hover">
-            <thead>
+            <thead align="center">
               <tr>
                 <th>번호</th>
                 <th>강의명</th>
@@ -55,7 +55,7 @@
                 <th>결제내역</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody align="center">
               <tr>
                 <td>10</td>
                 <td>남궁성의 java A-Z까지</td>

@@ -55,7 +55,7 @@
           <table class="table table-hover">
             <thead>
 
-                <tr style="background-color:lightgray">
+                <tr style="background-color:whitesmoke">
                     <th colspan="6">
                     <input type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;전체선택&nbsp;&nbsp;
                     <button class="btn btn-sm btn-danger">삭제</button></th>
