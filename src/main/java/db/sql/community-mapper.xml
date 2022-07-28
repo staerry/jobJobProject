@@ -38,6 +38,31 @@
 		  		 
 	</entry>
 	
+	<entry key="selectCategoryList">
+		SELECT
+		       CMCG_NO
+		     , CMCG_NAME
+		  FROM COMMUNITY_CATEGORY
+	</entry>
 	
+	<entry key="insertCommunity">
+		INSERT
+		  INTO COMMUNITY
+		  (
+		    CM_NO
+		  , USER_NO
+		  , CMCG_NO
+		  , CM_TITLE
+		  , CM_CONTENT
+		  )
+		  VALUES
+		  (
+		    SEQ_COMU.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  )
+	</entry>
 
 </properties>
