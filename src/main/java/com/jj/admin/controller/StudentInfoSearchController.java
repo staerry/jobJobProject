@@ -45,10 +45,7 @@ public class StudentInfoSearchController extends HttpServlet {
 		
 		String[] arr = request.getParameterValues("check");
 		
-		String search="";
-		if(request.getParameter("search") != null) {
-			search = request.getParameter("search");
-		}
+		String search= request.getParameter("search");
 		
 		ArrayList<Member> list = new ArrayList<>();
 		
@@ -67,7 +64,7 @@ public class StudentInfoSearchController extends HttpServlet {
 			PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
 			
 			list = new AdminService().stuInfoAll(pi,search);
-			System.out.println(arr[0].equals("1"));
+	
 			request.setAttribute("lpage", lpage);
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
@@ -92,7 +89,6 @@ public class StudentInfoSearchController extends HttpServlet {
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 		}else if(arr[0].equals("1")) {
-			System.out.println(arr[0].equals("1"));
 			response.sendRedirect(request.getContextPath()+"/stuInfo.li?p=1");
 		}else {
 			response.sendRedirect(request.getContextPath()+"/stuInfo.li?p=1");

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jj.admin.model.service.AdminService;
+import com.jj.admin.model.service.AdminService2;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.member.model.vo.Member;
 
@@ -40,28 +41,111 @@ public class StudentInfoController extends HttpServlet {
 		int startPage;
 		int endPage;
 		
-		listCount = new AdminService().selectStudentListCount();
-		currentPage = Integer.parseInt(request.getParameter("p"));
-		pageLimit = 5;
-		boardLimit = 10;
-		maxPage =  (int)Math.ceil( (double)listCount / boardLimit );
-		startPage = (currentPage-1) / pageLimit * pageLimit + 1;
-		endPage = startPage + pageLimit - 1;
+		int p = Integer.parseInt(request.getParameter("p"));
+		
+		String[] arr = request.getParameterValues("check");
+		
+		if(arr!=null) {
+		System.out.println(arr[0]);}
 		
 		
-		if(endPage>maxPage) {
-			endPage = maxPage;
+		String check="";
+		if(arr==null || arr[0].equals("none")) {
+			check="none";
+		}else if(arr[0].equals("1") && arr.length == 1) {
+			check="1";
+		}else if(arr[0].equals("2") && arr.length == 1) {
+			check="2";
+		}else {
+			check="all";
 		}
-		int lpage = listCount-boardLimit*(currentPage-1);
-		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
+		
+		String search = "";
+		if(request.getParameter("search")==null) {
+			
+		}else {
+			search= request.getParameter("search");
+		}
+		
 		
 		ArrayList<Member> list = new ArrayList<>();
-		list = new AdminService().studentInfo(pi);
+	//----------------------------------------------------------------------------------------------	
+		if(check.equals("none") || check.equals("1")) {
+			listCount = new AdminService2().selectStudentListCount(search);
+			currentPage = Integer.parseInt(request.getParameter("p"));
+			pageLimit = 5;
+			boardLimit = 10;
+			maxPage =  (int)Math.ceil( (double)listCount / boardLimit );
+			startPage = (currentPage-1) / pageLimit * pageLimit + 1;
+			endPage = startPage + pageLimit - 1;
+			
+			if(endPage>maxPage) {
+				endPage = maxPage;
+			}
+			int lpage = listCount-boardLimit*(currentPage-1);
+			PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
+			
+			
+			list = new AdminService2().studentInfo(pi,search);
+			
+			request.setAttribute("check", check);
+			request.setAttribute("search", search);
+			request.setAttribute("lpage", lpage);
+			request.setAttribute("pi", pi);
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("views/admin/studentInfo.jsp").forward(request, response);
+	// -------------------------------------------------------------------------------------------------------
+		} else if(check.equals("2")) {
+			listCount = new AdminService2().stuInfoOutCount(search);
+			currentPage = Integer.parseInt(request.getParameter("p"));
+			pageLimit = 5;
+			boardLimit = 10;
+			maxPage =  (int)Math.ceil( (double)listCount / boardLimit );
+			startPage = (currentPage-1) / pageLimit * pageLimit + 1;
+			endPage = startPage + pageLimit - 1;
+			
+			if(endPage>maxPage) {
+				endPage = maxPage;
+			}
+			int lpage = listCount-boardLimit*(currentPage-1);
+			PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
+			
+			
+			list = new AdminService2().stuInfoOutSearch(pi,search);
+			
+			request.setAttribute("check", check);
+			request.setAttribute("search", search);
+			request.setAttribute("lpage", lpage);
+			request.setAttribute("pi", pi);
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("views/admin/studentInfo.jsp").forward(request, response);
+		} else {
+			listCount = new AdminService2().stuListCountSearch(search);
+			currentPage = Integer.parseInt(request.getParameter("p"));
+			pageLimit = 5;
+			boardLimit = 10;
+			maxPage =  (int)Math.ceil( (double)listCount / boardLimit );
+			startPage = (currentPage-1) / pageLimit * pageLimit + 1;
+			endPage = startPage + pageLimit - 1;
+			
+			if(endPage>maxPage) {
+				endPage = maxPage;
+			}
+			int lpage = listCount-boardLimit*(currentPage-1);
+			PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
+			
+			
+			list = new AdminService2().stuInfoAll(pi,search);
+			
+			request.setAttribute("check", check);
+			request.setAttribute("search", search);
+			request.setAttribute("lpage", lpage);
+			request.setAttribute("pi", pi);
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("views/admin/studentInfo.jsp").forward(request, response);
+		}
 		
-		request.setAttribute("lpage", lpage);
-		request.setAttribute("pi", pi);
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/admin/studentInfo.jsp").forward(request, response);
+		
 		
 		
 		
