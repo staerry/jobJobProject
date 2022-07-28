@@ -19,3 +19,7 @@
 .content-wrap>.right h3{
 	color : #6363FF;
 }
+
+text-area{
+	white-space : pre;
+}

@@ -753,7 +753,61 @@ public class AdminDao {
 		return mtm;
 	}
 	
+	public int updateAnswer(Connection conn, int mtmNo, String mtmAnswer) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateAnswer");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mtmAnswer);
+			pstmt.setInt(2, mtmNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
+	public Mtm selectUserEmail(Connection conn, int mtmNo) {
+		Mtm userEmail = new Mtm();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectUserEmail");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mtmNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				userEmail = new Mtm(rset.getInt("mtm_no")
+					    , rset.getString("user_email")
+					    , rset.getString("mtm_title")
+					    , rset.getString("mtm_content")
+					    , rset.getDate("mtm_enrolldate")
+					    , rset.getString("mtm_answer")
+					    , rset.getDate("mtm_answer_date")
+					    , rset.getString("admin_no"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return userEmail;
+	}
 	
 	
 	
