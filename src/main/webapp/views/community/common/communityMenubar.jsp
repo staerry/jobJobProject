@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,10 +28,10 @@
         <div class="community-category-area">
             <ul class="community-categroy-navi">
                 <li id="community-head">커뮤니티</li>
-                <li><a href="">직무질문</a></li>
-                <li><a href="">고민상담</a></li>
-                <li><a href="">스터디</a></li>
-                <li><a href="">수강후기</a></li>
+                <li><a href="<%= request.getContextPath() %>/list.co?category=1&cpage=1">직무질문</a></li>
+                <li><a href="<%= request.getContextPath() %>/list.co?category=2&cpage=1">고민상담</a></li>
+                <li><a href="<%= request.getContextPath() %>/list.co?category=3&cpage=1">스터디</a></li>
+                <li><a href="">수강후기</a></li>	<!-- 아마도 삭제 -->
             </ul>
         </div>
 	</div>

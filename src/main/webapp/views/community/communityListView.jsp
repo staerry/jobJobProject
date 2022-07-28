@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.jj.common.model.vo.PageInfo, java.util.ArrayList, com.jj.community.model.vo.Community"%> 
+    
+<% 
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Community> list = (ArrayList<Community>)request.getAttribute("list");
+	
+	int categoryNo = (int)request.getAttribute("categoryNo");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +47,7 @@
         <div class="community-list-area">
             <!-- 게시판 소개 -->
             <div class="community-list-header">
-                <h3>%= 카테고리명 %</h3>
+                <h3><%= list.get(0).getCommCategory() %></h3>
                 <div class="community-search-bar">
                     <input type="search" name="searchKeyword" id="search-keyword" placeholder="궁금한 질문을 검색해 보세요!">
                     <button onclick=""><i class="far fa-search"></i>&nbsp;검색</button>
@@ -57,169 +71,60 @@
             </div>
 
             <!-- 게시물 목록 -->
-            <table class="community-content" onclick="">
-                <tr>
-                    <td id="community-title"><h5>제목이 들어갈 자리입니다.</h5></td>
-                    <td id="reply-count" rowspan="3">
-                        <div class="reply-zzim-count">
-                            <div class="reply-count-circle">
-                                <span id="reply-count-no">댓글 수</span>
-                                <span id="reply-mark">답변</span>
-                            </div>
-                            <div class="zzim-count-heart">
-                                <span id="zzim-heart"><i class="fas fa-heart"></i></span>
-                                <span id="zzim-count">찜수</span>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td id="community-body"><p>내용이 들어갈 자리입니다. 
+            <!-- case1. 게시글이 하나도 없을 경우 -->
+             <table class="community-content" onclick="">
 
-                        개인적인 사정때문에 취업이 급해 퍼블리셔로 일하고 있습니다. 
-                        
-                        마음 한켠으로는 프론트로 이직하고 싶은 마음을 가지며 일하고 있는데 ux엔지니어라는게 있더라고요.</p></td>
-                    <td  rowspan="2">
-                    </td>
-                </tr>
-                <tr>
-                    <td id="writer-info">%= 회원명 % %= 작성일 %</td>
-                </tr>
-            </table>            
-
-            <table class="community-content" onclick="">
-                <tr>
-                    <td id="community-title"><h5>%= 게시글 제목 %</h5></td>
-                    <td id="reply-count" rowspan="3">
-                        <div class="reply-zzim-count">
-                            <div class="reply-count-circle">
-                                <span id="reply-count-no">댓글 수</span>
-                                <span id="reply-mark">답변</span>
-                            </div>
-                            <div class="zzim-count-heart">
-                                <span id="zzim-heart"><i class="fas fa-heart"></i></span>
-                                <span id="zzim-count">찜수</span>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td id="community-body"><p>%= 게시글 내용 %<br>안녕하세요. 
-
-                        개인적인 사정때문에 취업이 급해 퍼블리셔로 일하고 있습니다. 
-                        
-                        마음 한켠으로는 프론트로 이직하고 싶은 마음을 가지며 일하고 있는데 ux엔지니어라는게 있더라고요.</p></td>
-                    <td  rowspan="2">
-                    </td>
-                </tr>
-                <tr>
-                    <td id="writer-info">%= 회원명 % %= 작성일 %</td>
-                </tr>
-            </table>            
-
-            <table class="community-content" onclick="">
-                <tr>
-                    <td id="community-title"><h5>%= 게시글 제목 %</h5></td>
-                    <td id="reply-count" rowspan="3">
-                        <div class="reply-zzim-count">
-                            <div class="reply-count-circle">
-                                <span id="reply-count-no">댓글 수</span>
-                                <span id="reply-mark">답변</span>
-                            </div>
-                            <div class="zzim-count-heart">
-                                <span id="zzim-heart"><i class="fas fa-heart"></i></span>
-                                <span id="zzim-count">찜수</span>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td id="community-body"><p>%= 게시글 내용 %<br>안녕하세요. 
-
-                        개인적인 사정때문에 취업이 급해 퍼블리셔로 일하고 있습니다. 
-                        
-                        마음 한켠으로는 프론트로 이직하고 싶은 마음을 가지며 일하고 있는데 ux엔지니어라는게 있더라고요.</p></td>
-                    <td  rowspan="2">
-                    </td>
-                </tr>
-                <tr>
-                    <td id="writer-info">%= 회원명 % %= 작성일 %</td>
-                </tr>
-            </table>            
-
-            <table class="community-content" onclick="">
-                <tr>
-                    <td id="community-title"><h5>%= 게시글 제목 %</h5></td>
-                    <td id="reply-count" rowspan="3">
-                        <div class="reply-zzim-count">
-                            <div class="reply-count-circle">
-                                <span id="reply-count-no">댓글 수</span>
-                                <span id="reply-mark">답변</span>
-                            </div>
-                            <div class="zzim-count-heart">
-                                <span id="zzim-heart"><i class="fas fa-heart"></i></span>
-                                <span id="zzim-count">찜수</span>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td id="community-body"><p>%= 게시글 내용 %<br>안녕하세요. 
-
-                        개인적인 사정때문에 취업이 급해 퍼블리셔로 일하고 있습니다. 
-                        
-                        마음 한켠으로는 프론트로 이직하고 싶은 마음을 가지며 일하고 있는데 ux엔지니어라는게 있더라고요.</p></td>
-                    <td  rowspan="2">
-                    </td>
-                </tr>
-                <tr>
-                    <td id="writer-info">%= 회원명 % %= 작성일 %</td>
-                </tr>
-            </table>            
-
-            <table class="community-content" onclick="">
-                <tr>
-                    <td id="community-title"><h5>%= 게시글 제목 %</h5></td>
-                    <td id="reply-count" rowspan="3">
-                        <div class="reply-zzim-count">
-                            <div class="reply-count-circle">
-                                <span id="reply-count-no">댓글 수</span>
-                                <span id="reply-mark">답변</span>
-                            </div>
-                            <div class="zzim-count-heart">
-                                <span id="zzim-heart"><i class="fas fa-heart"></i></span>
-                                <span id="zzim-count">찜수</span>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td id="community-body"><p>%= 게시글 내용 %<br>안녕하세요. 
-
-                        개인적인 사정때문에 취업이 급해 퍼블리셔로 일하고 있습니다. 
-                        
-                        마음 한켠으로는 프론트로 이직하고 싶은 마음을 가지며 일하고 있는데 ux엔지니어라는게 있더라고요.</p></td>
-                    <td  rowspan="2">
-                    </td>
-                </tr>
-                <tr>
-                    <td id="writer-info">%= 회원명 % %= 작성일 %</td>
-                </tr>
-            </table>       
+                <% if(list.isEmpty()) { %>
+                <tr id="content-none"> 조회된 게시글이 없습니다.</tr>
+				<% }else { %>
+				<!-- case2.게시글이 있을 경우 -->
+					<% for(Community c : list) { %>
+	                <tr>
+	                    <td id="community-title"><h5><%= c.getCommTitle() %></h5></td>
+	                    <td id="reply-count" rowspan="3">
+	                        <div class="reply-zzim-count">
+	                            <div class="reply-count-circle">
+	                                <span id="reply-count-no"><%= c.getReplyCount() %></span>
+	                                <span id="reply-mark">댓글</span>
+	                            </div>
+	                            <div class="zzim-count-heart">
+	                                <span id="zzim-heart"><i class="fas fa-heart"></i></span>
+	                                <span id="zzim-count"><%= c.getLikeCount() %></span>
+	                            </div>
+	                        </div>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td id="community-body"><p><%= c.getCommContent() %></p></td>
+	                    <td  rowspan="2">
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td id="writer-info"><%= c.getCommWriter() %>&nbsp;&nbsp;&nbsp;<%= c.getCreateDate() %></td>
+	                </tr>
+					<% } %>
+                </table>   
+                <% } %>
+          
+      
             <br>
             <br>
             <br>
             
-
+            <!-- 페이징바 영역 -->
             <div class="paging-area">
                 <ul class="pagination">
-                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                	<% if(currentPage != 1) { %>	<!-- 보고 있는 페이지가 1번 페이지일 때 이전 버튼선택 X -->
+                    	<li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage-1 %>">&lt;</a></li>
+	                <% } %>
+	                
+	                <% for(int p=startPage; p<=endPage; p++) { %>
+	                    <li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= p %>"><%= p %></a></li>
+	                <% } %>
+	                
+	                <% if(currentPage != maxPage) { %>    
+	                    <li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage+1 %>">&gt;</a></li>
+	                <% } %>    
                   </ul>
             </div>
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="selectListCount">
+		SELECT COUNT(*) AS "COUNT"
+		  FROM COMMUNITY
+		 WHERE CMCG_NO = ?	
+	</entry>
+	
+	<entry key="selectList">
+		SELECT * 
+		  FROM (
+		  		 SELECT ROWNUM AS RNUM, A.* 
+		  		   FROM (
+   						SELECT 
+						       CM_NO
+						     , USER_NAME
+						     , CMCG_NAME
+						     , CM_TITLE
+						     , CM_CONTENT
+						     , CM_ENROLLDATE
+						     , CM_COUNT
+						     , CM_LIKE_COUNT
+						     , (SELECT COUNT(*)
+                                  FROM REPLY R
+                                 WHERE R.CM_NO = C.CM_NO) AS REPLYCOUNT
+						  FROM COMMUNITY C
+						  JOIN USERINFO USING (USER_NO)
+						  JOIN COMMUNITY_CATEGORY USING (CMCG_NO)
+						 WHERE 
+						       CMCG_NO = ?
+						 ORDER
+						    BY CM_NO DESC
+					    ) A
+		  		 )
+	  		 WHERE RNUM BETWEEN ? AND ?
+		  		 
+	</entry>
+	
+	
+
+</properties>
