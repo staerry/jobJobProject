@@ -152,6 +152,10 @@ a {
     margin-left:20px;
 }
 
+#reply-count {
+	border-bottom:1px solid #e5e7eb;
+}
+
 .reply-count-circle {
     width:66px;
     height:66px;
@@ -180,12 +184,13 @@ a {
 }
 
 #zzim-heart{
-    color:red;
+    color:rgb(97, 101, 104);
 }
 
 #writer-info {
     padding:5px 10px 20px 10px;
     color:#ABB0B5;
+    border-bottom:1px solid #e5e7eb;
 }
 
 .paging-area {
