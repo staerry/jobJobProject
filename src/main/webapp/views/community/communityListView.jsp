@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/common/css/setting.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/community/communityListView.css">
 
+
 <!-- 폰트어썸 --> 
 <script src="https://kit.fontawesome.com/ea8287c514.js" crossorigin="anonymous"></script>
 
@@ -21,22 +22,14 @@
 <body>
 
 	<%@ include file="../common/menubar.jsp" %>
-	
 
     <!-- 전체를 감싸는 div -->
-    <div class="container">
-        <!-- 게시판 카테고리 영역 -->
-        <div class="community-category-area">
-            <ul class="community-categroy-navi">
-                <li id="community-head">커뮤니티</li>
-                <li><a href="">직무질문</a></li>
-                <li><a href="">고민상담</a></li>
-                <li><a href="">스터디</a></li>
-                <li><a href="">수강후기</a></li>
-            </ul>
-        </div>
+    <div class="container">  
 
-        <!-- 게시판 목록 영역 -->
+	<!-- 왼쪽 메뉴바  -->
+	<%@ include file="common/communityMenubar.jsp" %>
+	
+        <!-- 오른쪽 게시판 목록 영역 -->
         <div class="community-list-area">
             <!-- 게시판 소개 -->
             <div class="community-list-header">

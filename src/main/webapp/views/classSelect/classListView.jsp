@@ -24,19 +24,9 @@
  
     <!-- 전체를 감싸는 div -->
     <div class="container">
+    
         <!-- 왼쪽 메뉴바 -->
-        <div class="class-category-area">
-            <ul class="category-navi">
-                <li id="select-all"><a href="">전체</a></li>
-                <li><a href="">IT 개발</a></li>
-                <li><a href="">마케팅•MD•영업</a></li>
-                <li><a href="">회계•재무•금융</a></li>
-                <li><a href="">전략•기획</a></li>
-                <li><a href="">유통•무역•구매</a></li>
-                <li><a href="">공사•공기업•공무원</a></li>
-                <li><a href="">전문•특수</a></li>
-            </ul>
-        </div>
+        <%@include file="common/classMenubar.jsp" %>
 
         <!-- 오른쪽 클래스 목록 영역-->
         <div class="class-list-area">
@@ -45,7 +35,7 @@
             <!-- 클래스 정렬 버튼 & 박스 영역 -->
             <div class="class-sorting">
                 <!-- 클래스 필터 버튼 -->
-                <button class="class-sort">
+                <button class="class-sort-btn">
                     <i class="bi bi-funnel"></i>
                     <span id="filter">필터</span>
                     <span>유료 | 무료
