@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
-    
+    pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +46,7 @@
             <ul class="main-menu-area">
                 <li><a href="">강의조회</a></li>
                 <li><a href="">멘토조회</a></li>
-                <li><a href="">커뮤니티</a></li>
+                <li><a href="<%= contextPath %>/list.co?category=1&cpage=1">커뮤니티</a></li>
             </ul>
         </div>
     </div>

@@ -261,7 +261,7 @@
 		<!--커뮤니티 부분-->
 		<div class="main-community-title">
 			<h2>커뮤니티</h2>
-			<p><b><a href="">더보기</a></b></p>
+			<p><b><a href="<%= contextPath %>/list.co?category=1&cpage=1">더보기</a></b></p>
 		</div>
 		<div class="main-community-list">
 			<div class="community-slide-btn-left">
