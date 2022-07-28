@@ -11,26 +11,106 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://kit.fontawesome.com/046431a501.js" crossorigin="anonymous"></script>
 </head>
+<style>
+  .page-link {
+    color: #6363FF; 
+    background-color: #fff;
+    border: 1.5px solid #6363FF; 
+  }
+  
+  .page-item.active .page-link {
+   z-index: 1;
+   color: #555;
+   font-weight:bold;
+   background-color: #f1f1f1;
+   border-color: #ccc;
+   
+  }
+  
+  .page-link:focus, .page-link:hover {
+    color: white;
+    background-color: #6363FF; 
+    border-color: #ccc;
+  }
+  </style>
 <body>
 
-    <br>
-    <h2>도움이 필요하신가요?</h2><br>
+  <%@ include file="../common/menubar.jsp" %>
 
-    <div class="btn" style="float: right;">
-        <button>1:1문의</button>
-    </div>
+    <br><br>
+    <h2 style="margin-left: 5%;">도움이 필요하신가요?</h2><br>
 
-    <div class="container">                      
-        <div class="dropdown">
-          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-            최신순
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">조회수</a>
+    <table style="margin-left:10%;">
+      <tr>
+        <td>
+          <div class="container">                      
+              <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" style="background: #6363FF;" data-toggle="dropdown">
+                  최신순
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">조회수</a>
+                </div>
+              </div>
           </div>
-        </div>
-    </div>
+        </td>
+
+      <td>
+          <div class="container">
+            <!-- 모달 여는 버튼 -->
+            <button type="button" class="btn" data-toggle="modal" data-target="#myModal" style="float: right; background: lightgray; color: black;">
+              1:1 문의하기 
+            </button>
+          
+            <!-- 모달 -->
+            <div class="modal" id="myModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                  <!-- 모달 Header -->
+                  <div class="modalHeader" style="margin-top: 3%; margin-right: 3%; margin-left: 3%;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class=>1:1 문의하기</h4>
+                    <div style="font-size: 10px;">문제가 해결되지 않으셨다면 1:1 로 문의하세요.<br>
+                    문의 주신 내용은 48시간 내로 최대한 빠르게 답변드리도록 하겠습니다. 
+                    남겨주신 이메일을 확인해주세요.</div>
+                  </div>
+
+                  <hr>
+                  
+                  <!-- Modal body -->
+                  <div class="modal-body" style="padding: 3%;">
+                    <input type="text" placeholder="제목" style="width: 100%;"><br><br>
+                    <textarea style="width:100%;" cols="30" rows="10">내용</textarea><br><br>
+
+                  
+                    <input type="text" placeholder="답변받을 이메일 주소" style="width: 100%;">
+                    <br>
+                    
+                    <div>
+                    <input type="checkbox">
+                    <span style="font-size: 10px;">개인정보 수집 및 이용에 동의합니다. 1:1 문의를 위한 최소한의 개인정보만을 수집하고 있습니다. 개인정보는 ‘개인정보 처리방침’에 근거하여 관리됩니다.</span>
+                    </div>
+
+
+                  </div>
+                  
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal" style="background: #6363FF; color: white;">문의하기</button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <br>
 
     <div class="container">
                    
@@ -88,7 +168,7 @@
     </div>
 
     <div class="paging-area">
-        <ul class="pagination">
+        <ul class="pagination justify-content-center" style="margin:20px 0" >
             <li class="page-item"><a class="page-link" href="#"><<</a></li>
             <li class="page-item"><a class="page-link" href="#">1</a></li>
             <li class="page-item"><a class="page-link" href="#">2</a></li>
@@ -100,22 +180,22 @@
     </div>
     <br>
 
-    <div class="community-list-header">
-        <div class="community-search-bar">
-            <input type="search" name="searchKeyword" id="search-keyword" placeholder="검색어를 입력하세요.">
-            <button onclick=""><i class="far fa-search"></i>&nbsp;검색</button>
-        </div>
+    <div class="search-area" align="center">
+
+      <input type="checkbox" id="total"><label for="total">전체</label>&nbsp;&nbsp;
+      <input type="checkbox" id="mentor"><label for="mentor">멘토</label>&nbsp;&nbsp;
+      <input type="checkbox" id="user"><label for="user">사용자</label>&nbsp;&nbsp;
+
+      <input type="search" class="form-control-sm mr-3" style="border-color: #6363FF;" placeholder="검색어 입력"><i class="fa-solid fa-magnifying-glass"></i> 
+
     </div>
 
-    <div class="community-sorting">
-        <span class="community-sorting-order">
-            <ul class="community-sorting-standard"> 
-                <li onclick="">최신 순</li>
-                <li onclick="">좋아요 순</li>
-                <li onclick="">조회수 순</li>
-            </ul>                
-        </span>
+    <br><br><br>
+
+  
+      
 
 
+      <br><br><br><br>
 </body>
 </html>

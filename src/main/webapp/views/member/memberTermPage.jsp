@@ -63,10 +63,10 @@
 
         <form action="<%= contextPath %>/insert.me" method="post" id="userInfo">
 
-            <input type="hidden" name="userName" value="userName">
-            <input type="hidden" name="userId" value="userId">
-            <input type="hidden" name="userPwd" value="userPwd">
-            <input type="hidden" name="userPhone" value="userPhone">
+            <input type="hidden" name="userName" value="<%=userName%>">
+            <input type="hidden" name="userId" value="<%=userId%>">
+            <input type="hidden" name="userPwd" value="<%=userPwd%>">
+            <input type="hidden" name="userPhone" value="<%=userId%>">
 
             <div class="checkbox-group" align="left">
 
