@@ -68,6 +68,7 @@
                 <span class="community-write">
                      <button id="community-write-btn"><i class="far fa-pen"></i>&nbsp;&nbsp;글쓰기</button>
                 </span>
+                
             </div>
 
             <!-- 게시물 목록 -->
@@ -115,15 +116,15 @@
             <div class="paging-area">
                 <ul class="pagination">
                 	<% if(currentPage != 1) { %>	<!-- 보고 있는 페이지가 1번 페이지일 때 이전 버튼선택 X -->
-                    	<li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage-1 %>">&lt;</a></li>
+                    	<li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage-1 %>">&lt;</a></li>
 	                <% } %>
 	                
 	                <% for(int p=startPage; p<=endPage; p++) { %>
-	                    <li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= p %>"><%= p %></a></li>
+	                    <li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/list.co?category=<%= categoryNo %>&cpage=<%= p %>"><%= p %></a></li>
 	                <% } %>
 	                
 	                <% if(currentPage != maxPage) { %>    
-	                    <li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage+1 %>">&gt;</a></li>
+	                    <li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage+1 %>">&gt;</a></li>
 	                <% } %>    
                   </ul>
             </div>
