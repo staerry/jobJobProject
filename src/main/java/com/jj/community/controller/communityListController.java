@@ -14,16 +14,16 @@ import com.jj.community.model.service.CommunityService;
 import com.jj.community.model.vo.Community;
 
 /**
- * Servlet implementation class communityListController
+ * Servlet implementation class CommunityListController
  */
 @WebServlet("/list.co")
-public class communityListController extends HttpServlet {
+public class CommunityListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public communityListController() {
+    public CommunityListController() {
         super();
         // TODO Auto-generated constructor stub
     }
