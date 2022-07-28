@@ -60,128 +60,6 @@ public class AdminDao2 {
 		return u;
 	}
 	
-	public int insertFaq(Connection conn, String faqTitle, String faqContent, int userId) {
-		int result = 0;
-		
-		PreparedStatement pstmt = null;
-		
-		String sql = prop.getProperty("insertFaq");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, userId);
-			pstmt.setString(2, faqTitle);
-			pstmt.setString(3, faqContent);
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-	
-	public int selectFaqCount(Connection conn) {
-		int listCount = 0;
-		
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("selectFaqCount");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				listCount = rset.getInt("LIST_COUNT");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return listCount;
-	}
-	
-	
-	public int deleteFaq(Connection conn, int faqNo) {
-		int result = 0;
-		
-		PreparedStatement pstmt = null;
-		
-		String sql = prop.getProperty("deleteFaq");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, faqNo);
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-	
-	
-	
-	public int updateFaq(Connection conn, Faq faq) {
-		int result = 0;
-		
-		PreparedStatement pstmt = null;
-		
-		String sql = prop.getProperty("updateFaq");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, faq.getFaqTitle());
-			pstmt.setString(2, faq.getFaqAnswer());
-			pstmt.setInt(3, faq.getFaqNo());
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-	
-	public int selectNoticeCount(Connection conn) {
-		int listCount = 0;
-		
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("selectNoticeCount");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				listCount = rset.getInt("count");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return listCount;
-	}
-	
 	/**
 	 * @param conn
 	 * @return
@@ -244,6 +122,110 @@ public class AdminDao2 {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("stuInfoOutCount");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, a);
+			pstmt.setString(2, a);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public int selectMentorListCount(Connection conn,String search) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMentorListCount");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, a);
+			pstmt.setString(2, a);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public int currentCount(Connection conn,String search) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("currentCount");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, a);
+			pstmt.setString(2, a);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public int lecturerCount(Connection conn,String search) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("lecturerCount");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, a);
+			pstmt.setString(2, a);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public int outMentorCount(Connection conn,String search) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("outMentorCount");
 		String a = '%'+search+'%';
 		
 		try {
@@ -386,6 +368,208 @@ public class AdminDao2 {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public ArrayList<Member> mentorInfo(Connection conn,PageInfo pi,String search){
+		ArrayList<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("mentorInfo");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			
+			pstmt.setString(1, a);
+			pstmt.setString(2, a);
+			pstmt.setInt(3,startRow);
+			pstmt.setInt(4,endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Member(rset.getInt("user_no"),
+									rset.getString("user_id"),
+									rset.getString("user_pwd"),
+									rset.getString("user_name"),
+									rset.getString("user_email"),
+									rset.getString("user_phone"),
+									rset.getDate("user_enrolldate"),
+									rset.getString("user_status"),
+									rset.getString("admin_status"),
+									rset.getInt("user_division")));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public ArrayList<Member> currentInfo(Connection conn,PageInfo pi,String search){
+		ArrayList<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("currentInfo");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			
+			pstmt.setString(1, a);
+			pstmt.setString(2, a);
+			pstmt.setInt(3,startRow);
+			pstmt.setInt(4,endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Member(rset.getInt("user_no"),
+									rset.getString("user_id"),
+									rset.getString("user_pwd"),
+									rset.getString("user_name"),
+									rset.getString("user_email"),
+									rset.getString("user_phone"),
+									rset.getDate("user_enrolldate"),
+									rset.getString("user_status"),
+									rset.getString("admin_status"),
+									rset.getInt("user_division")));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<Member> lecturerList(Connection conn,PageInfo pi,String search){
+		ArrayList<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("lecturerList");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			
+			pstmt.setString(1, a);
+			pstmt.setString(2, a);
+			pstmt.setInt(3,startRow);
+			pstmt.setInt(4,endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Member(rset.getInt("user_no"),
+									rset.getString("user_id"),
+									rset.getString("user_pwd"),
+									rset.getString("user_name"),
+									rset.getString("user_email"),
+									rset.getString("user_phone"),
+									rset.getDate("user_enrolldate"),
+									rset.getString("user_status"),
+									rset.getString("admin_status"),
+									rset.getInt("user_division")));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<Member> outMentorList(Connection conn,PageInfo pi,String search){
+		ArrayList<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("outMentorList");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			
+			pstmt.setString(1, a);
+			pstmt.setString(2, a);
+			pstmt.setInt(3,startRow);
+			pstmt.setInt(4,endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Member(rset.getInt("user_no"),
+									rset.getString("user_id"),
+									rset.getString("user_pwd"),
+									rset.getString("user_name"),
+									rset.getString("user_email"),
+									rset.getString("user_phone"),
+									rset.getDate("user_enrolldate"),
+									rset.getString("user_status"),
+									rset.getString("admin_status"),
+									rset.getInt("user_division")));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public int withdrawalStu(Connection conn,String name,String id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("withdrawalStu");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int restoreStu(Connection conn,String name,String id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("restoreStu");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, id);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 

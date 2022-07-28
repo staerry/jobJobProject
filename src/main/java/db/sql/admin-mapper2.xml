@@ -15,75 +15,6 @@
 	   AND ADMIN_STATUS = 'Y'
 </entry>
 
-<entry key="insertFaq">
-	INSERT
-	  INTO FAQ
-	       (
-	       FAQ_NO
-	     , USER_NO
-	     , FAQ_TITLE
-	     , FAQ_ANSWER
-	       )
-	VALUES (
-	       SEQ_FAQ.NEXTVAL
-	     , ?
-	     , ?
-	     , ?
-	       )
-</entry>
-
-<entry key="selectFaqCount">
-	SELECT COUNT(*) AS "LIST_COUNT"
-	  FROM FAQ
-</entry>
-
-<entry key="selectFaqList">
-	SELECT *
-	  FROM (
-	    SELECT ROWNUM RNUM, A.*
-	      FROM (
-	        SELECT FAQ_NO
-	             , USER_NO
-	             , FAQ_TITLE
-	             , FAQ_ANSWER
-	             , FAQ_ENROLLDATE
-	             , FAQ_COUNT
-	          FROM FAQ
-	         ORDER BY FAQ_NO DESC
-	           ) A
-	        )
-	 WHERE RNUM BETWEEN ? AND ?
-</entry>
-
-<entry key="deleteFaq">
-	DELETE
-	  FROM FAQ
-	 WHERE FAQ_NO = ?
-</entry>
-
-<entry key="selectFaq">
-	SELECT FAQ_NO
-	     , USER_NO
-	     , FAQ_TITLE
-	     , FAQ_ANSWER
-	     , FAQ_ENROLLDATE
-	     , FAQ_COUNT
-	  FROM FAQ
-	 WHERE FAQ_NO = ?
-</entry>
-
-<entry key="updateFaq">
-	UPDATE FAQ
-	   SET FAQ_TITLE = ?
-	     , FAQ_ANSWER = ?
-	 WHERE FAQ_NO = ?
-</entry>
-
-<entry key="selectNoticeCount">
-	SELECT COUNT(*) COUNT
-	  FROM NOTICE
-</entry>
-
 <entry key="selectStudentListCount">
 	SELECT COUNT(*) AS "LISTCOUNT"
 	  FROM USERINFO
@@ -118,6 +49,48 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                   ORDER 
 		                    BY USER_NO DESC) A)
 </entry>
+
+<entry key="selectMentorListCount">
+		SELECT COUNT(*) AS "LISTCOUNT"
+		  FROM USERINFO
+		 WHERE USER_STATUS = 'N'
+		   AND USER_DIVISION = 2
+		   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+</entry>
+
+<entry key="currentCount">
+	  SELECT COUNT(*) AS "LISTCOUNT"
+		FROM USERINFO
+		JOIN MENTOR USING(USER_NO)
+	   WHERE USER_STATUS = 'N'
+		 AND USER_DIVISION = 2
+		 AND MT_GRADE = 1
+		 AND MT_GRANT = 'A'
+		 AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+</entry>
+
+<entry key="lecturerCount">
+	  SELECT COUNT(*) AS "LISTCOUNT"
+		FROM USERINFO
+		JOIN MENTOR USING(USER_NO)
+	   WHERE USER_STATUS = 'N'
+		 AND USER_DIVISION = 2
+		 AND MT_GRADE = 2
+		 AND MT_GRANT = 'A'
+		 AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+</entry>
+
+<entry key="outMentorCount">
+		SELECT COUNT(*) AS "LISTCOUNT"
+		FROM USERINFO
+		JOIN MENTOR USING(USER_NO)
+	   WHERE ((USER_STATUS = 'Y'
+		 AND USER_DIVISION = 2)
+         OR
+		     MT_GRANT = 'D')
+		 AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+</entry>
+
 
 <entry key="studentInfo">
 	SELECT *
@@ -187,23 +160,118 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	 WHERE RNO BETWEEN ? AND ?
 </entry>
 
-<entry key="selectNoticeList">
-	SELECT *
-	  FROM (
-	      SELECT ROWNUM RNUM, A.*
-	      FROM (
-	          SELECT NOTICE_NO
-	             , USER_NO
-	             , NOTICE_TITLE
-	             , NOTICE_CONTENT
-	             , NOTICE_ENROLLDATE
-	             , NOTICE_MODIFYDATE
-	             , NOTICE_COUNT
-	          FROM NOTICE
-	         ORDER BY NOTICE_NO DESC
-	           ) A
-	       )
-	 WHERE RNUM BETWEEN ? AND ?
+<entry key="mentorInfo">
+	SELECT * 
+	  FROM (SELECT ROWNUM AS "RNO", A.*
+	          FROM (SELECT 
+	                       USER_NO
+	                     , USER_ID
+	                     , USER_PWD
+	                     , USER_NAME
+	                     , USER_EMAIL
+	                     , USER_PHONE
+	                     , USER_ENROLLDATE
+	                     , USER_STATUS
+	                     , ADMIN_STATUS
+	                     , USER_DIVISION
+	                  FROM USERINFO
+	                 WHERE  USER_DIVISION = 2
+	                   AND USER_STATUS= 'N'
+	                   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                   ORDER 
+		                    BY USER_NO DESC) A)
+	 WHERE RNO BETWEEN ? AND ?
+</entry>
+
+<entry key="currentInfo">
+	 SELECT * 
+	  FROM (SELECT ROWNUM AS "RNO", A.*
+	          FROM (SELECT 
+	                       USER_NO
+	                     , USER_ID
+	                     , USER_PWD
+	                     , USER_NAME
+	                     , USER_EMAIL
+	                     , USER_PHONE
+	                     , USER_ENROLLDATE
+	                     , USER_STATUS
+	                     , ADMIN_STATUS
+	                     , USER_DIVISION
+	                  FROM USERINFO
+	                    JOIN MENTOR USING(USER_NO)
+	                   WHERE USER_STATUS = 'N'
+	                     AND USER_DIVISION = 2
+	                     AND MT_GRADE = 1
+	                     AND MT_GRANT = 'A'
+	                     AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                   ORDER 
+		                    BY USER_NO DESC) A)
+	 WHERE RNO BETWEEN ? AND ?
+</entry>
+
+<entry key="lecturerList">
+	 SELECT * 
+	  FROM (SELECT ROWNUM AS "RNO", A.*
+	          FROM (SELECT 
+	                       USER_NO
+	                     , USER_ID
+	                     , USER_PWD
+	                     , USER_NAME
+	                     , USER_EMAIL
+	                     , USER_PHONE
+	                     , USER_ENROLLDATE
+	                     , USER_STATUS
+	                     , ADMIN_STATUS
+	                     , USER_DIVISION
+	                  FROM USERINFO
+	                    JOIN MENTOR USING(USER_NO)
+	                   WHERE USER_STATUS = 'N'
+	                     AND USER_DIVISION = 2
+	                     AND MT_GRADE = 2
+	                     AND MT_GRANT = 'A'
+	                     AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                   ORDER 
+		                    BY USER_NO DESC) A)
+	 WHERE RNO BETWEEN ? AND ?
+</entry>
+
+<entry key="outMentorList">
+	 SELECT * 
+	  FROM (SELECT ROWNUM AS "RNO", A.*
+	          FROM (SELECT 
+	                       USER_NO
+	                     , USER_ID
+	                     , USER_PWD
+	                     , USER_NAME
+	                     , USER_EMAIL
+	                     , USER_PHONE
+	                     , USER_ENROLLDATE
+	                     , USER_STATUS
+	                     , ADMIN_STATUS
+	                     , USER_DIVISION
+	                  FROM USERINFO
+	                    JOIN MENTOR USING(USER_NO)
+	                   WHERE ((USER_STATUS = 'Y'
+	                     AND USER_DIVISION = 2)
+	                     OR  MT_GRANT = 'D')
+	                     AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                   ORDER 
+		                    BY USER_NO DESC) A)
+	 WHERE RNO BETWEEN ? AND ?
+</entry>
+
+<entry key="withdrawalStu">
+	UPDATE USERINFO
+   	SET USER_STATUS = 'Y'
+ 	WHERE USER_NAME = ?
+   	AND USER_ID = ?
+</entry>
+
+<entry key="restoreStu">
+	UPDATE USERINFO
+   	SET USER_STATUS = 'N'
+ 	WHERE USER_NAME = ?
+   	AND USER_ID = ?
 </entry>
 
 
