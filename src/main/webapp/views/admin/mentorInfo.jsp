@@ -44,7 +44,7 @@
 			</div>
 			
 			<div style="position:relative ;">
-				<div class="detailInfo positionab">
+				<div class="detailInfo positionab" style="display:none">
 					<h3>멘토정보수정</h3>
 					<form>
 						<table class="table table-bordered table-hover stutable">
@@ -56,11 +56,11 @@
 								<th>멘토분류</th>
 								<td width="10px">
 									<div class="checks2">
-										<input type="radio" id="radio1" name="grade"> 
-										<label for="radio1">현직자</label>
+										<input type="radio" id="radio11" name="grade" value="1"> 
+										<label for="radio11">현직자</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<input type="radio" id="radio2" name="grade"> 
-										<label for="radio2">강의자</label> 
+										<input type="radio" id="radio22" name="grade" value="2"> 
+										<label for="radio22">강의자</label> 
 									</div>
 								</td>
 							</tr>
@@ -69,29 +69,33 @@
 								<td>
 									<div class="checks2">
 										<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="radio" id="radio2" name="cate"> 
+										<label for="radio2">마케팅,MD,영업</label>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="radio" id="radio1" name="cate"> 
+										<label for="radio1">IT개발</label>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<br><br>
 										<input type="radio" id="radio3" name="cate"> 
-										<label for="radio3">카테고리</label>
+										<label for="radio3">회계,재무,금융</label>
+										&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<input type="radio" id="radio4" name="cate"> 
-										<label for="radio4">카테고리</label> 
+										<label for="radio4">전략,기획</label> 
 										<br><br>
 										<input type="radio" id="radio5" name="cate"> 
-										<label for="radio5">카테고리</label>
+										<label for="radio5">유통,무역,구매&nbsp;&nbsp;&nbsp;</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<input type="radio" id="radio6" name="cate"> 
-										<label for="radio6">카테고리</label> 
-										<br><br>
 										<input type="radio" id="radio7" name="cate"> 
-										<label for="radio7">카테고리</label>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<input type="radio" id="radio8" name="cate"> 
-										<label for="radio8">카테고리</label> 
+										<label for="radio7">전문,특수</label>
 										<br><br>
-										<input type="radio" id="radio9" name="cate"> 
-										<label for="radio9">카테고리</label>
+										<input type="radio" id="radio6" name="cate"> 
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<input type="radio" id="radio10" name="cate"> 
-										<label for="radio10">카테고리</label> 
+										<label for="radio6">공사,공기업,공무원</label> 
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										
 									</div>
 								</td>
 							</tr>

@@ -26,6 +26,19 @@ public class MentorInfoController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int listCount;
+		int currentPage;
+		int pageLimit;
+		int boardLimit;
+		int maxPage;
+		int startPage;
+		int endPage;
+		
+		int p = Integer.parseInt(request.getParameter("p"));
+		
+		
+		
+		
 		request.getRequestDispatcher("views/admin/mentorInfo.jsp").forward(request, response);
 	}
 
