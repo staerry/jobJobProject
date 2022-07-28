@@ -260,4 +260,43 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	 WHERE REPLY_NO = ?
 </entry>
 
+<entry key="selectMtmCount">
+	SELECT COUNT(*) COUNT
+	  FROM MTM
+</entry>
+
+<entry key="selectMtmList">
+	SELECT *
+	  FROM (
+	      SELECT ROWNUM RNUM, A.*
+	      FROM (
+	          SELECT MTM_NO
+	             , USER_NAME
+	             , MTM_TITLE
+	             , MTM_CONTENT
+	             , MTM_ENROLLDATE
+	             , MTM_ANSWER
+	             , MTM_ANSWER_DATE
+	             , ADMIN_NO
+	          FROM MTM M
+	          JOIN USERINFO U ON M.USER_NO = U.USER_NO
+	         ORDER BY MTM_NO DESC
+	           )A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="selectMtm">
+	SELECT MTM_NO
+	     , USER_NO
+	     , MTM_TITLE
+	     , MTM_CONTENT
+	     , MTM_ENROLLDATE
+	     , MTM_ANSWER
+	     , MTM_ANSWER_DATE
+	     , ADMIN_NO
+	  FROM MTM
+	 WHERE MTM_NO = ?
+</entry>
+
 </properties>

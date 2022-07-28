@@ -1,28 +1,27 @@
 package com.jj.admin.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.jj.admin.model.service.AdminService;
-import com.jj.admin.model.vo.UserInfoAd;
-
+import com.jj.mtm.model.vo.Mtm;
 
 /**
- * Servlet implementation class LoginController
+ * Servlet implementation class MtmAnswerPage
  */
-@WebServlet("/adLogin.do")
-public class LoginController extends HttpServlet {
+@WebServlet("/mtmAnswerForm.ad")
+public class MtmAnswerPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginController() {
+    public MtmAnswerPage() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,22 +30,12 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		String adminId = request.getParameter("adminId");
-		String adminPwd = request.getParameter("adminPwd");
+		int mtmNo = Integer.parseInt(request.getParameter("no"));
 		
-		UserInfoAd u = new AdminService().loginAdmin(adminId,adminPwd);
+		Mtm mtm = new AdminService().selectMtm(mtmNo);
 		
-		if(u == null) { 
-			HttpSession session = request.getSession();
-			session.setAttribute("alertMsg", "로그인에 실패했습니다.");
-			response.sendRedirect(request.getContextPath()+"/login.ad");
-			
-		}else { 
-			HttpSession session = request.getSession();
-			session.setAttribute("UserInfoAd", u);
-			response.sendRedirect(request.getContextPath()+"/login.ad");
-		}
+		request.setAttribute("mtm", mtm);
+		request.getRequestDispatcher("views/admin/mtmAnswer.jsp").forward(request, response);
 	}
 
 	/**

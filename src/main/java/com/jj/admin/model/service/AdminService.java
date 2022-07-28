@@ -14,6 +14,7 @@ import com.jj.common.model.vo.PageInfo;
 import com.jj.community.model.vo.Reply;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
+import com.jj.mtm.model.vo.Mtm;
 import com.jj.notice.model.vo.Notice;
 
 /**
@@ -372,6 +373,62 @@ public class AdminService {
 		
 		return result;
 	}
+	
+	/**
+	 * 1대1문의 글의 총 갯수 확인 요청을 처리해주는 메소드
+	 * @return 1대1문의 총 갯수
+	 * @author younheonchoi 
+	 */
+	public int selectMtmCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectMtmCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 1대1 문의 리스트 조회 요청을 처리해주는 메소드
+	 * @param pageInfo : 페이징 버튼 객체
+	 * @return 1대1문의 리스트
+	 * @author younheonchoi 
+	 */
+	public ArrayList<Mtm> selectMtmList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<Mtm> list = new AdminDao().selectMtmList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+		
+	}
+	
+	/**
+	 * 문의 답변 페이지에 문의 정보 출력 요청을 처리해주는 메소드
+	 * @param mtmNo : 답변을 보낼 문의 게시글 번호
+	 * @return 해당 번호의 문의 게시글
+	 * @author younheonchoi 
+	 */
+	public Mtm selectMtm(int mtmNo) {
+		Connection conn = getConnection();
+		
+		Mtm mtm = new AdminDao().selectMtm(conn, mtmNo);
+		
+		close(conn);
+		
+		return mtm;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

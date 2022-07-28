@@ -16,6 +16,7 @@ import com.jj.common.model.vo.PageInfo;
 import com.jj.community.model.vo.Reply;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
+import com.jj.mtm.model.vo.Mtm;
 import com.jj.notice.model.vo.Notice;
 
 public class AdminDao {
@@ -605,7 +606,7 @@ public class AdminDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			int startRow = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit() + 1;
-			int endRow = startRow + pageInfo.getBoardLimit() + 1;
+			int endRow = startRow + pageInfo.getBoardLimit() - 1;
 			
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -651,11 +652,106 @@ public class AdminDao {
 		return result;
 	}
 	
+	public int selectMtmCount(Connection conn) {
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMtmCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
 	
+	public ArrayList<Mtm> selectMtmList(Connection conn, PageInfo pageInfo){
+		ArrayList<Mtm> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMtmList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit() + 1;
+			int endRow = startRow + pageInfo.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Mtm(rset.getInt("mtm_no")
+						       , rset.getString("user_name")
+						       , rset.getString("mtm_title")
+						       , rset.getString("mtm_content")
+						       , rset.getDate("mtm_enrolldate")
+						       , rset.getString("mtm_answer")
+						       , rset.getDate("mtm_answer_date")
+						       , rset.getString("admin_no")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
-	
-	
-	
+	public Mtm selectMtm(Connection conn, int mtmNo) {
+		Mtm mtm = new Mtm();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMtm");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, mtmNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				mtm = new Mtm(rset.getInt("mtm_no")
+						    , rset.getString("user_no")
+						    , rset.getString("mtm_title")
+						    , rset.getString("mtm_content")
+						    , rset.getDate("mtm_enrolldate")
+						    , rset.getString("mtm_answer")
+						    , rset.getDate("mtm_answer_date")
+						    , rset.getString("admin_no"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return mtm;
+	}
 	
 	
 	

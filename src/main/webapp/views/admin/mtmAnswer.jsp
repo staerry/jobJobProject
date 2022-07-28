@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.jj.mtm.model.vo.Mtm"%>
+    
+<%
+	Mtm mtm = (Mtm)request.getAttribute("mtm");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,26 +30,33 @@
 		<!--이 부분은 우측 컨텐츠 입니다.-->
 		<div class="right">
 	        <h3>1대1 문의 답변</h3>
-
-			<table class="admin-table">
-					<tr>
-						<th width="150">1대1 문의 내용</th>
-					</tr>
-					<tr>
-						<td><textarea id="user-mtm-content" readonly>사용자 문의 내용</textarea></td>
-					</tr>
-					<tr>
-						<th>답변 작성</th>
-					</tr>
-					<tr>
-						<td><textarea></textarea></td>
-					</tr>
-			</table>
-
-			<div class="mtm-controller-btn">
-					<button type="button">돌아가기</button>
-					<button type="button">답변전송</button>
-			</div>
+			<form action="" method="post">
+				<table class="admin-table">
+						<tr>
+							<th width="150">문의 제목</th>
+						</tr>
+						<tr>
+							<td><input type="text" style="width : 480px;" id="user-mtm-content" class="form-control" value="<%= mtm.getMtmTitle() %>" readonly></td>
+						</tr>
+						<tr>
+							<th width="150">문의 내용</th>
+						</tr>
+						<tr>
+							<td><textarea id="user-mtm-content" class="form-control" rows="7" readonly><%= mtm.getMtmContent() %></textarea></td>
+						</tr>
+						<tr>
+							<th>답변 작성</th>
+						</tr>
+						<tr>
+							<td><textarea class="form-control" rows="7"></textarea></td>
+						</tr>
+				</table>
+	
+				<div class="mtm-controller-btn">
+						<button type="button" onclick="history.back();">돌아가기</button>
+						<button type="submit">답변전송</button>
+				</div>
+			</form>
 	    </div>
 	</div>
 	<%} %>
