@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.common.model.vo.PageInfo;
+import com.jj.community.model.vo.Reply;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.notice.model.vo.Notice;
@@ -130,7 +131,7 @@ public class AdminDao {
 			
 			while(rset.next()) {
 				list.add(new Faq(rset.getInt("faq_no")
-						       , rset.getInt("user_no")
+						       , rset.getString("user_no")
 						       , rset.getString("faq_title")
 						       , rset.getString("faq_answer")
 						       , rset.getDate("faq_enrolldate")
@@ -183,7 +184,7 @@ public class AdminDao {
 			
 			if(rset.next()) {
 				faq = new Faq(rset.getInt("faq_no")
-						    , rset.getInt("user_no")
+						    , rset.getString("user_no")
 						    , rset.getString("faq_title")
 						    , rset.getString("faq_answer")
 						    , rset.getDate("faq_enrolldate")
@@ -470,7 +471,7 @@ public class AdminDao {
 			
 			while(rset.next()) {
 				list.add(new Notice(rset.getInt("notice_no")
-							      , rset.getInt("user_no")
+							      , rset.getString("user_no")
 						          , rset.getString("notice_title")
 						          , rset.getString("notice_content")
 						          , rset.getDate("notice_enrolldate")
@@ -504,7 +505,7 @@ public class AdminDao {
 			
 			if(rset.next()) {
 				notice = new Notice(rset.getInt("notice_no")
-						          , rset.getInt("user_no")
+						          , rset.getString("user_no")
 						          , rset.getString("notice_title")
 						          , rset.getString("notice_content")
 						          , rset.getDate("notice_enrolldate")
@@ -565,10 +566,90 @@ public class AdminDao {
 		return result;
 	}
 	
+	public int selectReplyCount(Connection conn) {
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectReplyCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
 	
+	public ArrayList<Reply> selectReplyList(Connection conn, PageInfo pageInfo){
+		ArrayList<Reply> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectReplyList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit() + 1;
+			int endRow = startRow + pageInfo.getBoardLimit() + 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Reply(rset.getInt("reply_no")
+						         , rset.getString("cm_title")
+						         , rset.getString("user_name")
+						         , rset.getString("reply_content")
+						         , rset.getDate("reply_enrolldate")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
-	
-	
+	public int deleteReply(Connection conn, int replyNo) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteReply");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, replyNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	

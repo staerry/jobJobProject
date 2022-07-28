@@ -116,7 +116,7 @@
                 	location.href="<%= request.getContextPath() %>/refundRequest.li"; 
                 	break;
                 case 15: 
-                	location.href="<%= request.getContextPath() %>/replyListView.ad"; 
+                	location.href="<%= request.getContextPath() %>/replyListView.ad?cpage=1"; 
                 	break;
             }
         }

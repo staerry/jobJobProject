@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.jj.community.model.vo.Reply, com.jj.common.model.vo.PageInfo, java.util.ArrayList" %>
+    
+<%
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	ArrayList<Reply> list = (ArrayList<Reply>)request.getAttribute("Reply");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,25 +44,33 @@
                     </tr>
                 </thead>
                 <tbody>
+                	<% for(Reply i : list){ %>
                     <tr>
-                        <td>10</td>
-                        <td>아직도 진로를 결정하지 못해 헤매고 있습니다.</td>
-                        <td>고민상담</td>
-                        <td>홍길동</td>
-                        <td>2022-12-12</td>
-                        <td><button class="btn btn-sm btn-danger">삭제</button></td>
+                        <td><%= i.getReplyNo() %></td>
+                        <td><%= i.getReplyContent() %></td>
+                        <td><%= i.getCmNo() %></td>
+                        <td><%= i.getUserNo() %></td>
+                        <td><%= i.getReplyEnrolldate() %></td>
+                        <td><button class="btn btn-sm btn-danger" onclick="location.href='<%= contextPath %>/deleteReply.ad?no=<%= i.getReplyNo() %>'">삭제</button></td>
                     </tr>
+                    <% } %>
                 </tbody>
             </table>
 
             <div class="paging-area">
-                <a href="">&lt</a>
-                <a href="">1</a>
-                <a href="">2</a>
-                <a href="">3</a>
-                <a href="">4</a>
-                <a href="">5</a>
-                <a href="">&gt</a>
+            	<% if(pageInfo.getCurrentPage() != 1){ %>
+                	<a href="<%= contextPath %>/replyListView.ad?cpage=<%= pageInfo.getCurrentPage()-1 %>">&lt</a>
+                <% } %>
+                <% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++){ %>
+                	<% if(i == pageInfo.getCurrentPage()){ %>
+                		<a href="<%= contextPath %>/replyListView.ad?cpage=<%= i %>" style="background-color : gray;"><%= i %></a>
+                	<% } else { %>
+                		<a href="<%= contextPath %>/replyListView.ad?cpage=<%= i %>"><%= i %></a>
+                	<% } %>
+				<% } %>
+				<% if(pageInfo.getCurrentPage() != pageInfo.getMaxPage()){ %>
+                	<a href="<%= contextPath %>/replyListView.ad?cpage=<%= pageInfo.getCurrentPage()+1 %>">&gt</a>
+                <% } %>
             </div>
 		</div>
 		

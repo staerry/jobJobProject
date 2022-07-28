@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.jj.admin.model.dao.AdminDao;
 import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.common.model.vo.PageInfo;
+import com.jj.community.model.vo.Reply;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.notice.model.vo.Notice;
@@ -319,9 +320,58 @@ public class AdminService {
 		return result;
 	}
 	
+	/**
+	 * 총 댓글 갯수 확인 요청을 처리해주는 메소드
+	 * @return 총 댓글 갯수
+	 * @author younheonchoi 
+	 */
+	public int selectReplyCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectReplyCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
 	
+	/**
+	 * 댓글 리스트 조회 요청을 처리해주는 메소드
+	 * @param pageInfo : 페이징 버튼 객체
+	 * @return 조회된 댓글 리스트
+	 * @author younheonchoi 
+	 */
+	public ArrayList<Reply> selectReplyList(PageInfo pageInfo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Reply> list = new AdminDao().selectReplyList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
 	
-	
+	/**
+	 * 댓글 삭제 요청을 처리해주는 메소드
+	 * @param replyNo : 삭제할 댓글 번호
+	 * @return 업데이트된 행 갯수
+	 * @author younheonchoi 
+	 */
+	public int deleteReply(int replyNo) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().deleteReply(conn, replyNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 	
 	
 	

@@ -230,5 +230,34 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	 WHERE NOTICE_NO = ?
 </entry>
 
+<entry key="selectReplyCount">
+	SELECT COUNT(*) COUNT
+	  FROM REPLY
+</entry>
+
+<entry key="selectReplyList">
+	SELECT *
+	  FROM (
+	      SELECT ROWNUM RNUM, A.*
+	      FROM (
+	          SELECT REPLY_NO
+	             , C.CM_TITLE
+	             , U.USER_NAME
+	             , REPLY_CONTENT
+	             , REPLY_ENROLLDATE
+	          FROM REPLY R
+	          JOIN USERINFO U ON R.USER_NO = U.USER_NO
+	          JOIN COMMUNITY C ON R.CM_NO = C.CM_NO
+	         ORDER BY REPLY_NO DESC
+	           ) A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="deleteReply">
+	DELETE
+	  FROM REPLY
+	 WHERE REPLY_NO = ?
+</entry>
 
 </properties>
