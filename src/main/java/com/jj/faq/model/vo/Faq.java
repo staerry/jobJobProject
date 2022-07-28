@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Faq {
 	private int faqNo;
-	private int userNo;
+	private String userNo;
 	private String faqTitle;
 	private String faqAnswer;
 	private Date faqEnrolldate;
@@ -14,7 +14,7 @@ public class Faq {
 		
 	}
 
-	public Faq(int faqNo, int userNo, String faqTitle, String faqAnswer, Date faqEnrolldate, int faqCount) {
+	public Faq(int faqNo, String userNo, String faqTitle, String faqAnswer, Date faqEnrolldate, int faqCount) {
 		super();
 		this.faqNo = faqNo;
 		this.userNo = userNo;
@@ -32,11 +32,11 @@ public class Faq {
 		this.faqNo = faqNo;
 	}
 
-	public int getUserNo() {
+	public String getUserNo() {
 		return userNo;
 	}
 
-	public void setUserNo(int userNo) {
+	public void setUserNo(String userNo) {
 		this.userNo = userNo;
 	}
 

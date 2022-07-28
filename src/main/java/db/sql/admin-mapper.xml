@@ -204,5 +204,31 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	 WHERE RNUM BETWEEN ? AND ?
 </entry>
 
+<entry key="selectNotice">
+	SELECT NOTICE_NO
+	     , USER_NO
+	     , NOTICE_TITLE
+	     , NOTICE_CONTENT
+	     , NOTICE_ENROLLDATE
+	     , NOTICE_MODIFYDATE
+	     , NOTICE_COUNT
+	  FROM NOTICE
+	 WHERE NOTICE_NO = ?
+</entry>
+
+<entry key="updateNotice">
+	UPDATE NOTICE
+	   SET NOTICE_TITLE = ?
+	     , NOTICE_CONTENT = ?
+	     , NOTICE_MODIFYDATE = SYSDATE
+	 WHERE NOTICE_NO = ?
+</entry>
+
+<entry key="deleteNotice">
+	DELETE
+	  FROM NOTICE
+	 WHERE NOTICE_NO = ?
+</entry>
+
 
 </properties>

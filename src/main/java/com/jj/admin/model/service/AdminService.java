@@ -257,7 +257,67 @@ public class AdminService {
 		return list;
 	}
 	
+	/**
+	 * 공지사항 수정 페이지에 공지사항 정보 출력 요청을 처리해주는 메소드
+	 * @param noticeNo : 수정할 공지사항 번호
+	 * @return 해당 번호의 공지사항 게시글
+	 * @author younheonchoi 
+	 */
+	public Notice selectNotice(int noticeNo) {
+		Connection conn = getConnection();
+		
+		Notice notice = new AdminDao().selectNotice(conn, noticeNo);
+		
+		close(conn);
+		
+		return notice;
+	}
 	
+	/**
+	 * 공지사항 수정 요청을 처리해주는 메소드
+	 * @param noticeNo : 수정할 공지사항 번호
+	 * @param noticeTitle : 수정한 공지사항 제목
+	 * @param noticeContent : 수정한 공지사항 내용
+	 * @return 업데이트된 행 갯수
+	 * @author younheonchoi 
+	 */
+	public int updateNotice(int noticeNo, String noticeTitle, String noticeContent) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().updateNotice(conn, noticeNo, noticeTitle, noticeContent);
+	
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	/**
+	 * 공지사항 삭제 요청을 처리해주는 메소드
+	 * @param noticeNo : 삭제할 공지사항 번호
+	 * @return 업데이트된 행 갯수
+	 * @author younheonchoi 
+	 */
+	public int deleteNotice(int noticeNo) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().deleteNotice(conn, noticeNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 	
 	
 	

@@ -5,8 +5,9 @@
     height:auto;
     /* border:1px solid blue; */
     display:flex;
-    justify-content: flex-start;
-    padding:28px 16px 100px 34px;
+    flex-direction:row;
+    justify-content: space-between;
+    padding:56px 16px 100px 34px;
 }
 
 .mentor-category-area {
