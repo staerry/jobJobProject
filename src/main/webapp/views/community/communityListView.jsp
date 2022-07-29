@@ -73,56 +73,45 @@
             </div>
 
             <!-- 게시물 목록 -->
-            <!-- case1. 게시글이 하나도 없을 경우 -->
+
              <table class="community-content">
 
-                <% if(list.isEmpty()) { %>
-                <tr id="content-none"> 조회된 게시글이 없습니다.</tr>
+				<!-- case1. 게시글이 있을 경우 -->
+				<% if(!list.isEmpty()) { %>
+				<% for(Community c : list) { %>					
+				<tr class="list-table-header">
+					<td id="content-no"><%= c.getCommNo() %> </td>
+					<td id="community-title" onclick="goDetail();"> <%= c.getCommTitle() %> </td>
+					<td id="community-count" rowspan="3"> 
+						<i class="fas fa-eye" id="content-count" ></i> &nbsp; <%= c.getCount() %> <br>
+						<i class="fas fa-comment-dots" id="reply-count"></i> &nbsp; <%= c.getReplyCount() %> <br>
+						<i class="fas fa-heart" id="like-count"></i> &nbsp; <%= c.getLikeCount() %>
+					</td>
+				</tr>
+				<tr class="list-table-body">
+					<td> &nbsp; </td>
+					<td id="community-body"> <%= c.getCommContent() %> </td>
+				</tr>
+				<tr class="list-table-foot">
+					<td> &nbsp; </td>
+					<td id="community-writer"> <%= c.getCommWriter() %> &nbsp;&nbsp;&nbsp; <%= c.getCreateDate() %></td>
+				</tr>
+				<% } %>
+				
+	            <!-- case2. 게시글이 하나도 없을 경우 -->
 				<% }else { %>
-				<!-- case2.게시글이 있을 경우 -->
-					<% for(Community c : list) { %>
-	                <tr>
-						<td id="content-no"><%= c.getCommNo() %></td>
-	                    <td id="community-title"><h5><%= c.getCommTitle() %></h5></td>
-	                    <td id="reply-count" rowspan="3">
-	                        <div class="reply-zzim-count">
-	                            <div class="reply-count-circle">
-	                                <span id="reply-count-no"><%= c.getReplyCount() %></span>
-	                                <span id="reply-mark">댓글</span>
-	                            </div>
-	                            <div class="zzim-count-heart">
-	                                <span id="zzim-heart"><i class="fas fa-heart"></i></span>
-	                                <span id="zzim-count"><%= c.getLikeCount() %></span>
-	                            </div>
-	                        </div>
-	                    </td>
-	                </tr>
-	                <tr>
-	                    <td id="community-body"><p><%= c.getCommContent() %></p></td>
-	                    <td  rowspan="2">
-	                    </td>
-	                </tr>
-	                <tr>
-	                    <td id="writer-info"><%= c.getCommWriter() %>&nbsp;&nbsp;&nbsp;<%= c.getCreateDate() %></td>
-	                </tr>
-					<% } %>
-                </table>   
+				<tr id="content-none"> 조회된 게시글이 없습니다.</tr>
                 <% } %>
                 
+                </table>
+                
                 <script>
-	                function hideRow() {	<!-- 글번호 td 숨기기 -->
-	                	const row = document.getElementById('content-no');
-	                	row.style.display = 'none';
-	                }
-                
-                	$(function() {
-                		$(".community-content tr").click(function(){
-                			location.href = "<%= request.getContextPath() %>/detail.co?no=" + $(this).children().eq(0).text();
-                		})
-                	})
-                
+                	function goDetail() {
+                		location.href = "<%= contextPath %>/detail.co?contentNo= + document.getElementById('content-no').value";
+                	}
+                	
                 </script>
-          
+                          
       
             <br>
             <br>

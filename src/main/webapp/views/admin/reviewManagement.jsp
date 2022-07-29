@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.jj.community.model.vo.Reply, com.jj.common.model.vo.PageInfo, java.util.ArrayList" %>
+<%@ page import="com.jj.community.model.vo.Review, com.jj.common.model.vo.PageInfo, java.util.ArrayList" %>
     
 <%
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	ArrayList<Reply> list = (ArrayList<Reply>)request.getAttribute("Reply");
+	ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("Review");
 %>
 <!DOCTYPE html>
 <html>
@@ -30,15 +30,15 @@
 	</div>
 	
 		<div class="right">
-		    <h3>댓글 관리</h3>
+		    <h3>수강후기 관리</h3>
 		    
 		    <ul class="mentor-post-category">
 				<li>
-					<input type="radio" name="category" id="reply" value="reply" checked>
+					<input type="radio" name="category" id="reply" value="reply">
 		    		<label for="reply">댓글</label>
 				</li>
 				<li>
-					<input type="radio" name="category" id="review" value="review">
+					<input type="radio" name="category" id="review" value="review" checked>
 		    		<label for="review">수강후기</label>
 				</li>
 			</ul>
@@ -59,22 +59,24 @@
                 <thead>
                     <tr>
                         <th width="60">번호</th>
-                        <th>댓글</th>
-                        <th width="300">댓글이 달린 게시글</th>
+                        <th>수강후기</th>
+                        <th width="300">수강후기가 달린 게시글</th>
+                        <th width="60">평점</th>
                         <th width="100">작성자</th>
                         <th width="100">등록일</th>
                         <th width="100">삭제</th>
                     </tr>
                 </thead>
                 <tbody>
-                	<% for(Reply i : list){ %>
+                	<% for(Review i : list){ %>
                     <tr>
-                        <td><%= i.getReplyNo() %></td>
-                        <td><%= i.getReplyContent() %></td>
-                        <td><%= i.getCmNo() %></td>
+                        <td><%= i.getReviewNo() %></td>
+                        <td><%= i.getReviewContent() %></td>
+                        <td><%= i.getClNo() %></td>
+                        <td><%= i.getReviewScore() %></td>
                         <td><%= i.getUserNo() %></td>
-                        <td><%= i.getReplyEnrolldate() %></td>
-                        <td><button class="btn btn-sm btn-danger" onclick="location.href='<%= contextPath %>/deleteReply.ad?no=<%= i.getReplyNo() %>'">삭제</button></td>
+                        <td><%= i.getReviewEnrolldate() %></td>
+                        <td><button class="btn btn-sm btn-danger" onclick="location.href='<%= contextPath %>/deleteReview.ad?no=<%= i.getReviewNo() %>'">삭제</button></td>
                     </tr>
                     <% } %>
                 </tbody>
@@ -82,17 +84,17 @@
 
             <div class="paging-area">
             	<% if(pageInfo.getCurrentPage() != 1){ %>
-                	<a href="<%= contextPath %>/replyListView.ad?cpage=<%= pageInfo.getCurrentPage()-1 %>">&lt</a>
+                	<a href="<%= contextPath %>/reviewListView.ad?cpage=<%= pageInfo.getCurrentPage()-1 %>">&lt</a>
                 <% } %>
                 <% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++){ %>
                 	<% if(i == pageInfo.getCurrentPage()){ %>
-                		<a href="<%= contextPath %>/replyListView.ad?cpage=<%= i %>" style="background-color : gray;"><%= i %></a>
+                		<a href="<%= contextPath %>/reviewListView.ad?cpage=<%= i %>" style="background-color : gray;"><%= i %></a>
                 	<% } else { %>
-                		<a href="<%= contextPath %>/replyListView.ad?cpage=<%= i %>"><%= i %></a>
+                		<a href="<%= contextPath %>/reviewListView.ad?cpage=<%= i %>"><%= i %></a>
                 	<% } %>
 				<% } %>
 				<% if(pageInfo.getCurrentPage() != pageInfo.getMaxPage()){ %>
-                	<a href="<%= contextPath %>/replyListView.ad?cpage=<%= pageInfo.getCurrentPage()+1 %>">&gt</a>
+                	<a href="<%= contextPath %>/reviewListView.ad?cpage=<%= pageInfo.getCurrentPage()+1 %>">&gt</a>
                 <% } %>
             </div>
 		</div>

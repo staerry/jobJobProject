@@ -64,5 +64,29 @@
 		  , ?
 		  )
 	</entry>
+	
+	<entry key="increaseCount">
+		UPDATE COMMUNITY
+		   SET CM_COUNT = CM_COUNT+1
+		 WHERE CM_NO = ?
+	</entry>
+	
+	<entry key="selectCommunity">
+		SELECT
+		       CM_NO
+		     , USER_NAME
+		     , CMCG_NAME
+		     , CM_TITLE
+		     , CM_CONTENT
+		     , CM_ENROLLDATE
+		     , CM_COUNT
+		     , CM_LIKE_COUNT
+		  FROM COMMUNITY
+		  JOIN COMMUNITY_CATEGORY USING(CMCG_NO) 
+		  JOIN USERINFO USING(USER_NO) 
+		 WHERE CM_NO = ?     
+	</entry>
+	
+	
 
 </properties>

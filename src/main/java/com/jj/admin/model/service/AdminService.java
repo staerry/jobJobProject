@@ -10,13 +10,14 @@ import java.util.ArrayList;
 
 import com.jj.admin.model.dao.AdminDao;
 import com.jj.admin.model.vo.UserInfoAd;
+import com.jj.classSelect.model.vo.Class;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.community.model.vo.Reply;
+import com.jj.community.model.vo.Review;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.mtm.model.vo.Mtm;
 import com.jj.notice.model.vo.Notice;
-import com.jj.classSelect.model.vo.Class;
 
 /**
  * @author PC
@@ -497,6 +498,7 @@ public class AdminService {
 	 * 클래스 삭제 요청을 처리해주는 메소드
 	 * @param clNo : 삭제할 클래스 번호
 	 * @return 업데이트된 행 갯수
+	 * @author younheonchoi 
 	 */
 	public int deleteClass(int clNo) {
 		Connection conn = getConnection();
@@ -513,6 +515,92 @@ public class AdminService {
 		
 		return result;
 	}
+	
+	/**
+	 * 수강후기 총 갯수 확인 요청 처리를 해주는 메소드
+	 * @return 수강후기 총 갯수
+	 * @author younheonchoi 
+	 */
+	public int selectReviewCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectReviewCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 수강후기 리스트 조회 요청 처리를 해주는 메소드
+	 * @param pageInfo : 페이징 버튼 객체
+	 * @return 수강후기 리스트
+	 * @author younheonchoi 
+	 */
+	public ArrayList<Review> selectReviewList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<Review> list = new AdminDao().selectReviewList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	/**
+	 * 수강후기 삭제 요청을 처리해주는 메소드
+	 * @param reviewNo : 삭제할 수강후기 번호
+	 * @return 업데이트된 행 갯수
+	 * @author younheonchoi 
+	 */
+	public int deleteReview(int reviewNo) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().deleteReview(conn, reviewNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

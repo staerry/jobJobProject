@@ -142,5 +142,58 @@ public class CommunityDao {
 			
 		return result;
 	}
+	
+	public int increaseCount(Connection conn, int contentNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("increaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, contentNo);
+			result = pstmt.executeUpdate();
+						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		System.out.println(result);
+		
+		return result;
+	}
 
+	public Community selectCommunity(Connection conn, int contentNo) {
+		Community c = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCommunity");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, contentNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				c = new Community(rset.getInt("cm_no"),
+								  rset.getString("user_no"),
+								  rset.getString("cmcg_name"),
+								  rset.getString("cm_title"),
+								  rset.getString("cm_content"),
+								  rset.getDate("cm_enrolldate"),
+								  rset.getInt("cm_count"),
+								  rset.getInt("cm_like_count")
+						);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		System.out.println(c);
+		return c;			
+		
+	}
 }
