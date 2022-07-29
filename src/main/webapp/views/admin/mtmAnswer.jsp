@@ -30,7 +30,8 @@
 		<!--이 부분은 우측 컨텐츠 입니다.-->
 		<div class="right">
 	        <h3>1대1 문의 답변</h3>
-			<form action="" method="post">
+			<form action="mtmAnswer.ad" method="post">
+				<input type="hidden" value="<%= mtm.getMtmNo() %>" name="mtmNo">
 				<table class="admin-table">
 						<tr>
 							<th width="150">문의 제목</th>
@@ -48,7 +49,7 @@
 							<th>답변 작성</th>
 						</tr>
 						<tr>
-							<td><textarea class="form-control" rows="7"></textarea></td>
+							<td><textarea class="form-control" rows="7" name="mtmAnswer"></textarea></td>
 						</tr>
 				</table>
 	

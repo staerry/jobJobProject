@@ -65,15 +65,16 @@
                 </span>
 
             <!-- 로그인한 회원들에게만 글쓰기 버튼 노출 -->
+            <%-- <% if(로그인정보세션명) != null { %> --%>
                 <span class="community-write">
-                     <button id="community-write-btn"><i class="far fa-pen"></i>&nbsp;&nbsp;글쓰기</button>
+                     <button id="community-write-btn" onclick="location.href='<%= request.getContextPath() %>/enrollForm.co';"><i class="far fa-pen"></i>&nbsp;&nbsp;글쓰기</a></button>
                 </span>
-                
+            <%-- <% } %> --%>   
             </div>
 
             <!-- 게시물 목록 -->
             <!-- case1. 게시글이 하나도 없을 경우 -->
-             <table class="community-content" onclick="">
+             <table class="community-content">
 
                 <% if(list.isEmpty()) { %>
                 <tr id="content-none"> 조회된 게시글이 없습니다.</tr>
@@ -81,6 +82,7 @@
 				<!-- case2.게시글이 있을 경우 -->
 					<% for(Community c : list) { %>
 	                <tr>
+						<td id="content-no"><%= c.getCommNo() %></td>
 	                    <td id="community-title"><h5><%= c.getCommTitle() %></h5></td>
 	                    <td id="reply-count" rowspan="3">
 	                        <div class="reply-zzim-count">
@@ -106,6 +108,20 @@
 					<% } %>
                 </table>   
                 <% } %>
+                
+                <script>
+	                function hideRow() {	<!-- 글번호 td 숨기기 -->
+	                	const row = document.getElementById('content-no');
+	                	row.style.display = 'none';
+	                }
+                
+                	$(function() {
+                		$(".community-content tr").click(function(){
+                			location.href = "<%= request.getContextPath() %>/detail.co?no=" + $(this).children().eq(0).text();
+                		})
+                	})
+                
+                </script>
           
       
             <br>

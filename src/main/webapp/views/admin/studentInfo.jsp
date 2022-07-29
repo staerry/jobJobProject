@@ -12,6 +12,10 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
+	int pageLimit = pi.getPageLimit();
+	
+	int doublePrev = pageLimit*(currentPage/pageLimit);
+	int doubleNext = pageLimit*(currentPage/pageLimit+1)+1;
 %>
 <!DOCTYPE html>
 <html>
@@ -76,7 +80,7 @@
 					<%for(int i=0;i<list.size();i++){ %>
 						<tr>
 							<td><%=lpage-i %>(<%=list.get(i).getUserNo() %>)</td>
-							<td id="idtext"><%=list.get(i).getUserName() %>1</td>
+							<td id="idt"><%=list.get(i).getUserName() %></td>
 							<td><%=list.get(i).getUserId() %></td>
 							<td>
 								<%if(list.get(i).getUserEmail()!=null) {%>
@@ -92,11 +96,11 @@
 								<%} %>
 							</td>
 							<td><%=list.get(i).getEnrollDate() %></td>
-							<td>1
+							<td>
 								<%if(list.get(i).getUserStatus().equals("N")){ %>
-									<button type="button" class="outbutton" onclick="out();">탈퇴</button>
+									<button type="button" class="outbutton outMem">탈퇴</button>
 								<%}else{ %>
-									<button type="button" id="searchbtn" onclick="restore();">복구</button>
+									<button type="button" id="searchbtn" class="restoreMem">복구</button>
 								<%} %>
 							</td>
 						</tr>
@@ -110,6 +114,9 @@
 			</span>
 
 			<div class="paging-area">
+			<%if(currentPage > pageLimit ){ %>
+			 <a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=doublePrev%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&lt&lt</a>
+			 <%} %>
 			 <%if(currentPage != 1){ %>
 				<a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=currentPage-1%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&lt</a>
 				<%} %>
@@ -123,7 +130,9 @@
             	<%if(currentPage != maxPage){ %>
 					<a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=currentPage+1%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&gt</a>
 				<%} %>
-				<a href="">&gt&gt</a>
+				<%if(currentPage < maxPage - pageLimit ){ %>
+				<a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=doubleNext%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&gt&gt</a>
+				<%} %>
 			</div>
 		</div>
 		<script>
@@ -141,10 +150,25 @@
 				$('#searchclick').val('<%=search%>');
 			})
 			
-			$('.outbutton').click(function(){
-				$const = $(this);
-				if(confirm($const.parents('#idtext')+'님')){
-					
+			$('.outMem').click(function(){
+				console.log($(this).parent().prev().prev().prev().prev().text())
+				if(confirm($(this).parent().prev().prev().prev().prev().prev().text()+'님을 탈퇴처리 하시겠습니까?')){
+					const $name = $(this).parent().prev().prev().prev().prev().prev().text()
+					const $id = $(this).parent().prev().prev().prev().prev().text()
+					location.href="<%=request.getContextPath()%>/withdrawalStu.up?name="+$name+"&id="+$id;
+				}else{
+					alert('취소하였습니다.')
+				}		
+			})
+			
+			$('.restoreMem').click(function(){
+				console.log($(this).parent().prev().prev().prev().prev().text())
+				if(confirm($(this).parent().prev().prev().prev().prev().prev().text()+'님을 다시 회원으로 복구하시겠습니까?')){
+					const $name = $(this).parent().prev().prev().prev().prev().prev().text()
+					const $id = $(this).parent().prev().prev().prev().prev().text()
+					location.href="<%=request.getContextPath()%>/restoreStu.up?name="+$name+"&id="+$id;
+				}else{
+					alert('취소하였습니다.')
 				}		
 			})
 		</script>

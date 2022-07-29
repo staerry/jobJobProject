@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.jj.common.model.vo.PageInfo, com.jj.member.model.vo.Member, java.util.ArrayList"%>
+<%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+	String check = (String)request.getAttribute("check");
+	String search = (String)request.getAttribute("search");
+	
+	int lpage = (int)request.getAttribute("lpage");
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,20 +41,48 @@
 
 			<div class="checks">
 				<div id="formwraping">
-					<form action="" style="">
+					<form action="<%=request.getContextPath()%>/mentorInfo.li" style="">
+						<input type="hidden" name="p" value="1">
 						&nbsp;
-						<input type="checkbox" id="check1"> 
+						<input type="checkbox" id="check1" name="check" value="1" class="set" checked> 
 						<label for="check1">현직자</label>
 						&nbsp;
-						<input type="checkbox" id="check2"> 
+						<input type="checkbox" id="check2" name="check" value="2" class="set" checked> 
 						<label for="check2">강의자</label>
-						<input type="checkbox" id="check3"> 
-						<label for="check3">탈퇴한회원</label> &nbsp;&nbsp;
-						<input type="text" style="line-height: 30px; width: 200px;" id="searchclick" placeholder="   이름또는 회원번호로 검색">
-						<label for="searchclick"><button id="searchbtn" style="line-height: 30px;" class="btnpurple">검색</button></label>
+						<input type="checkbox" id="check3" name="check" value="3" > 
+						<label for="check3">탈퇴한멘토</label> &nbsp;&nbsp;
+						<input type="text" name="search" style="line-height: 30px; width: 200px; text-align:center" id="searchclick" placeholder="이름또는 회원번호로 검색" >
+						<button type="submit" id="searchbtn" style="line-height: 30px;" class="btnpurple">검색</button>
 					</form>
 				</div>
 			</div>
+			
+			<script>
+				
+					$('#check3').on('click',function(){
+						console.log($(this).prop('checked'))
+						if($(this).prop('checked')){
+							$('#check1').prop('checked',false)
+							$('#check2').prop('checked',false)
+						}
+					})
+					
+					$('#check2').on('click',function(){
+						console.log($(this).prop('checked'))
+						if($(this).prop('checked')){
+							$('#check3').prop('checked',false)
+						}
+					})
+					
+					$('#check1').on('click',function(){
+						console.log($(this).prop('checked'))
+						if($(this).prop('checked')){
+							$('#check3').prop('checked',false)
+						}
+					})
+		
+				
+			</script>
 			
 			<div style="position:relative ;">
 				<div class="detailInfo positionab" style="display:none">
@@ -102,7 +143,7 @@
 						</table>
 						<br><br>
 						<div align="center">
-							<button class="button2">취소</button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="button3">수정</button>
+							<button class="button2 cancel" type="button">취소</button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="button3">수정</button>
 						</div>
 					</form>
 				</div>
@@ -119,55 +160,101 @@
 								<th width="130">상세보기</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>45(50)</td>
-								<td>서주원</td>
-								<td>aaaa@naver.com</td>
-								<td>--</td>
-								<td>010-1111-2222</td>
-								<td>22.02.01/--</td>
-								<td><button class="button1">수정</button>&nbsp;&nbsp;<button class="outbutton">탈퇴</button></td>
-							</tr>
-							<tr>
-								<td>45(50)</td>
-								<td>서주원</td>
-								<td>aaaa@naver.com</td>
-								<td>--</td>
-								<td>010-1111-2222</td>
-								<td>22.02.01/--</td>
-								<td><button class="button1">수정</button>&nbsp;&nbsp;<button class="outbutton">탈퇴</button></td>
-							</tr>
-							<tr>
-								<td>45(50)</td>
-								<td>서주원</td>
-								<td>aaaa@naver.com</td>
-								<td>--</td>
-								<td>010-1111-2222</td>
-								<td>22.02.01/--</td>
-								<td><button class="button1">수정</button>&nbsp;&nbsp;<button class="outbutton">탈퇴</button></td>
-							</tr>
+						<%if(list.isEmpty()){ %>
+							<script>
+							alert("조회된 회원이없습니다.")
+							location.href= "javascript:history.back()";
+							</script>
+						<%}else{ %>
+							<%for(int i=0;i<list.size();i++){ %>
+								<tr>
+									<td><%=lpage-i %>(<%=list.get(i).getUserNo() %>)</td>
+									<td id="idtext"><%=list.get(i).getUserName() %></td>
+									<td><%=list.get(i).getUserId() %></td>
+									<td>
+										<%if(list.get(i).getUserEmail()!=null) {%>
+											<%=list.get(i).getUserEmail() %>
+										<%}else{ %>
+										--
+										<%} %>
+									</td>
+									<td><%if(list.get(i).getUserPhone()!=null) {%>
+											<%=list.get(i).getUserEmail() %>
+										<%}else{ %>
+											--
+										<%} %>
+									</td>
+									<td><%=list.get(i).getEnrollDate() %></td>
+									<td>
+										<%if(list.get(i).getUserStatus().equals("N")){ %>
+											<button type="button" class="button1">수정</button>
+											<button type="button" class="outbutton">탈퇴</button>
+										<%}else{ %>
+											<button type="button" id="searchbtn">복구</button>
+										<%} %>
+									</td>
+								</tr>
+							<%} %>
+						<%} %>	
 						</tbody>
 					</table>
 					
 					<span class="totalpage">
-						x 페이지 / y 페이지 
+						<%=currentPage %> 페이지 / <%=maxPage %> 페이지 
 					</span>
 
 					<div class="paging-area">
-						<a href="">&lt&lt</a>
-						<a href="">&lt</a>
-						<a href="">1</a>
-						<a href="">2</a>
-						<a href="">3</a>
-						<a href="">4</a>
-						<a href="">5</a>
-						<a href="">&gt</a>
+					 <a href="">&lt&lt</a>
+					 <%if(currentPage != 1){ %>
+						<a href="<%=request.getContextPath()%>/mentorInfo.li?p=<%=currentPage-1%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&lt</a>
+						<%} %>
+						<%for(int i=startPage;i<=endPage;i++){ %>
+			            	<%if(i==currentPage){ %>
+			            		<a href="<%=request.getContextPath()%>/mentorInfo.li?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check%>"><%=i %></a>
+			            	<%}else{ %>
+			            		<a href="<%=request.getContextPath()%>/mentorInfo.li?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check%>"><%=i %></a>
+			            	<%} %>
+		            	<%} %>
+		            	<%if(currentPage != maxPage){ %>
+							<a href="<%=request.getContextPath()%>/mentorInfo.li?p=<%=currentPage+1%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&gt</a>
+						<%} %>
 						<a href="">&gt&gt</a>
 					</div>
 				</div>
 			</div>  
 		</div>
+		<script>
+		$(function(){
+			
+			if(<%=check.equals("all") || check.equals("none")%>){
+				
+			}else if(<%=check.equals("1")%>){
+				$('#check1').prop('checked',true);	
+				$('#check2').prop('checked',false);	
+				$('#check3').prop('checked',false);	
+			}else if(<%=check.equals("2")%>){
+				$('#check2').prop('checked',true);	
+				$('#check1').prop('checked',false);	
+				$('#check3').prop('checked',false);		
+			}else{
+				$('#check3').prop('checked',true);	
+				$('#check1').prop('checked',false);	
+				$('#check2').prop('checked',false);	
+			}
+			
+			$('#searchclick').val('<%=search%>');
+			
+		})
+		
+		$('.button1').click(function(){
+			$('.detailInfo').css('display',"")
+		})
+		
+		$('.cancel').click(function(){
+			$('.detailInfo').css('display','none')
+		})
+		
+	</script>
 	</div>
 	<%} %>
 </body>

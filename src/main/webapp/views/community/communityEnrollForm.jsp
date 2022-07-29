@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.jj.community.model.vo.Category"%>
+    
+<%
+	ArrayList<Category> list = (ArrayList<Category>)request.getAttribute("list");
+
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +34,8 @@
     <div class="container">
     
         <!-- 게시글 작성 테이블 -->
-        <form action="" id="community-enroll-form" method="post">
+        <form action="<%= request.getContextPath() %>/insert.co" id="community-enroll-form" method="post">
+        <!-- 카테고리 번호, 제목, 내용, 로그인한회원번호 받아야 함 -->
             <div class="communtiy-enroll-area">
 
                 <!-- 게시물 작성 영역 테이블 -->
@@ -39,9 +46,9 @@
                     <tr>
                         <td id="community-category-select">
                             <select name="categorySelect" id="category-community-btn">
-                                <option value="qna">질문&답변</option>
-                                <option value="counsel">고민상담</option>
-                                <option value="study">스터디</option>
+                            	<% for(Category c: list) { %>
+                            	<option value="<%= c.getCategoryNo() %>"><%= c.getCategoryName() %></option>
+								<% } %>
                             </select>
                         </td>
                     </tr>
@@ -62,7 +69,8 @@
 
                 <!-- 게시글 등록 버튼 영역 -->
                 <div class="community-enroll-button">
-                        <button type="reset" id="community-content-reset">취소</button>
+                		<!-- 취소버튼 클릭 시 리셋하고 목록으로 돌아감 -->
+                        <button type="reset" id="community-content-reset" onclick="history.back();">취소</button>
                         <button type="submit" id="community-content-enroll">등록</button>
                 </div>
             </div>

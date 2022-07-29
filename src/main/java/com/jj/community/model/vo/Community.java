@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Community {
 	
-	private int commNo;	// 커뮤니티 번호
+	private int commNo;	// 글 번호
 	private String commWriter;	// 작성 시 번호 | 조회 시 이름 
 	private String commCategory;	// 작성 시 번호 | 조회 시 카테고리명
 	private String commTitle;

@@ -422,8 +422,44 @@ public class AdminService {
 		return mtm;
 	}
 	
+	/**
+	 * 답변내용 업데이트 요청을 처리해주는 메소드
+	 * @param mtmNo : 답변한 문의글 번호
+	 * @param mtmAnswer : 답변 내용
+	 * @return 업데이트된 행 갯수
+	 * @author younheonchoi 
+	 */
+	public int updateAnswer(int mtmNo, String mtmAnswer) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().updateAnswer(conn, mtmNo, mtmAnswer);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 	
-	
+	/**
+	 * 사용자 이메일 조회 요청 처리를 해주는 메소드
+	 * @param mtmNo : 사용자가 작성한 문의 글 번호
+	 * @return 사용자 이메일
+	 */
+	public Mtm selectUserEmail(int mtmNo) {
+		Connection conn = getConnection();
+		
+		Mtm userEmail = new AdminDao().selectUserEmail(conn, mtmNo);
+		
+		close(conn);
+		
+		return userEmail;
+		
+	}
 	
 	
 	

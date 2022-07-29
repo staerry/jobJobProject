@@ -30,136 +30,6 @@ public class AdminService2 {
 	}
 	
 	/**
-	 * FAQ작성 요청을 처리해주는 메소드
-	 * @param faqTitle : 추가할 FAQ제목
-	 * @param faqContent : 추가할 FAQ내용
-	 * @param userId : 작성자 
-	 * @return 업데이트된 행 갯수 반환
-	 * @author younheonchoi 
-	 */
-	public int insertFaq(String faqTitle, String faqContent, int userId) {
-		Connection conn = getConnection();
-		
-		int result = new AdminDao().insertFaq(conn, faqTitle, faqContent, userId);
-		
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		
-		close(conn);
-		
-		return result;
-	}
-	
-	/**
-	 * FAQ목록 갯수 확인 요청을 처리해주는 메소드
-	 * @return FAQ게시물 총 갯수 반환
-	 * @author younheonchoi 
-	 */
-	public int selectFaqCount() {
-		Connection conn = getConnection();
-		
-		int listCount = new AdminDao().selectFaqCount(conn);
-		
-		close(conn);
-		
-		return listCount;
-	}
-	
-	/**
-	 * FAQ게시물 리스트 조회 요청을 처리해주는 메소드
-	 * @param pageInfo : 페이징버튼 객체
-	 * @return FAQ게시글 리스트
-	 * @author younheonchoi 
-	 */
-	public ArrayList<Faq> selectFaqList(PageInfo pageInfo){
-		Connection conn = getConnection();
-		
-		ArrayList<Faq> list = new AdminDao().selectFaqList(conn, pageInfo);
-		
-		close(conn);
-		
-		return list;
-	}
-	
-	/**
-	 * FAQ게시글 삭제 요청을 처리해주는 메소드
-	 * @param faqNo : 삭제할 대상 게시글 번호
-	 * @return 업데이트된 행 갯수 반환
-	 * @author younheonchoi 
-	 */
-	public int deleteFaq(int faqNo) {
-		Connection conn = getConnection();
-		
-		int result = new AdminDao().deleteFaq(conn, faqNo);
-		
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		
-		close(conn);
-		
-		return result;
-	}
-	
-	/**
-	 * FAQ수정 페이지에 출력할 게시물 조회 요청을 처리해주는 메소드
-	 * @param faqNo : 수정할 대상 게시글 번호
-	 * @return FAQ게시글
-	 * @author younheonchoi 
-	 */
-	public Faq selectFaq(int faqNo) {
-		Connection conn = getConnection();
-		
-		Faq faq = new AdminDao().selectFaq(conn, faqNo);
-		
-		close(conn);
-		
-		return faq;
-	}
-	
-	/**
-	 * FAQ수정 요청을 처리해주는 메소드
-	 * @param faq : 수정한 게시글 정보
-	 * @return 업데이트된 행 갯수 반환
-	 * @author younheonchoi 
-	 */
-	public int updateFaq(Faq faq) {
-		Connection conn = getConnection();
-		
-		int result = new AdminDao().updateFaq(conn, faq);
-		
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		
-		close(conn);
-		
-		return result;
-	}
-	
-	/**
-	 * 공지사항 총 게시물 갯수 조회 요청을 처리해주는 메소드
-	 * @return 공지사항 게시물 총 갯수
-	 * @author younheonchoi 
-	 */
-	public int selectNoticeCount() {
-		Connection conn = getConnection();
-		
-		int listCount = new AdminDao().selectNoticeCount(conn);
-		
-		close(conn);
-		
-		return listCount;
-	}
-	
-	/**
 	 * 사용자가 입력한 키워드에맞는 활동중인 수강생수를 찾는 메소드
 	 * @return 활동중인 수강생수
 	 * @author SJW
@@ -202,6 +72,62 @@ public class AdminService2 {
 	}
 	
 	/**
+	 *  모든 멘토들중 사용자가 입력한 키워드에맞는멘토수를 찾는메소드
+	 * @param search 사용자가 입력한 키워드
+	 * @return 멘토수
+	 * @author SJW
+	 */
+	public int selectMentorListCount(String search) {
+		Connection conn = getConnection();
+		int listCount = new AdminDao2().selectMentorListCount(conn,search);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 *  현직자중 사용자가 입력한 키워드에맞는멘토수를 찾는메소드
+	 * @param search 사용자가 입력한 키워드
+	 * @return 멘토수
+	 * @SJW
+	 */
+	public int currentCount(String search) {
+		Connection conn = getConnection();
+		int listCount = new AdminDao2().currentCount(conn,search);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 *  강의자중 사용자가 입력한 키워드에맞는멘토수를 찾는메소드
+	 * @param search 사용자가 입력한 키워드
+	 * @return 멘토수
+	 * @SJW
+	 */
+	public int lecturerCount(String search) {
+		Connection conn = getConnection();
+		int listCount = new AdminDao2().lecturerCount(conn,search);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 *  강의자중 사용자가 입력한 키워드에맞는멘토수를 찾는메소드
+	 * @param search 사용자가 입력한 키워드
+	 * @return 멘토수
+	 * @SJW
+	 */
+	public int outMentorCount(String search) {
+		Connection conn = getConnection();
+		int listCount = new AdminDao2().outMentorCount(conn,search);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
 	 * 활동중인 수강생리스트를 페이지에 맞춰서 찾는메소드
 	 * @param pi 페이지정보를 담고있는 객체
 	 * @return 페이지에 맞는 활동중인 수강생 리스트
@@ -229,10 +155,10 @@ public class AdminService2 {
 	}
 	
 	/**
-	 * 사용자가 입력한 키워드에맞는 모든 수강생리스트를 페이지에 맞춰서 찾는메소드
+	 * 사용자가 입력한 키워드에맞는 탈퇴한 수강생리스트를 페이지에 맞춰서 찾는메소드
 	 * @param pi 페이지정보를 담고있는 객체
 	 * @param search 사용자가 입력한 키워드
-	 * @return 페이지에 맞는 활동중인 수강생 리스트
+	 * @return 탈퇴한 수강생리스트
 	 * @SJW
 	 */
 	public ArrayList<Member> stuInfoOutSearch(PageInfo pi,String search){
@@ -241,6 +167,101 @@ public class AdminService2 {
 		close(conn);
 		return list;
 	}
+	
+	/**
+	 * 사용자가 입력한 키워드에맞는 모든멘토리스트를 페이지에 맞춰서 찾는메소드
+	 * @param pi 페이지정보를 담고있는 객체
+	 * @param search 사용자가 입력한 키워드
+	 * @return 멘토리스트
+	 * @SJW
+	 */
+	public ArrayList<Member> mentorInfo(PageInfo pi,String search){
+		Connection conn = getConnection();
+		ArrayList<Member> list = new AdminDao2().mentorInfo(conn,pi,search);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 현직자들중에서 사용자가 입력한 키워드에맞는 리스트를 찾는메소드
+	 * @param pi 페이지정보를 담고있는 객체
+	 * @param search 사용자가 입력한 키워드
+	 * @return 현직자 리스트
+	 * @SJW
+	 */
+	public ArrayList<Member> currentInfo(PageInfo pi,String search){
+		Connection conn = getConnection();
+		ArrayList<Member> list = new AdminDao2().currentInfo(conn,pi,search);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 강의자들중에서 사용자가 입력한 키워드에맞는 리스트를 찾는메소드
+	 * @param pi 페이지정보를 담고있는 객체
+	 * @param search 사용자가 입력한 키워드
+	 * @return 강의자 리스트
+	 * @SJW
+	 */
+	public ArrayList<Member> lecturerList(PageInfo pi,String search){
+		Connection conn = getConnection();
+		ArrayList<Member> list = new AdminDao2().lecturerList(conn,pi,search);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 탈퇴한메토들중에서 사용자가 입력한 키워드에맞는 리스트를 찾는메소드
+	 * @param pi 페이지정보를 담고있는 객체
+	 * @param search 사용자가 입력한 키워드
+	 * @return 탈퇴한멘토 리스트
+	 * @SJW
+	 */
+	public ArrayList<Member> outMentorList(PageInfo pi,String search){
+		Connection conn = getConnection();
+		ArrayList<Member> list = new AdminDao2().outMentorList(conn,pi,search);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 수강생을 회원탈퇴처리하는 메소드
+	 * @param name 탈퇴처리할 회원명
+	 * @param id 탈퇴처리할 회원아이디
+	 * @return 탈퇴결과값
+	 */
+	public int withdrawalStu(String name, String id) {
+		Connection conn = getConnection();
+		int result = new AdminDao2().withdrawalStu(conn,name,id);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	/**
+	 * 탈퇴한 수강생을 다시 복구하는 메소드
+	 * @param name 복구처리할 회원명
+	 * @param id 복구처리할 회원아이디
+	 * @return 복구결과값
+	 */
+	public int restoreStu(String name, String id) {
+		Connection conn = getConnection();
+		int result = new AdminDao2().restoreStu(conn,name,id);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
 	
 	
 	
