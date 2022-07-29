@@ -359,4 +359,70 @@ SELECT *
 	   SET CL_GRANT = 'D'
 	 WHERE CL_NO = ?
 </entry>
+
+<entry key="selectReviewCount">
+	SELECT COUNT(*) COUNT
+	  FROM REVIEW
+</entry>
+
+<entry key="selectReviewList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT REVIEW_NO
+	             , CL_TITLE
+	             , USER_NAME
+	             , REVIEW_SCORE
+	             , REVIEW_CONTENT
+	             , REVIEW_ENROLLDATE
+	          FROM REVIEW R
+	          JOIN CLASS C ON (R.CL_NO = C.CL_NO)
+	          JOIN USERINFO U ON (R.USER_NO = U.USER_NO)
+	         ORDER BY REVIEW_NO DESC
+	           ) A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="deleteReview">
+	DELETE
+	  FROM REVIEW
+	 WHERE REVIEW_NO = ?
+</entry>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </properties>
