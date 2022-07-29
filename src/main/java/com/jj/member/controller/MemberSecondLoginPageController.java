@@ -42,7 +42,7 @@ public class MemberSecondLoginPageController extends HttpServlet {
 		HttpSession session = request.getSession();
 		if(loginUser == null) {// 로그인 실패
 			
-			request.setAttribute("alertMsg", "회원 로그인 실패");
+			session.setAttribute("alertMsg", "회원 로그인 실패");
 			response.sendRedirect(request.getContextPath() + "/userlogin.me");
 			
 		}else {// 로그인 성공
