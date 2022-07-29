@@ -26,17 +26,17 @@
 			</li>
 		</ul>
 		<div class="main-login-area">
-			<% if(true){ %>
+			<% if(loginUser == null){ %>
 				<a href="<%= contextPath %>/firstlogin.me" class="main-login-btn">로그인</a>
 				<p class="main-regist">
 					처음이신가요? <a href="<%= contextPath %>/loginEnrollForm.me"><b>회원가입</b></a><br>
-					<a href=""><b>멘토가입</b></a>
+					<a href="<%=contextPath%>/mentorEnroll.me"><b>멘토가입</b></a>
 				</p>
 			<% } else { %>
-				<p class="main-logout"><b><a href="">로그아웃</a></b></p>
+				<p class="main-logout"><b><a href="<%=contextPath%>/userlogout.me">로그아웃</a></b></p>
 				<div class="main-profile-img"></div>
 				<p class="main-mypage-menu">
-					<b>xxx</b>님<br><br>
+					<b><%= loginUser.getUserName() %></b>님<br><br>
 					<b><a href="">수강중인강의 3</a></b><br><br>
 					<b><a href="">마이페이지</a></b>
 				</p>

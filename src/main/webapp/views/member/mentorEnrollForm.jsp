@@ -13,6 +13,8 @@
 </head>
 <body>
 
+	<%@ include file="../common/menubar.jsp" %>
+
     <table style="margin: auto;">
 
         <br><br>
@@ -22,31 +24,29 @@
                 <td>
                     <div class="log-in">
 
-                        <h2 align="center">니Job내Job에서<br>경험을 공유해주세요</h2><br>
+                        <h2 align="center">니Job 내Job에서<br>경험을 공유해주세요</h2><br>
                         
                         <div class="left">
                             <div class="col">
-                            <input type="text" class="form-control"  placeholder="이름(실명)입력" name="userName">
+                            <input type="text" class="form-control"  placeholder="이름(실명)입력" name="mtName">
                             </div><br>
                             <div class="col">
-                            <input type="text" class="form-control" placeholder="이메일 주소 입력" name="userId">
+                            <input type="text" class="form-control" placeholder="이메일 주소 입력" name="mtId">
                             </div><br>
                             <div class="col">
-                                <input type="password" class="form-control" placeholder="비밀번호 입력" name="userPwd">
+                                <input type="password" class="form-control" placeholder="비밀번호 입력" name="mtPwd">
                             </div><br>
                             <div class="col">
                                 <input type="password" class="form-control" placeholder="비밀번호 재입력">
                             </div><br>
+                            
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="현재 소속된 회사 / 직급" name="userId">
-                            </div><br>
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="핸드폰 번호 입력" name="userPhone">
+                                <input type="text" class="form-control" placeholder="핸드폰 번호 입력" name="mtPhone">
                             </div><br>
                             
                             <div class="col">
                                 <span>프로필 사진 첨부</span>
-                                <input type="file" class="form-control" name="userPhoto">
+                                <input type="file" class="form-control" name="mtPhoto">
                                 <br>
                             </div>
                         </div>
@@ -63,13 +63,20 @@
                             <h4 align="center">서류인증 (신분증 + 사원증)</h4><br>
 
                             <div class="col">
+                                <input type="text" class="form-control" placeholder="현재 소속된 회사" name="mtCompany">
+                            </div><br>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="현재 직급" name="mtPosition">
+                            </div><br>
+
+                            <div class="col">
                                 <span>사원증 사진 첨부</span>
-                                <input type="file" class="form-control" name="userPhoto">
+                                <input type="file" class="form-control" name="mtEmpCard">
                             </div><br>
                             
                             <div class="col">
                                 <span>신분증 사진 첨부</span>
-                                <input type="file" class="form-control" name="userPhoto">
+                                <input type="file" class="form-control" name="mtIdCard">
                             </div>
                         </div>
                     </div>
@@ -86,6 +93,9 @@
         </form>
 
     </table>
+    <br><br>
+    
+    <%@ include file="../common/footer.jsp" %>
 
 </body>
 </html>

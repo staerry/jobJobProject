@@ -35,7 +35,7 @@
     <div align="center">
         <span style="font-size: 8px;">이용약관 및 개인정보 처리방침 확인 후 동의합니다.</span><br>
         <span style="font-size: 10px; cursor:pointer;" onclick="enrollPage();">회원가입 하러가기!</span><br>
-        <span style="font-size: 9px;">비밀번호 찾기</span><br><br>
+        <span style="font-size: 9px; cursor:pointer;" onclick="searchPwdPage();">비밀번호 찾기</span><br><br>
     </div> 
     
     <script>
@@ -43,9 +43,12 @@
     		location.href = "<%= contextPath %>/userlogin.me";
     	}
     
-    
     	function enrollPage(){
     		location.href = "<%= contextPath %>/loginEnrollForm.me";
+    	}
+    	
+    	function searchPwdPage(){
+    		location.href = "<%=contextPath%>/searchPwd.me";
     	}
     </script>
     
