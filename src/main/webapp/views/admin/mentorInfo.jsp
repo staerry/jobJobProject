@@ -12,6 +12,10 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
+	int pageLimit = pi.getPageLimit();
+	
+	int doublePrev = pageLimit*(currentPage/pageLimit);
+	int doubleNext = pageLimit*(currentPage/pageLimit+1)+1;
 %>
 <!DOCTYPE html>
 <html>
@@ -87,11 +91,12 @@
 			<div style="position:relative ;">
 				<div class="detailInfo positionab" style="display:none">
 					<h3>멘토정보수정</h3>
-					<form>
+					<form action="<%=request.getContextPath()%>/mentorupdate.up">
+						<input type="hidden" id="mNo" name="mNo">
 						<table class="table table-bordered table-hover stutable">
 							<tr>
 								<th>이름</th>
-								<td width="10px"><input type="text" style="margin-right:100px ;" disabled></td>
+								<td width="10px"><input id="DName" type="text" style="margin-right:100px; text-align:center" readonly></td>
 							</tr>
 							<tr>
 								<th>멘토분류</th>
@@ -111,28 +116,28 @@
 									<div class="checks2">
 										<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;
-										<input type="radio" id="radio2" name="cate"> 
+										<input type="radio" id="radio2" name="cate" value="2"> 
 										<label for="radio2">마케팅,MD,영업</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<input type="radio" id="radio1" name="cate"> 
+										<input type="radio" id="radio1" name="cate" value="1"> 
 										<label for="radio1">IT개발</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<br><br>
-										<input type="radio" id="radio3" name="cate"> 
+										<input type="radio" id="radio3" name="cate" value="3"> 
 										<label for="radio3">회계,재무,금융</label>
 										&nbsp;&nbsp;
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<input type="radio" id="radio4" name="cate"> 
+										<input type="radio" id="radio4" name="cate" value="4"> 
 										<label for="radio4">전략,기획</label> 
 										<br><br>
-										<input type="radio" id="radio5" name="cate"> 
+										<input type="radio" id="radio5" name="cate" value="5"> 
 										<label for="radio5">유통,무역,구매&nbsp;&nbsp;&nbsp;</label>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<input type="radio" id="radio7" name="cate"> 
+										<input type="radio" id="radio7" name="cate" value="7"> 
 										<label for="radio7">전문,특수</label>
 										<br><br>
-										<input type="radio" id="radio6" name="cate"> 
+										<input type="radio" id="radio6" name="cate" value="6"> 
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<label for="radio6">공사,공기업,공무원</label> 
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -143,7 +148,7 @@
 						</table>
 						<br><br>
 						<div align="center">
-							<button class="button2 cancel" type="button">취소</button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button class="button3">수정</button>
+							<button class="button2 cancel" type="reset">취소</button>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="submit" id="up" class="button3">수정</button>
 						</div>
 					</form>
 				</div>
@@ -168,8 +173,8 @@
 						<%}else{ %>
 							<%for(int i=0;i<list.size();i++){ %>
 								<tr>
-									<td><%=lpage-i %>(<%=list.get(i).getUserNo() %>)</td>
-									<td id="idtext"><%=list.get(i).getUserName() %></td>
+									<td class="notext"><%=lpage-i %>(<%=list.get(i).getUserNo() %>)</td>
+									<td class="idtext"><%=list.get(i).getUserName() %></td>
 									<td><%=list.get(i).getUserId() %></td>
 									<td>
 										<%if(list.get(i).getUserEmail()!=null) {%>
@@ -190,7 +195,7 @@
 											<button type="button" class="button1">수정</button>
 											<button type="button" class="outbutton">탈퇴</button>
 										<%}else{ %>
-											<button type="button" id="searchbtn">복구</button>
+											<button type="button" id="searchbtn" class="restore">복구</button>
 										<%} %>
 									</td>
 								</tr>
@@ -204,7 +209,9 @@
 					</span>
 
 					<div class="paging-area">
-					 <a href="">&lt&lt</a>
+					 <%if(currentPage > pageLimit ){ %>
+						 <a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=doublePrev%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&lt&lt</a>
+						 <%} %>
 					 <%if(currentPage != 1){ %>
 						<a href="<%=request.getContextPath()%>/mentorInfo.li?p=<%=currentPage-1%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&lt</a>
 						<%} %>
@@ -218,7 +225,9 @@
 		            	<%if(currentPage != maxPage){ %>
 							<a href="<%=request.getContextPath()%>/mentorInfo.li?p=<%=currentPage+1%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&gt</a>
 						<%} %>
-						<a href="">&gt&gt</a>
+						<%if(currentPage < maxPage - pageLimit ){ %>
+							<a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=doubleNext%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&gt&gt</a>
+							<%} %>
 					</div>
 				</div>
 			</div>  
@@ -246,12 +255,71 @@
 			
 		})
 		
-		$('.button1').click(function(){
+		$('.button1').click(function(e){
+			$.ajax({
+				url:"<%=request.getContextPath()%>/mtDetail.bo",
+				data:{prevNo:$(this).parent().siblings('.notext').text()},
+				success:function(m){
+					switch(m.mtGrade){
+						case 1 :
+							$("#radio11").prop('checked',true)
+							break;
+						case 2 :
+							$("#radio22").prop('checked',true)
+							break;
+					}
+					
+					switch(m.clcgNo){
+						case 1 :
+							$("#radio1").prop('checked',true)
+							break;
+						case 2 :
+							$("#radio2").prop('checked',true)
+							break;
+						case 3 :
+							$("#radio3").prop('checked',true)
+							break;
+						case 4 :
+							$("#radio4").prop('checked',true)
+							break;
+						case 5 :
+							$("#radio5").prop('checked',true)
+							break;
+						case 6 :
+							$("#radio6").prop('checked',true)
+							break;
+						case 7 :
+							$("#radio7").prop('checked',true)
+							break;
+					}
+				},error:function(){
+					alert('수정정보를 찾지 못했습니다');
+					e.preventDefault();
+				}
+			})
+			
+			$('#DName').val($(this).parent().siblings('.idtext').text())
+			$('#mNo').val($(this).parent().siblings('.notext').text())
+			
 			$('.detailInfo').css('display',"")
 		})
 		
 		$('.cancel').click(function(){
 			$('.detailInfo').css('display','none')
+		})
+		
+		$('.outbutton').click(function(){
+			if(confirm($(this).parent().siblings('.idtext').text()+'님을 탈퇴처리 하시겠습니까?')){
+				const $no = $(this).parent().siblings('.notext').text()
+				location.href="<%=request.getContextPath()%>/withdrawalMen.up?no="+$no
+			}
+		})
+		
+		$('.restore').click(function(){
+			if(confirm($(this).parent().siblings('.idtext').text()+'님을 다시 복구하시겠습니까?')){
+				const $no = $(this).parent().siblings('.notext').text()
+				location.href="<%=request.getContextPath()%>/restoreMen.up?no="+$no
+			}
 		})
 		
 	</script>

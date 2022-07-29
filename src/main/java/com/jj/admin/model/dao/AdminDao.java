@@ -18,6 +18,7 @@ import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.mtm.model.vo.Mtm;
 import com.jj.notice.model.vo.Notice;
+import com.jj.classSelect.model.vo.Class;
 
 public class AdminDao {
 	
@@ -809,11 +810,95 @@ public class AdminDao {
 		return userEmail;
 	}
 	
+	public int selectClassCount(Connection conn) {
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectClassCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
 	
+	public ArrayList<Class> selectClassList(Connection conn, PageInfo pageInfo){
+		ArrayList<Class> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectClassList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit() + 1;
+			int endRow = startRow + pageInfo.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Class(rset.getInt("cl_no")
+						         , rset.getString("user_name")
+						         , rset.getString("clcg_name")
+						         , rset.getString("cl_title")
+						         , rset.getString("cl_subtitle")
+						         , rset.getString("cl_info")
+						         , rset.getString("cl_curri")
+						         , rset.getInt("cl_price")
+						         , rset.getDate("cl_enrolldate")
+						         , rset.getString("cl_grant")
+						         , rset.getString("cl_thumbnailpath")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
-	
-	
-	
+	public int deleteClass(Connection conn, int clNo) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteClass");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	

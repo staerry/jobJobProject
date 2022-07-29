@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.jj.classSelect.model.vo.Class, com.jj.common.model.vo.PageInfo"%>
+    
+<%
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	ArrayList<Class> list = (ArrayList<Class>)request.getAttribute("Class");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,24 +41,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>10</td>
-                        <td>컴퓨터비전, 머신러닝, 딥러닝을 이용한 의료영상 분석</td>
-                        <td>IT개발</td>
-                        <td>홍길동</td>
-                        <td><button class="btn btn-sm btn-danger">삭제</button></td>
-                    </tr>
+                	<% for(Class i : list){ %>
+	                    <tr>
+	                        <td><%= i.getClNo() %></td>
+	                        <td><%= i.getClTitle() %></td>
+	                        <td><%= i.getClCategory() %></td>
+	                        <td><%= i.getUserNo() %></td>
+	                        <td><button class="btn btn-sm btn-danger" onclick="location.href='<%= contextPath %>/deleteClass.ad?no=<%= i.getClNo() %>'">삭제</button></td>
+	                    </tr>
+                    <% } %>
                 </tbody>
             </table>
 
             <div class="paging-area">
-                <a href="">&lt</a>
-                <a href="">1</a>
-                <a href="">2</a>
-                <a href="">3</a>
-                <a href="">4</a>
-                <a href="">5</a>
-                <a href="">&gt</a>
+            	<% if(pageInfo.getCurrentPage() != 1){ %>
+                	<a href="<%= contextPath %>/mentorClassListView.ad?cpage=<%= pageInfo.getCurrentPage() - 1 %>">&lt</a>
+                <% } %>
+                <% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++){ %>
+                	<% if(i == pageInfo.getCurrentPage()){ %>
+                		<a href="<%= contextPath %>/mentorClassListView.ad?cpage=<%= i %>" style="background-color : gray;"><%= i %></a>
+                	<% } else { %>
+                		<a href="<%= contextPath %>/mentorClassListView.ad?cpage=<%= i %>"><%= i %></a>
+                	<% } %>
+                <% } %>
+                <% if(pageInfo.getCurrentPage() != pageInfo.getMaxPage()){ %>
+                	<a href="<%= contextPath %>/mentorClassListView.ad?cpage=<%= pageInfo.getCurrentPage() + 1 %>">&gt</a>
+                <% } %>
             </div>
 		</div>
 		

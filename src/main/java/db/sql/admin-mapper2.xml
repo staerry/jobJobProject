@@ -274,5 +274,46 @@ SELECT COUNT(*) AS "LISTCOUNT"
    	AND USER_ID = ?
 </entry>
 
+<entry key="mentorDetailInfo">
+	SELECT 
+	       USER_NO
+	     , CLCG_NO
+	     , MT_COMPANY
+	     , MT_JOB
+	     , MT_GRADE
+	     , MT_GRANT
+	     , MT_ENROLLDATE
+	     , EMPCARD_PATH
+	     , EMPCARD_ORIGINNAME
+	     , IDCARD_PATH
+	     , IDCARD_ORIGINNAME
+	  FROM MENTOR
+	 WHERE USER_NO = ?
+</entry>
+
+<entry key="upMenCate">
+	UPDATE MENTOR
+	   SET CLCG_NO = ?
+	     , MT_GRADE = ?
+	 WHERE USER_NO = ?
+</entry>
+
+<entry key="withdrawalMen">
+	UPDATE USERINFO
+   	SET USER_STATUS = 'Y'
+ 	WHERE USER_NO = ?
+</entry>
+
+<entry key="restoreMen1">
+	UPDATE MENTOR M
+	   SET MT_GRANT = 'A'
+	 WHERE USER_NO = ?
+</entry>
+
+<entry key="restoreMen2">
+	UPDATE USERINFO
+   	SET USER_STATUS = 'N'
+ 	WHERE USER_NO = ?
+</entry>
 
 </properties>

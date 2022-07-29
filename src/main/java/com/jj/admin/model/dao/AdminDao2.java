@@ -15,6 +15,7 @@ import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
+import com.jj.member.model.vo.Mentor;
 import com.jj.notice.model.vo.Notice;
 
 public class AdminDao2 {
@@ -571,7 +572,112 @@ public class AdminDao2 {
 		
 		return result;
 	}
+	
+	public Mentor mentorDetailInfo(Connection conn, int no) {
+		Mentor m = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("mentorDetailInfo");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rset=pstmt.executeQuery();
+			if(rset.next()) {
+				m = new Mentor(rset.getInt("user_no"),
+							   rset.getInt("clcg_no"),
+							   rset.getString("mt_company"),
+							   rset.getString("mt_job"),
+							   rset.getInt("mt_grade"),
+							   rset.getString("mt_grant"),
+							   rset.getDate("mt_enrolldate"),
+							   rset.getString("empcard_path"),
+							   rset.getString("empcard_originname"),
+							   rset.getString("idcard_path"),
+							   rset.getString("idcard_originname"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return m;
+		
+	}
+	
+	public int upMenCate(Connection conn,int no,int grade,int cate) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("upMenCate");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cate);
+			pstmt.setInt(2, grade);
+			pstmt.setInt(3, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int withdrawalMen(Connection conn,int no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("withdrawalMen");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int restoreMen1(Connection conn,int no) {
+		int result1 = 0;
+		PreparedStatement pstmt = null;
+		String sql1 = prop.getProperty("restoreMen1");
+		
+		try {
+			pstmt=conn.prepareStatement(sql1);
+			pstmt.setInt(1, no);
+			result1 = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result1;
+	}
 
+	public int restoreMen2(Connection conn,int no) {
+		int result1 = 0;
+		PreparedStatement pstmt = null;
+		String sql1 = prop.getProperty("restoreMen2");
+		
+		try {
+			pstmt=conn.prepareStatement(sql1);
+			pstmt.setInt(1, no);
+			result1 = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result1;
+	}
 
 	
 	

@@ -263,6 +263,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 <entry key="selectMtmCount">
 	SELECT COUNT(*) COUNT
 	  FROM MTM
+	 WHERE MTM_ANSWER IS NULL
 </entry>
 
 <entry key="selectMtmList">
@@ -319,5 +320,43 @@ SELECT *
 	  FROM MTM M
 	  JOIN USERINFO U ON (M.USER_NO = U.USER_NO)
 	 WHERE MTM_NO = ?
+</entry>
+
+<entry key="selectClassCount">
+	 SELECT COUNT(*) COUNT
+	   FROM CLASS
+	  WHERE CL_GRANT = 'A'
+</entry>
+
+<entry key="selectClassList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT CL_NO
+	             , USER_NAME
+	             , CLCG_NAME
+	             , CL_TITLE
+	             , CL_SUBTITLE
+	             , CL_INFO
+	             , CL_CURRI
+	             , CL_PRICE
+	             , CL_ENROLLDATE
+	             , CL_GRANT
+	             , CL_THUMBNAILPATH
+	          FROM CLASS C
+	          JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+	          JOIN CL_CATEGORY CC ON (C.CL_CATEGORY = CC.CLCG_NO)
+	         WHERE CL_GRANT = 'A'
+	         ORDER BY CL_NO DESC
+	           ) A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="deleteClass">
+	UPDATE CLASS
+	   SET CL_GRANT = 'D'
+	 WHERE CL_NO = ?
 </entry>
 </properties>
