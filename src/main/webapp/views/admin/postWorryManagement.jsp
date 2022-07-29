@@ -14,18 +14,18 @@
 </head>
 <body>
 	<%if(session.getAttribute("UserInfoAd") == null){ %>
-	<script>
-		alert("유효하지않은 접근입니다.");
-		location.href="<%= request.getContextPath() %>/login.ad";
-	</script>
+		<script>
+			alert("유효하지않은 접근입니다.");
+			location.href="<%= request.getContextPath() %>/login.ad";
+		</script>
 	<%}else{ %>
+	
 	<%@ include file="common/topbar.jsp" %>
 	
 	<div class="content-wrap">
-	
-	<div class="left">
-		<%@ include file="common/menubar.jsp" %>
-	</div>
+		<div class="left">
+			<%@ include file="common/menubar.jsp" %>
+		</div>
 	
 		<div class="right">
 		    <h3>게시글 관리</h3>
@@ -97,7 +97,6 @@
             			}else{
             				$(this).parent().next().css("display", "none");
             			}
-            			
             		})
             	})
             </script>
@@ -118,7 +117,6 @@
             	<% } %>
             </div>
 		</div>
-		
 	</div>
 	<%} %>
 </body>

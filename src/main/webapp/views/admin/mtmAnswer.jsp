@@ -14,25 +14,26 @@
 </head>
 <body>
 	<%if(session.getAttribute("UserInfoAd") == null){ %>
-	<script>
-		alert("유효하지않은 접근입니다.");
-		location.href="<%= request.getContextPath() %>/login.ad";
-	</script>
+		<script>
+			alert("유효하지않은 접근입니다.");
+			location.href="<%= request.getContextPath() %>/login.ad";
+		</script>
 	<%}else{ %>
-	<%@ include file="common/topbar.jsp" %>
 	
-	<div class="content-wrap">
-	    	<!--이 부분에 좌측메뉴 넣으세요-->
-	    <div class="left">
-			<%@ include file="common/menubar.jsp" %>
-		</div>
-	
-		<!--이 부분은 우측 컨텐츠 입니다.-->
-		<div class="right">
-	        <h3>1대1 문의 답변</h3>
-			<form action="mtmAnswer.ad" method="post">
-				<input type="hidden" value="<%= mtm.getMtmNo() %>" name="mtmNo">
-				<table class="admin-table">
+		<%@ include file="common/topbar.jsp" %>
+		
+		<div class="content-wrap">
+		    <div class="left">
+				<%@ include file="common/menubar.jsp" %>
+			</div>
+		
+			<div class="right">
+		        <h3>1대1 문의 답변</h3>
+		        
+				<form action="mtmAnswer.ad" method="post">
+					<input type="hidden" value="<%= mtm.getMtmNo() %>" name="mtmNo">
+					
+					<table class="admin-table">
 						<tr>
 							<th width="150">문의 제목</th>
 						</tr>
@@ -51,15 +52,15 @@
 						<tr>
 							<td><textarea class="form-control" rows="7" name="mtmAnswer"></textarea></td>
 						</tr>
-				</table>
-	
-				<div class="mtm-controller-btn">
+					</table>
+		
+					<div class="mtm-controller-btn">
 						<button type="button" onclick="history.back();">돌아가기</button>
 						<button type="submit">답변전송</button>
-				</div>
-			</form>
-	    </div>
-	</div>
+					</div>
+				</form>
+		    </div>
+		</div>
 	<%} %>
 </body>
 </html>
