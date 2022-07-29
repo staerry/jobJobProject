@@ -86,7 +86,7 @@
                 	location.href="<%= request.getContextPath() %>/mentorVodApprovalListView.ad";
                 	break;
                 case 5:
-                	location.href="<%= request.getContextPath() %>/mentorClassListView.ad";
+                	location.href="<%= request.getContextPath() %>/mentorClassListView.ad?cpage=1";
                 	break;
                 case 6:
                 	location.href="<%= request.getContextPath() %>/postListView.ad";

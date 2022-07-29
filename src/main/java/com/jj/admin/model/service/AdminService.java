@@ -16,6 +16,7 @@ import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.mtm.model.vo.Mtm;
 import com.jj.notice.model.vo.Notice;
+import com.jj.classSelect.model.vo.Class;
 
 /**
  * @author PC
@@ -449,6 +450,7 @@ public class AdminService {
 	 * 사용자 이메일 조회 요청 처리를 해주는 메소드
 	 * @param mtmNo : 사용자가 작성한 문의 글 번호
 	 * @return 사용자 이메일
+	 * @author younheonchoi 
 	 */
 	public Mtm selectUserEmail(int mtmNo) {
 		Connection conn = getConnection();
@@ -458,13 +460,59 @@ public class AdminService {
 		close(conn);
 		
 		return userEmail;
-		
 	}
 	
+	/**
+	 * 개설된 클래스 총 갯수 확인 요청을 처리해주는 메소드
+	 * @return 개설된 클래스 총 갯수
+	 * @author younheonchoi 
+	 */
+	public int selectClassCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectClassCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
 	
+	/**
+	 * 개설된 클래스 리스트 조회 요청을 처리해주는 메소드
+	 * @param pageInfo : 페이징 버튼 객체
+	 * @return 개설된 클래스 리스트
+	 * @author younheonchoi 
+	 */
+	public ArrayList<Class> selectClassList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<Class> list = new AdminDao().selectClassList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
 	
-	
-	
+	/**
+	 * 클래스 삭제 요청을 처리해주는 메소드
+	 * @param clNo : 삭제할 클래스 번호
+	 * @return 업데이트된 행 갯수
+	 */
+	public int deleteClass(int clNo) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().deleteClass(conn, clNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 	
 	
 	
