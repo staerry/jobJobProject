@@ -12,14 +12,15 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.jj.admin.model.vo.UserInfoAd;
+import com.jj.classSelect.model.vo.Class;
 import com.jj.common.model.vo.PageInfo;
+import com.jj.community.model.vo.Community;
 import com.jj.community.model.vo.Reply;
 import com.jj.community.model.vo.Review;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.mtm.model.vo.Mtm;
 import com.jj.notice.model.vo.Notice;
-import com.jj.classSelect.model.vo.Class;
 
 public class AdminDao {
 	
@@ -985,11 +986,6 @@ public class AdminDao {
 		
 		return result;
 	}
-	
-	
-	
-	
-	
 	
 	
 	

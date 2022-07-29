@@ -12,6 +12,7 @@ import com.jj.admin.model.dao.AdminDao;
 import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.classSelect.model.vo.Class;
 import com.jj.common.model.vo.PageInfo;
+import com.jj.community.model.vo.Community;
 import com.jj.community.model.vo.Reply;
 import com.jj.community.model.vo.Review;
 import com.jj.faq.model.vo.Faq;
@@ -568,12 +569,7 @@ public class AdminService {
 		
 		return result;
 	}
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
