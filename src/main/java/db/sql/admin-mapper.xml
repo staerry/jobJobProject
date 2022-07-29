@@ -266,24 +266,25 @@ SELECT COUNT(*) AS "LISTCOUNT"
 </entry>
 
 <entry key="selectMtmList">
-	SELECT *
-	  FROM (
-	      SELECT ROWNUM RNUM, A.*
-	      FROM (
-	          SELECT MTM_NO
-	             , USER_NAME
-	             , MTM_TITLE
-	             , MTM_CONTENT
-	             , MTM_ENROLLDATE
-	             , MTM_ANSWER
-	             , MTM_ANSWER_DATE
-	             , ADMIN_NO
-	          FROM MTM M
-	          JOIN USERINFO U ON M.USER_NO = U.USER_NO
-	         ORDER BY MTM_NO DESC
-	           )A
-	       )
-	 WHERE RNUM BETWEEN ? AND ?
+SELECT *
+  FROM (
+      SELECT ROWNUM RNUM, A.*
+      FROM (
+          SELECT MTM_NO
+             , USER_NAME
+             , MTM_TITLE
+             , MTM_CONTENT
+             , MTM_ENROLLDATE
+             , MTM_ANSWER
+             , MTM_ANSWER_DATE
+             , ADMIN_NO
+          FROM MTM M
+          JOIN USERINFO U ON (M.USER_NO = U.USER_NO)
+         WHERE MTM_ANSWER IS NULL
+         ORDER BY MTM_NO DESC
+           )A
+       )
+ WHERE RNUM BETWEEN ? AND ?
 </entry>
 
 <entry key="selectMtm">
