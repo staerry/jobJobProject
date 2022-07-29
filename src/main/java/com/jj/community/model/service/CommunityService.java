@@ -1,7 +1,9 @@
 package com.jj.community.model.service;
 
-import static com.jj.common.JDBCTemplate.*;
+import static com.jj.common.JDBCTemplate.close;
+import static com.jj.common.JDBCTemplate.commit;
 import static com.jj.common.JDBCTemplate.getConnection;
+import static com.jj.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -45,5 +47,26 @@ public class CommunityService {
 		}
 		
 		return result;
+	}
+	
+	// 게시물 조회수 증가 메서드
+	public int increaseCount(int contentNo) {
+		Connection conn = getConnection();
+		int result = new CommunityDao().increaseCount(conn, contentNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+	
+	public Community selectCommunity(int contentNo) {
+		Connection conn = getConnection();
+		Community c = new CommunityDao().selectCommunity(conn, contentNo);
+		close(conn);
+		return c;
 	}
 }
