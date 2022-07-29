@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.jj.member.model.vo.Member"%>
+    
+<% 
+	String contextPath = request.getContextPath(); // /job
+	Member loginUser = (Member)session.getAttribute("loginUser");
+	String alertMsg = (String)session.getAttribute("alertMsg");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -24,6 +30,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<% if(alertMsg != null){ %>
+		<script>
+			alert("<%=alertMsg%>");
+		</script>
+		<% session.removeAttribute("alertMsg"); %>
+	<% } %>
 
     <div class="top-menu-wrap">
         <div class="top-menu-area">

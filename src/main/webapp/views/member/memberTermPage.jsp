@@ -8,10 +8,6 @@
 	String userPwd = (String)request.getAttribute("userPwd");
 	String userPhone = (String)request.getAttribute("userPhone");
 %>
-<% 
-	String contextPath = request.getContextPath(); 
-	String alertMsg = (String)session.getAttribute("alertMsg");
-%>
 <!DOCTYPE html>
 <html>
 <head>
