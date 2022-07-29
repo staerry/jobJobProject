@@ -65,11 +65,11 @@
                 </span>
 
             <!-- 로그인한 회원들에게만 글쓰기 버튼 노출 -->
-            <%-- <% if(로그인정보세션명) != null { %> --%>
+            <% if(loginUser != null) { %>
                 <span class="community-write">
                      <button id="community-write-btn" onclick="location.href='<%= request.getContextPath() %>/enrollForm.co';"><i class="far fa-pen"></i>&nbsp;&nbsp;글쓰기</a></button>
                 </span>
-            <%-- <% } %> --%>   
+            <% } %>
             </div>
 
             <!-- 게시물 목록 -->
@@ -81,7 +81,10 @@
 				<% for(Community c : list) { %>					
 				<tr class="list-table-header">
 					<td id="content-no"><%= c.getCommNo() %> </td>
-					<td id="community-title" onclick="goDetail();"> <%= c.getCommTitle() %> </td>
+					<td id="community-title" 
+						onclick="location.href='<%= contextPath%>/detail.co?contentNo=<%=c.getCommNo()%>'"> 
+						<%= c.getCommTitle() %> 
+					</td>
 					<td id="community-count" rowspan="3"> 
 						<i class="fas fa-eye" id="content-count" ></i> &nbsp; <%= c.getCount() %> <br>
 						<i class="fas fa-comment-dots" id="reply-count"></i> &nbsp; <%= c.getReplyCount() %> <br>
@@ -104,15 +107,7 @@
                 <% } %>
                 
                 </table>
-                
-                <script>
-                	function goDetail() {
-                		location.href = "<%= contextPath %>/detail.co?contentNo= + document.getElementById('content-no').value";
-                	}
-                	
-                </script>
-                          
-      
+
             <br>
             <br>
             <br>

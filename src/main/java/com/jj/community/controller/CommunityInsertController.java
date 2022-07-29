@@ -7,9 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.jj.community.model.service.CommunityService;
 import com.jj.community.model.vo.Community;
+import com.jj.member.model.vo.Member;
 
 /**
  * Servlet implementation class communityInsertController
@@ -33,9 +35,8 @@ public class CommunityInsertController extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		// 로그인 기능 필요
-		// 세션 영역에 담긴 loginMember 객체 사용 위한 세션 선언
-//		HttpSession session = request.getSession("세션명");
+
+		HttpSession session = request.getSession();
 		
 		// 카테고리 번호, 제목, 내용, 로그인한 회원번호
 		String categoryNo = request.getParameter("categorySelect");
@@ -43,14 +44,8 @@ public class CommunityInsertController extends HttpServlet {
 		String content = request.getParameter("contentBody");
 		
 		// 로그인 기능 필요
-//		String writerNo = Integer.toString(((Member)session.getAttribute("loginUserInfo")).getUserNo());
-		String writerNo = "2";	// test용 - 추후 삭제
-		
-//		System.out.println(no);
-//		System.out.println(title);
-//		System.out.println(content);
-//		System.out.println(writerNo);
-		
+		String writerNo = Integer.toString(((Member)session.getAttribute("loginUser")).getUserNo());
+				
 		// community 객체에 담아서 전달
 		Community c = new Community();
 		c.setCommCategory(categoryNo);
@@ -58,7 +53,6 @@ public class CommunityInsertController extends HttpServlet {
 		c.setCommContent(content);
 		c.setCommWriter(writerNo);
 		
-//		System.out.println(c);
 		
 		int result = new CommunityService().insertCommunity(c);
 		

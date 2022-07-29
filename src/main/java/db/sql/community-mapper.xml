@@ -75,6 +75,7 @@
 		SELECT
 		       CM_NO
 		     , USER_NAME
+		     , USER_ID
 		     , CMCG_NAME
 		     , CM_TITLE
 		     , CM_CONTENT

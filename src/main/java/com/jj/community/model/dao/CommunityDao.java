@@ -176,7 +176,8 @@ public class CommunityDao {
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				c = new Community(rset.getInt("cm_no"),
-								  rset.getString("user_no"),
+								  rset.getString("user_name"),
+								  rset.getString("user_id"),
 								  rset.getString("cmcg_name"),
 								  rset.getString("cm_title"),
 								  rset.getString("cm_content"),
@@ -192,7 +193,6 @@ public class CommunityDao {
 			close(pstmt);
 		}
 		
-		System.out.println(c);
 		return c;			
 		
 	}
