@@ -52,7 +52,7 @@
                 <% } %>
             </div>
             <div class="logo-area">
-                <img src="${pageContext.request.contextPath}/resources/image/logo.png" alt="logo" width="100">
+                <a href="<%= contextPath%>"><img src="${pageContext.request.contextPath}/resources/image/logo.png" alt="logo" width="100"></a>
             </div>
             <ul class="main-menu-area">
                 <li><a href="">강의조회</a></li>

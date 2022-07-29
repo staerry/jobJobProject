@@ -47,7 +47,7 @@
         <td>
           <div class="container">                      
               <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" style="background: #6363FF;" data-toggle="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" style="background: #6363FF; border: none;" data-toggle="dropdown">
                   최신순
                 </button>
                 <div class="dropdown-menu">
