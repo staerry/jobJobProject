@@ -62,7 +62,7 @@
             <input type="hidden" name="userName" value="<%=userName%>">
             <input type="hidden" name="userId" value="<%=userId%>">
             <input type="hidden" name="userPwd" value="<%=userPwd%>">
-            <input type="hidden" name="userPhone" value="<%=userId%>">
+            <input type="hidden" name="userPhone" value="<%=userPhone%>">
 
             <div class="checkbox-group" align="left">
 
@@ -96,16 +96,6 @@
         </div>
     </form>
     
-    
-    <!-- <form action="<%= contextPath %>/insert.me" method="post" id="userInfo">
-    	<input type="hidden" name="userName" value="userName">
-    	<input type="hidden" name="userId" value="userId">
-    	<input type="hidden" name="userPwd" value="userPwd">
-    	<input type="hidden" name="userPhone" value="userPhone">
-    	<!-- action="insert시키는 servleturl매핑값" -->
-    	<!-- input type="hidden" name="" value="이전페이지에서넘어온값" -->
-    </form> -->
-    
     <script>
     
     
@@ -125,39 +115,22 @@
 	    });
     
     	
-    	// function enrollSuccess(){
-    	// 	// 전체동의 or check2랑 check3 동의 되면 
-    	// 	// => 가입완료 alert 뜨고 메인페이지로 이동
-    	// 	if($("#checkAll").is(".checked") == true 
-    	// 			|| ($("#check2").is(":checked") == true && $("#check3").is(":checked") == true )){
-    			
-    	// 		$(".outer :submit").removeAttr("disabled");
-    	// 		alert("가입성공!");
-    	// 		$("#userInfo").submit();
-    			
-    	// 	}else if($("#check2").is(":checked") == false || $("#check3").is(":checked") == false ){
-    	// 		alert("동의해주세요!");
-    	// 	}
-    	// }
-    	
-    	
-    	
-    		$(function(){
-    			$("#userInfo :checkbox").change(function(){
-    				let flag = true;
+   		$(function(){
+   			$("#userInfo :checkbox").change(function(){
+   				let flag = true;
 
-                    $(".requiredCheck").each(function(){
-                        if(!$(this).prop("checked")){
-                            flag = false;
-                        }
-                    })
-                    if(flag == false){ // 체크 안됨 => 가입 안됨, disablaed 유지
-                        $('button').attr('disabled', 'disabled');
-                    }else{ // 체크 됨 => 가입 성공, disabled 풀기
-                         $('button').removeAttr("disabled");
-                    }
-    			})
-    		})
+                   $(".requiredCheck").each(function(){
+                       if(!$(this).prop("checked")){
+                           flag = false;
+                       }
+                   })
+                   if(flag == false){ // 체크 안됨 => 가입 안됨, disablaed 유지
+                       $('button').attr('disabled', 'disabled');
+                   }else{ // 체크 됨 => 가입 성공, disabled 풀기
+                        $('button').removeAttr("disabled");
+                   }
+   			})
+   		})
     	
 
 

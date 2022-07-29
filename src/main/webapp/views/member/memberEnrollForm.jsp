@@ -59,25 +59,25 @@
     
                     <tr>
                         <td></td>
-                        <td><input type="text" name="userId" maxlength="20" placeholder="이메일 주소 입력" required></td>
+                        <td><input type="text" name="userId" maxlength="50" placeholder="이메일 주소 입력" required></td>
                         <td><button type="button" onclick="idCheck();">중복확인</button></td>
                     </tr>
     
                     <tr>
                         <td></td>
-                        <td><input type="password" name="userPwd" maxlength="15" placeholder="비밀번호 입력" required></td>
+                        <td><input type="password" name="userPwd" maxlength="20" placeholder="비밀번호 입력" required></td>
                         <td></td>
                     </tr>
     
                     <tr>
                         <td></td>
-                        <td><input type="password" maxlength="15" placeholder="비밀번호 재입력" required></td>
+                        <td><input type="password" maxlength="20" placeholder="비밀번호 재입력" required></td>
                         <td></td>
                     </tr>
     
                     <tr>
                         <td></td>
-                        <td><input type="text" name="userPhone" placeholder="핸드폰번호 입력(-포함해서 입력)" required></td>
+                        <td><input type="text" name="userPhone" maxlength="13" placeholder="핸드폰번호 입력(-포함해서 입력)" required></td>
                         <td></td>
                     </tr>
                  
