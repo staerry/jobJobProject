@@ -230,6 +230,7 @@ public class AdminService2 {
 	 * @param name 탈퇴처리할 회원명
 	 * @param id 탈퇴처리할 회원아이디
 	 * @return 탈퇴결과값
+	 * @author SJW
 	 */
 	public int withdrawalStu(String name, String id) {
 		Connection conn = getConnection();
@@ -277,6 +278,65 @@ public class AdminService2 {
 		return m;
 	}
 	
+	/**
+	 * 멘토의 등급과 카테고리를 바꿔주는 메소드
+	 * @param no 바꿀멘토번호
+	 * @param grade 변경할등급
+	 * @param cate 변경할 카테고리
+	 * @return 결과값
+	 * @author SJW
+	 */
+	public int upMenCate(int no,int grade,int cate) {
+		Connection conn = getConnection();
+		int result = new AdminDao2().upMenCate(conn,no,grade,cate);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	/**
+	 * 멘토를 회원탈퇴처리하는 메소드
+	 * @param no 회원탈퇴처리할 멤버번호
+	 * @return 탈퇴결과값
+	 * @author SJW
+	 */
+	public int withdrawalMen(int no) {
+		Connection conn = getConnection();
+		int result = new AdminDao2().withdrawalMen(conn,no);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	/**
+	 * 탈퇴한 수강생을 다시 복구하는 메소드
+	 * @param name 복구처리할 회원명
+	 * @param id 복구처리할 회원아이디
+	 * @return 복구결과값
+	 * @author SJW
+	 */
+	public int restoreMen(int no) {
+		Connection conn = getConnection();
+		int result1 = new AdminDao2().restoreMen1(conn,no);
+		int result2 = new AdminDao2().restoreMen2(conn,no);
+		
+		if(result1*result2>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result1*result2;
+	}
 	
 	
 	

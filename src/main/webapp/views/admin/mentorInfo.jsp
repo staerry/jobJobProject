@@ -195,7 +195,7 @@
 											<button type="button" class="button1">수정</button>
 											<button type="button" class="outbutton">탈퇴</button>
 										<%}else{ %>
-											<button type="button" id="searchbtn">복구</button>
+											<button type="button" id="searchbtn" class="restore">복구</button>
 										<%} %>
 									</td>
 								</tr>
@@ -306,6 +306,20 @@
 		
 		$('.cancel').click(function(){
 			$('.detailInfo').css('display','none')
+		})
+		
+		$('.outbutton').click(function(){
+			if(confirm($(this).parent().siblings('.idtext').text()+'님을 탈퇴처리 하시겠습니까?')){
+				const $no = $(this).parent().siblings('.notext').text()
+				location.href="<%=request.getContextPath()%>/withdrawalMen.up?no="+$no
+			}
+		})
+		
+		$('.restore').click(function(){
+			if(confirm($(this).parent().siblings('.idtext').text()+'님을 다시 복구하시겠습니까?')){
+				const $no = $(this).parent().siblings('.notext').text()
+				location.href="<%=request.getContextPath()%>/restoreMen.up?no="+$no
+			}
 		})
 		
 	</script>

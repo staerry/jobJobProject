@@ -605,7 +605,79 @@ public class AdminDao2 {
 		return m;
 		
 	}
+	
+	public int upMenCate(Connection conn,int no,int grade,int cate) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("upMenCate");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cate);
+			pstmt.setInt(2, grade);
+			pstmt.setInt(3, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int withdrawalMen(Connection conn,int no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("withdrawalMen");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int restoreMen1(Connection conn,int no) {
+		int result1 = 0;
+		PreparedStatement pstmt = null;
+		String sql1 = prop.getProperty("restoreMen1");
+		
+		try {
+			pstmt=conn.prepareStatement(sql1);
+			pstmt.setInt(1, no);
+			result1 = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result1;
+	}
 
+	public int restoreMen2(Connection conn,int no) {
+		int result1 = 0;
+		PreparedStatement pstmt = null;
+		String sql1 = prop.getProperty("restoreMen2");
+		
+		try {
+			pstmt=conn.prepareStatement(sql1);
+			pstmt.setInt(1, no);
+			result1 = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result1;
+	}
 
 	
 	

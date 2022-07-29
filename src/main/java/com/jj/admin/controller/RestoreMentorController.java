@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.jj.admin.model.service.AdminService2;
 
 /**
- * Servlet implementation class MentorUpdateController
+ * Servlet implementation class WithdrawalMentorController
  */
-@WebServlet("/mentorupdate.up")
-public class MentorUpdateController extends HttpServlet {
+@WebServlet("/restoreMen.up")
+public class RestoreMentorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MentorUpdateController() {
+    public RestoreMentorController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,20 +28,18 @@ public class MentorUpdateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String prevNo = request.getParameter("mNo");
-		int grade = Integer.parseInt(request.getParameter("grade"));
-		int cate = Integer.parseInt(request.getParameter("cate"));
+		String prevNo = request.getParameter("no");
 		int startNo = prevNo.indexOf("(");
 		int endNo = prevNo.lastIndexOf(")");
-		int no = Integer.parseInt(prevNo.substring(startNo+1, endNo)); 
+		int no = Integer.parseInt(prevNo.substring(startNo+1, endNo));
 		
-		int result = new AdminService2().upMenCate(no,grade,cate);
-		
+		int result = new AdminService2().restoreMen(no);
+
 		if(result>0) {
-			request.getSession().setAttribute("alertMsg", "회원수정을 완료했습니다.");
+			request.getSession().setAttribute("alertMsg", "회원복구에 성공했습니다.");
 			response.sendRedirect(request.getContextPath()+"/mentorInfo.li?p=1");
 		}else {
-			request.getSession().setAttribute("alertMsg", "회원수정에 실패했습니다.");
+			request.getSession().setAttribute("alertMsg", "회원복구에 실패했습니다.");
 			response.sendRedirect(request.getContextPath()+"/mentorInfo.li?p=1");
 		}
 	}
