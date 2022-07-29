@@ -12,18 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.jj.admin.model.service.AdminService;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.community.model.vo.Community;
+import com.jj.mtm.model.vo.Mtm;
 
 /**
  * Servlet implementation class mentorClassManagementPage
  */
-@WebServlet("/postListView.ad")
-public class postManagementPage extends HttpServlet {
+@WebServlet("/postStudyListView.ad")
+public class PostStudyManagementPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public postManagementPage() {
+    public PostStudyManagementPage() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +33,24 @@ public class postManagementPage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/admin/postManagement.jsp").forward(request, response);
+		int listCount = new AdminService().selectCommunityStudyCount();
+		int currentPage = Integer.parseInt(request.getParameter("cpage"));
+		int pageLimit = 5;
+		int boardLimit = 10;
+		int maxPage = (int)Math.ceil((double)listCount / boardLimit);
+		int startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
+		int endPage = startPage + pageLimit - 1;
+		
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		PageInfo pageInfo = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
+		ArrayList<Community> list = new AdminService().selectCommunityStudyList(pageInfo);
+		
+		request.setAttribute("pageInfo", pageInfo);
+		request.setAttribute("study", list);
+		request.getRequestDispatcher("views/admin/postStudyManagement.jsp").forward(request, response);
 	}
 
 	/**

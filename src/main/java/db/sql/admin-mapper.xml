@@ -391,6 +391,100 @@ SELECT *
 	 WHERE REVIEW_NO = ?
 </entry>
 
+<entry key="selectCommunityWorkCount">
+	SELECT COUNT(*) COUNT
+	  FROM COMMUNITY
+	 WHERE CMCG_NO = 1
+</entry>
+
+<entry key="selectCommunityStudyCount">
+	SELECT COUNT(*) COUNT
+	  FROM COMMUNITY
+	 WHERE CMCG_NO = 3
+</entry>
+
+<entry key="selectCommunityWorryCount">
+	SELECT COUNT(*) COUNT
+	  FROM COMMUNITY
+	 WHERE CMCG_NO = 2
+</entry>
+
+<entry key="selectCommunityWorkList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT CM_NO
+	             , USER_NAME
+	             , CMCG_NAME
+	             , CM_TITLE
+	             , CM_CONTENT
+	             , CM_ENROLLDATE
+	             , CM_COUNT
+	             , CM_LIKE_COUNT
+	          FROM COMMUNITY C
+	          JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+	          JOIN COMMUNITY_CATEGORY CC ON (C.CMCG_NO = CC.CMCG_NO)
+	         WHERE C.CMCG_NO = 1
+	         ORDER BY CM_NO DESC
+	           )A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="selectCommunityStudyList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT CM_NO
+	             , USER_NAME
+	             , CMCG_NAME
+	             , CM_TITLE
+	             , CM_CONTENT
+	             , CM_ENROLLDATE
+	             , CM_COUNT
+	             , CM_LIKE_COUNT
+	          FROM COMMUNITY C
+	          JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+	          JOIN COMMUNITY_CATEGORY CC ON (C.CMCG_NO = CC.CMCG_NO)
+	         WHERE C.CMCG_NO = 3
+	         ORDER BY CM_NO DESC
+	           )A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="selectCommunityWorryList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT CM_NO
+	             , USER_NAME
+	             , CMCG_NAME
+	             , CM_TITLE
+	             , CM_CONTENT
+	             , CM_ENROLLDATE
+	             , CM_COUNT
+	             , CM_LIKE_COUNT
+	          FROM COMMUNITY C
+	          JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+	          JOIN COMMUNITY_CATEGORY CC ON (C.CMCG_NO = CC.CMCG_NO)
+	         WHERE C.CMCG_NO = 2
+	         ORDER BY CM_NO DESC
+	           )A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="deletePost">
+	DELETE
+	  FROM COMMUNITY
+	 WHERE CMCG_NO = ?
+	   AND CM_NO = ?
+</entry>
+
 
 
 

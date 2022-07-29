@@ -569,8 +569,122 @@ public class AdminService {
 		
 		return result;
 	}
-
 	
+	/**
+	 * 직무질문 카테고리 게시글 총 갯수 확인요청을 처리해주는 메소드
+	 * @return 게시글 총 갯수
+	 * @author younheonchoi 
+	 */
+	public int selectCommunityWorkCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectCommunityWorkCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 스터디 카테고리 게시글 총 갯수 확인요청을 처리해주는 메소드
+	 * @return 게시글 총 갯수
+	 * @author younheonchoi 
+	 */
+	public int selectCommunityStudyCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectCommunityStudyCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 고민상담 카테고리 게시글 총 갯수 확인요청을 처리해주는 메소드
+	 * @return 게시글 총 갯수
+	 * @author younheonchoi 
+	 */
+	public int selectCommunityWorryCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectCommunityWorryCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 직무질문 게시글 리스트 조회 요청을 처리해주는 메소드
+	 * @param pageInfo : 페이징 버튼 객체
+	 * @return 직무질문 게시글 리스트
+	 * @author younheonchoi 
+	 */
+	public ArrayList<Community> selectCommunityWorkList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<Community> list = new AdminDao().selectCommunityWorkList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	/**
+	 * 스터디 게시글 리스트 조회 요청을 처리해주는 메소드
+	 * @param pageInfo : 페이징 버튼 객체
+	 * @return 스터디 게시글 리스트
+	 * @author younheonchoi 
+	 */
+	public ArrayList<Community> selectCommunityStudyList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<Community> list = new AdminDao().selectCommunityStudyList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	/**
+	 * 고민상담 게시글 리스트 조회 요청을 처리해주는 메소드
+	 * @param pageInfo : 페이징 버튼 객체
+	 * @return 고민상담 게시글 리스트
+	 * @author younheonchoi 
+	 */
+	public ArrayList<Community> selectCommunityWorryList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<Community> list = new AdminDao().selectCommunityWorryList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	/**
+	 * 게시물 삭제 요청을 처리해주는 메소드
+	 * @param postNo : 삭제할 게시글 번호
+	 * @param postCategory : 삭제할 게시글 카테고리 번호
+	 * @return 업데이트된 행 갯수
+	 * @author younheonchoi 
+	 */
+	public int deletePost(int postNo, int postCategory) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().deletePost(conn, postNo, postCategory);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 	
 	
 	

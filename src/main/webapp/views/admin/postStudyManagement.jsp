@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, com.jj.community.model.vo.Community, com.jj.common.model.vo.PageInfo" %>
 <%
-	ArrayList<Community> list = (ArrayList<Community>)request.getAttribute("Community");
+	ArrayList<Community> list = (ArrayList<Community>)request.getAttribute("study");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 %>
 <!DOCTYPE html>
@@ -36,7 +36,7 @@
 		    		<label for="work">직무질문</label>
 				</li>
 				<li>
-					<input type="radio" name="category" id="study" value="3">
+					<input type="radio" name="category" id="study" value="3" checked>
 		    		<label for="study">스터디</label>
 				</li>
 				<li>
@@ -46,25 +46,19 @@
 			</ul>
 		    
 		    <script>
-		    	$(function(){
-		    		$("#work").click(function(){
-		    			$("#work").attr('checked', true);
-		    			<% category = "1"; %>
-		    			location.href='<%= contextPath %>/postListView.ad?cpage=1&no=<%= category %>';
-		    		})
-		    		
-		    		$("#study").click(function(){
-		    			$("#study").attr('checked', true);
-		    			<% category = "3"; %>
-		    			location.href='<%= contextPath %>/postListView.ad?cpage=1&no=<%= category %>';
-		    		})
-		    		
-		    		$("#worry").click(function(){
-		    			$("#worry").attr('checked', true);
-		    			<% category = "2"; %>
-		    			location.href='<%= contextPath %>/postListView.ad?cpage=1&no=<%= category %>';
-		    		})
-		    	})
+				$(function(){
+					$("#work").click(function(){
+						location.href='<%= contextPath %>/postWorkListView.ad?cpage=1';
+					})
+					
+					$("#study").click(function(){
+						location.href='<%= contextPath %>/postStudyListView.ad?cpage=1';
+					})
+					
+					$("#worry").click(function(){
+						location.href='<%= contextPath %>/postWorryListView.ad?cpage=1';
+					})
+				})
 		    </script>
 		    
 		    <table class="table table-bordered table-hover admin-table">
@@ -82,32 +76,45 @@
                 	<% for(Community i : list){ %>
                     <tr>
                         <td><%= i.getCommNo() %></td>
-                        <td><%= i.getCommTitle() %></td>
+                        <td class="title"><%= i.getCommTitle() %></td>
                         <td><%= i.getCount() %></td>
                         <td><%= i.getCommWriter() %></td>
                         <td><%= i.getCreateDate() %></td>
-                        <td><button class="btn btn-sm btn-danger">삭제</button></td>
+                        <td><button class="btn btn-sm btn-danger" onclick="location.href='<%= contextPath %>/deletePost.ad?no=<%= i.getCommNo() %>&category=3'">삭제</button></td>
                     </tr>
-                    <tr>
+                    <tr style="display : none; background-color : rgb(244, 244, 244);">
                     	<td colspan="6"><%= i.getCommContent() %></td>
                     </tr>
                     <% } %>
                 </tbody>
             </table>
+            
+            <script>
+            	$(function(){
+            		$(".title").click(function(){
+            			if($(this).parent().next().css("display") == "none"){
+            				$(this).parent().next().css("display", "");
+            			}else{
+            				$(this).parent().next().css("display", "none");
+            			}
+            			
+            		})
+            	})
+            </script>
 
             <div class="paging-area">
             	<% if(pageInfo.getCurrentPage() != 1){ %>
-                	<a href="<%= contextPath %>/postListView.ad?cpage=<%= pageInfo.getCurrentPage() - 1 %>&no=<%= category %>">&lt</a>
+                	<a href="<%= contextPath %>/postStudyListView.ad?cpage=<%= pageInfo.getCurrentPage() - 1 %>">&lt</a>
                 <% } %>
                 <% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++){ %>
                 	<% if(pageInfo.getCurrentPage() == i){ %>
-                		<a href="<%= contextPath %>/postListView.ad?cpage=<%= i %>&no=<%= category %>" style="background-color : gray;"><%= i %></a>
+                		<a href="<%= contextPath %>/postStudyListView.ad?cpage=<%= i %>" style="background-color : gray;"><%= i %></a>
                 	<% } else { %>
-                		<a href="<%= contextPath %>/postListView.ad?cpage=<%= i %>&no=<%= category %>"><%= i %></a>
+                		<a href="<%= contextPath %>/postStudyListView.ad?cpage=<%= i %>"><%= i %></a>
                 	<% } %>
                 <% } %>
                 <% if(pageInfo.getCurrentPage() != pageInfo.getMaxPage()){ %>
-                	<a href="<%= contextPath %>/postListView.ad?cpage=<%= pageInfo.getCurrentPage() + 1 %>&no=<%= category %>">&gt</a>
+                	<a href="<%= contextPath %>/postStudyListView.ad?cpage=<%= pageInfo.getCurrentPage() + 1 %>">&gt</a>
             	<% } %>
             </div>
 		</div>
