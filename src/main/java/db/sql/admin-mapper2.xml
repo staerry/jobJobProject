@@ -274,5 +274,22 @@ SELECT COUNT(*) AS "LISTCOUNT"
    	AND USER_ID = ?
 </entry>
 
+<entry key="mentorDetailInfo">
+	SELECT 
+	       USER_NO
+	     , CLCG_NO
+	     , MT_COMPANY
+	     , MT_JOB
+	     , MT_GRADE
+	     , MT_GRANT
+	     , MT_ENROLLDATE
+	     , EMPCARD_PATH
+	     , EMPCARD_ORIGINNAME
+	     , IDCARD_PATH
+	     , IDCARD_ORIGINNAME
+	  FROM MENTOR
+	 WHERE USER_NO = ?
+</entry>
+
 
 </properties>
