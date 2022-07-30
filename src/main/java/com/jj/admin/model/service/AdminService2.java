@@ -129,6 +129,21 @@ public class AdminService2 {
 	}
 	
 	/**
+	 * 모든회원의 수를세는 메소드
+	 * @param search 사용자가 입력한 키워드
+	 * @return 멘토수
+	 * @author SJW
+	 */
+	public int selectAllUserCount(String search) {
+		Connection conn = getConnection();
+		int listCount = new AdminDao2().selectAllUserCount(conn,search);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	
+	/**
 	 * 활동중인 수강생리스트를 페이지에 맞춰서 찾는메소드
 	 * @param pi 페이지정보를 담고있는 객체
 	 * @return 페이지에 맞는 활동중인 수강생 리스트

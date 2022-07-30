@@ -43,20 +43,20 @@
 		        <div id="formwraping">
 		            <form action="" style="">
 		                &nbsp;
-		                <input type="checkbox" id="check1"> 
+		                <input type="checkbox" id="check1" checked> 
 		                <label for="check1">수강생</label>
 		                &nbsp;
-		                <input type="checkbox" id="check2"> 
+		                <input type="checkbox" id="check2" checked> 
 		                <label for="check2">현직자/강의자</label> 
 		                &nbsp;&nbsp;
-		                <input type="text" style="line-height: 30px; width: 200px;" id="searchclick" placeholder="   이름또는 회원번호로 검색">
+		                <input type="text" style="line-height: 30px; width: 200px; text-align:center" id="searchclick" placeholder="이름또는 회원번호로 검색">
 		                <label for="searchclick"><button id="searchbtn" style="line-height: 30px;" class="btnpurple">검색</button></label>
 		            </form>
 		        </div>
 		    </div>
 			
 		    <div style="position:relative ;">
-		        <div class="detailInfo positionab">
+		        <div class="detailInfo positionab" style="display:none">
 		        	<div class="close close2"></div>
             		<br><br>
 		            &nbsp;&nbsp;&nbsp;&nbsp;<h3 style="text-align:center;">xxx님의 결제내역</h3>

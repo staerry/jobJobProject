@@ -248,6 +248,32 @@ public class AdminDao2 {
 		return listCount;
 	}
 	
+	public int selectAllUserCount(Connection conn,String search) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAllUserCount");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, a);
+			pstmt.setString(2, a);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
 	public ArrayList<Member> studentInfo(Connection conn,PageInfo pi,String search){
 		ArrayList<Member> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
