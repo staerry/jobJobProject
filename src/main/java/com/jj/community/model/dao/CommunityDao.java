@@ -265,4 +265,107 @@ public class CommunityDao {
 		
 		return list;
 	}
+	
+	public int insertReply(Connection conn, Reply r) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReply");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getCmNo());
+			pstmt.setString(2, r.getUserNo());
+			pstmt.setString(3, r.getReplyContent());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public ArrayList<Community> selectListByLike(Connection conn, PageInfo pi, int category) {
+		ArrayList<Community> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectListByLike");	// 미완성된 sql
+			
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, category);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Community(rset.getInt("cm_no"),
+									   rset.getString("user_name"),
+									   rset.getString("cmcg_name"),
+									   rset.getString("cm_title"),
+									   rset.getString("cm_content"),
+									   rset.getDate("cm_enrolldate"),
+									   rset.getInt("cm_count"),
+									   rset.getInt("cm_like_count"),
+									   rset.getInt("replycount")
+						));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+	
+	public ArrayList<Community> selectListByReply(Connection conn, PageInfo pi, int category) {
+		ArrayList<Community> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectListByReply");	// 미완성된 sql
+			
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, category);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Community(rset.getInt("cm_no"),
+									   rset.getString("user_name"),
+									   rset.getString("cmcg_name"),
+									   rset.getString("cm_title"),
+									   rset.getString("cm_content"),
+									   rset.getDate("cm_enrolldate"),
+									   rset.getInt("cm_count"),
+									   rset.getInt("cm_like_count"),
+									   rset.getInt("replycount")
+						));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
 }

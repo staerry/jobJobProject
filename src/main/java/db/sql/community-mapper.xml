@@ -115,5 +115,80 @@
 		 ORDER
 		    BY REPLY_NO DESC
 	</entry>	
+	
+	<entry key="insertReply">
+		INSERT
+		  INTO REPLY
+		  ( REPLY_NO
+		  , CM_NO
+		  , USER_NO
+		  , REPLY_CONTENT
+		  )
+		  VALUES
+		  ( SEQ_REP.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  )
+	</entry>
+	
+		<entry key="selectListByLike">
+		SELECT * 
+		  FROM (
+		  		 SELECT ROWNUM AS RNUM, A.* 
+		  		   FROM (
+   						SELECT 
+						       CM_NO
+						     , USER_NAME
+						     , CMCG_NAME
+						     , CM_TITLE
+						     , CM_CONTENT
+						     , CM_ENROLLDATE
+						     , CM_COUNT
+						     , CM_LIKE_COUNT
+						     , (SELECT COUNT(*)
+                                  FROM REPLY R
+                                 WHERE R.CM_NO = C.CM_NO) AS REPLYCOUNT
+						  FROM COMMUNITY C
+						  JOIN USERINFO USING (USER_NO)
+						  JOIN COMMUNITY_CATEGORY USING (CMCG_NO)
+						 WHERE 
+						       CMCG_NO = ?
+						 ORDER
+						    BY CM_LIKE_COUNT DESC
+					    ) A
+		  		 )
+	  		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+		<entry key="selectListByReply">
+		SELECT * 
+		  FROM (
+		  		 SELECT ROWNUM AS RNUM, A.* 
+		  		   FROM (
+   						SELECT 
+						       CM_NO
+						     , USER_NAME
+						     , CMCG_NAME
+						     , CM_TITLE
+						     , CM_CONTENT
+						     , CM_ENROLLDATE
+						     , CM_COUNT
+						     , CM_LIKE_COUNT
+						     , (SELECT COUNT(*)
+                                  FROM REPLY R
+                                 WHERE R.CM_NO = C.CM_NO) AS REPLYCOUNT
+						  FROM COMMUNITY C
+						  JOIN USERINFO USING (USER_NO)
+						  JOIN COMMUNITY_CATEGORY USING (CMCG_NO)
+						 WHERE 
+						       CMCG_NO = ?
+						 ORDER
+						    BY CM_COUNT DESC
+					    ) A
+		  		 )
+	  		 WHERE RNUM BETWEEN ? AND ?
+		  		 
+	</entry>
 
 </properties>

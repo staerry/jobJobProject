@@ -47,20 +47,31 @@
         <div class="community-list-area">
             <!-- 게시판 소개 -->
             <div class="community-list-header">
-                <h3><%= list.get(0).getCommCategory() %></h3>
+            <% 
+            	String categoryName = "";
+	            switch(categoryNo) {
+		            case 1: categoryName = "직무질문"; break;
+		            case 2: categoryName = "고민상담"; break;
+		            case 3: categoryName = "스터디"; break;}
+            %>            
+                <h3><%= categoryName %></h3>
                 <div class="community-search-bar">
                     <input type="search" name="searchKeyword" id="search-keyword" placeholder="궁금한 질문을 검색해 보세요!">
                     <button onclick=""><i class="far fa-search"></i>&nbsp;검색</button>
                 </div>
             </div>
+            
+            <script>
+           	$("community-list-header > h3") 
+            </script>
 
             <!-- 게시물 정렬 및 글쓰기 버튼-->
             <div class="community-sorting">
                 <span class="community-sorting-order">
                     <ul class="community-sorting-standard"> 
-                        <li onclick="">• 최신 순</li>
-                        <li onclick="">• 좋아요 순</li>
-                        <li onclick="">• 조회수 순</li>
+                        <li onclick="location.href='<%= contextPath %>/list.co?category=<%= categoryNo %>&sort=no&cpage=1'">• 최신 순</li>
+                        <li onclick="location.href='<%= contextPath %>/list.co?category=<%= categoryNo %>&sort=replyCnt&cpage=1'">• 조회수 순</li>
+						<li onclick="location.href='<%= contextPath %>/list.co?category=<%= categoryNo %>&sort=likeCnt&cpage=1'">• 좋아요 순</li>
                     </ul>                
                 </span>
 
@@ -116,15 +127,15 @@
             <div class="paging-area">
                 <ul class="pagination">
                 	<% if(currentPage != 1) { %>	<!-- 보고 있는 페이지가 1번 페이지일 때 이전 버튼선택 X -->
-                    	<li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage-1 %>">&lt;</a></li>
+                    	<li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage-1 %>">&lt;</a></li>
 	                <% } %>
 	                
 	                <% for(int p=startPage; p<=endPage; p++) { %>
-	                    <li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/list.co?category=<%= categoryNo %>&cpage=<%= p %>"><%= p %></a></li>
+	                    <li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= p %>"><%= p %></a></li>
 	                <% } %>
 	                
 	                <% if(currentPage != maxPage) { %>    
-	                    <li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage+1 %>">&gt;</a></li>
+	                    <li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage+1 %>">&gt;</a></li>
 	                <% } %>    
                   </ul>
             </div>

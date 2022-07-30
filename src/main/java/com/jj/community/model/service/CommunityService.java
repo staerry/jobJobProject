@@ -93,6 +93,7 @@ public class CommunityService {
 		}else {
 			rollback(conn);
 		}
+		close(conn);
 		return result;
 	}
 	
@@ -102,5 +103,31 @@ public class CommunityService {
 		close(conn);
 		return list;
 		
+	}
+	
+	public int insertReply(Reply r) {
+		Connection conn = getConnection();
+		int result = new CommunityDao().insertReply(conn, r);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public ArrayList<Community> selectListByLike(PageInfo pi, int category) {
+		Connection conn = getConnection();
+		ArrayList<Community> list = new CommunityDao().selectListByLike(conn, pi, category);
+		close(conn);
+		return list;
+	}
+	
+	public ArrayList<Community> selectListByReply(PageInfo pi, int category) {
+		Connection conn = getConnection();
+		ArrayList<Community> list = new CommunityDao().selectListByReply(conn, pi, category);
+		close(conn);
+		return list;	
 	}
 }
