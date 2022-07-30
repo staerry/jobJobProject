@@ -53,7 +53,15 @@
 		                        <td><%= i.getFaqEnrolldate() %></td>
 		                        <td>
 		                        	<button class="btn btn-sm btn-warning" onclick="location.href='<%= contextPath %>/faqModifyView.ad?no=<%= i.getFaqNo() %>'">수정</button>
-		                        	<button class="btn btn-sm btn-danger" onclick="location.href='<%= contextPath %>/faqDelete.ad?no=<%= i.getFaqNo() %>'">삭제</button>
+		                        	<button class="btn btn-sm btn-danger" onclick="deleteContent(<%= i.getFaqNo() %>);">삭제</button>
+		                        	
+		                        	<script>
+							            function deleteContent(num){
+							            	if(confirm("정말 삭제 하시겠습니끼?")){
+							            		location.href='<%= contextPath %>/faqDelete.ad?no=' + num;
+							            	}
+							            }
+		                    		</script>
 		                        </td>
 		                    </tr>
 		                    <tr style="display : none; background-color : rgb(244, 244, 244);" class="faq-content">

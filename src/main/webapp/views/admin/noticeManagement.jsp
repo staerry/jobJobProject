@@ -46,8 +46,16 @@
 		                        <td class="notice-title"><%= i.getNoticeTitle() %></td>
 		                        <td><%= i.getNoticeEnrolldate() %></td>
 		                        <td>
-		                        	<button class="btn btn-sm btn-warning" onclick="location.href='<%= contextPath %>/noticeModifyView.ad?no=<%= i.getNoticeNo() %>'">수정</button>
-		                        	<button class="btn btn-sm btn-danger" onclick="location.href='<%= contextPath %>/noticeDelete.ad?no=<%= i.getNoticeNo() %>'">삭제</button>
+		                        	<button class="btn btn-sm btn-warning" onclick="location.href='<%= contextPath %>/noticeModifyView.ad?no=<%= i.getNoticeNo() %>'">수정</button>            	
+		                        	<button class="btn btn-sm btn-danger" onclick="deleteContent(<%= i.getNoticeNo() %>);">삭제</button>
+		                        
+		                        	<script>
+								        function deleteContent(num){
+								            if(confirm("정말 삭제 하시겠습니끼?")){
+								            	location.href='<%= contextPath %>/noticeDelete.ad?no=' + num;
+								            }
+								        }
+			                    	</script> 
 		                        </td>
 		                    </tr>
 		                    <tr style="display : none; background-color : rgb(244, 244, 244);" class="notice-content">

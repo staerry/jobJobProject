@@ -76,7 +76,17 @@
 	                        <td><%= i.getReviewScore() %></td>
 	                        <td><%= i.getUserNo() %></td>
 	                        <td><%= i.getReviewEnrolldate() %></td>
-	                        <td><button class="btn btn-sm btn-danger" onclick="location.href='<%= contextPath %>/deleteReview.ad?no=<%= i.getReviewNo() %>'">삭제</button></td>
+	                        <td>
+	                        	<button class="btn btn-sm btn-danger" onclick="deleteContent(<%= i.getReviewNo() %>);">삭제</button>
+	                        
+	                        	<script>
+							        function deleteContent(num){
+							            if(confirm("정말 삭제 하시겠습니끼?")){
+							            	location.href='<%= contextPath %>/deleteReview.ad?no=' + num;
+							            }
+							        }
+		                    	</script>              
+	                        </td>
 	                    </tr>
 	                    <% } %>
 	                </tbody>

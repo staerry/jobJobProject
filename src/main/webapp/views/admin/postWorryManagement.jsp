@@ -80,7 +80,17 @@
                         <td><%= i.getCount() %></td>
                         <td><%= i.getCommWriter() %></td>
                         <td><%= i.getCreateDate() %></td>
-                        <td><button class="btn btn-sm btn-danger" onclick="location.href='<%= contextPath %>/deletePost.ad?no=<%= i.getCommNo() %>&category=2'">삭제</button></td>
+                        <td>
+	                        <button class="btn btn-sm btn-danger" onclick="deleteContent(<%= i.getCommNo() %>);">삭제</button>
+	                        
+	                        <script>
+							    function deleteContent(num){
+							        if(confirm("정말 삭제 하시겠습니끼?")){
+							            location.href='<%= contextPath %>/deletePost.ad?no=' + num + '&category=2';
+							        }
+							    }
+		                    </script>
+                        </td>
                     </tr>
                     <tr style="display : none; background-color : rgb(244, 244, 244);">
                     	<td colspan="6"><%= i.getCommContent() %></td>
