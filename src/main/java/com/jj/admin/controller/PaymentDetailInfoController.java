@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.jj.admin.model.service.AdminService2;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.pay.model.vo.Pay;
@@ -43,10 +44,16 @@ public class PaymentDetailInfoController extends HttpServlet {
 		
 		int p = Integer.parseInt(request.getParameter("p"));
 		
-		String prevNo = request.getParameter("prevNo");
+		int no;
+		String prevNo;
+		if(request.getParameter("no")==null) {
+		prevNo = request.getParameter("prevNo");
 		int startNo = prevNo.indexOf("(");
 		int endNo = prevNo.indexOf(")");
-		int no = Integer.parseInt(prevNo.substring(startNo+1, endNo));
+		no = Integer.parseInt(prevNo.substring(startNo+1, endNo));
+		}else {
+		no = Integer.parseInt(request.getParameter("no"));
+		}
 		
 		listCount = new AdminService2().selectPayDetailCount(no);
 		currentPage = p;
@@ -64,6 +71,9 @@ public class PaymentDetailInfoController extends HttpServlet {
 		
 		ArrayList<Pay> list = new ArrayList<>();
 		list = new AdminService2().payDetailInfo(pi,no);
+		//System.out.println(list);
+		response.setContentType("applycation/json; charset=UTF-8");
+		new Gson().toJson(list,response.getWriter());
 	}
 
 	/**

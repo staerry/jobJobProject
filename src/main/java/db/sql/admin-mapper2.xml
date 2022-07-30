@@ -385,11 +385,11 @@ SELECT COUNT(*) AS "LISTCOUNT"
 </entry>
 
 <entry key="payDetailInfo">
-	    SELECT *
+	     SELECT *
 		  FROM (SELECT ROWNUM AS "RNO", A.*
 		          FROM (SELECT 
 		                       PAY_NO
-		                     , USER_NAME
+		                     , P.USER_NO
 		                     , CL_TITLE
 		                     , CP_NAME
 		                     , PAYMENT
@@ -402,7 +402,6 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                         , REFUND_DATE
 		                  FROM PAY P
 	                      JOIN CLASS USING(CL_NO)
-	                      JOIN USERINFO U ON(P.USER_NO=U.USER_NO)
 	                      FULL JOIN ISSUANCECOUPON USING(ISUCP_NO)
 	                      FULL JOIN COUPON C USING(CP_NO)
 		                 WHERE P.USER_NO = ?

@@ -2,6 +2,8 @@ package com.jj.pay.model.vo;
 
 import java.sql.Date;
 
+import com.jj.common.model.vo.PageInfo;
+
 public class Pay {
 	private int payNo;
 	private String userNo;
@@ -15,6 +17,7 @@ public class Pay {
 	private String orderEmail;
 	private Date payDate;
 	private Date refundDate;
+	private PageInfo pi;
 	
 	public Pay() {}
 
@@ -34,6 +37,26 @@ public class Pay {
 		this.orderEmail = orderEmail;
 		this.payDate = payDate;
 		this.refundDate = refundDate;
+	}
+	
+	
+
+	public Pay(int payNo, String userNo, String clNo, String isuCpNo, String payment, String refund, int finalPayment,
+			String orderName, String orderPhone, String orderEmail, Date payDate, Date refundDate, PageInfo pi) {
+		super();
+		this.payNo = payNo;
+		this.userNo = userNo;
+		this.clNo = clNo;
+		this.isuCpNo = isuCpNo;
+		this.payment = payment;
+		this.refund = refund;
+		this.finalPayment = finalPayment;
+		this.orderName = orderName;
+		this.orderPhone = orderPhone;
+		this.orderEmail = orderEmail;
+		this.payDate = payDate;
+		this.refundDate = refundDate;
+		this.pi = pi;
 	}
 
 	public int getPayNo() {
