@@ -107,7 +107,7 @@
                         <!-- 로그인한 회원만 댓글 등록 허용 -->
                             <% if (loginUser != null) { %>
                             <textarea cols="95" rows="3" style="resize:none" id="reply-body"></textarea>
-                            <button id="reply-enroll">댓글 등록</button>
+                            <button id="reply-enroll" onclick="insertReply();">댓글 등록</button>
                             <% } %>
                         </td>
                         
@@ -116,6 +116,34 @@
 						                        
                 </table>
             </div>
+            
+            <script>
+            
+            $(function(){
+            	selectReplyList();
+            	setInterval(selectReplyList, 1000);            	
+            })
+            
+            function insertReply(){
+            	
+            	$.ajax({
+            		url:"<%= contextPath %>/rinsert.co",
+            		data:{
+            			content:$("#reply-body").val(),
+            			contentNo:<%= c.getCommNo() %>
+            		},
+            		type:"post",
+            		success:function(result){
+            			if(result > 0) {
+            				selectReplyList();
+            				$("#reply-body").val("");	// 댓글 작성 완료 시 textarea 초기화
+            			}
+            		},error:function(){
+            			console.log("댓글 작성용 AJAX 통신 실패");
+            		}
+            	})
+            }
+            </script>
 
             <!-- 댓글 목록 영역 -->
             <div class="reply-list-area">
