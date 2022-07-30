@@ -12,6 +12,7 @@ import com.jj.common.model.vo.PageInfo;
 import com.jj.community.model.dao.CommunityDao;
 import com.jj.community.model.vo.Category;
 import com.jj.community.model.vo.Community;
+import com.jj.community.model.vo.Reply;
 
 public class CommunityService {
 	
@@ -93,5 +94,13 @@ public class CommunityService {
 			rollback(conn);
 		}
 		return result;
+	}
+	
+	public ArrayList<Reply> selectReplyList(int contentNo) {
+		Connection conn = getConnection();
+		ArrayList<Reply> list = new CommunityDao().selectReplyList(conn, contentNo);
+		close(conn);
+		return list;
+		
 	}
 }

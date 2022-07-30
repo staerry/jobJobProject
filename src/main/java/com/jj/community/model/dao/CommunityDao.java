@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.community.model.vo.Category;
 import com.jj.community.model.vo.Community;
+import com.jj.community.model.vo.Reply;
 
 public class CommunityDao {
 	
@@ -233,5 +234,35 @@ public class CommunityDao {
 		
 		return result;
 		
+	}
+	
+	public ArrayList<Reply> selectReplyList(Connection conn, int contentNo) {
+		ArrayList<Reply> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReplyList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, contentNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) { 
+				list.add(new Reply(rset.getInt("reply_no"),
+								   rset.getString("cm_no"),
+								   rset.getString("user_name"),
+								   rset.getString("reply_content"),
+								   rset.getString("reply_createdate")
+								   ));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 }

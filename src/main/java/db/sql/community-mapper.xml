@@ -101,6 +101,19 @@
 		  FROM COMMUNITY
 		 WHERE CM_NO = ?
 	</entry>
-	
+
+	<entry key="selectReplyList">
+		SELECT
+		       REPLY_NO
+		     , CM_NO
+		     , USER_NAME
+		     , REPLY_CONTENT
+		     , TO_CHAR(REPLY_ENROLLDATE, 'YY-MM-DD HH:MI') "REPLY_CREATEDATE"
+		  FROM REPLY
+		  JOIN USERINFO USING(USER_NO)
+		 WHERE CM_NO = ?
+		 ORDER
+		    BY REPLY_NO DESC
+	</entry>	
 
 </properties>
