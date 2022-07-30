@@ -5,6 +5,7 @@ import java.util.Date;
 public class Class {
 	private int clNo;
 	private String userNo;
+	private String mtCompany;
 	private String clCategory;
 	private String clTitle;
 	private String clSubtitle;
@@ -33,6 +34,31 @@ public class Class {
 		this.clEnrolldate = clEnrolldate;
 		this.clGrant = clGrant;
 		this.clThumbnailPath = clThumbnailPath;
+	}
+
+	public Class(int clNo, String userNo, String mtCompany, String clCategory, String clTitle, String clSubtitle,
+			String clInfo, String clCurri, int clPrice, Date clEnrolldate, String clGrant, String clThumbnailPath) {
+		super();
+		this.clNo = clNo;
+		this.userNo = userNo;
+		this.mtCompany = mtCompany;
+		this.clCategory = clCategory;
+		this.clTitle = clTitle;
+		this.clSubtitle = clSubtitle;
+		this.clInfo = clInfo;
+		this.clCurri = clCurri;
+		this.clPrice = clPrice;
+		this.clEnrolldate = clEnrolldate;
+		this.clGrant = clGrant;
+		this.clThumbnailPath = clThumbnailPath;
+	}
+	
+	public String getMtCompany() {
+		return mtCompany;
+	}
+
+	public void setMtCompany(String mtCompany) {
+		this.mtCompany = mtCompany;
 	}
 
 	public int getClNo() {
@@ -125,9 +151,9 @@ public class Class {
 
 	@Override
 	public String toString() {
-		return "Class [clNo=" + clNo + ", userNo=" + userNo + ", clCategory=" + clCategory + ", clTitle=" + clTitle
-				+ ", clSubtitle=" + clSubtitle + ", clInfo=" + clInfo + ", clCurri=" + clCurri + ", clPrice=" + clPrice
-				+ ", clEnrolldate=" + clEnrolldate + ", clGrant=" + clGrant + ", clThumbnailPath=" + clThumbnailPath
-				+ "]";
+		return "Class [clNo=" + clNo + ", userNo=" + userNo + ", mtCompany=" + mtCompany + ", clCategory=" + clCategory
+				+ ", clTitle=" + clTitle + ", clSubtitle=" + clSubtitle + ", clInfo=" + clInfo + ", clCurri=" + clCurri
+				+ ", clPrice=" + clPrice + ", clEnrolldate=" + clEnrolldate + ", clGrant=" + clGrant
+				+ ", clThumbnailPath=" + clThumbnailPath + "]";
 	}
 }
