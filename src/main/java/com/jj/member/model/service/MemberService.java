@@ -37,6 +37,19 @@ public class MemberService {
 		return count;		
 	}
 	
+	public int insertMentorToUserInfo(Member m) {
+		Connection conn = getConnection();
+		int result = new MemberDao().insertMentorToUserInfo(conn, m);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
 	/*
 	public int deleteMember(String userId, String userPwd) {
 		Connection conn = getConnection();

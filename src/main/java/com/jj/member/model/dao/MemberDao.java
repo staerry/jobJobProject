@@ -120,6 +120,32 @@ public class MemberDao {
 		}
 		return count;
 	}
+	
+	public int insertMentorToUserInfo(Connection conn, Member m) {
+		// insert문 => DML문 => 처리된 행수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertMentorToUserInfo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, m.getUserId());
+			pstmt.setString(2, m.getUserPwd());
+			pstmt.setString(3, m.getUserName());
+			pstmt.setString(4, m.getUserEmail());
+			pstmt.setString(5, m.getUserPhone());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 
 
 	

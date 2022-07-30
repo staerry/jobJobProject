@@ -56,6 +56,30 @@
 		 WHERE USER_ID = ?
 		   AND USER_PWD = ?  
 	</entry>
+	
+	<entry key="insertMentorToUserInfo">
+		INSERT
+		  INTO USERINFO
+		  (
+		     USER_NO
+		   , USER_ID
+		   , USER_PWD
+		   , USER_NAME
+		   , USER_EMAIL
+		   , USER_PHONE
+		   , USER_DIVISION
+		  )
+		  VALUES
+		  (
+		    SEQ_USER.NEXTVAL
+		  , ?
+		  , ?
+		  , ? 
+		  , ?
+		  , ?
+		  , 2
+		  )
+	</entry>
 
 
 
