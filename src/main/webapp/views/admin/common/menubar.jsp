@@ -108,7 +108,7 @@
                 	location.href="<%= request.getContextPath() %>/stuInfo.li?p=1"; 
                 	break;
                 case 13: 
-                	location.href="<%= request.getContextPath() %>/paymentselect.bo"; 
+                	location.href="<%= request.getContextPath() %>/paymentselect.bo?p=1"; 
                 	break;
                 case 14: 
                 	location.href="<%= request.getContextPath() %>/refundRequest.li"; 

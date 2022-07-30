@@ -9,7 +9,7 @@ public class Pay {
 	private String isuCpNo;
 	private String payment;
 	private String refund;
-	private String finalPayment;
+	private int finalPayment;
 	private String orderName;
 	private String orderPhone;
 	private String orderEmail;
@@ -19,7 +19,7 @@ public class Pay {
 	public Pay() {}
 
 	public Pay(int payNo, String userNo, String clNo, String isuCpNo, String payment, String refund,
-			String finalPayment, String orderName, String orderPhone, String orderEmail, Date payDate,
+			int finalPayment, String orderName, String orderPhone, String orderEmail, Date payDate,
 			Date refundDate) {
 		super();
 		this.payNo = payNo;
@@ -84,11 +84,11 @@ public class Pay {
 		this.refund = refund;
 	}
 
-	public String getFinalPayment() {
+	public int getFinalPayment() {
 		return finalPayment;
 	}
 
-	public void setFinalPayment(String finalPayment) {
+	public void setFinalPayment(int finalPayment) {
 		this.finalPayment = finalPayment;
 	}
 

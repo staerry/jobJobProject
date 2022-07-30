@@ -16,6 +16,7 @@ import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.member.model.vo.Mentor;
 import com.jj.notice.model.vo.Notice;
+import com.jj.pay.model.vo.Pay;
 
 /**
  * @author PC
@@ -129,7 +130,7 @@ public class AdminService2 {
 	}
 	
 	/**
-	 * 모든회원의 수를세는 메소드
+	 * 활동중인 모든회원의 수를세는 메소드
 	 * @param search 사용자가 입력한 키워드
 	 * @return 멘토수
 	 * @author SJW
@@ -137,6 +138,34 @@ public class AdminService2 {
 	public int selectAllUserCount(String search) {
 		Connection conn = getConnection();
 		int listCount = new AdminDao2().selectAllUserCount(conn,search);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 탈퇴한 모든회원의 수를세는 메소드
+	 * @param search 사용자가 입력한 키워드
+	 * @return 멘토수
+	 * @author SJW
+	 */
+	public int outAllUserCount(String search) {
+		Connection conn = getConnection();
+		int listCount = new AdminDao2().outAllUserCount(conn,search);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 회원번호를 가지고 결제내역수를 찾는 메소드
+	 * @param no 회원번호
+	 * @return 결제내역수
+	 * @author SJW
+	 */
+	public int selectPayDetailCount(int no) {
+		Connection conn = getConnection();
+		int listCount = new AdminDao2().selectPayDetailCount(conn,no);
 		close(conn);
 		
 		return listCount;
@@ -351,6 +380,45 @@ public class AdminService2 {
 		}
 		close(conn);
 		return result1*result2;
+	}
+	
+	/**
+	 * 활동중인 모든유저 리스트를 페이지에 맞춰서 찾는메소드
+	 * @param pi 페이지정보를 담고있는 객체
+	 * @return 페이지에 맞는 활동중인 수강생 리스트
+	 * @author SJW
+	 */
+	public ArrayList<Member> selectAllUserList(PageInfo pi,String search){
+		Connection conn = getConnection();
+		ArrayList<Member> list = new AdminDao2().selectAllUserList(conn,pi,search);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 탈퇴한 모든유저 리스트를 페이지에 맞춰서 찾는메소드
+	 * @param pi 페이지정보를 담고있는 객체
+	 * @return 페이지에 맞는 활동중인 수강생 리스트
+	 * @author SJW
+	 */
+	public ArrayList<Member> outAllUserList(PageInfo pi,String search){
+		Connection conn = getConnection();
+		ArrayList<Member> list = new AdminDao2().outAllUserList(conn,pi,search);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 회원번호를 가지고 페이지에 맞는 결제세부내역을 조회하는메소드
+	 * @param pi
+	 * @param no
+	 * @return
+	 */
+	public ArrayList<Pay> payDetailInfo(PageInfo pi,int no){
+		Connection conn = getConnection();
+		ArrayList<Pay> list = new AdminDao2().payDetailInfo(conn,pi,no);
+		close(conn);
+		return list;
 	}
 	
 	

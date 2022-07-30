@@ -171,6 +171,7 @@
 							location.href= "javascript:history.back()";
 							</script>
 						<%}else{ %>
+						 <tbody>
 							<%for(int i=0;i<list.size();i++){ %>
 								<tr>
 									<td class="notext"><%=lpage-i %>(<%=list.get(i).getUserNo() %>)</td>

@@ -31,7 +31,7 @@
 		     <script>
 		    	$(function(){
 		    		$("#selectNo").on('change',function(){
-		    			location.href="<%=request.getContextPath()%>/paymentselect.bo"; 
+		    			location.href="<%=request.getContextPath()%>/paymentselect.bo?p=1"; 
 		    		})
 		    	})
 		    </script>
