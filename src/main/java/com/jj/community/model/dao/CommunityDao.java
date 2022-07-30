@@ -158,9 +158,7 @@ public class CommunityDao {
 		} finally {
 			close(pstmt);
 		}
-		
-		System.out.println(result);
-		
+				
 		return result;
 	}
 
@@ -194,6 +192,46 @@ public class CommunityDao {
 		}
 		
 		return c;			
+		
+	}
+	
+	public int updateCommunity(Connection conn, Community c) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateCommunity");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c.getCommTitle());
+			pstmt.setString(2, c.getCommContent());
+			pstmt.setInt(3, c.getCommNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		System.out.println(result);
+		return result;
+	}
+	
+	public int deleteCommunity(Connection conn, int contentNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteCommunity");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, contentNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 		
 	}
 }

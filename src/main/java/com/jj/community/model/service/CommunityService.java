@@ -63,10 +63,35 @@ public class CommunityService {
 		return result;
 	}
 	
+	// 게시물 조회 메서드
 	public Community selectCommunity(int contentNo) {
 		Connection conn = getConnection();
 		Community c = new CommunityDao().selectCommunity(conn, contentNo);
 		close(conn);
 		return c;
+	}
+	
+	// 게시물 제목, 내용 수정 메서드
+	public int updateCommunity(Community c) {
+		Connection conn = getConnection();
+		int result = new CommunityDao().updateCommunity(conn, c);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int deleteCommunity(int contentNo) {
+		Connection conn = getConnection();
+		int result = new CommunityDao().deleteCommunity(conn, contentNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
 	}
 }

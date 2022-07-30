@@ -88,6 +88,19 @@
 		 WHERE CM_NO = ?     
 	</entry>
 	
+	<entry key="updateCommunity">
+		UPDATE COMMUNITY
+		   SET 
+		       CM_TITLE = ?
+		     , CM_CONTENT = ?
+		 WHERE CM_NO = ?
+	</entry>
+	
+	<entry key="deleteCommunity">
+		DELETE
+		  FROM COMMUNITY
+		 WHERE CM_NO = ?
+	</entry>
 	
 
 </properties>

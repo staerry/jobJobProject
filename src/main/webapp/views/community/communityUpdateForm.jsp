@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.jj.community.model.vo.Community"%>
+    
+<%
+	Community c = (Community)request.getAttribute("community");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +32,8 @@
     <div class="container">
     
         <!-- 게시글 수정 테이블 -->
-        <form action="" id="community-update-form" method="post">
+        <form action="<%= contextPath %>/update.co" id="community-update-form" method="post">
+        	<input type="hidden" name="contentNo" value="<%=c.getCommNo() %>">
             <div class="communtiy-update-area">
 
                 <!-- 게시물 수정 영역 테이블 -->
@@ -39,9 +44,7 @@
                     <tr>
                         <td id="community-category-select">
                             <select name="categorySelect" id="category-community-btn" disabled>
-                                <option value="qna">질문&답변</option>
-                                <option value="counsel">고민상담</option>
-                                <option value="study">스터디</option>
+                            	<option><%= c.getCommCategory() %></option>
                             </select>
                         </td>
                     </tr>
@@ -49,19 +52,19 @@
                         <td id="community-title-mark">제목</td>
                     </tr>
                     <tr>
-                        <td><input type="text" id="community-content-title" name="contentTitle" value="%= 게시글제목 %" required></td>
+                        <td><input type="text" id="community-content-title" name="contentTitle" value="<%= c.getCommTitle() %>" required></td>
                     </tr>
                     <tr>
                         <td id="community-content-mark">내용</td>
                     </tr>
                     <tr>
-                        <td><textarea name="contentBody" id="community-content-body" cols="100" rows="10" required>%= 게시글내용 %</textarea></td>
+                        <td><textarea name="contentBody" id="community-content-body" cols="100" rows="10" required><%= c.getCommContent() %></textarea></td>
                     </tr>
                 </table>
 
                 <!-- 게시글 등록 버튼 영역 -->
                 <div class="community-update-button">
-                        <button type="reset" id="community-content-reset">취소</button>
+                        <button id="community-content-reset" onclick="history.back();">취소</button>
                         <button type="submit" id="community-content-update">수정</button>
                 </div>
             </div>

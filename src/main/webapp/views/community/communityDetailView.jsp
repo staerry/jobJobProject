@@ -41,11 +41,21 @@
                              <!--로그인 + 글 주인 회원에게만 수정, 버튼이 보이게 함 -->
                              <%if(loginUser != null && loginUser.getUserId().equals(c.getCommWriterId())) { %>                                                       	
                              <span class="edit-delete-btn">
-                                <button id="edit-btn"><a href=""><i class="far fa-eraser"></i>&nbsp;수정</a></button>
-                                <button id="delete-btn"><a href=""><i class="far fa-trash"></i>&nbsp;삭제</a></button>                            
-                            </span>
+                                <button id="edit-btn"><a href="<%= contextPath %>/updateForm.co?contentNo=<%=c.getCommNo()%>"><i class="far fa-eraser"></i>&nbsp;수정</a></button>
+                                <button id="delete-btn"><a href="<%= contextPath %>/delete.co?contentNo=<%=c.getCommNo()%>" onclick="return userConfirm();"><i class="far fa-trash"></i>&nbsp;삭제</a></button>                            
+                             </span>
+                             
+	                            <script>
+	                            	function userConfirm() {
+	                            		if(confirm('게시물을 삭제하시겠습니까?')) {
+	                            			return true;
+	                            		}else {
+	                            			return false;
+	                            		}
+	                            	}
+	                            </script>
                             <% } %>
-                            
+                                                        
                         </div>
                     </td>
                 </tr>
