@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.jj.classSelect.model.vo.Class"%>
+    
+<%
+	int listCount = (int)request.getAttribute("listCount");
+	ArrayList<Class> list = (ArrayList<Class>)request.getAttribute("list");
+
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +36,7 @@
 
         <!-- 오른쪽 클래스 목록 영역-->
         <div class="class-list-area">
-            <h2>분야명(조회된 클래스 수)</h2>
+            <h2>전체(<%= listCount %>)</h2>
 
             <!-- 클래스 정렬 버튼 & 박스 영역 -->
             <div class="class-sorting">
@@ -53,80 +59,21 @@
 
             <!-- 클래스 목록 -->
             <div class="class-list">
+            
+            	<% if(!list.isEmpty()) { %>
+            	<% for(Class c : list) { %>
                 <div class="class-cover" onclick="">
-                    <h4> 클래스명</h4>
-                    <span>회원명(강의자)</span><br>
-                    <span>소속회사</span><br>
-                    <img src="썸네일이미지경로" width="200" height="120"><br>
-                    <span id="zzim-count"><i class="bi bi-suit-heart-fill"></i> 찜 횟수</span>
-                    <span>₩ 수강료</span>
+                    <h6><%= c.getClTitle() %></h6>
+                    <span><%= c.getUserNo() %></span><br>
+                    <span><%= c.getMtCompany() %></span><br>
+                    <img src="<%= contextPath %>/<%= c.getClThumbnailPath() %>" width="200" height="120"><br>
+                    <span id="zzim-count"><i class="bi bi-suit-heart-fill"></i> %= 찜 횟수 %</span>
+                    <span><i class="fas fa-won-sign"></i> <%= c.getClPrice() %></span>
                 </div>
-
-                <div class="class-cover" onclick="">
-                    <h4> 클래스명</h4>
-                    <span>회원명(강의자)</span><br>
-                    <span>소속회사</span><br>
-                    <img src="썸네일이미지경로" width="200" height="120"><br>
-                    <span id="zzim-count"><i class="bi bi-suit-heart-fill"></i> 찜 횟수</span>
-                    <span>₩ 수강료</span>
-                </div>
-
-                <div class="class-cover" onclick="">
-                    <h4> 클래스명</h4>
-                    <span>회원명(강의자)</span><br>
-                    <span>소속회사</span><br>
-                    <img src="썸네일이미지경로" width="200" height="120"><br>
-                    <span id="zzim-count"><i class="bi bi-suit-heart-fill"></i> 찜 횟수</span>
-                    <span>₩ 수강료</span>
-                </div>
-
-                <div class="class-cover" onclick="">
-                    <h4> 클래스명</h4>
-                    <span>회원명(강의자)</span><br>
-                    <span>소속회사</span><br>
-                    <img src="썸네일이미지경로" width="200" height="120"><br>
-                    <span id="zzim-count"><i class="bi bi-suit-heart-fill"></i> 찜 횟수</span>
-                    <span>₩ 수강료</span>
-                </div>
-
-                <div class="class-cover" onclick="">
-                    <h4> 클래스명</h4>
-                    <span>회원명(강의자)</span><br>
-                    <span>소속회사</span><br>
-                    <img src="썸네일이미지경로" width="200" height="120"><br>
-                    <span id="zzim-count"><i class="bi bi-suit-heart-fill"></i> 찜 횟수</span>
-                    <span>₩ 수강료</span>
-                </div>
-
-                <div class="class-cover" onclick="">
-                    <h4> 클래스명</h4>
-                    <span>회원명(강의자)</span><br>
-                    <span>소속회사</span><br>
-                    <img src="썸네일이미지경로" width="200" height="120"><br>
-                    <span id="zzim-count"><i class="bi bi-suit-heart-fill"></i> 찜 횟수</span>
-                    <span>₩ 수강료</span>
-                </div>
-
-                <div class="class-cover" onclick="">
-                    <h4> 클래스명</h4>
-                    <span>회원명(강의자)</span><br>
-                    <span>소속회사</span><br>
-                    <img src="썸네일이미지경로" width="200" height="120"><br>
-                    <span id="zzim-count"><i class="bi bi-suit-heart-fill"></i> 찜 횟수</span>
-                    <span>₩ 수강료</span>
-                </div>
-
-                <div class="class-cover" onclick="">
-                    <h4> 클래스명</h4>
-                    <span>회원명(강의자)</span><br>
-                    <span>소속회사</span><br>
-                    <img src="썸네일이미지경로" width="200" height="120"><br>
-                    <span id="zzim-count"><i class="bi bi-suit-heart-fill"></i> 찜 횟수</span>
-                    <span>₩ 수강료</span>
-                </div>
-
-
-                <h3>////// 무한스크롤 처리가 목표 + top 버튼 ///////</h3>
+                <% } %>
+                <% } %>
+                
+                <h3>///// 시간이 된다면.. 무한스크롤 ///////</h3>
 
             </div>
         </div>

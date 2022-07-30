@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<!-- 전체 강의 수 조회  -->
+	<entry key="selectListCountAll">
+		SELECT COUNT(*) AS "COUNT"
+		  FROM CLASS
+	</entry>
+	 	
+	<!-- 전체 강의 리스트 최신순 조회 -->
+	<entry key="selectListAll">
+		SELECT
+		       CL_NO
+		     , USER_NAME
+		     , MT_COMPANY
+		     , CLCG_NAME
+		     , CL_TITLE
+		     , CL_SUBTITLE
+		     , CL_INFO
+		     , CL_CURRI
+		     , CL_PRICE
+		     , CL_ENROLLDATE
+		     , CL_GRANT
+		     , CL_THUMBNAILPATH
+		  FROM CLASS
+		  JOIN USERINFO USING(USER_NO)
+		  JOIN CL_CATEGORY ON (CL_CATEGORY = CLCG_NO)
+		  JOIN MENTOR USING(USER_NO)
+		 ORDER
+            BY CL_NO DESC
+    </entry>
+    
+</properties>

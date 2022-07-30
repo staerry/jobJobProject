@@ -113,6 +113,10 @@ li>a{color:black;}
     margin:17px;
 }
 
+.class-cover>h6{
+	font-weight:600;
+}
+
 .bi-suit-heart-fill{
     color:red;
 }
