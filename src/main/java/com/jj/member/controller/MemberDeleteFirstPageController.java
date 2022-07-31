@@ -7,17 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
- * Servlet implementation class MemberUpdateInfo
+ * Servlet implementation class MemberDeleteFirstPageController
  */
-@WebServlet("/update.me")
-public class MemberUpdateInfo extends HttpServlet {
+@WebServlet("/deleteFirst.me")
+public class MemberDeleteFirstPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberUpdateInfo() {
+    public MemberDeleteFirstPageController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,12 +27,8 @@ public class MemberUpdateInfo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.getRequestDispatcher("views/member/memberUpdateInfo.jsp").forward(request, response);
 				
-		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
-		
+		request.getRequestDispatcher("views/member/memberDeleteFirstPage.jsp").forward(request, response);
 	}
 
 	/**

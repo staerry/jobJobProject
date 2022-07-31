@@ -37,7 +37,7 @@ public class MemberService {
 		return count;		
 	}
 	
-	/*
+
 	public int deleteMember(String userId, String userPwd) {
 		Connection conn = getConnection();
 		int result = new MemberDao().deleteMember(conn, userId, userPwd);
@@ -53,6 +53,20 @@ public class MemberService {
 		return result;
 		
 	}
-	*/
-
+	
+	public int updateInfo(String userId, String userPwd, String userNewPwd, String userCheckPwd, String email, String phone) {
+		Connection conn = getConnection();
+		int result = new MemberDao().deleteMember(conn, userId, userPwd);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
 }

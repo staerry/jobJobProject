@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	// request.getAttribute로 다시 뽑기
+	//String userName = (String)request.getAttribute("userName");
+	String userId = (String)request.getAttribute("userId");
+	String userPwd = (String)request.getAttribute("userPwd");
+	//String userPhone = (String)request.getAttribute("userPhone");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +23,7 @@
 	<%@ include file="../common/menubar.jsp" %>
 	<br><br>
 	<div align="center" style="padding-top: 120px; padding-bottom: 120px;">
+		<form action="<%= contextPath %>/deleteLast.me" method="post" id="delete-form">
 
 		<table>
 
@@ -26,25 +35,43 @@
 			</tr>
 			<tr>
 				<th><h2>아이디</h2></th>
-				<td><h2>user01</h2></td>
+				<td><h2><%=loginUser.getUserId() %></h2></td>
 			</tr>
 
 			<tr>
 				<th><h2>비밀번호</h2></th>
-				<td><input type="text" placeholder="비밀번호 입력"><br></td>
+				<td><input type="password" placeholder="비밀번호를 입력해주세요" name="pwd"><br></td>
 			</tr>
 
 			<tr align="center">
 				<td colspan="2">
 					<br><br>
-					<button type="reset" class="btn btn-primary">탈퇴 취소</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<button class="btn btn-danger">확인</button>
+					<button type="reset" class="btn btn-primary" id="returnBtn" onclick="location.href='<%=contextPath%>/deleteFirst.me'">이전 단계</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button class="btn btn-danger" id="nextBtn" onclick="return validatePwd();">확인</button>
 
 				</td>
 
 			</tr>
 		</table>
+		</form>
+		
+		
+		<script>
+       	function validatePwd(){
+     		if( "<%=loginUser.getUserPwd()%>" != $("input[name=pwd]").val() ){
+     			alert("비밀번호가 일치하지 않습니다.");
+     			return false;
+    		}
+       	}
+		
+		</script>
+		
+		
 	</div>
+
+	<script>
+		
+	</script>
 
 	<br><br>	
 	<%@ include file="../common/footer.jsp" %>

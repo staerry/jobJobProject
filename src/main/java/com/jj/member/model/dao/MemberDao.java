@@ -122,9 +122,6 @@ public class MemberDao {
 	}
 
 
-	
-
-	/*
 	public int deleteMember(Connection conn, String userId, String userPwd) {
 		
 		   int result = 0;
@@ -146,6 +143,28 @@ public class MemberDao {
 		   return result;
 		
 	}
-	*/
 
+	public int updateInfo(Connection conn, String userId, String userPwd, String userNewPwd, String userCheckPwd, String phone) {
+		   int result = 0;
+		   PreparedStatement pstmt = null;
+		   String sql = prop.getProperty("updateInfo");
+		   
+		   try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPwd);
+			pstmt.setString(3, userPwd);
+			pstmt.setString(4, userNewPwd);
+			pstmt.setString(5, userCheckPwd);
+			pstmt.setString(6, phone);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		   return result;
+	}
 }
