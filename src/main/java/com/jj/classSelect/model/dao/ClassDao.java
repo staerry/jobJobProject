@@ -1,5 +1,7 @@
 package com.jj.classSelect.model.dao;
 
+import static com.jj.common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.jj.classSelect.model.vo.Class;
-import static com.jj.common.JDBCTemplate.*;
+import com.jj.community.model.vo.Review;
 
 public class ClassDao {
 	
@@ -143,6 +145,125 @@ public class ClassDao {
 		}
 		
 		return list;
+	}
+	
+	public Class selectClass(Connection conn, int clNo) {
+		Class c = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectClass");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				c = new Class(rset.getInt("cl_no"),
+							  rset.getString("user_name"),
+							  rset.getString("cl_category"),
+							  rset.getString("cl_title"),
+							  rset.getString("cl_subtitle"),
+							  rset.getString("cl_info"),
+							  rset.getString("cl_curri"),
+							  rset.getString("cl_price"),
+							  rset.getString("cl_thumbnailpath"),
+							  rset.getString("ltr_info"),
+							  rset.getString("ltr_career"),
+							  rset.getString("profile_path")
+							 );
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return c;
+	}
+	
+	public int selectStudentCount(Connection conn, int clNo) {
+		int studentCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectStudentCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				studentCount = rset.getInt("student_count");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return studentCount;
+		
+	}
+	
+	public int selectBookmarkCount(Connection conn, int clNo) {
+		int bookmarkCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectBookmarkCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				bookmarkCount = rset.getInt("bookmark_count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return bookmarkCount;
+	}
+	
+	public ArrayList<Review> selectReview(Connection conn, int clNo) {
+		ArrayList<Review> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Review(rset.getInt("review_no"),
+						 			rset.getString("cl_no"),
+						 			rset.getString("user_name"),
+						 			rset.getInt("review_score"),
+						 			rset.getString("review_content"),
+						 			rset.getDate("review_enrolldate")
+									));	
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
 	}
 
 }

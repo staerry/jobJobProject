@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.jj.classSelect.model.vo.Class, com.jj.community.model.vo.Review"%>
+<%
+	Class c = (Class)request.getAttribute("c");
+	ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
+	int studentCount = (int)request.getAttribute("studentCount");
+	int bookmarkCount = (int)request.getAttribute("bookmarkCount");
+	
+%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,23 +40,23 @@
 
             <!-- 클래스 제목 -->
             <div class="class-title">
-                <h3>%= 클래스제목 %</h3>
-                <p>%= 클래스소제목 %</p>
+                <h3><%= c.getClTitle() %></h3>
+                <p><%= c.getClSubtitle() %></p>
             </div>
 
             <hr>
 
             <!-- 클래스 썸네일 -->
             <div class="class-thumbnail">
-                %= 강의 썸네일이미지 (760*430) % <br>
-                <img src="썸네일이미지경로" id="thumbnail-img">
+                <br>
+                <img src="<%= c.getClThumbnailPath() %>" id="thumbnail-img">
             </div>
 
             <!-- 클래스 소개 -->
             <div class="class-intro">
                 <h4>강의 소개</h4>
                 <p>
-                    %= 클래스소개 %
+                    <%= c.getClInfo() %>
                 </p>
             </div>
 
@@ -57,13 +65,13 @@
                 <h4>멘토 소개</h4>
                 <div class="lecturer-set">
                     <div class="lecturer-photo">
-                        %= 프로필이미지경로 (180*220) %
+                        <%= c.getLtrProfilePath() %>
                         <img src="프로필이미지경로">
                     </div>
 
                     <div class="lecturer-profile">
                         <p>
-                            %= 강의자경력소개 %
+                            <%= c.getLtrCareer() %>
                         </p>
                     </div>
                 </div>
@@ -73,7 +81,7 @@
             <div class="curriculum-intro">
                 <h4>커리큘럼</h4>
                 <p>
-                    %= 커리큘럼 %
+                    <%= c.getClCurri() %>
                 </p>
             </div>
 
@@ -95,68 +103,27 @@
                 <br>
 
                 <div class="review-detail">
+                <% if(list.isEmpty()) { %>
+                	<p id="no-reivew"> 아직 등록된 수강후기가 없습니다. </p>
+                <% }else { %>
+                	<% for(Review r : list) { %>
                     <table class="user-review">
                         <tr>
-                            <td>별점자리 ⭐️⭐️⭐️⭐️⭐️</td>
+                            <td>평점 : <%= r.getReviewScore() %> ⭐️⭐️⭐️⭐️⭐️</td>
                         </tr>
                         <tr>
-                            <td>%= 회원명 %</td>
+                            <td><%= r.getUserNo() %></td>
                         </tr>
                         <tr>
-                            <td>%= 작성일 xxxx-xx-xx %</td>
+                            <td><%= r.getReviewEnrolldate() %></td>
                         </tr>
                         <tr>
-                            <td>%= 수강후기내용 %</td>
+                            <td><%= r.getReviewContent() %></td>
                         </tr>
                     </table>
                     <br>
-
-                    <table class="user-review">
-                        <tr>
-                            <td>별점자리 ⭐️⭐️⭐️⭐️⭐️</td>
-                        </tr>
-                        <tr>
-                            <td>%= 회원명 %</td>
-                        </tr>
-                        <tr>
-                            <td>%= 작성일 xxxx-xx-xx %</td>
-                        </tr>
-                        <tr>
-                            <td>%= 수강후기내용 %</td>
-                        </tr>
-                    </table>
-                    <br>
-
-                    <table class="user-review">
-                        <tr>
-                            <td>별점자리 ⭐️⭐️⭐️⭐️⭐️</td>
-                        </tr>
-                        <tr>
-                            <td>%= 회원명 %</td>
-                        </tr>
-                        <tr>
-                            <td>%= 작성일 xxxx-xx-xx %</td>
-                        </tr>
-                        <tr>
-                            <td>%= 수강후기내용 %</td>
-                        </tr>
-                    </table>
-                    <br>
-
-                    <table class="user-review">
-                        <tr>
-                            <td>별점자리 ⭐️⭐️⭐️⭐️⭐️</td>
-                        </tr>
-                        <tr>
-                            <td>%= 회원명 %</td>
-                        </tr>
-                        <tr>
-                            <td>%= 작성일 xxxx-xx-xx %</td>
-                        </tr>
-                        <tr>
-                            <td>%= 수강후기내용 %</td>
-                        </tr>
-                    </table>
+				<% } %>
+				<% } %>
                 </div>
             </div>
         </div>
@@ -167,7 +134,7 @@
                 
                 <!-- 수강료 표시 영역 -->
                 <div class="class-price">
-                    <h4>₩ %= 수강료 %원</h4>
+                    <h4><%= c.getClPriceWon() %>원</h4>
                 </div>
 
                 <div class="order-btn">
@@ -185,14 +152,15 @@
                         </tr>
                         <tr>
                             <td>멘토</td>
-                            <td>%= 회원명 %</td>
+                            <td><%= c.getUserNo() %></td>
                         </tr>
                         <tr>
                             <td>수강생 수</td>
-                            <td>%= 수강생 수%</td>
+                            <td><%= studentCount %>명</td>
                         </tr>
                         <tr>
-                            <td colspan="2" align="center"><i class="bi bi-suit-heart-fill" id="heart"></i><span>%= 찜 수 %</span></td>
+                            <td colspan="2" align="center"><i class="bi bi-suit-heart-fill" id="heart"></i>
+                            <span><%= bookmarkCount %></span></td>
                         </tr>
 
                     </table>
