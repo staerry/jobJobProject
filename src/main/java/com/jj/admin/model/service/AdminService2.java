@@ -12,6 +12,7 @@ import com.jj.admin.model.dao.AdminDao;
 import com.jj.admin.model.dao.AdminDao2;
 import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.common.model.vo.PageInfo;
+import com.jj.coupon.vo.Coupon;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.member.model.vo.Mentor;
@@ -166,6 +167,47 @@ public class AdminService2 {
 	public int selectPayDetailCount(int no) {
 		Connection conn = getConnection();
 		int listCount = new AdminDao2().selectPayDetailCount(conn,no);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 검색결과에맞는 결제내역(구매관련)의 수를세는 메소드
+	 * @param search 입력한검색정보
+	 * @return 구매결제내역수
+	 * @author SJW
+	 */
+	public int paymentBuyListCount(String search) {
+		Connection conn = getConnection();
+		int listCount = new AdminDao2().paymentBuyListCount(conn,search);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 검색결과에맞는 환불내역의 수를세는 메소드
+	 * @param search 입력한검색정보
+	 * @return 환불내역수
+	 * @author SJW
+	 */
+	public int paymentRefundListCount(String search) {
+		Connection conn = getConnection();
+		int listCount = new AdminDao2().paymentRefundListCount(conn,search);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 쿠폰전체수를 세는 메소드
+	 * @return 쿠폰수
+	 * @author SJW
+	 */
+	public int couponListCount() {
+		Connection conn = getConnection();
+		int listCount = new AdminDao2().couponListCount(conn);
 		close(conn);
 		
 		return listCount;
@@ -385,6 +427,7 @@ public class AdminService2 {
 	/**
 	 * 활동중인 모든유저 리스트를 페이지에 맞춰서 찾는메소드
 	 * @param pi 페이지정보를 담고있는 객체
+	 * @param search 검색정보
 	 * @return 페이지에 맞는 활동중인 수강생 리스트
 	 * @author SJW
 	 */
@@ -398,6 +441,7 @@ public class AdminService2 {
 	/**
 	 * 탈퇴한 모든유저 리스트를 페이지에 맞춰서 찾는메소드
 	 * @param pi 페이지정보를 담고있는 객체
+	 * @param search 검색정보
 	 * @return 페이지에 맞는 활동중인 수강생 리스트
 	 * @author SJW
 	 */
@@ -410,9 +454,9 @@ public class AdminService2 {
 	
 	/**
 	 * 회원번호를 가지고 페이지에 맞는 결제세부내역을 조회하는메소드
-	 * @param pi
-	 * @param no
-	 * @return
+	 * @param pi 페이지정보
+	 * @param no 세부내역 조회하려는 유저번호
+	 * @return 결제세부내역리스트
 	 */
 	public ArrayList<Pay> payDetailInfo(PageInfo pi,int no){
 		Connection conn = getConnection();
@@ -421,7 +465,38 @@ public class AdminService2 {
 		return list;
 	}
 	
+	/**
+	 * 검색정보를가지고 페이지에 맞는 구매내역 리스트조회 메소드
+	 * @param pi 페이지정보
+	 * @param search 검색정보
+	 * @return 구매내역리스트
+	 */
+	public ArrayList<Pay> paymentBuyList(PageInfo pi,String search){
+		Connection conn = getConnection();
+		ArrayList<Pay> list = new AdminDao2().paymentBuyList(conn,pi,search);
+		close(conn);
+		return list;
+	}
 	
+	/**
+	 * 검색정보를가지고 페이지에 맞는 환불내역 리스트조회 메소드
+	 * @param pi 페이지정보
+	 * @param search 검색정보
+	 * @return 환불내역리스트
+	 */
+	public ArrayList<Pay> paymentRefundList(PageInfo pi,String search){
+		Connection conn = getConnection();
+		ArrayList<Pay> list = new AdminDao2().paymentRefundList(conn,pi,search);
+		close(conn);
+		return list;
+	}
+	
+	public ArrayList<Coupon> paymentBuyList(PageInfo pi){
+		Connection conn = getConnection();
+		ArrayList<Coupon> list = new AdminDao2().paymentBuyList(conn,pi);
+		close(conn);
+		return list;
+	}
 	
 	
 	

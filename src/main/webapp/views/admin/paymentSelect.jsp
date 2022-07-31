@@ -49,7 +49,7 @@
 		    	$(function(){
 		    		$("#selectNo").on('change',function(){
 		    			if($(this).val()==2){
-		    				location.href="<%=request.getContextPath()%>/paymentselect2.bo";
+		    				location.href="<%=request.getContextPath()%>/paymentselect2.bo?p=1";
 		    			}
 		    			 
 		    		})
@@ -90,6 +90,8 @@
 				$('#check1').prop('checked',false)
 				$('#check2').prop('checked',true)
 			<%}%>
+			
+			$('#searchclick').val('<%=search%>')
 		    </script>
 			
 		    <div style="position:relative ;">
@@ -156,7 +158,7 @@
 		                <tbody>
 		                <%for(int i=0;i<list.size();i++){ %>
 		                    <tr>
-		                        <td class="notext"><%=lpage-i %>(<%=list.get(i).getUserNo() %>)</td>
+		                        <td class="notext"><%=lpage-i %> (<%=list.get(i).getUserNo() %>)</td>
 		                        <td class="nametext"><%=list.get(i).getUserName() %></td>
 		                        <td><%=list.get(i).getUserId() %></td>
 		                        <td><%=(list.get(i).getUserDivision())==1 ? "수강생" : "멘토" %></td>
@@ -192,7 +194,7 @@
 						<%} %>
 						<%if(currentPage < maxPage - pageLimit ){ %>
 							<a href="<%=request.getContextPath()%>/paymentselect.bo?p=<%=doubleNext%>&search=<%=request.getAttribute("search")%>&check=<%=check[0]%>">&gt&gt</a>
-							<%} %>
+						<%} %>
 					</div>
 		        </div>
 		    </div>  

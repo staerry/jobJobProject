@@ -20,7 +20,7 @@
 	  FROM USERINFO
 	 WHERE USER_STATUS = 'N'
 	   AND USER_DIVISION = 1
-	   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	   AND (USER_NO = ? OR USER_NAME LIKE ?)
 </entry>
 
 <entry key="stuListCountSearch">
@@ -31,7 +31,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
                      , USER_NAME
                   FROM USERINFO
                  WHERE  USER_DIVISION = 1
-                   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+                   AND (USER_NO = ? OR USER_NAME LIKE ?)
                    ORDER 
 	                    BY USER_NO DESC) A)
 </entry>
@@ -45,7 +45,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                  FROM USERINFO
 	                 WHERE  USER_DIVISION = 1
 	                   AND USER_STATUS = 'Y'
-	                   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                   AND (USER_NO = ? OR USER_NAME LIKE ?)
 	                   ORDER 
 		                    BY USER_NO DESC) A)
 </entry>
@@ -55,7 +55,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 		  FROM USERINFO
 		 WHERE USER_STATUS = 'N'
 		   AND USER_DIVISION = 2
-		   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+		   AND (USER_NO = ? OR USER_NAME LIKE ?)
 </entry>
 
 <entry key="currentCount">
@@ -66,7 +66,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 		 AND USER_DIVISION = 2
 		 AND MT_GRADE = 1
 		 AND MT_GRANT = 'A'
-		 AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+		 AND (USER_NO = ? OR USER_NAME LIKE ?)
 </entry>
 
 <entry key="lecturerCount">
@@ -77,7 +77,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 		 AND USER_DIVISION = 2
 		 AND MT_GRADE = 2
 		 AND MT_GRANT = 'A'
-		 AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+		 AND (USER_NO = ? OR USER_NAME LIKE ?)
 </entry>
 
 <entry key="outMentorCount">
@@ -88,7 +88,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 		 AND USER_DIVISION = 2)
          OR
 		     MT_GRANT = 'D')
-		 AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+		 AND (USER_NO = ? OR USER_NAME LIKE ?)
 </entry>
 
 <entry key="selectAllUserCount">
@@ -96,7 +96,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	  FROM USERINFO
 	 WHERE USER_STATUS = 'N'
 	   AND USER_DIVISION IS NOT NULL
-	   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	   AND (USER_NO = ? OR USER_NAME LIKE ?)
 </entry>
 
 <entry key="outAllUserCount">
@@ -104,7 +104,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	  FROM USERINFO
 	 WHERE USER_STATUS = 'Y'
 	   AND USER_DIVISION IS NOT NULL
-	   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	   AND (USER_NO = ? OR USER_NAME LIKE ?)
 </entry>
 
 
@@ -125,7 +125,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                  FROM USERINFO
 	                 WHERE USER_STATUS = 'N'
 	                   AND USER_DIVISION = 1
-	                   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                   AND (USER_NO = ? OR USER_NAME LIKE ?)
 	                 ORDER 
 	                    BY USER_NO DESC) A)
 	 WHERE RNO BETWEEN ? AND ?
@@ -147,7 +147,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                     , USER_DIVISION
 	                  FROM USERINFO
 	                 WHERE  USER_DIVISION = 1
-	                   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                   AND (USER_NO = ? OR USER_NAME LIKE ?)
 	                   ORDER 
 		                    BY USER_NO DESC) A)
 	 WHERE RNO BETWEEN ? AND ?
@@ -170,7 +170,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                  FROM USERINFO
 	                 WHERE  USER_DIVISION = 1
 	                   AND USER_STATUS= 'Y'
-	                   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                   AND (USER_NO = ? OR USER_NAME LIKE ?)
 	                   ORDER 
 		                    BY USER_NO DESC) A)
 	 WHERE RNO BETWEEN ? AND ?
@@ -193,7 +193,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                  FROM USERINFO
 	                 WHERE  USER_DIVISION = 2
 	                   AND USER_STATUS= 'N'
-	                   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                   AND (USER_NO = ? OR USER_NAME LIKE ?)
 	                   ORDER 
 		                    BY USER_NO DESC) A)
 	 WHERE RNO BETWEEN ? AND ?
@@ -219,7 +219,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                     AND USER_DIVISION = 2
 	                     AND MT_GRADE = 1
 	                     AND MT_GRANT = 'A'
-	                     AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                     AND (USER_NO = ? OR USER_NAME LIKE ?)
 	                   ORDER 
 		                    BY USER_NO DESC) A)
 	 WHERE RNO BETWEEN ? AND ?
@@ -245,7 +245,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                     AND USER_DIVISION = 2
 	                     AND MT_GRADE = 2
 	                     AND MT_GRANT = 'A'
-	                     AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                     AND (USER_NO = ? OR USER_NAME LIKE ?)
 	                   ORDER 
 		                    BY USER_NO DESC) A)
 	 WHERE RNO BETWEEN ? AND ?
@@ -270,7 +270,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                   WHERE ((USER_STATUS = 'Y'
 	                     AND USER_DIVISION = 2)
 	                     OR  MT_GRANT = 'D')
-	                     AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                     AND (USER_NO = ? OR USER_NAME LIKE ?)
 	                   ORDER 
 		                    BY USER_NO DESC) A)
 	 WHERE RNO BETWEEN ? AND ?
@@ -349,7 +349,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                  FROM USERINFO
 	                 WHERE USER_STATUS = 'N'
 	                   AND USER_DIVISION IS NOT NULL
-	                   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                   AND (USER_NO = ? OR USER_NAME LIKE ?)
 	                 ORDER 
 	                    BY USER_NO DESC) A)
 	 WHERE RNO BETWEEN ? AND ?
@@ -372,7 +372,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                  FROM USERINFO
 	                 WHERE USER_STATUS = 'Y'
 	                   AND USER_DIVISION IS NOT NULL
-	                   AND (USER_NO LIKE ? OR USER_NAME LIKE ?)
+	                   AND (USER_NO = ? OR USER_NAME LIKE ?)
 	                 ORDER 
 	                    BY USER_NO DESC) A)
 	 WHERE RNO BETWEEN ? AND ?
@@ -382,6 +382,14 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	SELECT COUNT(*) AS "LISTCOUNT"
 	  FROM PAY
 	 WHERE USER_NO = ?
+</entry>
+
+<entry key="paymentBuyListCount">
+	SELECT COUNT(*) AS "LISTCOUNT"
+		FROM PAY P
+		JOIN USERINFO U USING(USER_NO)
+		WHERE USER_NO = ?
+		   OR USER_NAME LIKE ?
 </entry>
 
 <entry key="payDetailInfo">
@@ -406,9 +414,98 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                      FULL JOIN COUPON C USING(CP_NO)
 		                 WHERE P.USER_NO = ?
 		                 ORDER 
-		                    BY PAY_DATE DESC) A)
+		                    BY PAY_NO DESC) A)
 		 WHERE RNO BETWEEN ? AND ?
 </entry>
 
+<entry key="paymentBuyList">
+	 SELECT *
+	  FROM (SELECT ROWNUM AS "RNO", A.*
+	          FROM (SELECT 
+	                       PAY_NO
+	                     , P.USER_NO
+	                     , CL_TITLE
+	                     , CP_NAME
+	                     , PAYMENT
+	                     , REFUND
+	                     , FINAL_PAYMENT
+	                     , ORDER_NAME
+	                     , ORDER_PHONE
+	                     , ORDER_EMAIL
+                         , PAY_DATE
+                         , REFUND_DATE
+                         , USER_NAME
+                         , USER_ID    
+	                  FROM PAY P
+                      JOIN USERINFO U ON(P.USER_NO=U.USER_NO)
+                      JOIN CLASS USING(CL_NO)
+                      LEFT JOIN ISSUANCECOUPON USING(ISUCP_NO)
+                      LEFT JOIN COUPON C USING(CP_NO)
+	                 WHERE P.USER_NO = ? 
+                        OR USER_NAME LIKE ?
+	                 ORDER 
+	                    BY PAY_NO DESC) A)
+	 WHERE RNO BETWEEN ? AND ?
+</entry>
+
+<entry key="paymentRefundListCount">
+		SELECT COUNT(*) AS "LISTCOUNT"
+		FROM PAY P
+		JOIN USERINFO U USING(USER_NO)
+		WHERE (USER_NO = ?
+		   OR USER_NAME LIKE ?)
+		  AND REFUND = 'Y'
+</entry>
+
+<entry key="paymentRefundList">
+	 SELECT *
+	  FROM (SELECT ROWNUM AS "RNO", A.*
+	          FROM (SELECT 
+	                       PAY_NO
+	                     , P.USER_NO
+	                     , CL_TITLE
+	                     , CP_NAME
+	                     , PAYMENT
+	                     , REFUND
+	                     , FINAL_PAYMENT
+	                     , ORDER_NAME
+	                     , ORDER_PHONE
+	                     , ORDER_EMAIL
+                         , PAY_DATE
+                         , REFUND_DATE
+                         , USER_NAME
+                         , USER_ID    
+	                  FROM PAY P
+                      JOIN USERINFO U ON(P.USER_NO=U.USER_NO)
+                      JOIN CLASS USING(CL_NO)
+                      LEFT JOIN ISSUANCECOUPON USING(ISUCP_NO)
+                      LEFT JOIN COUPON C USING(CP_NO)
+	                 WHERE (P.USER_NO = ? 
+                        OR USER_NAME LIKE ?)
+                       AND REFUND = 'Y'
+	                 ORDER 
+	                    BY PAY_NO DESC) A)
+	 WHERE RNO BETWEEN ? AND ?
+</entry>
+
+<entry key="couponListCount">
+	SELECT COUNT(*) AS "LISTCOUNT"
+	FROM COUPON
+	ORDER BY CP_NO DESC
+</entry>
+
+<entry key="paymentBuyList">
+	SELECT * 
+	  FROM(SELECT ROWNUM RNO, A.*
+	        FROM (SELECT 
+	                    CP_NO
+	                  , CP_NAME
+	                  , DISCOUNT
+	                  , CP_ADDDATE
+	                  , CP_STATUS
+	            FROM COUPON
+	            ORDER BY CP_NO DESC) A)
+	WHERE RNO BETWEEN ? AND ?
+</entry>
 
 </properties>

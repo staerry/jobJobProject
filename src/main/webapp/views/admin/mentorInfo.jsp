@@ -167,7 +167,7 @@
 						</thead>
 						<%if(list.isEmpty()){ %>
 							<script>
-							alert("조회된 회원이없습니다.")
+							alert("조회된 멘토가 없습니다.")
 							location.href= "javascript:history.back()";
 							</script>
 						<%}else{ %>

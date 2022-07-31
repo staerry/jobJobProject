@@ -18,6 +18,8 @@ public class Pay {
 	private Date payDate;
 	private Date refundDate;
 	private PageInfo pi;
+	private String userName;
+	private String userId;
 	
 	public Pay() {}
 
@@ -57,6 +59,27 @@ public class Pay {
 		this.payDate = payDate;
 		this.refundDate = refundDate;
 		this.pi = pi;
+	}
+
+
+	public Pay(int payNo, String userNo, String clNo, String isuCpNo, String payment, String refund, int finalPayment,
+			String orderName, String orderPhone, String orderEmail, Date payDate, Date refundDate, String userName,
+			String userId) {
+		super();
+		this.payNo = payNo;
+		this.userNo = userNo;
+		this.clNo = clNo;
+		this.isuCpNo = isuCpNo;
+		this.payment = payment;
+		this.refund = refund;
+		this.finalPayment = finalPayment;
+		this.orderName = orderName;
+		this.orderPhone = orderPhone;
+		this.orderEmail = orderEmail;
+		this.payDate = payDate;
+		this.refundDate = refundDate;
+		this.userName = userName;
+		this.userId = userId;
 	}
 
 	public int getPayNo() {
@@ -154,6 +177,32 @@ public class Pay {
 	public void setRefundDate(Date refundDate) {
 		this.refundDate = refundDate;
 	}
+	
+	
+
+	public PageInfo getPi() {
+		return pi;
+	}
+
+	public void setPi(PageInfo pi) {
+		this.pi = pi;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	@Override
 	public String toString() {
@@ -162,6 +211,8 @@ public class Pay {
 				+ ", orderPhone=" + orderPhone + ", orderEmail=" + orderEmail + ", payDate=" + payDate + ", refundDate="
 				+ refundDate + "]";
 	}
+	
+	
 	
 	
 }
