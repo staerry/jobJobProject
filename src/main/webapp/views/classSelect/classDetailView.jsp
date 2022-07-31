@@ -101,7 +101,6 @@
                         </ul>
                     </span>
                 </div>
-                <br>
 
                 <div class="review-detail">
                 <% if(list.isEmpty()) { %>
@@ -139,10 +138,22 @@
 
                 <div class="order-btn">
                     <br>
-                    <button id="class-buy" onclick="">수강신청 하기</button><br><br>
+                    <!-- 로그인한 사용자에게만 다음 페이지 이동 허용 -->
+                    <!-- 로그인 될 때까지 안되는 상태로 일단 테스트 -->
+                    <%-- <% if(loginUser == null) { %> --%>
+                    <!-- <button id="class-buy" onclick="pleaseLogin();">수강신청 하기</button><br><br>
+                    <button id="class-zzim" onclick="">❤️ 강의 찜하기</button> -->
+                    <%-- <% } else { %> --%>
+                    <button id="class-buy" onclick="location.href='<%= contextPath %>/enroll.cl?class=<%=c.getClNo()%>';">수강신청 하기</button><br><br>
                     <button id="class-zzim" onclick="">❤️ 강의 찜하기</button>
+                    
                     <br><br>
                 </div>
+                
+                <script>
+                	function pleaseLogin(){
+                	}
+                </script>
 
                 <div class="class-info">
                     <table class="class-type">
