@@ -12,13 +12,37 @@ public class Class {
 	private String clInfo;
 	private String clCurri;
 	private int clPrice;
+	private String clPriceWon;	// TO_CHAR 변환 위함
 	private Date clEnrolldate;
 	private String clGrant;
 	private String clThumbnailPath;
+	private String ltrInfo;
+	private String ltrCareer;
+	private String ltrProfilePath;
 	
 	public Class() {
 		
 	}
+	
+	public Class(int clNo, String userNo, String clCategory, String clTitle, String clSubtitle, String clInfo,
+			String clCurri, String clPriceWon, String clThumbnailPath, String ltrInfo, String ltrCareer,
+			String ltrProfilePath) {
+		super();
+		this.clNo = clNo;
+		this.userNo = userNo;
+		this.clCategory = clCategory;
+		this.clTitle = clTitle;
+		this.clSubtitle = clSubtitle;
+		this.clInfo = clInfo;
+		this.clCurri = clCurri;
+		this.clPriceWon = clPriceWon;
+		this.clThumbnailPath = clThumbnailPath;
+		this.ltrInfo = ltrInfo;
+		this.ltrCareer = ltrCareer;
+		this.ltrProfilePath = ltrProfilePath;
+	}
+
+
 
 	public Class(int clNo, String userNo, String clCategory, String clTitle, String clSubtitle, String clInfo,
 			String clCurri, int clPrice, Date clEnrolldate, String clGrant, String clThumbnailPath) {
@@ -53,6 +77,45 @@ public class Class {
 		this.clThumbnailPath = clThumbnailPath;
 	}
 	
+	public Class(int clNo, String userNo, String mtCompany, String clCategory, String clTitle, String clSubtitle,
+			String clInfo, String clCurri, int clPrice, Date clEnrolldate, String clGrant, String clThumbnailPath,
+			String ltrInfo, String ltrCareer, String ltrProfilePath) {
+		super();
+		this.clNo = clNo;
+		this.userNo = userNo;
+		this.mtCompany = mtCompany;
+		this.clCategory = clCategory;
+		this.clTitle = clTitle;
+		this.clSubtitle = clSubtitle;
+		this.clInfo = clInfo;
+		this.clCurri = clCurri;
+		this.clPrice = clPrice;
+		this.clEnrolldate = clEnrolldate;
+		this.clGrant = clGrant;
+		this.clThumbnailPath = clThumbnailPath;
+		this.ltrInfo = ltrInfo;
+		this.ltrCareer = ltrCareer;
+		this.ltrProfilePath = ltrProfilePath;
+	}
+	
+	public Class(int clNo, String userNo, String clCategory, String clTitle, String clSubtitle, String clInfo,
+			String clCurri, int clPrice, String clThumbnailPath, String ltrInfo, String ltrCareer,
+			String ltrProfilePath) {
+		super();
+		this.clNo = clNo;
+		this.userNo = userNo;
+		this.clCategory = clCategory;
+		this.clTitle = clTitle;
+		this.clSubtitle = clSubtitle;
+		this.clInfo = clInfo;
+		this.clCurri = clCurri;
+		this.clPrice = clPrice;
+		this.clThumbnailPath = clThumbnailPath;
+		this.ltrInfo = ltrInfo;
+		this.ltrCareer = ltrCareer;
+		this.ltrProfilePath = ltrProfilePath;
+	}
+
 	public String getMtCompany() {
 		return mtCompany;
 	}
@@ -147,6 +210,38 @@ public class Class {
 
 	public void setClThumbnailPath(String clThumbnailPath) {
 		this.clThumbnailPath = clThumbnailPath;
+	}
+	
+	public String getLtrInfo() {
+		return ltrInfo;
+	}
+
+	public void setLtrInfo(String ltrInfo) {
+		this.ltrInfo = ltrInfo;
+	}
+
+	public String getLtrCareer() {
+		return ltrCareer;
+	}
+
+	public void setLtrCareer(String ltrCareer) {
+		this.ltrCareer = ltrCareer;
+	}
+
+	public String getLtrProfilePath() {
+		return ltrProfilePath;
+	}
+
+	public void setLtrProfilePath(String ltrProfilePath) {
+		this.ltrProfilePath = ltrProfilePath;
+	}
+	
+	public String getClPriceWon() {
+		return clPriceWon;
+	}
+
+	public void setClPriceWon(String clPriceWon) {
+		this.clPriceWon = clPriceWon;
 	}
 
 	@Override
