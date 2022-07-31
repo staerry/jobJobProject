@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectListCount">
+		SELECT COUNT(*) LT_COUNT
+		  FROM LECTURER
+	</entry>
+
+	<entry key="selectList">
+		SELECT 
+		       USER_NO	<!-- 동명이인이 있을 수 있으므로 항상 유저번호 조회해야 함 -->
+		     , USER_NAME
+		     , MT_COMPANY
+		     , MT_JOB
+		     , CLCG_NAME
+		     , LTR_INFO
+		     , LTR_CAREER
+		     , PROFILE_PATH
+		  FROM LECTURER
+		  JOIN USERINFO USING(USER_NO)
+		  JOIN MENTOR USING(USER_NO)
+		  JOIN CL_CATEGORY USING(CLCG_NO)
+	</entry>
+</properties>

@@ -56,7 +56,7 @@
             </div>
             <ul class="main-menu-area">
                 <li><a href="<%= contextPath %>/list.cl">강의조회</a></li>
-                <li><a href="">멘토조회</a></li>
+                <li><a href="<%= contextPath %>/list.lt">멘토조회</a></li>
                 <li><a href="<%= contextPath %>/list.co?category=1&cpage=1">커뮤니티</a></li>
             </ul>
         </div>
