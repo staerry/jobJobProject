@@ -62,24 +62,46 @@ li>a{color:black;}
     margin-bottom:30px;
 }
 
-.class-sort-btn{
-    font-size: 14px;
-    width:150px;
-    height:30px;
-    border-radius:4px;
-    background-color: white;
-    border:1px solid #ABB0B5;
-    color: #abb0b5;
+.class-sort-btn {
+	width:380px;
+	height:35px;
+	border:1px solid #ABB0B5;
+	border-radius:4px;
+	background-color:#fff;
+	display:flex;
+	align-items:center;
+	align-content:flex-around;
+}
+
+.class-sort-btn *{
+	color:#ABB0B5;
+	font-size:14px;
+	font-weight:500;
+}
+
+.class-sort-btn #filter{
+	width:70px;
+}
+
+.class-sort-btn button{
+	width:80px;
+	align-items:center;
+	border:1px solid #fff;
+	background-color:#fff;
+}
+
+.class-sort-btn a{
+	text-decoration:none;
+}
+
+.class-sort-btn button:hover{
+	color:#6363ff;
 }
 
 .class-sort>i {
     color:black;
 }
 
-#filter{
-    color:black;
-    margin-right:15px;
-}
 
 .class-sort > i {
     width:20px;
