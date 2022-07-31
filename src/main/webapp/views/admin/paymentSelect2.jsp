@@ -55,6 +55,7 @@
 		    <br><br>
 			
 		    <div class="checks" id="formwraping2">
+	
 		        <div id="formwraping">
 		            <form action="<%=request.getContextPath() %>/paymentselect2.bo" style="">
 		                &nbsp;

@@ -23,10 +23,11 @@
 	
 	    
 	    <div class="right">
-            <h3>쿠폰등록</h3>
+            <h3>쿠폰관리</h3>
             <select name="selectNo" id="selectNo">
                 <option value="1">쿠폰등록및관리</option>
                 <option value="2" selected>쿠폰발송</option>
+                <option value="3">회원쿠폰조회</option>
             </select>
             <br><br>
             <script>
@@ -36,6 +37,12 @@
                             location.href="<%=request.getContextPath()%>/couponManage.ad?p=1";
                         }
                          
+                    })
+                    
+                     $("#selectNo").on('change',function(){
+                        if($(this).val()==3){
+                            location.href="<%=request.getContextPath()%>/selectCoupon.li?p=1";
+                        }  
                     })
                 })
             </script>

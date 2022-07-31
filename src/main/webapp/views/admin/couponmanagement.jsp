@@ -40,10 +40,11 @@
 	
 	    
 	    <div class="right">
-            <h3>쿠폰등록</h3>
+            <h3>쿠폰관리</h3>
             <select name="selectNo" id="selectNo">
                 <option value="1">쿠폰등록및관리</option>
                 <option value="2">쿠폰발송</option>
+                <option value="3">회원쿠폰조회</option>
             </select>
             <br><br>
             <script>
@@ -51,8 +52,13 @@
                     $("#selectNo").on('change',function(){
                         if($(this).val()==2){
                             location.href="<%=request.getContextPath()%>/sendCoupon.ad?p=1";
-                        }
-                        
+                        }  
+                    })
+                    
+                    $("#selectNo").on('change',function(){
+                        if($(this).val()==3){
+                            location.href="<%=request.getContextPath()%>/selectCoupon.li?p=1";
+                        }  
                     })
                 })
             </script>
@@ -106,7 +112,7 @@
 	                                	<%if((list.get(i).getCpStatus()).equals("Y")){ %>
 	                                		<button class="button2">발급중단</button>
 	                                	<%}else{ %>
-	                                		<button class="button1">발급재개</button>
+	                                		<button class="button1">발급재개</button>&nbsp;<button class="outbutton">쿠폰삭제</button>
 	                                	<%} %>
 	                                </td>
 	                            
@@ -122,23 +128,23 @@
 
                     <div class="paging-area">
                         <%if(currentPage > pageLimit ){ %>
-						 <a href="<%=request.getContextPath()%>/paymentselect2.bo?p=<%=doublePrev%>">&lt&lt</a>
+						 <a href="<%=request.getContextPath()%>/couponManage.ad?p=<%=doublePrev%>">&lt&lt</a>
 						 <%} %>
 						 <%if(currentPage != 1){ %>
-						<a href="<%=request.getContextPath()%>/paymentselect2.bo?p=<%=currentPage-1%>">&lt</a>
+						<a href="<%=request.getContextPath()%>/couponManage.ad?p=<%=currentPage-1%>">&lt</a>
 						<%} %>
 						<%for(int i=startPage;i<=endPage;i++){ %>
 			            	<%if(i==currentPage){ %>
-			            		<a href="<%=request.getContextPath()%>/paymentselect2.bo?p=<%=i%>"><%=i %></a>
+			            		<a href="<%=request.getContextPath()%>/couponManage.ad?p=<%=i%>"><%=i %></a>
 			            	<%}else{ %>
-			            		<a href="<%=request.getContextPath()%>/paymentselect2.bo?p=<%=i%>"><%=i %></a>
+			            		<a href="<%=request.getContextPath()%>/couponManage.ad?p=<%=i%>"><%=i %></a>
 			            	<%} %>
 		            	<%} %>
 		            	<%if(currentPage != maxPage){ %>
-							<a href="<%=request.getContextPath()%>/paymentselect2.bo?p=<%=currentPage+1%>">&gt</a>
+							<a href="<%=request.getContextPath()%>/couponManage.ad?p=<%=currentPage+1%>">&gt</a>
 						<%} %>
 						<%if(currentPage < maxPage - pageLimit ){ %>
-							<a href="<%=request.getContextPath()%>/paymentselect2.bo?p=<%=doubleNext%>">&gt&gt</a>
+							<a href="<%=request.getContextPath()%>/couponManage.ad?p=<%=doubleNext%>">&gt&gt</a>
 						<%} %>
                     </div>
                 </div>
@@ -154,31 +160,31 @@
             
                 <div>
                     <div>
-                    	<form action="">
+                    	<form action="<%=request.getContextPath()%>/cpadd.up">
                         <table class="table table-bordered " style="text-align:left ;">
                             
                                 <tr>
-                                    <th width="50px" style="text-align:center ;">쿠폰이름</th>
-                                    <td width="100px"><input type="text" name="cpName"></td>
+                                    <th width="50px" style="text-align:center ;" >쿠폰이름</th>
+                                    <td width="100px"><input type="text" id="cpName" name="cpName" required></td>
                                 </tr>
                                 <tr>
                                     <th width="50px" style="text-align:center ;">할인금액</th>
-                                    <td width="100px"><input type="text" size="5" name="cpDis"> 원</td>
+                                    <td width="100px"><input type="number" step="1000" size="5" id="cpDis" name="cpDis" placeholder="1000단위로입력" required> 원</td>
                                 </tr>
                                 <tr>
                                     <th width="50px" style="text-align:center ;">쿠폰발급받을회원</th>
                                     <td width="100px">
                                         <div class="checks2">
-                                            <input type="radio" id="radio1" name="grade"> 
+                                            <input type="radio" id="radio1" name="grade" value="1"> 
                                             <label for="radio1">전체회원</label>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <input type="radio" id="radio2" name="grade"> 
+                                            <input type="radio" id="radio2" name="grade" value="2"> 
                                             <label for="radio2">수강생만</label> 
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <input type="radio" id="radio3" name="grade"> 
+                                            <input type="radio" id="radio3" name="grade" value="3"> 
                                             <label for="radio3">강의수강중인 수강생만</label> 
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <input type="radio" id="radio4" name="grade" checked> 
+                                            <input type="radio" id="radio4" name="grade" value="4" checked> 
                                             <label for="radio4">선택안함</label> 
                                         </div>
                                     </td>
@@ -186,11 +192,14 @@
                         </table>
                         
                         <div align="center">
-                        <button type="submit" class="button3">쿠폰등록하기</button>
+                        <button type="submit" class="button3" onclick="return cpadd();">쿠폰등록하기</button>
                         </div> 
                         </form>
                     </div>      
-                   
+                  
+                   <script>
+
+                   </script>
             
 
                 

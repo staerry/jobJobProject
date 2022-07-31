@@ -494,7 +494,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	ORDER BY CP_NO DESC
 </entry>
 
-<entry key="paymentBuyList">
+<entry key="couponList">
 	SELECT * 
 	  FROM(SELECT ROWNUM RNO, A.*
 	        FROM (SELECT 
@@ -506,6 +506,55 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	            FROM COUPON
 	            ORDER BY CP_NO DESC) A)
 	WHERE RNO BETWEEN ? AND ?
+</entry>
+
+<entry key="classStu">
+	SELECT C.USER_NO
+	  FROM CLASS_ING C
+	  JOIN USERINFO U ON(C.USER_NO=U.USER_NO)
+	 WHERE USER_STATUS='N'
+	 GROUP 
+	    BY C.USER_NO;
+</entry>
+
+<entry key="insertCoupon">
+	INSERT 
+	  INTO COUPON
+	VALUES (SEQ_CP.NEXTVAL,?,?,DEFAULT,DEFAULT)
+</entry>
+
+<entry key="CouponNo">
+	SELECT *
+	  FROM(SELECT ROWNUM AS "RNO",A.*
+	         FROM(SELECT CP_NO
+	                FROM COUPON 
+	               ORDER
+	                  BY CP_NO DESC)A)
+	 WHERE RNO = 1
+</entry>
+
+<entry key="sendCoupon">
+	INSERT
+	  INTO ISSUANCECOUPON
+	VALUES (SEQ_ISUCP.NEXTVAL,?,?,DEFAULT,DEFAULT,DEFAULT)
+</entry>
+
+<entry key="allStuNo">
+	SELECT USER_NO
+	  FROM USERINFO
+	 WHERE USER_STATUS='N'
+	   AND USER_DIVISION=1
+	 GROUP 
+	    BY USER_NO
+</entry>
+
+<entry key="allMemNo">
+	SELECT USER_NO
+	  FROM USERINFO
+	 WHERE USER_STATUS='N'
+	   AND USER_DIVISION IS NOT NULL
+	 GROUP 
+	    BY USER_NO
 </entry>
 
 </properties>
