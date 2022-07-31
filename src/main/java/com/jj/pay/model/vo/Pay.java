@@ -2,6 +2,8 @@ package com.jj.pay.model.vo;
 
 import java.sql.Date;
 
+import com.jj.common.model.vo.PageInfo;
+
 public class Pay {
 	private int payNo;
 	private String userNo;
@@ -9,17 +11,20 @@ public class Pay {
 	private String isuCpNo;
 	private String payment;
 	private String refund;
-	private String finalPayment;
+	private int finalPayment;
 	private String orderName;
 	private String orderPhone;
 	private String orderEmail;
 	private Date payDate;
 	private Date refundDate;
+	private PageInfo pi;
+	private String userName;
+	private String userId;
 	
 	public Pay() {}
 
 	public Pay(int payNo, String userNo, String clNo, String isuCpNo, String payment, String refund,
-			String finalPayment, String orderName, String orderPhone, String orderEmail, Date payDate,
+			int finalPayment, String orderName, String orderPhone, String orderEmail, Date payDate,
 			Date refundDate) {
 		super();
 		this.payNo = payNo;
@@ -34,6 +39,47 @@ public class Pay {
 		this.orderEmail = orderEmail;
 		this.payDate = payDate;
 		this.refundDate = refundDate;
+	}
+	
+	
+
+	public Pay(int payNo, String userNo, String clNo, String isuCpNo, String payment, String refund, int finalPayment,
+			String orderName, String orderPhone, String orderEmail, Date payDate, Date refundDate, PageInfo pi) {
+		super();
+		this.payNo = payNo;
+		this.userNo = userNo;
+		this.clNo = clNo;
+		this.isuCpNo = isuCpNo;
+		this.payment = payment;
+		this.refund = refund;
+		this.finalPayment = finalPayment;
+		this.orderName = orderName;
+		this.orderPhone = orderPhone;
+		this.orderEmail = orderEmail;
+		this.payDate = payDate;
+		this.refundDate = refundDate;
+		this.pi = pi;
+	}
+
+
+	public Pay(int payNo, String userNo, String clNo, String isuCpNo, String payment, String refund, int finalPayment,
+			String orderName, String orderPhone, String orderEmail, Date payDate, Date refundDate, String userName,
+			String userId) {
+		super();
+		this.payNo = payNo;
+		this.userNo = userNo;
+		this.clNo = clNo;
+		this.isuCpNo = isuCpNo;
+		this.payment = payment;
+		this.refund = refund;
+		this.finalPayment = finalPayment;
+		this.orderName = orderName;
+		this.orderPhone = orderPhone;
+		this.orderEmail = orderEmail;
+		this.payDate = payDate;
+		this.refundDate = refundDate;
+		this.userName = userName;
+		this.userId = userId;
 	}
 
 	public int getPayNo() {
@@ -84,11 +130,11 @@ public class Pay {
 		this.refund = refund;
 	}
 
-	public String getFinalPayment() {
+	public int getFinalPayment() {
 		return finalPayment;
 	}
 
-	public void setFinalPayment(String finalPayment) {
+	public void setFinalPayment(int finalPayment) {
 		this.finalPayment = finalPayment;
 	}
 
@@ -131,6 +177,32 @@ public class Pay {
 	public void setRefundDate(Date refundDate) {
 		this.refundDate = refundDate;
 	}
+	
+	
+
+	public PageInfo getPi() {
+		return pi;
+	}
+
+	public void setPi(PageInfo pi) {
+		this.pi = pi;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	@Override
 	public String toString() {
@@ -139,6 +211,8 @@ public class Pay {
 				+ ", orderPhone=" + orderPhone + ", orderEmail=" + orderEmail + ", payDate=" + payDate + ", refundDate="
 				+ refundDate + "]";
 	}
+	
+	
 	
 	
 }

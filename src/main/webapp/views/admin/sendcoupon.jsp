@@ -33,7 +33,7 @@
                 $(function(){
                     $("#selectNo").on('change',function(){
                         if($(this).val()==1){
-                            location.href="<%=request.getContextPath()%>/couponManage.ad";
+                            location.href="<%=request.getContextPath()%>/couponManage.ad?p=1";
                         }
                          
                     })

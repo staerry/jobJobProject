@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jj.admin.model.service.AdminService2;
 import com.jj.common.model.vo.PageInfo;
+import com.jj.member.model.vo.Member;
 import com.jj.pay.model.vo.Pay;
 
 /**
@@ -45,7 +46,7 @@ public class paymentSelectController extends HttpServlet {
 		String[] check = request.getParameterValues("check");
 
 		if(check==null) {
-			check=new String[]{"1","2"};
+			check=new String[]{"1"};
 		}
 		
 		String search = "";
@@ -53,11 +54,11 @@ public class paymentSelectController extends HttpServlet {
 			search= request.getParameter("search");
 		}
 		
-		ArrayList<Pay> list = new ArrayList<>();
+		ArrayList<Member> list = new ArrayList<>();
 		
 		//-----------------------------------------------------------------------------------
 		
-		if(check.length==2) {
+		if(check[0].equals("1")) {
 			
 			listCount = new AdminService2().selectAllUserCount(search);
 			currentPage = Integer.parseInt(request.getParameter("p"));
@@ -74,7 +75,7 @@ public class paymentSelectController extends HttpServlet {
 			PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
 			
 			
-			list = new AdminService2().mentorInfo(pi,search);
+			list = new AdminService2().selectAllUserList(pi,search);
 			
 			request.setAttribute("check", check);
 			request.setAttribute("search", search);
@@ -84,7 +85,31 @@ public class paymentSelectController extends HttpServlet {
 			
 			request.getRequestDispatcher("views/admin/paymentSelect.jsp").forward(request, response);
 		}else {
-			System.out.println("error");
+
+			listCount = new AdminService2().outAllUserCount(search);
+			currentPage = Integer.parseInt(request.getParameter("p"));
+			pageLimit = 5;
+			boardLimit = 10;
+			maxPage =  (int)Math.ceil( (double)listCount / boardLimit );
+			startPage = (currentPage-1) / pageLimit * pageLimit + 1;
+			endPage = startPage + pageLimit - 1;
+			
+			if(endPage>maxPage) {
+				endPage = maxPage;
+			}
+			int lpage = listCount-boardLimit*(currentPage-1);
+			PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
+			
+			
+			list = new AdminService2().outAllUserList(pi,search);
+			
+			request.setAttribute("check", check);
+			request.setAttribute("search", search);
+			request.setAttribute("lpage", lpage);
+			request.setAttribute("pi", pi);
+			request.setAttribute("list", list);
+			
+			request.getRequestDispatcher("views/admin/paymentSelect.jsp").forward(request, response);
 		}
 		
 	}

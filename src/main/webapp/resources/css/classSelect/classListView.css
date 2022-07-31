@@ -49,7 +49,7 @@ li>a{color:black;}
     width:800px;
 }
 
-.class-list-area>h2{
+.class-list-area>h3{
     margin-bottom:30px;
 }
 
@@ -111,6 +111,10 @@ li>a{color:black;}
     box-shadow:0 4px 24px 0 rgb(0 0 0 / 4%);
     cursor:pointer;
     margin:17px;
+}
+
+.class-cover>h6{
+	font-weight:600;
 }
 
 .bi-suit-heart-fill{

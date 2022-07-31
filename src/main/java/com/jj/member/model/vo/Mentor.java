@@ -2,6 +2,10 @@ package com.jj.member.model.vo;
 
 import java.sql.Date;
 
+/**
+ * @author jylee
+ *
+ */
 public class Mentor {
 	private int userNo;
 	private int clcgNo;
@@ -13,9 +17,11 @@ public class Mentor {
 	private String empCardPath;
 	private String empCardOriginName;
 	private String idCardPath;
-	private String idCardOriginName;
+	private String idCardOriginName;	
 	
 	public Mentor() {}
+
+	
 
 	public Mentor(int userNo, int clcgNo, String mtCompany, String mtJob, int mtGrade, String mtGrant,
 			Date mt_Enrolldate, String empCardPath, String empCardOriginName, String idCardPath,
@@ -33,6 +39,8 @@ public class Mentor {
 		this.idCardPath = idCardPath;
 		this.idCardOriginName = idCardOriginName;
 	}
+
+
 
 	public int getUserNo() {
 		return userNo;
@@ -129,12 +137,5 @@ public class Mentor {
 				+ ", empCardPath=" + empCardPath + ", empCardOriginName=" + empCardOriginName + ", idCardPath="
 				+ idCardPath + ", idCardOriginName=" + idCardOriginName + "]";
 	}
-
-	
-
-	
-
-	
-	
 	
 }
