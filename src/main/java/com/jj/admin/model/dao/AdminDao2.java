@@ -853,10 +853,9 @@ public class AdminDao2 {
 			pstmt.setInt(2,startRow);
 			pstmt.setInt(3,endRow);
 			rset = pstmt.executeQuery();
-			
 			while(rset.next()) {
 				list.add(new Pay(rset.getInt("pay_no"),
-									rset.getString("user_name"),
+									rset.getString("user_no"),
 									rset.getString("cl_title"),
 									rset.getString("cp_name"),
 									rset.getString("payment"),
@@ -866,7 +865,9 @@ public class AdminDao2 {
 									rset.getString("order_phone"),
 									rset.getString("order_email"),
 									rset.getDate("pay_date"),
-									rset.getDate("refund_date")));
+									rset.getDate("refund_date"),
+									pi));
+
 			}
 			
 			

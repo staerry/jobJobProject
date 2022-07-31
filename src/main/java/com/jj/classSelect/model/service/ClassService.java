@@ -17,7 +17,7 @@ public class ClassService {
 		return listCount;
 	}
 	
-	public int selectListCount(int category) {
+	public int selectListCount(String category) {
 		Connection conn = getConnection();
 		int listCount = new ClassDao().selectListCount(conn, category);
 		close(conn);
@@ -31,7 +31,7 @@ public class ClassService {
 		return list;
 	}
 
-	public ArrayList<Class> selectList(int category) {
+	public ArrayList<Class> selectList(String category) {
 		Connection conn = getConnection();
 		ArrayList<Class> list = new ClassDao().selectList(conn, category);
 		close(conn);

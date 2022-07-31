@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.jj.classSelect.model.vo.Class"%>
     
 <%
+	String category = (String)request.getAttribute("category");
 	int listCount = (int)request.getAttribute("listCount");
 	ArrayList<Class> list = (ArrayList<Class>)request.getAttribute("list");
 
@@ -36,7 +37,25 @@
 
         <!-- 오른쪽 클래스 목록 영역-->
         <div class="class-list-area">
-            <h2>전체(<%= listCount %>)</h2>
+        	<%
+        		if(category == null || category.equals("all")) {
+        			category = "0";
+        		}
+        	
+        		String categoryName = "";
+        		switch(category) {
+        		case "0": categoryName = "전체"; break;
+        		case "1": categoryName = "IT • 개발"; break;
+        		case "2": categoryName = "마케팅 • MD • 영업"; break;
+        		case "3": categoryName = "회계 • 재무 • 금융"; break;
+        		case "4": categoryName = "전략 • 기획"; break;
+        		case "5": categoryName = "유통 • 무역 • 구매"; break;
+        		case "6": categoryName = "공사 • 공기업 • 공무원"; break;
+        		case "7": categoryName = "전문 • 특수"; break;
+        		
+        		}
+        	%>
+            <h3><%= categoryName %> (<%= listCount %>)</h3>
 
             <!-- 클래스 정렬 버튼 & 박스 영역 -->
             <div class="class-sorting">

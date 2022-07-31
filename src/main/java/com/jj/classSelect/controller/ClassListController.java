@@ -32,9 +32,25 @@ public class ClassListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		int listCount = new ClassService().selectListCountAll();
-		ArrayList<Class> list = new ClassService().selectListAll();			
+		String category = request.getParameter("category");
+		// 값이 없을 때
+		// 값이 all일 때
+		// 값이 그냥 카테고리 숫자일 때 
+		System.out.println(category);
 		
+		int listCount;
+		ArrayList<Class> list = new ArrayList<>();
+		
+		if(category == null || category.equals("all")) {	// 상단 메뉴바-강의조회 | 왼쪽 메뉴바 전체를 선택한 경우
+			listCount = new ClassService().selectListCountAll();
+			list = new ClassService().selectListAll();
+			
+		}else {	// 카테고리 선택한 경우
+			listCount = new ClassService().selectListCount(category);
+			list = new ClassService().selectList(category);
+		}
+				
+		request.setAttribute("category", category);
 		request.setAttribute("listCount", listCount);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/classSelect/classListView.jsp").forward(request, response);
