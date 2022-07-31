@@ -60,7 +60,7 @@ public class CouponManageController extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount,currentPage,pageLimit,boardLimit,maxPage,startPage,endPage);
 		
 		ArrayList<Coupon> list = new ArrayList<>();
-		list = new AdminService2().paymentBuyList(pi);
+		list = new AdminService2().couponList(pi);
 		
 		request.setAttribute("lpage", lpage);
 		request.setAttribute("pi", pi);

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.jj.admin.model.vo.UserInfoAd;
+import com.jj.classSelect.model.vo.ClassIng;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.coupon.vo.Coupon;
 import com.jj.faq.model.vo.Faq;
@@ -1049,11 +1050,11 @@ public class AdminDao2 {
 		return list;
 	}
 	
-	public ArrayList<Coupon> paymentBuyList(Connection conn,PageInfo pi){
+	public ArrayList<Coupon> couponList(Connection conn,PageInfo pi){
 		ArrayList<Coupon> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("paymentBuyList");
+		String sql = prop.getProperty("couponList");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -1080,10 +1081,157 @@ public class AdminDao2 {
 		}
 		return list;
 	}
+	
+	public ArrayList<ClassIng> classStu(Connection conn){
+		ArrayList<ClassIng> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("classStu");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new ClassIng(rset.getInt("user_no")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public int insertCoupon(Connection conn,String cpName,int discount) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertCoupon");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cpName);
+			pstmt.setInt(2, discount);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int CouponNo(Connection conn) {
+		int no = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("CouponNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				no = rset.getInt("cp_no");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return no;
+	}
+	
+	public int sendCouponClStu(Connection conn, ArrayList<ClassIng>list,int no) {
+		int result2 = 1;
+		String sql = prop.getProperty("sendCoupon");
+		
+		for(ClassIng c : list) {
+			int a = 0;
+			PreparedStatement pstmt = null;
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, c.getUserNo());
+				pstmt.setInt(2, no);
+				a = pstmt.executeUpdate();
+				System.out.println(a);
+				result2 = result2*a;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+		}
+		
+		return result2;
+	}
 
+	public ArrayList<Integer> allStuNo(Connection conn){
+		ArrayList<Integer> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("allStuNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(rset.getInt("user_no"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 	
+	public ArrayList<Integer> allMemNo(Connection conn){
+		ArrayList<Integer> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("allMemNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(rset.getInt("user_no"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 	
-	
+	public int sendCoupon(Connection conn, ArrayList<Integer>list,int no) {
+		int result2 = 1;
+		String sql = prop.getProperty("sendCoupon");
+		
+		for(int i=0;i<list.size();i++) {
+			int a = 0;
+			PreparedStatement pstmt = null;
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, list.get(i));
+				pstmt.setInt(2, no);
+				a = pstmt.executeUpdate();
+				
+				result2 = result2*a;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+		}
+		
+		return result2;
+	}
 	
 	
 	

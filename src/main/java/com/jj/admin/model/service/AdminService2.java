@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.jj.admin.model.dao.AdminDao;
 import com.jj.admin.model.dao.AdminDao2;
 import com.jj.admin.model.vo.UserInfoAd;
+import com.jj.classSelect.model.vo.ClassIng;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.coupon.vo.Coupon;
 import com.jj.faq.model.vo.Faq;
@@ -491,17 +492,115 @@ public class AdminService2 {
 		return list;
 	}
 	
-	public ArrayList<Coupon> paymentBuyList(PageInfo pi){
+	/**
+	 * 쿠폰리스트를 페이지에 맞게 조회하는 메소드
+	 * @param pi 페이지정보객체
+	 * @return 쿠폰리스트
+	 */
+	public ArrayList<Coupon> couponList(PageInfo pi){
 		Connection conn = getConnection();
-		ArrayList<Coupon> list = new AdminDao2().paymentBuyList(conn,pi);
+		ArrayList<Coupon> list = new AdminDao2().couponList(conn,pi);
 		close(conn);
 		return list;
 	}
 	
+	/**
+	 * 강의를 수강하는학생번호를 알아오는 메소드
+	 * @return 수강학생번호객체
+	 */
+	public ArrayList<ClassIng> classStu(){
+		Connection conn = getConnection();
+		ArrayList<ClassIng> list = new AdminDao2().classStu(conn);
+		close(conn);
+		return list;
+	}
 	
+	/**
+	 * 쿠폰등록을하는메소드
+	 * @param cpName 등록할쿠폰명
+	 * @param discount 등록할쿠폰할인가격
+	 * @return 쿠폰등록결과
+	 */
+	public int insertCoupon(String cpName,int discount) {
+		Connection conn = getConnection();
+		int result = new AdminDao2().insertCoupon(conn,cpName,discount);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
+	/**
+	 * 최근등록한 쿠폰번호 알아내는 메소드
+	 * @return 쿠폰번호
+	 */
+	public int CouponNo() {
+		Connection conn = getConnection();
+		int no = new AdminDao2().CouponNo(conn);
+		close(conn);
+		return no;
+	}
 	
+	/**
+	 * 강의수강중인학생한테 쿠폰을수는 메소드
+	 * @param list 강의수강중인 학생번호리스트
+	 * @param no 줄쿠폰번호
+	 * @return 쿠폰등록결과값
+	 */
+	public int sendCouponClStu(ArrayList<ClassIng>list, int no) {
+		Connection conn = getConnection();
+		int result2 = new AdminDao2().sendCouponClStu(conn,list,no);
+		if(result2>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result2;
+	}
 	
+	/**
+	 * 모든수강생번호를 가져오는 메소드
+	 * @return 모든수강생번호
+	 */
+	public ArrayList<Integer> allStuNo(){
+		Connection conn = getConnection();
+		ArrayList<Integer> list = new AdminDao2().allStuNo(conn);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 모든회원번호를 가져오는 메소드
+	 * @return 모든회원번호
+	 */
+	public ArrayList<Integer> allMemNo(){
+		Connection conn = getConnection();
+		ArrayList<Integer> list = new AdminDao2().allMemNo(conn);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 회원번호와쿠폰번호를 가지고 쿠폰을주는 메소드
+	 * @param list 수강생 학생번호리스트
+	 * @param no 줄쿠폰번호
+	 * @return 쿠폰등록결과값
+	 */
+	public int sendCoupon(ArrayList<Integer>list, int no) {
+		Connection conn = getConnection();
+		int result2 = new AdminDao2().sendCoupon(conn,list,no);
+		if(result2>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result2;
+	}
 	
 	
 	
