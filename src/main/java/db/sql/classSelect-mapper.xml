@@ -31,4 +31,36 @@
             BY CL_NO DESC
     </entry>
     
+    <!-- 카테고리별 강의 수 조회 -->
+	<entry key="selectListCount">
+		SELECT COUNT(*) AS "COUNT"
+		  FROM CLASS
+		 WHERE CL_CATEGORY =?
+	</entry>
+    
+	<!-- 카테고리별 강의 리스트 최신순 조회 -->
+	<entry key="selectList">
+		SELECT
+		       CL_NO
+		     , USER_NAME
+		     , MT_COMPANY
+		     , CLCG_NAME
+		     , CL_TITLE
+		     , CL_SUBTITLE
+		     , CL_INFO
+		     , CL_CURRI
+		     , CL_PRICE
+		     , CL_ENROLLDATE
+		     , CL_GRANT
+		     , CL_THUMBNAILPATH
+		  FROM CLASS
+		  JOIN USERINFO USING(USER_NO)
+  		  JOIN CL_CATEGORY ON(CL_CATEGORY = CLCG_NO)
+  		  JOIN MENTOR USING(USER_NO)  		  
+		 WHERE CL_CATEGORY = ?
+         ORDER
+            BY CL_NO DESC
+	</entry>
+	
+    
 </properties>

@@ -48,7 +48,7 @@ public class ClassDao {
 		
 	}
 	
-	public int selectListCount(Connection conn, int category) {
+	public int selectListCount(Connection conn, String category) {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -56,7 +56,7 @@ public class ClassDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, category);
+			pstmt.setString(1, category);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -109,7 +109,7 @@ public class ClassDao {
 		
 	}
 	
-	public ArrayList<Class> selectList(Connection conn, int category) {
+	public ArrayList<Class> selectList(Connection conn, String category) {
 		ArrayList<Class> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -117,7 +117,7 @@ public class ClassDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, category);
+			pstmt.setString(1, category);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
