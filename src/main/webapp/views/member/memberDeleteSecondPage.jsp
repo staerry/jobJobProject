@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%
-	// request.getAttribute로 다시 뽑기
-	//String userName = (String)request.getAttribute("userName");
-	String userId = (String)request.getAttribute("userId");
-	String userPwd = (String)request.getAttribute("userPwd");
-	//String userPhone = (String)request.getAttribute("userPhone");
-%>
+   
 <!DOCTYPE html>
 <html>
 <head>

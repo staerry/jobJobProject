@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%
-	//request.getAttribute로 다시 뽑기
-	//String userName = (String)request.getAttribute("userName");
-	String userId = (String)request.getAttribute("userId");
-	String userPwd = (String)request.getAttribute("userPwd");
-	//String userPhone = (String)request.getAttribute("userPhone");
-%>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -22,16 +15,6 @@
 </head>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
-	<%
-	
-		//String userId = loginUser.getUserId();
-		//String userName = loginUser.getUserName();
-		//String phone = (loginUser.getPhone() == null) ? "" : loginUser.getPhone();
-		//String email = (loginUser.getEmail() == null) ? "" : loginUser.getEmail();
-		//String address = (loginUser.getAddress() == null) ? "" : loginUser.getAddress();
-		//String interest = (loginUser.getInterest() == null) ? "" : loginUser.getInterest();
-	%>
-
     
     <br><br>
     <div class="container">
