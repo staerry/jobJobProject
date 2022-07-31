@@ -35,6 +35,7 @@
     <!-- 전체를 감싸는 div -->
     <div class="container">
 
+        <div class="container-all">
         <!-- 왼쪽 강의 세부 정보 영역 -->
         <div class="class-detail-area">
 
@@ -66,7 +67,7 @@
                 <div class="lecturer-set">
                     <div class="lecturer-photo">
                         <%= c.getLtrProfilePath() %>
-                        <img src="프로필이미지경로">
+                        <img src="프로필이미지경로" id="ltr-profile">
                     </div>
 
                     <div class="lecturer-profile">
@@ -109,19 +110,18 @@
                 	<% for(Review r : list) { %>
                     <table class="user-review">
                         <tr>
-                            <td>평점 : <%= r.getReviewScore() %> ⭐️⭐️⭐️⭐️⭐️</td>
+                            <td>평점 : <%= r.getReviewScore() %> 점 (⭐️⭐️⭐️⭐️⭐️로 수정 필요)</td>
                         </tr>
                         <tr>
-                            <td><%= r.getUserNo() %></td>
+                            <td id="review-user"><%= r.getUserNo() %></td>
                         </tr>
                         <tr>
-                            <td><%= r.getReviewEnrolldate() %></td>
+                            <td id="review-date"><%= r.getReviewEnrolldate() %></td>
                         </tr>
                         <tr>
-                            <td><%= r.getReviewContent() %></td>
+                            <td><p id="review-content"><%= r.getReviewContent() %></p></td>
                         </tr>
                     </table>
-                    <br>
 				<% } %>
 				<% } %>
                 </div>
@@ -134,7 +134,7 @@
                 
                 <!-- 수강료 표시 영역 -->
                 <div class="class-price">
-                    <h4><%= c.getClPriceWon() %>원</h4>
+                    <h4><%= c.getClPriceWon() %></h4>
                 </div>
 
                 <div class="order-btn">
@@ -158,21 +158,19 @@
                             <td>수강생 수</td>
                             <td><%= studentCount %>명</td>
                         </tr>
-                        <tr>
-                            <td colspan="2" align="center"><i class="bi bi-suit-heart-fill" id="heart"></i>
-                            <span><%= bookmarkCount %></span></td>
-                        </tr>
-
                     </table>
-                    
+                    <div class="heart-icon">
+                        <span><i class="bi bi-suit-heart-fill" id="heart"></i></span>
+                        <span><%= bookmarkCount %></span></td>
+                    </div>
+
                 </div>
             </div>
         </div>
+        </div>
 
     </div>
-    
-    <h2>/// 무한 스크롤 + top 버튼 ///</h2>
-    
+       
     <%@ include file="../common/footer.jsp" %>
 </body>
 </html>
