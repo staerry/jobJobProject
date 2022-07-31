@@ -80,6 +80,48 @@
 		  , 2
 		  )
 	</entry>
+	
+	<entry key="insertMentor">
+		INSERT
+		  INTO MENTOR
+		  (
+		  	 USER_NO
+		   , CLCG_NO
+		   , MT_COMPANY
+		   , MT_JOB
+		   , EMPCARD_PATH  
+		   , EMPCARD_ORIGINNAME
+		   , IDCARD_PATH
+		   , IDCARD_ORIGINNAME
+		  )
+		  VALUES
+		  (
+		    ?
+		  , ?
+		  , ? 
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ? 
+		  )
+	</entry>
+	
+	<entry key="insertAttachment">
+		INSERT
+		  INTO SLIDE_ATTACHMENT
+		  (
+		    FILE_NO
+		  , FILE_NAME
+		  , FILE_PATH
+		  )
+		  VALUES
+		  (
+		    SEQ_ATT
+		  , ?
+		  , ?
+		  )
+	</entry>
 
 
 

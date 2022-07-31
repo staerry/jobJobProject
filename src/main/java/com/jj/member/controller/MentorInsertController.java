@@ -1,7 +1,9 @@
 package com.jj.member.controller;
 
+import java.io.File;
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +16,8 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import com.jj.common.MyFileRenamePolicy;
 import com.jj.member.model.service.MemberService;
 import com.jj.member.model.vo.Member;
+import com.jj.member.model.vo.Mentor;
+import com.jj.member.model.vo.SlideAttachment;
 import com.oreilly.servlet.MultipartRequest;
 
 /**
@@ -52,16 +56,15 @@ public class MentorInsertController extends HttpServlet {
 			
 			// 1_2) 전달된 파일을 저장시킬 폴더의 경로 알아내기
 			
-				// 멘토 프로필 사진 저장할 폴더 : mentorSelect
-			String savePath = session.getServletContext().getRealPath("/resources/image/mentorSelect/");
+				// 멘토 사원증 저장할 폴더 : mentorEmpCardFiles
+				// 멘토 신분증 저장할 폴더 : mentorIdCardFIles
+			String savePath = session.getServletContext().getRealPath("/resources/image/mentorEmpIdCardFiles/");
 			
 			// 1_3) 전달된 파일의 파일명 수정 및 서버에 업로드 작업
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
-			
 			// 2. 파일 저장 후 DB에 insert
-			//  > 멘토 (이름, 이메일= 아이디, 비밀번호, 핸드폰번호, 소속회사, 현재직급)  => Mentor테이블에 insert
-			//  > => Member테이블에 insert
+			//  > 아이디, 비번, 이름, 이메일, 핸드폰 번호 => Member테이블에 insert 
 			String userId = multiRequest.getParameter("mtId");
 			String userPwd = multiRequest.getParameter("mtPwd");
 			String userName = multiRequest.getParameter("mtName");
@@ -73,48 +76,60 @@ public class MentorInsertController extends HttpServlet {
 			int result1 = new MemberService().insertMentorToUserInfo(m);
 			
 			if(result1 > 0) { // USERINFO 테이블에 멘토 정보 입력 완료
+				
 				session.setAttribute("alertMsg", "성공적으로 가입되었습니다!");
-				response.sendRedirect(request.getContextPath());
+				//response.sendRedirect(request.getContextPath());
+				
 			}else { // 실패
+				
 				session.setAttribute("alertMsg", "가입에 실패하였습니다.");
 				response.sendRedirect(request.getContextPath());
 				
 			}
 			
-//			String mtName = multiRequest.getParameter("mtName");
-//			String mtId = multiRequest.getParameter("mtId");
-//			String mtPwd = multiRequest.getParameter("mtPwd");
-//			String mtPhone = multiRequest.getParameter("mtPhone");
-//	
-//			String mtCompany = multiRequest.getParameter("mtCompany");
-//			String mtPosition = multiRequest.getParameter("mtPosition");
-//			
-//			Mentor mt = new Mentor();
-//			
-//			
-//			int boardWriter = ((Member)session.getAttribute("loginUser")).getUserNo();
-//			
-//			Board b = new Board();
-//			b.setCategory(category);
-//			b.setBoardTitle(boardTitle);
-//			b.setBoardContent(boardContent);
-//			b.setBoardWriter(String.valueOf(boardWriter));
+			
+			//  > 멘토 (소속회사, 현재직급)  => Mentor테이블에 insert, SlideAttachment에 insert
+			int field = Integer.parseInt(multiRequest.getParameter("field"));
+			String mtCompany = multiRequest.getParameter("mtCompany");
+			String mtPosition = multiRequest.getParameter("mtPosition");
+			
+			
+			// 사원증 사진, 신분증 사진 => Mentor테이블에 insert, SlideAttachment에 insert
+			// 사원증 사진 ( 원본명,  수정명, 저장경로 알아야함) = EmpCard
+			// multiRequest.getOriginalFileName("사원증 사진의 name값 = mtEmpCard") : 원본파일명 알아내는 메소드
+			Mentor mt = null;
+			
+			mt = new Mentor();
+			
+			mt.setClcgNo(field);
+			mt.setEmpCardPath("resources/image/mentorEmpIdCardFiles/");
+			mt.setEmpCardOriginName(multiRequest.getFilesystemName("mtEmpCard"));
+			mt.setIdCardPath("resources/image/mentorEmpIdCardFiles/");
+			mt.setIdCardOriginName(multiRequest.getFilesystemName("mtIdCard"));
+			
+			int result2 = new MemberService().insertMentor(m, mt);
+			
+			if(result2 > 0) { // 성공 Mentor테이블, SlideAttachment테이블에 insert 됨 // => 대기중 화면 띄움
+				response.sendRedirect(request.getContextPath() + "/mentorWaiting.me");
+			}else { // 실패
+				if(mt != null) {
+					new File(savePath + mt.getEmpCardOriginName()).delete();
+					new File(savePath + mt.getIdCardOriginName()).delete();
+				}
+//				session.setAttribute("alertMsg", "멘토 회원가입에 실패했습니다.");
+//				response.sendRedirect(request.getContextPath());
+			}
+			
+			
+			/*if(multiRequest.getOriginalFileName("mtEmpCard") != null) { // not null 이니까 첨부파일이 넘어온 것 // 근데 우리는 무조건 사원증 받으니까 if문 안써도 되는지??
+				mt = new Mentor();
+				
+				mt.setEmpCardOriginName(multiRequest.getFilesystemName("mtEmpCard")); // 수정명을 원본명에 덮어씀
+				mt.setEmpCardPath("resources/image/mentorEmpCardFiles/");
+				
+			}*/	
+
 		}
-		
-//		// 이름, 이메일, 비밀번호, 핸드폰번호, 소속회사, 현재직급, 
-//		String mtName = request.getParameter("mtName");
-//		String mtId = request.getParameter("mtId");
-//		String mtPwd = request.getParameter("mtPwd");
-//		String mtPhone = request.getParameter("mtPhone");
-//		
-//		String mtCompany = request.getParameter("mtCompany");
-//		String mtPosition = request.getParameter("mtPosition");
-//	
-//		// 프로필사진, 사원증 사진, 신분증 사진
-//		
-//		Mentor mt = new Mentor();
-//	
-	
 	
 	}
 

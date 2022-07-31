@@ -58,29 +58,29 @@
                                 </div><br>
                                 
                                 <div class="col">
-                                    <span>관심분야</span><br>
+                                    <span>관심분야(1개 선택해주세요)</span><br>
                                         
-                                    <input type="checkbox" name="interest" id="computer" value="IT개발">
+                                    <input type="radio" name="field" id="computer" value="1">
                                     <label for="computer">IT개발</label>&nbsp;
 
-                                    <input type="checkbox" name="interest" id="marketing" value="마케팅/MD/영업">
+                                    <input type="radio" name="field" id="marketing" value="2">
                                     <label for="marketing">마케팅/MD/영업</label>
                                     <br>
             
-                                    <input type="checkbox" name="interest" id="banking" value="회계/재무/금융">
+                                    <input type="radio" name="field" id="banking" value="3">
                                     <label for="banking">회계/재무/금융</label>&nbsp;
             
-                                    <input type="checkbox" name="interest" id="planning" value="전략/기획">
+                                    <input type="radio" name="field" id="planning" value="4">
                                     <label for="planning">전략/기획</label><br>
             
-                                    <input type="checkbox" name="interest" id="trading" value="유통/무역/구매">
+                                    <input type="radio" name="field" id="trading" value="5">
                                     <label for="trading">유통/무역/구매</label>&nbsp;
             
-                                    <input type="checkbox" name="interest" id="government" value="공사/공기업/공무원">
+                                    <input type="radio" name="field" id="government" value="6">
                                     <label for="government">공사/공기업/공무원</label>
                                     <br>
             
-                                    <input type="checkbox" name="interest" id="special" value="전문/특수">
+                                    <input type="radio" name="field" id="special" value="7">
                                     <label for="special">전문/특수</label>
                                     
                                 </div>
