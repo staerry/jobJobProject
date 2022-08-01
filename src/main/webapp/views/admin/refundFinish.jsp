@@ -43,17 +43,21 @@
 		        <div id="formwraping">
 		            <form action="" style="">
 		                &nbsp;
-		                <input type="checkbox" id="check1" checked> 
+		                <input type="checkbox" id="check1" name="check" value="1" checked> 
 		                <label for="check1">승인목록</label>
 		                &nbsp;
-		                <input type="checkbox" id="check2" checked> 
+		                <input type="checkbox" id="check2" name="check" value="1" checked> 
 		                <label for="check2">거절목록</label> 
 		                &nbsp;&nbsp;
-		                <input type="text" style="line-height: 30px; width: 200px;" id="searchclick" placeholder="   이름또는 회원번호로 검색">
+		                <input type="text" style="line-height: 30px; width: 200px; text-align:center" id="searchclick" name="search" placeholder="이름,회원번호,결제번호">
 		                <label for="searchclick"><button id="searchbtn" style="line-height: 30px;" class="btnpurple">검색</button></label>
 		            </form>
 		        </div>
 		    </div>
+		    
+		    <script>
+		    	
+		    </script>
 			
 		    <div style="position:relative ;">
 		       
@@ -67,7 +71,6 @@
 		                        <th width="50">이름</th>
 		                        <th width="100">아이디</th>
 		                        <th width="100">환불강의</th>
-		                        <th width="120">환불사유</th>
 		                        <th width="100">요청처리일</th>
 		                        <th width="100">처리결과</th>
 		                       
@@ -79,8 +82,6 @@
 		                        <td>45(50)</td>
 		                        <td>서주원</td>
 		                        <td>aaaa@naver.com</td>
-		                        <td>c++...</td>
-		                        <td>생각한내용이랑다름</td>
 		                        <td>22.01.20</td>
 		                        <td style="color:#6363ff;font-weight: bold;">승인</td>
 		                    </tr>

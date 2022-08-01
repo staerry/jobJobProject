@@ -241,6 +241,14 @@ public class AdminService2 {
 		return listCount;
 	}
 	
+	public int refundRequestCount(String search) {
+		Connection conn = getConnection();
+		int listCount = new AdminDao2().refundRequestCount(conn,search);
+		close(conn);
+		
+		return listCount;
+	}
+	
 	
 	/**
 	 * 활동중인 수강생리스트를 페이지에 맞춰서 찾는메소드
@@ -569,6 +577,19 @@ public class AdminService2 {
 	}
 	
 	/**
+	 * 키워드와 페이지에맞는 환불대기중인리스트를 가져오는 메소드
+	 * @param pi 페이지정보
+	 * @param search 키워드
+	 * @return 리스트
+	 */
+	public ArrayList<Pay> refundRequestList(PageInfo pi,String search){
+		Connection conn = getConnection();
+		ArrayList<Pay> list = new AdminDao2().refundRequestList(conn,pi,search);
+		close(conn);
+		return list;
+	}
+	
+	/**
 	 * 쿠폰등록을하는메소드
 	 * @param cpName 등록할쿠폰명
 	 * @param discount 등록할쿠폰할인가격
@@ -723,6 +744,57 @@ public class AdminService2 {
 		return result;
 	}
 	
+	/**
+	 * 회원번호와쿠폰번호로 유저에게 쿠폰전달하는메소드
+	 * @param userNo 회원쿠폰고유번호
+	 * @param cpNO 쿠폰번호
+	 * @return 결과값
+	 */
+	public int insertUserCp(int userNo,int cpNo) {
+		Connection conn = getConnection();
+		int result = new AdminDao2().insertUserCp(conn,userNo,cpNo);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	/**
+	 * 결제내역고유번호로 환불승인하는 메소드
+	 * @param payNo 결제내역고유번호
+	 * @return 결과값
+	 */
+	public int refundAccess(int payNo) {
+		Connection conn = getConnection();
+		int result = new AdminDao2().refundAccess(conn,payNo);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	/**
+	 * 결제내역고유번호로 환불거절하는 메소드
+	 * @param payNo 결제내역고유번호
+	 * @return 결과값
+	 */
+	public int refundDeny(int payNo) {
+		Connection conn = getConnection();
+		int result = new AdminDao2().refundDeny(conn,payNo);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
 	
 	
