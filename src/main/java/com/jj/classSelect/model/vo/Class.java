@@ -19,11 +19,35 @@ public class Class {
 	private String ltrInfo;
 	private String ltrCareer;
 	private String ltrProfilePath;
+	private double clScore;
 	
 	public Class() {
 		
 	}
 	
+	
+	
+	public Class(int clNo, String userNo, String mtCompany, String clCategory, String clTitle, String clSubtitle,
+			String clInfo, String clCurri, String clPriceWon, Date clEnrolldate, String clGrant, String clThumbnailPath,
+			double clScore) {
+		super();
+		this.clNo = clNo;
+		this.userNo = userNo;
+		this.mtCompany = mtCompany;
+		this.clCategory = clCategory;
+		this.clTitle = clTitle;
+		this.clSubtitle = clSubtitle;
+		this.clInfo = clInfo;
+		this.clCurri = clCurri;
+		this.clPriceWon = clPriceWon;
+		this.clEnrolldate = clEnrolldate;
+		this.clGrant = clGrant;
+		this.clThumbnailPath = clThumbnailPath;
+		this.clScore = clScore;
+	}
+
+
+
 	public Class(int clNo, String clTitle, String userNo, Date clEnrolldate, String clThumbnailPath) {
 		super();
 		this.clNo = clNo;
@@ -151,6 +175,18 @@ public class Class {
 		this.ltrCareer = ltrCareer;
 		this.ltrProfilePath = ltrProfilePath;
 	}
+	
+	public double getClScore() {
+		return clScore;
+	}
+
+
+
+	public void setClScore(double clScore) {
+		this.clScore = clScore;
+	}
+
+
 
 	public String getMtCompany() {
 		return mtCompany;
