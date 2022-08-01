@@ -19,6 +19,7 @@ import com.jj.community.model.vo.Reply;
 import com.jj.community.model.vo.Review;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
+import com.jj.member.model.vo.MentorApproval;
 import com.jj.mtm.model.vo.Mtm;
 import com.jj.notice.model.vo.Notice;
 
@@ -1204,12 +1205,145 @@ public class AdminDao {
 		return result;
 	}
 	
+	public int selectMentorCount(Connection conn) {
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMentorCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
 	
+	public ArrayList<MentorApproval> selectMentorList(Connection conn, PageInfo pageInfo){
+		ArrayList<MentorApproval> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMentorList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit() + 1;
+			int endRow = startRow + pageInfo.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2,  endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new MentorApproval(rset.getString("user_no")
+						          , rset.getString("user_name")
+						          , rset.getString("user_email")
+						          , rset.getString("user_phone")
+						          , rset.getString("mt_company")
+						          ,rset.getString("mt_job")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
+	public MentorApproval selectMentor(Connection conn, int mentorNo) {
+		MentorApproval mentorApproval = new MentorApproval();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMentor");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mentorNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				mentorApproval = new MentorApproval(rset.getString("user_no")
+						                          , rset.getString("user_name")
+						                          , rset.getString("user_phone")
+						                          , rset.getString("mt_company")
+						                          , rset.getString("mt_job")
+						                          , rset.getString("user_email")
+						                          , rset.getString("clcg_name")
+						                          , rset.getString("empcard_path")
+						                          , rset.getString("idcard_path"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return mentorApproval;
+	}
 	
+	public int mentorApproval(Connection conn, int mentorNo) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("mentorApproval");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mentorNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
-	
-	
+	public int mentorApprovalFusal(Connection conn, int mentorNo) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("mentorApprovalFusal");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mentorNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	
