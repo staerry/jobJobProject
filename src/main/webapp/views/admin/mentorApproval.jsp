@@ -42,16 +42,22 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
-	                	<% for(MentorApproval i : list){ %>
-		                    <tr>
-		                        <td><%= i.getUserNo() %></td>
-		                        <td><%= i.getUserName() %></td>
-		                        <td><%= i.getUserPhone() %></td>
-		                        <td><%= i.getMtCompany() %></td>
-		                        <td><%= i.getMtJob() %></td>
-		                        <td><%= i.getUserEmail() %></td>
+	                	<% if(list.isEmpty()){ %>
+	                		<tr>
+		                        <td colspan="6">조회된 요청이 없습니다.</td>
 		                    </tr>
-	                     <% } %>
+	                	<% } else { %>
+		                	<% for(MentorApproval i : list){ %>
+			                    <tr>
+			                        <td><%= i.getUserNo() %></td>
+			                        <td><%= i.getUserName() %></td>
+			                        <td><%= i.getUserPhone() %></td>
+			                        <td><%= i.getMtCompany() %></td>
+			                        <td><%= i.getMtJob() %></td>
+			                        <td><%= i.getUserEmail() %></td>
+			                    </tr>
+		                     <% } %>
+	                	<% } %>
 	                </tbody>
 	            </table>
 	            

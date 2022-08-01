@@ -73,29 +73,35 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
-	                	<% for(Community i : list){ %>
-	                    <tr>
-	                        <td><%= i.getCommNo() %></td>
-	                        <td class="title"><%= i.getCommTitle() %></td>
-	                        <td><%= i.getCount() %></td>
-	                        <td><%= i.getCommWriter() %></td>
-	                        <td><%= i.getCreateDate() %></td>
-	                        <td>
-	                        	<button class="btn btn-sm btn-danger" onclick="deleteContent(<%= i.getCommNo() %>);">삭제</button>
-	                        
-	                        	<script>
-							        function deleteContent(num){
-							            if(confirm("정말 삭제 하시겠습니끼?")){
-							            	location.href='<%= contextPath %>/deletePost.ad?no=' + num + '&category=1';
-							            }
-							        }
-		                    	</script>
-	                        </td>
-	                    </tr>
-	                    <tr style="display : none; background-color : rgb(244, 244, 244);">
-	                    	<td colspan="6"><%= i.getCommContent() %></td>
-	                    </tr>
-	                    <% } %>
+	                	<% if(list.isEmpty()){ %>
+		                	<tr>
+			                    <td colspan="6">조회된 게시글이 없습니다.</td>
+			                </tr>
+	                	<% } else { %>
+		                	<% for(Community i : list){ %>
+		                    <tr>
+		                        <td><%= i.getCommNo() %></td>
+		                        <td class="title"><%= i.getCommTitle() %></td>
+		                        <td><%= i.getCount() %></td>
+		                        <td><%= i.getCommWriter() %></td>
+		                        <td><%= i.getCreateDate() %></td>
+		                        <td>
+		                        	<button class="btn btn-sm btn-danger" onclick="deleteContent(<%= i.getCommNo() %>);">삭제</button>
+		                        
+		                        	<script>
+								        function deleteContent(num){
+								            if(confirm("정말 삭제 하시겠습니끼?")){
+								            	location.href='<%= contextPath %>/deletePost.ad?no=' + num + '&category=1';
+								            }
+								        }
+			                    	</script>
+		                        </td>
+		                    </tr>
+		                    <tr style="display : none; background-color : rgb(244, 244, 244);">
+		                    	<td colspan="6"><%= i.getCommContent() %></td>
+		                    </tr>
+		                    <% } %>            	
+	                	<% } %>
 	                </tbody>
 	            </table>
 	            

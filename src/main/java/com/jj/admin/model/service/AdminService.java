@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.jj.admin.model.dao.AdminDao;
 import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.classSelect.model.vo.Class;
+import com.jj.classSelect.model.vo.Vod;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.community.model.vo.Community;
 import com.jj.community.model.vo.Reply;
@@ -40,7 +41,7 @@ public class AdminService {
 	 * @param faqContent : 추가할 FAQ내용
 	 * @param userId : 작성자 
 	 * @return 업데이트된 행 갯수 반환
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int insertFaq(String faqTitle, String faqContent, int userId) {
 		Connection conn = getConnection();
@@ -61,7 +62,7 @@ public class AdminService {
 	/**
 	 * FAQ목록 갯수 확인 요청을 처리해주는 메소드
 	 * @return FAQ게시물 총 갯수 반환
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int selectFaqCount() {
 		Connection conn = getConnection();
@@ -77,7 +78,7 @@ public class AdminService {
 	 * FAQ게시물 리스트 조회 요청을 처리해주는 메소드
 	 * @param pageInfo : 페이징버튼 객체
 	 * @return FAQ게시글 리스트
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public ArrayList<Faq> selectFaqList(PageInfo pageInfo){
 		Connection conn = getConnection();
@@ -93,7 +94,7 @@ public class AdminService {
 	 * FAQ게시글 삭제 요청을 처리해주는 메소드
 	 * @param faqNo : 삭제할 대상 게시글 번호
 	 * @return 업데이트된 행 갯수 반환
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int deleteFaq(int faqNo) {
 		Connection conn = getConnection();
@@ -115,7 +116,7 @@ public class AdminService {
 	 * FAQ수정 페이지에 출력할 게시물 조회 요청을 처리해주는 메소드
 	 * @param faqNo : 수정할 대상 게시글 번호
 	 * @return FAQ게시글
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public Faq selectFaq(int faqNo) {
 		Connection conn = getConnection();
@@ -131,7 +132,7 @@ public class AdminService {
 	 * FAQ수정 요청을 처리해주는 메소드
 	 * @param faq : 수정한 게시글 정보
 	 * @return 업데이트된 행 갯수 반환
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int updateFaq(Faq faq) {
 		Connection conn = getConnection();
@@ -152,7 +153,7 @@ public class AdminService {
 	/**
 	 * 공지사항 총 게시물 갯수 조회 요청을 처리해주는 메소드
 	 * @return 공지사항 게시물 총 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int selectNoticeCount() {
 		Connection conn = getConnection();
@@ -251,7 +252,7 @@ public class AdminService {
 	 * Notice게시물 리스트 조회 요청을 처리해주는 메소드
 	 * @param pageInfo : 페이징버튼 객체
 	 * @return Notice게시글 리스트
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public ArrayList<Notice> selectNoticeList(PageInfo pageInfo){
 		Connection conn = getConnection();
@@ -267,7 +268,7 @@ public class AdminService {
 	 * 공지사항 수정 페이지에 공지사항 정보 출력 요청을 처리해주는 메소드
 	 * @param noticeNo : 수정할 공지사항 번호
 	 * @return 해당 번호의 공지사항 게시글
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public Notice selectNotice(int noticeNo) {
 		Connection conn = getConnection();
@@ -285,7 +286,7 @@ public class AdminService {
 	 * @param noticeTitle : 수정한 공지사항 제목
 	 * @param noticeContent : 수정한 공지사항 내용
 	 * @return 업데이트된 행 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int updateNotice(int noticeNo, String noticeTitle, String noticeContent) {
 		Connection conn = getConnection();
@@ -307,7 +308,7 @@ public class AdminService {
 	 * 공지사항 삭제 요청을 처리해주는 메소드
 	 * @param noticeNo : 삭제할 공지사항 번호
 	 * @return 업데이트된 행 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int deleteNotice(int noticeNo) {
 		Connection conn = getConnection();
@@ -328,7 +329,7 @@ public class AdminService {
 	/**
 	 * 총 댓글 갯수 확인 요청을 처리해주는 메소드
 	 * @return 총 댓글 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int selectReplyCount() {
 		Connection conn = getConnection();
@@ -344,7 +345,7 @@ public class AdminService {
 	 * 댓글 리스트 조회 요청을 처리해주는 메소드
 	 * @param pageInfo : 페이징 버튼 객체
 	 * @return 조회된 댓글 리스트
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public ArrayList<Reply> selectReplyList(PageInfo pageInfo) {
 		Connection conn = getConnection();
@@ -360,7 +361,7 @@ public class AdminService {
 	 * 댓글 삭제 요청을 처리해주는 메소드
 	 * @param replyNo : 삭제할 댓글 번호
 	 * @return 업데이트된 행 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int deleteReply(int replyNo) {
 		Connection conn = getConnection();
@@ -381,7 +382,7 @@ public class AdminService {
 	/**
 	 * 1대1문의 글의 총 갯수 확인 요청을 처리해주는 메소드
 	 * @return 1대1문의 총 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int selectMtmCount() {
 		Connection conn = getConnection();
@@ -397,7 +398,7 @@ public class AdminService {
 	 * 1대1 문의 리스트 조회 요청을 처리해주는 메소드
 	 * @param pageInfo : 페이징 버튼 객체
 	 * @return 1대1문의 리스트
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public ArrayList<Mtm> selectMtmList(PageInfo pageInfo){
 		Connection conn = getConnection();
@@ -414,7 +415,7 @@ public class AdminService {
 	 * 문의 답변 페이지에 문의 정보 출력 요청을 처리해주는 메소드
 	 * @param mtmNo : 답변을 보낼 문의 게시글 번호
 	 * @return 해당 번호의 문의 게시글
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public Mtm selectMtm(int mtmNo) {
 		Connection conn = getConnection();
@@ -431,7 +432,7 @@ public class AdminService {
 	 * @param mtmNo : 답변한 문의글 번호
 	 * @param mtmAnswer : 답변 내용
 	 * @return 업데이트된 행 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int updateAnswer(int mtmNo, String mtmAnswer) {
 		Connection conn = getConnection();
@@ -453,7 +454,7 @@ public class AdminService {
 	 * 사용자 이메일 조회 요청 처리를 해주는 메소드
 	 * @param mtmNo : 사용자가 작성한 문의 글 번호
 	 * @return 사용자 이메일
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public Mtm selectUserEmail(int mtmNo) {
 		Connection conn = getConnection();
@@ -468,7 +469,7 @@ public class AdminService {
 	/**
 	 * 개설된 클래스 총 갯수 확인 요청을 처리해주는 메소드
 	 * @return 개설된 클래스 총 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int selectClassCount() {
 		Connection conn = getConnection();
@@ -484,7 +485,7 @@ public class AdminService {
 	 * 개설된 클래스 리스트 조회 요청을 처리해주는 메소드
 	 * @param pageInfo : 페이징 버튼 객체
 	 * @return 개설된 클래스 리스트
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public ArrayList<Class> selectClassList(PageInfo pageInfo){
 		Connection conn = getConnection();
@@ -500,7 +501,7 @@ public class AdminService {
 	 * 클래스 삭제 요청을 처리해주는 메소드
 	 * @param clNo : 삭제할 클래스 번호
 	 * @return 업데이트된 행 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int deleteClass(int clNo) {
 		Connection conn = getConnection();
@@ -521,7 +522,7 @@ public class AdminService {
 	/**
 	 * 수강후기 총 갯수 확인 요청 처리를 해주는 메소드
 	 * @return 수강후기 총 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int selectReviewCount() {
 		Connection conn = getConnection();
@@ -537,7 +538,7 @@ public class AdminService {
 	 * 수강후기 리스트 조회 요청 처리를 해주는 메소드
 	 * @param pageInfo : 페이징 버튼 객체
 	 * @return 수강후기 리스트
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public ArrayList<Review> selectReviewList(PageInfo pageInfo){
 		Connection conn = getConnection();
@@ -553,7 +554,7 @@ public class AdminService {
 	 * 수강후기 삭제 요청을 처리해주는 메소드
 	 * @param reviewNo : 삭제할 수강후기 번호
 	 * @return 업데이트된 행 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int deleteReview(int reviewNo) {
 		Connection conn = getConnection();
@@ -574,7 +575,7 @@ public class AdminService {
 	/**
 	 * 직무질문 카테고리 게시글 총 갯수 확인요청을 처리해주는 메소드
 	 * @return 게시글 총 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int selectCommunityWorkCount() {
 		Connection conn = getConnection();
@@ -589,7 +590,7 @@ public class AdminService {
 	/**
 	 * 스터디 카테고리 게시글 총 갯수 확인요청을 처리해주는 메소드
 	 * @return 게시글 총 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int selectCommunityStudyCount() {
 		Connection conn = getConnection();
@@ -604,7 +605,7 @@ public class AdminService {
 	/**
 	 * 고민상담 카테고리 게시글 총 갯수 확인요청을 처리해주는 메소드
 	 * @return 게시글 총 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int selectCommunityWorryCount() {
 		Connection conn = getConnection();
@@ -620,7 +621,7 @@ public class AdminService {
 	 * 직무질문 게시글 리스트 조회 요청을 처리해주는 메소드
 	 * @param pageInfo : 페이징 버튼 객체
 	 * @return 직무질문 게시글 리스트
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public ArrayList<Community> selectCommunityWorkList(PageInfo pageInfo){
 		Connection conn = getConnection();
@@ -636,7 +637,7 @@ public class AdminService {
 	 * 스터디 게시글 리스트 조회 요청을 처리해주는 메소드
 	 * @param pageInfo : 페이징 버튼 객체
 	 * @return 스터디 게시글 리스트
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public ArrayList<Community> selectCommunityStudyList(PageInfo pageInfo){
 		Connection conn = getConnection();
@@ -652,7 +653,7 @@ public class AdminService {
 	 * 고민상담 게시글 리스트 조회 요청을 처리해주는 메소드
 	 * @param pageInfo : 페이징 버튼 객체
 	 * @return 고민상담 게시글 리스트
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public ArrayList<Community> selectCommunityWorryList(PageInfo pageInfo){
 		Connection conn = getConnection();
@@ -669,7 +670,7 @@ public class AdminService {
 	 * @param postNo : 삭제할 게시글 번호
 	 * @param postCategory : 삭제할 게시글 카테고리 번호
 	 * @return 업데이트된 행 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int deletePost(int postNo, int postCategory) {
 		Connection conn = getConnection();
@@ -690,7 +691,7 @@ public class AdminService {
 	/**
 	 * 가입신청한 멘토의 수 조회 요청을 처리해주는 메소드
 	 * @return 가입신청한 멘토의 수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int selectMentorCount() {
 		Connection conn = getConnection();
@@ -706,7 +707,7 @@ public class AdminService {
 	 * 가입신청한 멘토 리스트 조회 요청을 처리해주는 메소드
 	 * @param pageInfo : 페이징 버튼 객체
 	 * @return 가입신청한 멘토 리스트
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public ArrayList<MentorApproval> selectMentorList(PageInfo pageInfo){
 		Connection conn = getConnection();
@@ -722,7 +723,7 @@ public class AdminService {
 	 * 해당 번호의 멘토 정보 조회 요청을 처리해주는 메소드
 	 * @param mentorNo : 정보를 조회할 멘토 번호
 	 * @return 멘토 정보
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public MentorApproval selectMentor(int mentorNo) {
 		Connection conn = getConnection();
@@ -738,7 +739,7 @@ public class AdminService {
 	 * 멘토 가입 승인 요청을 처리해주는 메소드
 	 * @param mentorNo : 승인할 멘토 번호
 	 * @return 업데이트된 행 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int mentorApproval(int mentorNo) {
 		Connection conn = getConnection();
@@ -760,7 +761,7 @@ public class AdminService {
 	 * 멘토 가입 승인 거절 요청을 처리해주는 메소드
 	 * @param mentorNo : 승인 거절할 멘토 번호
 	 * @return 업데이트된 행 갯수
-	 * @author younheonchoi 
+	 * @author youngheonchoi 
 	 */
 	public int mentorApprovalFusal(int mentorNo) {
 		Connection conn = getConnection();
@@ -778,20 +779,181 @@ public class AdminService {
 		return result;
 	}
 	
+	/**
+	 * 승인 대기중인 클래스 갯수 조회 요청을 처리해주는 메소드
+	 * @return 승인 대기중인 클래스 갯수
+	 * @author youngheonchoi 
+	 */
+	public int selectApprovalClassCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectApprovalClassCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
 	
+	/**
+	 * 승인 대기중인 클래스 리스트 조회 요청을 처리해주는 메소드
+	 * @param pageInfo : 페이징버튼 객체
+	 * @return 승인 대기중인 클래스 리스트
+	 * @author youngheonchoi 
+	 */
+	public ArrayList<Class> selectApprovalClassList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<Class> list = new AdminDao().selectApprovalClassList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
 	
+	/**
+	 * 해당 번호의 클래스 정보 조회 요청을 처리해주는 메소드
+	 * @param classNo : 정보를 조회할 클래스 번호
+	 * @return 클래스 정보
+	 * @author youngheonchoi 
+	 */
+	public Class selectClassApproval(int classNo) {
+		Connection conn = getConnection();
+		
+		Class classInfo = new AdminDao().selectClassApproval(conn, classNo);
+		
+		close(conn);
+		
+		return classInfo;
+	}
 	
+	/**
+	 * 클래스 등록 승인 요청 처리를 해주는 메소드
+	 * @param classNo : 승인 처리할 클래스
+	 * @return 업데이트된 행 갯수
+	 * @author youngheonchoi 
+	 */
+	public int classApproval(int classNo) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().classApproval(conn, classNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 	
+	/**
+	 * 클래스 등록 승인 거절 요청 처리를 해주는 메소드
+	 * @param classNo : 승인 거철 처리할 클래스
+	 * @return 업데이트된 행 갯수
+	 * @author youngheonchoi 
+	 */
+	public int classApprovalFusal(int classNo) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().classApprovalFusal(conn, classNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 	
+	/**
+	 * 승인 대기중인 vod 갯수 조회 요청을 처리해주는 메소드
+	 * @return 승인 대기중인 vod 갯수
+	 * @author youngheonchoi 
+	 */
+	public int selectVodCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectVodCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
 	
+	/**
+	 * 승인 대기중인 vod리스트 조회 요청 처리를 해주는 메소드
+	 * @param pageInfo : 페이징 버튼 객체
+	 * @return 승인 대기중인 vod 리스트
+	 * @author youngheonchoi 
+	 */
+	public ArrayList<Vod> selectVodList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<Vod> list = new AdminDao().selectVodList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
 	
+	/**
+	 * 해당 번호의 vod정보 조회 요청 처리를 해주는 메소드
+	 * @param vodNo : 정보를 조회할 vod번호
+	 * @return vod 정보
+	 * @author youngheonchoi
+	 */
+	public Vod selectVod(int vodNo) {
+		Connection conn = getConnection();
+		
+		Vod vod = new AdminDao().selectVod(conn, vodNo);
+		
+		close(conn);
+		
+		return vod;
+	}
 	
+	/**
+	 * vod업로드 승인/거절 요청을 처리해주는 메소드
+	 * @param vodNo : 승인/거절할 vod 번호
+	 * @param answer : 1(승인), 2(거절)
+	 * @return 업데이트된 행 갯수
+	 * @author youngheonchoi
+	 */
+	public int vodApproval(int vodNo, int answer) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().vodApproval(conn, vodNo, answer);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 	
-	
-	
-	
-	
-	
+	/**
+	 * 멘토질문 총 갯수 조회 요청 처리를 해주는 메소드
+	 * @return 멘토질문 총 갯수
+	 * @author youngheonchoi
+	 */
+	public int selectQueCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectQueCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
 	
 	
 	

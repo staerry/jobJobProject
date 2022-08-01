@@ -112,9 +112,7 @@ public class MentorInsertController extends HttpServlet {
 				response.sendRedirect(request.getContextPath());
 			}
 			
-			
 		
-			
 			
 			/*if(multiRequest.getOriginalFileName("mtEmpCard") != null) { // not null 이니까 첨부파일이 넘어온 것 // 근데 우리는 무조건 사원증 받으니까 if문 안써도 되는지??
 				mt = new Mentor();

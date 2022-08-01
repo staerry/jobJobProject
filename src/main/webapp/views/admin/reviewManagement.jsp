@@ -68,27 +68,33 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
-	                	<% for(Review i : list){ %>
-	                    <tr>
-	                        <td><%= i.getReviewNo() %></td>
-	                        <td><%= i.getReviewContent() %></td>
-	                        <td><%= i.getClNo() %></td>
-	                        <td><%= i.getReviewScore() %></td>
-	                        <td><%= i.getUserNo() %></td>
-	                        <td><%= i.getReviewEnrolldate() %></td>
-	                        <td>
-	                        	<button class="btn btn-sm btn-danger" onclick="deleteContent(<%= i.getReviewNo() %>);">삭제</button>
-	                        
-	                        	<script>
-							        function deleteContent(num){
-							            if(confirm("정말 삭제 하시겠습니끼?")){
-							            	location.href='<%= contextPath %>/deleteReview.ad?no=' + num;
-							            }
-							        }
-		                    	</script>              
-	                        </td>
-	                    </tr>
-	                    <% } %>
+	                	<% if(list.isEmpty()){ %>
+		                	<tr>
+			                    <td colspan="7">조회된 리뷰가 없습니다.</td>
+			                </tr>
+	                	<% } else { %>
+		                	<% for(Review i : list){ %>
+		                    <tr>
+		                        <td><%= i.getReviewNo() %></td>
+		                        <td><%= i.getReviewContent() %></td>
+		                        <td><%= i.getClNo() %></td>
+		                        <td><%= i.getReviewScore() %></td>
+		                        <td><%= i.getUserNo() %></td>
+		                        <td><%= i.getReviewEnrolldate() %></td>
+		                        <td>
+		                        	<button class="btn btn-sm btn-danger" onclick="deleteContent(<%= i.getReviewNo() %>);">삭제</button>
+		                        
+		                        	<script>
+								        function deleteContent(num){
+								            if(confirm("정말 삭제 하시겠습니끼?")){
+								            	location.href='<%= contextPath %>/deleteReview.ad?no=' + num;
+								            }
+								        }
+			                    	</script>              
+		                        </td>
+		                    </tr>
+		                    <% } %>	
+	                	<% } %>
 	                </tbody>
 	            </table>
 	

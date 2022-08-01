@@ -1,7 +1,6 @@
 package com.jj.admin.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,19 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jj.admin.model.service.AdminService;
 import com.jj.common.model.vo.PageInfo;
-import com.jj.classSelect.model.vo.Class;
 
 /**
- * Servlet implementation class mentorClassApprovalPage
+ * Servlet implementation class MentorQueManagementpage
  */
-@WebServlet("/mentorClassApprovalListView.ad")
-public class mentorClassApprovalPage extends HttpServlet {
+@WebServlet("/mentorQueListView.ad")
+public class MentorQueManagementpage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public mentorClassApprovalPage() {
+    public MentorQueManagementpage() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +30,7 @@ public class mentorClassApprovalPage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int listCount = new AdminService().selectApprovalClassCount();
+		int listCount = new AdminService().selectQueCount();
 		int currentPage = Integer.parseInt(request.getParameter("cpage"));
 		int pageLimit = 5;
 		int boardLimit = 10;
@@ -45,11 +43,7 @@ public class mentorClassApprovalPage extends HttpServlet {
 		}
 		
 		PageInfo pageInfo = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		ArrayList<Class> list = new AdminService().selectApprovalClassList(pageInfo);
-		
-		request.setAttribute("pageInfo", pageInfo);
-		request.setAttribute("Class", list);
-		request.getRequestDispatcher("views/admin/mentorClassApproval.jsp").forward(request, response);
+		// ArrayList 출력하는 것부터 이어서
 	}
 
 	/**

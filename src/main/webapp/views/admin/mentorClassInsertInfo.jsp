@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.jj.classSelect.model.vo.Class" %>
+    
+<%
+	Class classInfo = (Class)request.getAttribute("class");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,37 +33,52 @@
 			<table class="admin-table">
 					<tr>
 						<th width="100">카테고리</th>
-						<td>IT개발</td>
+						<td><%= classInfo.getClCategory() %></td>
 					</tr>
 					<tr>
 						<th>클래스 제목</th>
-						<td>클래스 제목이 들어갈 자리</td>
+						<td><%= classInfo.getClTitle() %></td>
 					</tr>
 					<tr>
 						<th>커버 이미지</th>
-						<td><img src="" alt="썸네일 이미지" height="200"></td>
+						<td><img src="<%= contextPath %>/<%= classInfo.getClThumbnailPath() %>" alt="썸네일 이미지" height="200"></td>
 					</tr>
 					<tr>
 						<th>클래스 소개</th>
-						<td>클래스 소개가 들어갈 자리</td>
+						<td><%= classInfo.getClInfo() %></td>
 					</tr>
 					<tr>
 						<th>커리큘럼</th>
-						<td>커리큘럼이 들어갈 자리</td>
+						<td><%= classInfo.getClCurri() %></td>
 					</tr>
 					<tr>
 						<th>수강료</th>
-						<td>10000</td>
+						<td><%= classInfo.getClPrice() %>원</td>
 					</tr>
 			</table>
 
 			<div class="mentoRegistInfo-controller-btn">
 				<div class="left-controller">
-					<button type="button">승인</button>
-					<button type="button">거절</button>
+					<button type="button" onclick="approval(1)">승인</button>
+					<button type="button" onclick="approval(2)">거절</button>
 				</div>
+				
+				<script>
+					function approval(answer){
+						if(answer == 1){
+							if(confirm("승인 하시겠습니까?")){
+								location.href='<%= contextPath %>/classApproval.ad?no=<%= classInfo.getClNo() %>';
+							}
+						}else{
+							if(confirm("거절 하시겠습니까?")){
+								location.href='<%= contextPath %>/classApprovalFusal.ad?no=<%= classInfo.getClNo() %>';
+							}
+						}
+					}
+				</script>
+				
 				<div class="right-controller">
-					<button type="button">돌아가기</button>
+					<button type="button" onclick="history.back();">돌아가기</button>
 				</div>
 			</div>
 	    </div>

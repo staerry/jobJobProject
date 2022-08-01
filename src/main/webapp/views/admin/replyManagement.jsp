@@ -68,26 +68,32 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
-	                	<% for(Reply i : list){ %>
-	                    <tr>
-	                        <td><%= i.getReplyNo() %></td>
-	                        <td><%= i.getReplyContent() %></td>
-	                        <td><%= i.getCmNo() %></td>
-	                        <td><%= i.getUserNo() %></td>
-	                        <td><%= i.getReplyEnrolldate() %></td>
-	                        <td>
-	                        	<button class="btn btn-sm btn-danger" onclick="deleteContent(<%= i.getReplyNo() %>);">삭제</button>
-	                        
-	                        	<script>
-							        function deleteContent(num){
-							            if(confirm("정말 삭제 하시겠습니끼?")){
-							            	location.href='<%= contextPath %>/deleteReply.ad?no=' + num;
-							            }
-							        }
-		                    	</script> 
-	                        </td>
-	                    </tr>
-	                    <% } %>
+	                	<% if(list.isEmpty()){ %>
+		                	<tr>
+			                    <td colspan="6">조회된 댓글이 없습니다.</td>
+			                </tr>
+	                	<% } else { %> 	
+		                	<% for(Reply i : list){ %>
+		                    <tr>
+		                        <td><%= i.getReplyNo() %></td>
+		                        <td><%= i.getReplyContent() %></td>
+		                        <td><%= i.getCmNo() %></td>
+		                        <td><%= i.getUserNo() %></td>
+		                        <td><%= i.getReplyEnrolldate() %></td>
+		                        <td>
+		                        	<button class="btn btn-sm btn-danger" onclick="deleteContent(<%= i.getReplyNo() %>);">삭제</button>
+		                        
+		                        	<script>
+								        function deleteContent(num){
+								            if(confirm("정말 삭제 하시겠습니끼?")){
+								            	location.href='<%= contextPath %>/deleteReply.ad?no=' + num;
+								            }
+								        }
+			                    	</script> 
+		                        </td>
+		                    </tr>
+		                    <% } %>
+	                	<% } %>
 	                </tbody>
 	            </table>
 	
