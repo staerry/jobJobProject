@@ -73,26 +73,10 @@ public class MentorInsertController extends HttpServlet {
 			
 			Member m = new Member(userId, userPwd, userName, userEmail, userPhone);
 			
-			int result1 = new MemberService().insertMentorToUserInfo(m);
-			
-			if(result1 > 0) { // USERINFO 테이블에 멘토 정보 입력 완료
-				
-				session.setAttribute("alertMsg", "성공적으로 가입되었습니다!");
-				//response.sendRedirect(request.getContextPath());
-				
-			}else { // 실패
-				
-				session.setAttribute("alertMsg", "가입에 실패하였습니다.");
-				response.sendRedirect(request.getContextPath());
-				
-			}
-			
-			
-			//  > 멘토 (소속회사, 현재직급)  => Mentor테이블에 insert, SlideAttachment에 insert
+			//  > 멘토 (소속회사, 현재직급)  => Mentor테이블에 insert
 			int field = Integer.parseInt(multiRequest.getParameter("field"));
 			String mtCompany = multiRequest.getParameter("mtCompany");
 			String mtPosition = multiRequest.getParameter("mtPosition");
-			
 			
 			// 사원증 사진, 신분증 사진 => Mentor테이블에 insert, SlideAttachment에 insert
 			// 사원증 사진 ( 원본명,  수정명, 저장경로 알아야함) = EmpCard
@@ -102,23 +86,34 @@ public class MentorInsertController extends HttpServlet {
 			mt = new Mentor();
 			
 			mt.setClcgNo(field);
-			mt.setEmpCardPath("resources/image/mentorEmpIdCardFiles/");
-			mt.setEmpCardOriginName(multiRequest.getFilesystemName("mtEmpCard"));
-			mt.setIdCardPath("resources/image/mentorEmpIdCardFiles/");
-			mt.setIdCardOriginName(multiRequest.getFilesystemName("mtIdCard"));
+			mt.setEmpCardPath("resources/image/mentorEmpIdCardFiles/" + multiRequest.getFilesystemName("mtEmpCard")); // 파일경로 + 수정명
+			mt.setEmpCardOriginName(multiRequest.getOriginalFileName("mtEmpCard")); // 원본명
+			mt.setIdCardPath("resources/image/mentorEmpIdCardFiles/" + multiRequest.getFilesystemName("mtIdCard"));
+			mt.setIdCardOriginName(multiRequest.getOriginalFileName("mtIdCard")); // 원본명
+			mt.setMtCompany(mtCompany);
+			mt.setMtJob(mtPosition);
 			
-			int result2 = new MemberService().insertMentor(m, mt);
+					
+			int result = new MemberService().insertMentorTo_UserInfo_Mentor(m, mt);
 			
-			if(result2 > 0) { // 성공 Mentor테이블, SlideAttachment테이블에 insert 됨 // => 대기중 화면 띄움
+			if(result > 0) { // USERINFO & MENTOR에 제대로 insert됨 => 대기중 화면으로 이동
+				
+				session.setAttribute("alertMsg", "성공적으로 가입되었습니다!");
 				response.sendRedirect(request.getContextPath() + "/mentorWaiting.me");
-			}else { // 실패
+				
+			}else { // 실패 가입에 실패했습니다. 이 페이지 머무르기 가능? & 파일 삭제
+				
 				if(mt != null) {
-					new File(savePath + mt.getEmpCardOriginName()).delete();
-					new File(savePath + mt.getIdCardOriginName()).delete();
+					new File(savePath + multiRequest.getFilesystemName("mtEmpCard")).delete();
+					new File(savePath + multiRequest.getFilesystemName("mtIdCard")).delete();
 				}
-//				session.setAttribute("alertMsg", "멘토 회원가입에 실패했습니다.");
-//				response.sendRedirect(request.getContextPath());
+				
+				session.setAttribute("alertMsg", "멘토가입에 실패했습니다.");
+				response.sendRedirect(request.getContextPath());
 			}
+			
+			
+		
 			
 			
 			/*if(multiRequest.getOriginalFileName("mtEmpCard") != null) { // not null 이니까 첨부파일이 넘어온 것 // 근데 우리는 무조건 사원증 받으니까 if문 안써도 되는지??

@@ -41,43 +41,26 @@ public class MemberService {
 		return count;		
 	}
 	
-
-	public int insertMentorToUserInfo(Member m) {
-		Connection conn = getConnection();
-		int result = new MemberDao().insertMentorToUserInfo(conn, m);
-		
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
-	
-	public int insertMentor(Member m, Mentor mt) {
-		
+	public int insertMentorTo_UserInfo_Mentor(Member m, Mentor mt){
 		Connection conn = getConnection();
 		
-		int result1 = new MemberDao().insertMentor(conn, m, mt); 
+		int result1 = new MemberDao().insertMtoUserInfo(conn, m);
+		int result2 = 0;
 		
-		int result2 = 1;
-		int result3 = 1;
-		if(mt != null) { // 첨부파일이 있을 경우 // 근데 required로 항상 첨부파이 받아오는데 if문 필요한가?
-			result2 = new MemberDao().insertEmpCardAttachment(conn, m, mt);
-			result3 = new MemberDao().insertIdCardAttachment(conn, m, mt);
+		if(mt != null) {
+			result2 = new MemberDao().insertMtoMentor(conn, m, mt);
 		}
 		
-		if(result1 > 0 && result2 > 0 && result3 > 0) {// 성공
+		if(result1 > 0 && result2 > 0) {// 성공
 			commit(conn);
-		}else {// 실패
+		}else { // 실패
 			rollback(conn);
 		}
-		close(conn);
+		 close(conn);
 		
-		return result1 * result2 * result3;
+		return result1 * result2;
 	}
-	
+		
 	/*
 	public int deleteMember(String userId, String userPwd) {
 		Connection conn = getConnection();
@@ -109,5 +92,21 @@ public class MemberService {
 		
 		return result;
 	}*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
