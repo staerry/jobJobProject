@@ -103,16 +103,16 @@
 	                        <%for(int i=0;i<list.size();i++){ %>
 	                            <tr>
 	                                <td><%=lpage-i %></td>
-	                                <td><%=list.get(i).getCpNo() %></td>
-	                                <td><%=list.get(i).getCpName() %></td>
+	                                <td  class="cpNo"><%=list.get(i).getCpNo() %></td>
+	                                <td class="cpName"><%=list.get(i).getCpName() %></td>
 	                                <td><%=list.get(i).getDiscount() %>원</td>
 	                                <td><%=(list.get(i).getCpStatus()).equals("Y") ? "발급가능" : "발급불가" %></td>
 	                                <td><%=list.get(i).getCpAddDate() %></td>
 	                                <td>
 	                                	<%if((list.get(i).getCpStatus()).equals("Y")){ %>
-	                                		<button class="button2">발급중단</button>
+	                                		<button class="button2 cpStop">발급중단</button>
 	                                	<%}else{ %>
-	                                		<button class="button1">발급재개</button>&nbsp;<button class="outbutton">쿠폰삭제</button>
+	                                		<button class="button1 cpRe">발급재개</button>&nbsp;<button class="outbutton cpDe">쿠폰삭제</button>
 	                                	<%} %>
 	                                </td>
 	                            
@@ -121,6 +121,28 @@
 					   </tbody>
 					   <%} %>
                     </table>
+                    
+                    <script>
+                    
+                    	$(".cpStop").click(function(){
+                    		if(confirm($(this).parent().siblings('.cpName').text()+'을(를) 발급중단 하시겠습니까?')){
+                    			location.href = '<%=request.getContextPath()%>/couponStop.up?no='+$(this).parent().siblings('.cpNo').text()
+                    		}
+                    	})
+                    	
+                    	$(".cpRe").click(function(){
+                    		if(confirm($(this).parent().siblings('.cpName').text()+'을(를) 발급재개 하시겠습니까?')){
+                    			location.href = '<%=request.getContextPath()%>/couponRestore.up?no='+$(this).parent().siblings('.cpNo').text()
+                    		}
+                    	})
+                    	
+                    	$(".cpDe").click(function(){
+                    		if(confirm($(this).parent().siblings('.cpName').text()+'을(를) 삭제하시겠습니까?')){
+                    			location.href = '<%=request.getContextPath()%>/couponDelete.de?no='+$(this).parent().siblings('.cpNo').text()
+                    		}
+                    	})
+                    
+                    </script>
                     
                     <span class="totalpage">
                         <%=currentPage %> 페이지 / <%=maxPage %> 페이지  
