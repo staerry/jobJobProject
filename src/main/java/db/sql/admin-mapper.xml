@@ -485,6 +485,63 @@ SELECT *
 	   AND CM_NO = ?
 </entry>
 
+<entry key="selectMentorCount">
+	SELECT COUNT(*) COUNT
+	  FROM USERINFO U
+	  JOIN MENTOR M ON (U.USER_NO = M.USER_NO)
+	 WHERE MT_GRANT = 'W'
+</entry>
+
+<entry key="selectMentorList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT U.USER_NO
+	             , USER_NAME
+	             , USER_PHONE
+	             , MT_COMPANY
+	             , MT_JOB
+	             , USER_EMAIL
+	          FROM USERINFO U
+	          JOIN MENTOR M ON (U.USER_NO = M.USER_NO)
+	         WHERE USER_DIVISION = 2
+	           AND MT_GRANT = 'W'
+	         ORDER BY U.USER_NO DESC
+	           ) A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="selectMentor">
+	SELECT U.USER_NO
+	     , USER_NAME
+	     , USER_PHONE
+	     , MT_COMPANY
+	     , MT_JOB
+	     , USER_EMAIL
+	     , CLCG_NAME
+	     , EMPCARD_PATH
+	     , IDCARD_PATH
+	  FROM USERINFO U
+	  JOIN MENTOR M ON (U.USER_NO = M.USER_NO)
+	  JOIN CL_CATEGORY C ON (M.CLCG_NO = C.CLCG_NO)
+	 WHERE U.USER_NO = ?
+</entry>
+
+<entry key="mentorApproval">
+	UPDATE MENTOR
+	   SET MT_GRANT = 'A'
+	 WHERE USER_NO = ?
+</entry>
+
+<entry key="mentorApprovalFusal">
+	 UPDATE MENTOR
+	   SET MT_GRANT = 'D'
+	 WHERE USER_NO = ?
+</entry>
+
+
 
 
 

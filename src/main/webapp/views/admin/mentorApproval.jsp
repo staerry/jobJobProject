@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.jj.common.model.vo.PageInfo, com.jj.member.model.vo.MentorApproval"%>
+    
+<%
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	ArrayList<MentorApproval> list = (ArrayList<MentorApproval>)request.getAttribute("mentorApproval");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,25 +42,41 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
-	                    <tr>
-	                        <td>10</td>
-	                        <td>최최최</td>
-	                        <td>010-9999-9999</td>
-	                        <td>구디아카데미</td>
-	                        <td>사장님</td>
-	                        <td>ggprojectsemi@gmail.com</td>
-	                    </tr>
+	                	<% for(MentorApproval i : list){ %>
+		                    <tr>
+		                        <td><%= i.getUserNo() %></td>
+		                        <td><%= i.getUserName() %></td>
+		                        <td><%= i.getUserPhone() %></td>
+		                        <td><%= i.getMtCompany() %></td>
+		                        <td><%= i.getMtJob() %></td>
+		                        <td><%= i.getUserEmail() %></td>
+		                    </tr>
+	                     <% } %>
 	                </tbody>
 	            </table>
+	            
+	            <script>
+	            	$(function(){
+	            		$(".admin-table > tbody > tr").click(function(){
+	            			location.href='<%= contextPath %>/mentorRegistInfoView.ad?no=' + $(this).children().eq(0).text();
+	            		})
+	            	})
+	            </script>
 	
 	            <div class="paging-area">
-	                <a href="">&lt</a>
-	                <a href="">1</a>
-	                <a href="">2</a>
-	                <a href="">3</a>
-	                <a href="">4</a>
-	                <a href="">5</a>
-	                <a href="">&gt</a>
+	            	<% if(pageInfo.getCurrentPage() != 1){ %>
+	                	<a href="<%= contextPath %>/mentorApprovalListView.ad?cpage=<%= pageInfo.getCurrentPage() - 1 %>">&lt</a>
+	                <% } %>
+	                <% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++){ %>
+	                	<% if(pageInfo.getCurrentPage() == i){ %>
+	                		<a href="<%= contextPath %>/mentorApprovalListView.ad?cpage=<%= i %>" style="background-color : gray;"><%= i %></a>
+	                	<% } else { %>
+	                		<a href="<%= contextPath %>/mentorApprovalListView.ad?cpage=<%= i %>"><%= i %></a>
+	                	<% } %>
+	                <% } %>
+	                <% if(pageInfo.getCurrentPage() != pageInfo.getMaxPage()){ %>
+	                	<a href="<%= contextPath %>/mentorApprovalListView.ad?cpage=<%= pageInfo.getCurrentPage() + 1 %>">&gt</a>
+	                <% } %>
 	            </div>
 			</div>
 		</div>

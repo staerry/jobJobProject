@@ -17,6 +17,7 @@ import com.jj.community.model.vo.Reply;
 import com.jj.community.model.vo.Review;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
+import com.jj.member.model.vo.MentorApproval;
 import com.jj.mtm.model.vo.Mtm;
 import com.jj.notice.model.vo.Notice;
 
@@ -686,11 +687,96 @@ public class AdminService {
 		return result;
 	}
 	
+	/**
+	 * 가입신청한 멘토의 수 조회 요청을 처리해주는 메소드
+	 * @return 가입신청한 멘토의 수
+	 * @author younheonchoi 
+	 */
+	public int selectMentorCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectMentorCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
 	
+	/**
+	 * 가입신청한 멘토 리스트 조회 요청을 처리해주는 메소드
+	 * @param pageInfo : 페이징 버튼 객체
+	 * @return 가입신청한 멘토 리스트
+	 * @author younheonchoi 
+	 */
+	public ArrayList<MentorApproval> selectMentorList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<MentorApproval> list = new AdminDao().selectMentorList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
 	
+	/**
+	 * 해당 번호의 멘토 정보 조회 요청을 처리해주는 메소드
+	 * @param mentorNo : 정보를 조회할 멘토 번호
+	 * @return 멘토 정보
+	 * @author younheonchoi 
+	 */
+	public MentorApproval selectMentor(int mentorNo) {
+		Connection conn = getConnection();
+		
+		MentorApproval mentorApproval = new AdminDao().selectMentor(conn, mentorNo);
+		
+		close(conn);
+		
+		return mentorApproval;
+	}
 	
+	/**
+	 * 멘토 가입 승인 요청을 처리해주는 메소드
+	 * @param mentorNo : 승인할 멘토 번호
+	 * @return 업데이트된 행 갯수
+	 * @author younheonchoi 
+	 */
+	public int mentorApproval(int mentorNo) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().mentorApproval(conn, mentorNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 	
-	
+	/**
+	 * 멘토 가입 승인 거절 요청을 처리해주는 메소드
+	 * @param mentorNo : 승인 거절할 멘토 번호
+	 * @return 업데이트된 행 갯수
+	 * @author younheonchoi 
+	 */
+	public int mentorApprovalFusal(int mentorNo) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().mentorApprovalFusal(conn, mentorNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 	
 	
 	
