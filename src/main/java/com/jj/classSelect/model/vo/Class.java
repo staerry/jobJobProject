@@ -24,6 +24,15 @@ public class Class {
 		
 	}
 	
+	public Class(int clNo, String clTitle, String userNo, Date clEnrolldate, String clThumbnailPath) {
+		super();
+		this.clNo = clNo;
+		this.clTitle = clTitle;
+		this.userNo = userNo;
+		this.clEnrolldate = clEnrolldate;
+		this.clThumbnailPath = clThumbnailPath;
+	}
+
 	public Class(int clNo, String userNo, String clCategory, String clTitle, String clSubtitle, String clInfo,
 			String clCurri, String clPriceWon, String clThumbnailPath, String ltrInfo, String ltrCareer,
 			String ltrProfilePath) {
