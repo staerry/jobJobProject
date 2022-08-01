@@ -203,6 +203,34 @@ public class AdminService2 {
 	}
 	
 	/**
+	 * 검색결과에맞는 환불처리완료내역의 수를세는 메소드
+	 * @param search 입력한검색정보
+	 * @return 환불내역수
+	 * @author SJW
+	 */
+	public int paymentRefundFinishCount(String search) {
+		Connection conn = getConnection();
+		int listCount = new AdminDao2().paymentRefundFinishCount(conn,search);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 검색결과에맞는 환불처리거절내역의 수를세는 메소드
+	 * @param search 입력한검색정보
+	 * @return 환불거절내역수
+	 * @author SJW
+	 */
+	public int paymentRefundDenyCount(String search) {
+		Connection conn = getConnection();
+		int listCount = new AdminDao2().paymentRefundDenyCount(conn,search);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
 	 * 쿠폰전체수를 세는 메소드
 	 * @return 쿠폰수
 	 * @author SJW
@@ -523,6 +551,32 @@ public class AdminService2 {
 	public ArrayList<Pay> paymentRefundList(PageInfo pi,String search){
 		Connection conn = getConnection();
 		ArrayList<Pay> list = new AdminDao2().paymentRefundList(conn,pi,search);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 검색정보를가지고 페이지에 맞는 환불요청처리내역 리스트조회 메소드
+	 * @param pi 페이지정보
+	 * @param search 검색정보
+	 * @return 환불요청처리내역
+	 */
+	public ArrayList<Pay> paymentRefundFinish(PageInfo pi,String search){
+		Connection conn = getConnection();
+		ArrayList<Pay> list = new AdminDao2().paymentRefundFinish(conn,pi,search);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 검색정보를가지고 페이지에 맞는 환불거절내역 리스트조회 메소드
+	 * @param pi 페이지정보
+	 * @param search 검색정보
+	 * @return 환불거절내역
+	 */
+	public ArrayList<Pay> paymentRefundDeny(PageInfo pi,String search){
+		Connection conn = getConnection();
+		ArrayList<Pay> list = new AdminDao2().paymentRefundDeny(conn,pi,search);
 		close(conn);
 		return list;
 	}
