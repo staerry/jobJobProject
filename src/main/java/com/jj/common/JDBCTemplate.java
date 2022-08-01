@@ -28,6 +28,7 @@ public class JDBCTemplate {
 			conn = DriverManager.getConnection(prop.getProperty("url"),
 											   prop.getProperty("username"),
 											   prop.getProperty("password"));
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

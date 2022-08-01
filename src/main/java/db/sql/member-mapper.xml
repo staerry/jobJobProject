@@ -56,6 +56,72 @@
 		 WHERE USER_ID = ?
 		   AND USER_PWD = ?  
 	</entry>
+	
+	<entry key="insertMentorToUserInfo">
+		INSERT
+		  INTO USERINFO
+		  (
+		     USER_NO
+		   , USER_ID
+		   , USER_PWD
+		   , USER_NAME
+		   , USER_EMAIL
+		   , USER_PHONE
+		   , USER_DIVISION
+		  )
+		  VALUES
+		  (
+		    SEQ_USER.NEXTVAL
+		  , ?
+		  , ?
+		  , ? 
+		  , ?
+		  , ?
+		  , 2
+		  )
+	</entry>
+	
+	<entry key="insertMentor">
+		INSERT
+		  INTO MENTOR
+		  (
+		  	 USER_NO
+		   , CLCG_NO
+		   , MT_COMPANY
+		   , MT_JOB
+		   , EMPCARD_PATH  
+		   , EMPCARD_ORIGINNAME
+		   , IDCARD_PATH
+		   , IDCARD_ORIGINNAME
+		  )
+		  VALUES
+		  (
+		    ?
+		  , ?
+		  , ? 
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ? 
+		  )
+	</entry>
+	
+	<entry key="insertAttachment">
+		INSERT
+		  INTO SLIDE_ATTACHMENT
+		  (
+		    FILE_NO
+		  , FILE_NAME
+		  , FILE_PATH
+		  )
+		  VALUES
+		  (
+		    SEQ_ATT
+		  , ?
+		  , ?
+		  )
+	</entry>
 
 
 

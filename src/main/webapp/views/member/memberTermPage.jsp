@@ -62,7 +62,7 @@
             <input type="hidden" name="userName" value="<%=userName%>">
             <input type="hidden" name="userId" value="<%=userId%>">
             <input type="hidden" name="userPwd" value="<%=userPwd%>">
-            <input type="hidden" name="userPhone" value="<%=userId%>">
+            <input type="hidden" name="userPhone" value="<%=userPhone%>">
 
             <div class="checkbox-group" align="left">
 
@@ -75,13 +75,13 @@
                     오직 우리 청춘에서만 구할 수 있는 것이다<br>
                     청춘은 인생의 황금시대다 </span><br><br>
 
-                <input type="checkbox" id="check2" class="normal">
+                <input type="checkbox" id="check2" class="normal requiredCheck">
                 <label for="event">서비스 이용약관(필수)</label><br>
                 <span>시들어 가는 노년에게서 구하지 못할 바이며 <br>
                         오직 우리 청춘에서만 구할 수 있는 것이다<br>
                         청춘은 인생의 황금시대다 </span><br><br>
 
-                <input type="checkbox" id="check3" class="normal" onclick="enrollSuccess()">
+                <input type="checkbox" id="check3" class="normal requiredCheck">
                 <label for="event">개인정보처리방침(필수)</label><br>
                 <p>시들어 가는 노년에게서 구하지 못할 바이며 <br>
                     오직 우리 청춘에서만 구할 수 있는 것이다<br>
@@ -91,20 +91,10 @@
             
             <span style="font-size: 10px;">서비스 이용약관과 개인정보처리방침에 모두 동의해주세요</span><br><br>
             
-            <button type="submit">시작하기</button><br><br>
+            <button type="submit" disabled>시작하기</button><br><br>
 
         </div>
     </form>
-    
-    
-    <!-- <form action="<%= contextPath %>/insert.me" method="post" id="userInfo">
-    	<input type="hidden" name="userName" value="userName">
-    	<input type="hidden" name="userId" value="userId">
-    	<input type="hidden" name="userPwd" value="userPwd">
-    	<input type="hidden" name="userPhone" value="userPhone">
-    	<!-- action="insert시키는 servleturl매핑값" -->
-    	<!-- input type="hidden" name="" value="이전페이지에서넘어온값" -->
-    </form> -->
     
     <script>
     
@@ -125,30 +115,24 @@
 	    });
     
     	
-    	function enrollSuccess(){
-    		// 전체동의 or check2랑 check3 동의 되면 
-    		// => 가입완료 alert 뜨고 메인페이지로 이동
-    		if($("#checkAll").is(".checked") == true 
-    				|| ($("#check2").is(":checked") == true && $("#check3").is(":checked") == true )){
-    			
-    			$(".outer :submit").removeAttr("disabled");
-    			alert("가입성공!");
-    			$("#userInfo").submit();
-    			
-    		}else if($("#check2").is(":checked") == false || $("#check3").is(":checked") == false ){
-    			alert("동의해주세요!");
-    		}
-    	}
-    		
+   		$(function(){
+   			$("#userInfo :checkbox").change(function(){
+   				let flag = true;
+
+                   $(".requiredCheck").each(function(){
+                       if(!$(this).prop("checked")){
+                           flag = false;
+                       }
+                   })
+                   if(flag == false){ // 체크 안됨 => 가입 안됨, disablaed 유지
+                       $('button').attr('disabled', 'disabled');
+                   }else{ // 체크 됨 => 가입 성공, disabled 풀기
+                        $('button').removeAttr("disabled");
+                   }
+   			})
+   		})
     	
-    		
-    		// check2랑 check3 동의안되면 가입 실패
-    		// =>  alert뜨고 약관 동의 페이지 그대로
-    		    		
-    		// 체크박스가 다 제대로 체크되었을 경우 
-    		
-    	// 전체동의
-        
+
 
     </script>
     

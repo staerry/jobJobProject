@@ -8,6 +8,7 @@ public class Reply {
 	private String userNo;
 	private String replyContent;
 	private Date replyEnrolldate;
+	private String createDate;	// TO_CHAR 쓰려고 따로 만들어 놨어요. Date형으로 이미 쓰신 분 계실까봐 (태은)
 	
 	public Reply() {
 		
@@ -20,6 +21,15 @@ public class Reply {
 		this.userNo = userNo;
 		this.replyContent = replyContent;
 		this.replyEnrolldate = replyEnrolldate;
+	}
+
+	public Reply(int replyNo, String cmNo, String userNo, String replyContent, String createDate) {
+		super();
+		this.replyNo = replyNo;
+		this.cmNo = cmNo;
+		this.userNo = userNo;
+		this.replyContent = replyContent;
+		this.createDate = createDate;
 	}
 
 	public int getReplyNo() {
@@ -61,10 +71,20 @@ public class Reply {
 	public void setReplyEnrolldate(Date replyEnrolldate) {
 		this.replyEnrolldate = replyEnrolldate;
 	}
+	
+	public String getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
 
 	@Override
 	public String toString() {
 		return "Reply [replyNo=" + replyNo + ", cmNo=" + cmNo + ", userNo=" + userNo + ", replyContent=" + replyContent
 				+ ", replyEnrolldate=" + replyEnrolldate + "]";
 	}
+	
+	
 }

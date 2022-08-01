@@ -6,6 +6,7 @@ public class Community {
 	
 	private int commNo;	// 글 번호
 	private String commWriter;	// 작성 시 번호 | 조회 시 이름 
+	private String commWriterId;
 	private String commCategory;	// 작성 시 번호 | 조회 시 카테고리명
 	private String commTitle;
 	private String commContent;
@@ -41,6 +42,28 @@ public class Community {
 		this.count = count;
 		this.likeCount = likeCount;
 		this.replyCount = replyCount;
+	}
+	
+	public Community(int commNo, String commWriter, String commWriterId, String commCategory, String commTitle,
+			String commContent, Date createDate, int count, int likeCount) {
+		super();
+		this.commNo = commNo;
+		this.commWriter = commWriter;
+		this.commWriterId = commWriterId;
+		this.commCategory = commCategory;
+		this.commTitle = commTitle;
+		this.commContent = commContent;
+		this.createDate = createDate;
+		this.count = count;
+		this.likeCount = likeCount;
+	}
+
+	public String getCommWriterId() {
+		return commWriterId;
+	}
+
+	public void setCommWriterId(String commWriterId) {
+		this.commWriterId = commWriterId;
 	}
 
 	public int getCommNo() {
@@ -117,9 +140,10 @@ public class Community {
 
 	@Override
 	public String toString() {
-		return "Community [commNo=" + commNo + ", commWriter=" + commWriter + ", commCategory=" + commCategory
-				+ ", commTitle=" + commTitle + ", commContent=" + commContent + ", createDate=" + createDate
-				+ ", count=" + count + ", likeCount=" + likeCount + ", replyCount=" + replyCount + "]";
+		return "Community [commNo=" + commNo + ", commWriter=" + commWriter + ", commWriterId=" + commWriterId
+				+ ", commCategory=" + commCategory + ", commTitle=" + commTitle + ", commContent=" + commContent
+				+ ", createDate=" + createDate + ", count=" + count + ", likeCount=" + likeCount + ", replyCount="
+				+ replyCount + "]";
 	}
 	
 	

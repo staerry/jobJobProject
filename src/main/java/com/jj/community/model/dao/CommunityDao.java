@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.community.model.vo.Category;
 import com.jj.community.model.vo.Community;
+import com.jj.community.model.vo.Reply;
 
 public class CommunityDao {
 	
@@ -142,5 +143,229 @@ public class CommunityDao {
 			
 		return result;
 	}
+	
+	public int increaseCount(Connection conn, int contentNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("increaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, contentNo);
+			result = pstmt.executeUpdate();
+						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+				
+		return result;
+	}
 
+	public Community selectCommunity(Connection conn, int contentNo) {
+		Community c = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCommunity");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, contentNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				c = new Community(rset.getInt("cm_no"),
+								  rset.getString("user_name"),
+								  rset.getString("user_id"),
+								  rset.getString("cmcg_name"),
+								  rset.getString("cm_title"),
+								  rset.getString("cm_content"),
+								  rset.getDate("cm_enrolldate"),
+								  rset.getInt("cm_count"),
+								  rset.getInt("cm_like_count")
+						);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return c;			
+		
+	}
+	
+	public int updateCommunity(Connection conn, Community c) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateCommunity");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c.getCommTitle());
+			pstmt.setString(2, c.getCommContent());
+			pstmt.setInt(3, c.getCommNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		System.out.println(result);
+		return result;
+	}
+	
+	public int deleteCommunity(Connection conn, int contentNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteCommunity");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, contentNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+		
+	}
+	
+	public ArrayList<Reply> selectReplyList(Connection conn, int contentNo) {
+		ArrayList<Reply> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReplyList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, contentNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) { 
+				list.add(new Reply(rset.getInt("reply_no"),
+								   rset.getString("cm_no"),
+								   rset.getString("user_name"),
+								   rset.getString("reply_content"),
+								   rset.getString("reply_createdate")
+								   ));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	public int insertReply(Connection conn, Reply r) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReply");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getCmNo());
+			pstmt.setString(2, r.getUserNo());
+			pstmt.setString(3, r.getReplyContent());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public ArrayList<Community> selectListByLike(Connection conn, PageInfo pi, int category) {
+		ArrayList<Community> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectListByLike");	// 미완성된 sql
+			
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, category);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Community(rset.getInt("cm_no"),
+									   rset.getString("user_name"),
+									   rset.getString("cmcg_name"),
+									   rset.getString("cm_title"),
+									   rset.getString("cm_content"),
+									   rset.getDate("cm_enrolldate"),
+									   rset.getInt("cm_count"),
+									   rset.getInt("cm_like_count"),
+									   rset.getInt("replycount")
+						));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+	
+	public ArrayList<Community> selectListByReply(Connection conn, PageInfo pi, int category) {
+		ArrayList<Community> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectListByReply");	// 미완성된 sql
+			
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, category);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Community(rset.getInt("cm_no"),
+									   rset.getString("user_name"),
+									   rset.getString("cmcg_name"),
+									   rset.getString("cm_title"),
+									   rset.getString("cm_content"),
+									   rset.getDate("cm_enrolldate"),
+									   rset.getInt("cm_count"),
+									   rset.getInt("cm_like_count"),
+									   rset.getInt("replycount")
+						));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
 }

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<!-- 전체 강의 수 조회  -->
+	<entry key="selectListCountAll">
+		SELECT COUNT(*) AS "COUNT"
+		  FROM CLASS
+	</entry>
+	 	
+	<!-- 전체 강의 리스트 최신순 조회 -->
+	<entry key="selectListAll">
+		SELECT
+		       CL_NO
+		     , USER_NAME
+		     , MT_COMPANY
+		     , CLCG_NAME
+		     , CL_TITLE
+		     , CL_SUBTITLE
+		     , CL_INFO
+		     , CL_CURRI
+		     , CL_PRICE
+		     , CL_ENROLLDATE
+		     , CL_GRANT
+		     , CL_THUMBNAILPATH
+		  FROM CLASS
+		  JOIN USERINFO USING(USER_NO)
+		  JOIN CL_CATEGORY ON (CL_CATEGORY = CLCG_NO)
+		  JOIN MENTOR USING(USER_NO)
+		 ORDER
+            BY CL_NO DESC
+    </entry>
+    
+    <!-- 카테고리별 강의 수 조회 -->
+	<entry key="selectListCount">
+		SELECT COUNT(*) AS "COUNT"
+		  FROM CLASS
+		 WHERE CL_CATEGORY =?
+	</entry>
+    
+	<!-- 카테고리별 강의 리스트 최신순 조회 -->
+	<entry key="selectList">
+		SELECT
+		       CL_NO
+		     , USER_NAME
+		     , MT_COMPANY
+		     , CLCG_NAME
+		     , CL_TITLE
+		     , CL_SUBTITLE
+		     , CL_INFO
+		     , CL_CURRI
+		     , CL_PRICE
+		     , CL_ENROLLDATE
+		     , CL_GRANT
+		     , CL_THUMBNAILPATH
+		  FROM CLASS
+		  JOIN USERINFO USING(USER_NO)
+  		  JOIN CL_CATEGORY ON(CL_CATEGORY = CLCG_NO)
+  		  JOIN MENTOR USING(USER_NO)  		  
+		 WHERE CL_CATEGORY = ?
+         ORDER
+            BY CL_NO DESC
+	</entry>
+	
+	<!-- 강의 정보 조회 -->
+	<entry key="selectClass">
+		SELECT
+		       CL_NO
+		     , USER_NAME  <!-- 이름으로 받아옴 -->
+		     , CL_CATEGORY
+		     , CL_TITLE
+		     , CL_SUBTITLE
+		     , CL_INFO
+		     , CL_CURRI
+		     , TO_CHAR(CL_PRICE, 'L99,999') AS CL_PRICE
+		     , CL_THUMBNAILPATH <!-- 클래스 썸네일 이미지 -->
+		     , LTR_INFO
+		     , LTR_CAREER
+		     , PROFILE_PATH <!-- 프로필 이미지 경로 -->
+		  FROM CLASS
+		  LEFT JOIN USERINFO USING(USER_NO)
+		  LEFT JOIN LECTURER USING(USER_NO)
+		 WHERE CL_GRANT = 'A'
+		   AND CL_NO = ?
+	</entry>
+	
+	<!-- 수강생 수 조회 -->
+	<entry key="selectStudentCount">
+		SELECT 
+			   COUNT(*) AS STUDENT_COUNT
+	 	  FROM CLASS_ING
+	     WHERE CL_NO=?
+     </entry>
+     
+     <entry key="selectBookmarkCount">
+     	SELECT 
+     		   COUNT(*) AS BOOKMARK_COUNT
+  		  FROM BOOKMARK
+ 		 WHERE CL_NO=?
+     </entry>
+     
+     <entry key="selectReview">
+     	SELECT 
+		       REVIEW_NO
+		     , CL_NO
+		     , USER_NAME
+		     , REVIEW_SCORE
+		     , REVIEW_CONTENT
+		     , REVIEW_ENROLLDATE
+		  FROM REVIEW
+		  JOIN USERINFO USING(USER_NO)
+		 WHERE CL_NO = ?
+		 ORDER
+		    BY REVIEW_NO DESC
+     </entry>
+    
+</properties>

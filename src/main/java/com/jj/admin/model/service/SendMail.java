@@ -22,7 +22,7 @@ public class SendMail {
 		final String user = "gjswns21@naver.com";
 		
 //		발신자 비밀번호
-		final String password = "chldudgjs2214";
+		final String password = "네이버 비번";
 		
 //		수신자 이메일
 		String to = userEmail.getUserNo();

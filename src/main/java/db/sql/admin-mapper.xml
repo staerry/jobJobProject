@@ -263,6 +263,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 <entry key="selectMtmCount">
 	SELECT COUNT(*) COUNT
 	  FROM MTM
+	 WHERE MTM_ANSWER IS NULL
 </entry>
 
 <entry key="selectMtmList">
@@ -320,4 +321,202 @@ SELECT *
 	  JOIN USERINFO U ON (M.USER_NO = U.USER_NO)
 	 WHERE MTM_NO = ?
 </entry>
+
+<entry key="selectClassCount">
+	 SELECT COUNT(*) COUNT
+	   FROM CLASS
+	  WHERE CL_GRANT = 'A'
+</entry>
+
+<entry key="selectClassList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT CL_NO
+	             , USER_NAME
+	             , CLCG_NAME
+	             , CL_TITLE
+	             , CL_SUBTITLE
+	             , CL_INFO
+	             , CL_CURRI
+	             , CL_PRICE
+	             , CL_ENROLLDATE
+	             , CL_GRANT
+	             , CL_THUMBNAILPATH
+	          FROM CLASS C
+	          JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+	          JOIN CL_CATEGORY CC ON (C.CL_CATEGORY = CC.CLCG_NO)
+	         WHERE CL_GRANT = 'A'
+	         ORDER BY CL_NO DESC
+	           ) A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="deleteClass">
+	UPDATE CLASS
+	   SET CL_GRANT = 'D'
+	 WHERE CL_NO = ?
+</entry>
+
+<entry key="selectReviewCount">
+	SELECT COUNT(*) COUNT
+	  FROM REVIEW
+</entry>
+
+<entry key="selectReviewList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT REVIEW_NO
+	             , CL_TITLE
+	             , USER_NAME
+	             , REVIEW_SCORE
+	             , REVIEW_CONTENT
+	             , REVIEW_ENROLLDATE
+	          FROM REVIEW R
+	          JOIN CLASS C ON (R.CL_NO = C.CL_NO)
+	          JOIN USERINFO U ON (R.USER_NO = U.USER_NO)
+	         ORDER BY REVIEW_NO DESC
+	           ) A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="deleteReview">
+	DELETE
+	  FROM REVIEW
+	 WHERE REVIEW_NO = ?
+</entry>
+
+<entry key="selectCommunityWorkCount">
+	SELECT COUNT(*) COUNT
+	  FROM COMMUNITY
+	 WHERE CMCG_NO = 1
+</entry>
+
+<entry key="selectCommunityStudyCount">
+	SELECT COUNT(*) COUNT
+	  FROM COMMUNITY
+	 WHERE CMCG_NO = 3
+</entry>
+
+<entry key="selectCommunityWorryCount">
+	SELECT COUNT(*) COUNT
+	  FROM COMMUNITY
+	 WHERE CMCG_NO = 2
+</entry>
+
+<entry key="selectCommunityWorkList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT CM_NO
+	             , USER_NAME
+	             , CMCG_NAME
+	             , CM_TITLE
+	             , CM_CONTENT
+	             , CM_ENROLLDATE
+	             , CM_COUNT
+	             , CM_LIKE_COUNT
+	          FROM COMMUNITY C
+	          JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+	          JOIN COMMUNITY_CATEGORY CC ON (C.CMCG_NO = CC.CMCG_NO)
+	         WHERE C.CMCG_NO = 1
+	         ORDER BY CM_NO DESC
+	           )A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="selectCommunityStudyList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT CM_NO
+	             , USER_NAME
+	             , CMCG_NAME
+	             , CM_TITLE
+	             , CM_CONTENT
+	             , CM_ENROLLDATE
+	             , CM_COUNT
+	             , CM_LIKE_COUNT
+	          FROM COMMUNITY C
+	          JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+	          JOIN COMMUNITY_CATEGORY CC ON (C.CMCG_NO = CC.CMCG_NO)
+	         WHERE C.CMCG_NO = 3
+	         ORDER BY CM_NO DESC
+	           )A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="selectCommunityWorryList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT CM_NO
+	             , USER_NAME
+	             , CMCG_NAME
+	             , CM_TITLE
+	             , CM_CONTENT
+	             , CM_ENROLLDATE
+	             , CM_COUNT
+	             , CM_LIKE_COUNT
+	          FROM COMMUNITY C
+	          JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+	          JOIN COMMUNITY_CATEGORY CC ON (C.CMCG_NO = CC.CMCG_NO)
+	         WHERE C.CMCG_NO = 2
+	         ORDER BY CM_NO DESC
+	           )A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="deletePost">
+	DELETE
+	  FROM COMMUNITY
+	 WHERE CMCG_NO = ?
+	   AND CM_NO = ?
+</entry>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </properties>

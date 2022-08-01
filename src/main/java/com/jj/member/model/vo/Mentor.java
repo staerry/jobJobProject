@@ -1,22 +1,30 @@
 package com.jj.member.model.vo;
 
+import java.sql.Date;
+
+/**
+ * @author jylee
+ *
+ */
 public class Mentor {
 	private int userNo;
 	private int clcgNo;
 	private String mtCompany;
 	private String mtJob;
-	private String mtGrade;
+	private int mtGrade;
 	private String mtGrant;
-	private String mt_Enrolldate;
+	private Date mt_Enrolldate;
 	private String empCardPath;
 	private String empCardOriginName;
 	private String idCardPath;
-	private String idCardOriginName;
+	private String idCardOriginName;	
 	
 	public Mentor() {}
 
-	public Mentor(int userNo, int clcgNo, String mtCompany, String mtJob, String mtGrade, String mtGrant,
-			String mt_Enrolldate, String empCardPath, String empCardOriginName, String idCardPath,
+	
+
+	public Mentor(int userNo, int clcgNo, String mtCompany, String mtJob, int mtGrade, String mtGrant,
+			Date mt_Enrolldate, String empCardPath, String empCardOriginName, String idCardPath,
 			String idCardOriginName) {
 		super();
 		this.userNo = userNo;
@@ -31,6 +39,8 @@ public class Mentor {
 		this.idCardPath = idCardPath;
 		this.idCardOriginName = idCardOriginName;
 	}
+
+
 
 	public int getUserNo() {
 		return userNo;
@@ -64,11 +74,11 @@ public class Mentor {
 		this.mtJob = mtJob;
 	}
 
-	public String getMtGrade() {
+	public int getMtGrade() {
 		return mtGrade;
 	}
 
-	public void setMtGrade(String mtGrade) {
+	public void setMtGrade(int mtGrade) {
 		this.mtGrade = mtGrade;
 	}
 
@@ -80,11 +90,11 @@ public class Mentor {
 		this.mtGrant = mtGrant;
 	}
 
-	public String getMt_Enrolldate() {
+	public Date getMt_Enrolldate() {
 		return mt_Enrolldate;
 	}
 
-	public void setMt_Enrolldate(String mt_Enrolldate) {
+	public void setMt_Enrolldate(Date mt_Enrolldate) {
 		this.mt_Enrolldate = mt_Enrolldate;
 	}
 
@@ -127,8 +137,5 @@ public class Mentor {
 				+ ", empCardPath=" + empCardPath + ", empCardOriginName=" + empCardOriginName + ", idCardPath="
 				+ idCardPath + ", idCardOriginName=" + idCardOriginName + "]";
 	}
-
-	
-	
 	
 }

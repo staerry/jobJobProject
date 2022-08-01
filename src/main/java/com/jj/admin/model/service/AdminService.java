@@ -10,8 +10,11 @@ import java.util.ArrayList;
 
 import com.jj.admin.model.dao.AdminDao;
 import com.jj.admin.model.vo.UserInfoAd;
+import com.jj.classSelect.model.vo.Class;
 import com.jj.common.model.vo.PageInfo;
+import com.jj.community.model.vo.Community;
 import com.jj.community.model.vo.Reply;
+import com.jj.community.model.vo.Review;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.mtm.model.vo.Mtm;
@@ -449,6 +452,7 @@ public class AdminService {
 	 * 사용자 이메일 조회 요청 처리를 해주는 메소드
 	 * @param mtmNo : 사용자가 작성한 문의 글 번호
 	 * @return 사용자 이메일
+	 * @author younheonchoi 
 	 */
 	public Mtm selectUserEmail(int mtmNo) {
 		Connection conn = getConnection();
@@ -458,8 +462,250 @@ public class AdminService {
 		close(conn);
 		
 		return userEmail;
-		
 	}
+	
+	/**
+	 * 개설된 클래스 총 갯수 확인 요청을 처리해주는 메소드
+	 * @return 개설된 클래스 총 갯수
+	 * @author younheonchoi 
+	 */
+	public int selectClassCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectClassCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 개설된 클래스 리스트 조회 요청을 처리해주는 메소드
+	 * @param pageInfo : 페이징 버튼 객체
+	 * @return 개설된 클래스 리스트
+	 * @author younheonchoi 
+	 */
+	public ArrayList<Class> selectClassList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<Class> list = new AdminDao().selectClassList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	/**
+	 * 클래스 삭제 요청을 처리해주는 메소드
+	 * @param clNo : 삭제할 클래스 번호
+	 * @return 업데이트된 행 갯수
+	 * @author younheonchoi 
+	 */
+	public int deleteClass(int clNo) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().deleteClass(conn, clNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	/**
+	 * 수강후기 총 갯수 확인 요청 처리를 해주는 메소드
+	 * @return 수강후기 총 갯수
+	 * @author younheonchoi 
+	 */
+	public int selectReviewCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectReviewCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 수강후기 리스트 조회 요청 처리를 해주는 메소드
+	 * @param pageInfo : 페이징 버튼 객체
+	 * @return 수강후기 리스트
+	 * @author younheonchoi 
+	 */
+	public ArrayList<Review> selectReviewList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<Review> list = new AdminDao().selectReviewList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	/**
+	 * 수강후기 삭제 요청을 처리해주는 메소드
+	 * @param reviewNo : 삭제할 수강후기 번호
+	 * @return 업데이트된 행 갯수
+	 * @author younheonchoi 
+	 */
+	public int deleteReview(int reviewNo) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().deleteReview(conn, reviewNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	/**
+	 * 직무질문 카테고리 게시글 총 갯수 확인요청을 처리해주는 메소드
+	 * @return 게시글 총 갯수
+	 * @author younheonchoi 
+	 */
+	public int selectCommunityWorkCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectCommunityWorkCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 스터디 카테고리 게시글 총 갯수 확인요청을 처리해주는 메소드
+	 * @return 게시글 총 갯수
+	 * @author younheonchoi 
+	 */
+	public int selectCommunityStudyCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectCommunityStudyCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 고민상담 카테고리 게시글 총 갯수 확인요청을 처리해주는 메소드
+	 * @return 게시글 총 갯수
+	 * @author younheonchoi 
+	 */
+	public int selectCommunityWorryCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectCommunityWorryCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 직무질문 게시글 리스트 조회 요청을 처리해주는 메소드
+	 * @param pageInfo : 페이징 버튼 객체
+	 * @return 직무질문 게시글 리스트
+	 * @author younheonchoi 
+	 */
+	public ArrayList<Community> selectCommunityWorkList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<Community> list = new AdminDao().selectCommunityWorkList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	/**
+	 * 스터디 게시글 리스트 조회 요청을 처리해주는 메소드
+	 * @param pageInfo : 페이징 버튼 객체
+	 * @return 스터디 게시글 리스트
+	 * @author younheonchoi 
+	 */
+	public ArrayList<Community> selectCommunityStudyList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<Community> list = new AdminDao().selectCommunityStudyList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	/**
+	 * 고민상담 게시글 리스트 조회 요청을 처리해주는 메소드
+	 * @param pageInfo : 페이징 버튼 객체
+	 * @return 고민상담 게시글 리스트
+	 * @author younheonchoi 
+	 */
+	public ArrayList<Community> selectCommunityWorryList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<Community> list = new AdminDao().selectCommunityWorryList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	/**
+	 * 게시물 삭제 요청을 처리해주는 메소드
+	 * @param postNo : 삭제할 게시글 번호
+	 * @param postCategory : 삭제할 게시글 카테고리 번호
+	 * @return 업데이트된 행 갯수
+	 * @author younheonchoi 
+	 */
+	public int deletePost(int postNo, int postCategory) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().deletePost(conn, postNo, postCategory);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

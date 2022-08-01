@@ -47,83 +47,78 @@
         <div class="community-list-area">
             <!-- 게시판 소개 -->
             <div class="community-list-header">
-                <h3><%= list.get(0).getCommCategory() %></h3>
+            <% 
+            	String categoryName = "";
+	            switch(categoryNo) {
+		            case 1: categoryName = "직무질문"; break;
+		            case 2: categoryName = "고민상담"; break;
+		            case 3: categoryName = "스터디"; break;}
+            %>            
+                <h3><%= categoryName %></h3>
                 <div class="community-search-bar">
                     <input type="search" name="searchKeyword" id="search-keyword" placeholder="궁금한 질문을 검색해 보세요!">
                     <button onclick=""><i class="far fa-search"></i>&nbsp;검색</button>
                 </div>
             </div>
+            
+            <script>
+           	$("community-list-header > h3") 
+            </script>
 
             <!-- 게시물 정렬 및 글쓰기 버튼-->
             <div class="community-sorting">
                 <span class="community-sorting-order">
                     <ul class="community-sorting-standard"> 
-                        <li onclick="">• 최신 순</li>
-                        <li onclick="">• 좋아요 순</li>
-                        <li onclick="">• 조회수 순</li>
+                        <li onclick="location.href='<%= contextPath %>/list.co?category=<%= categoryNo %>&sort=no&cpage=1'">• 최신 순</li>
+                        <li onclick="location.href='<%= contextPath %>/list.co?category=<%= categoryNo %>&sort=replyCnt&cpage=1'">• 조회수 순</li>
+						<li onclick="location.href='<%= contextPath %>/list.co?category=<%= categoryNo %>&sort=likeCnt&cpage=1'">• 좋아요 순</li>
                     </ul>                
                 </span>
 
             <!-- 로그인한 회원들에게만 글쓰기 버튼 노출 -->
-            <%-- <% if(로그인정보세션명) != null { %> --%>
+            <% if(loginUser != null) { %>
                 <span class="community-write">
                      <button id="community-write-btn" onclick="location.href='<%= request.getContextPath() %>/enrollForm.co';"><i class="far fa-pen"></i>&nbsp;&nbsp;글쓰기</a></button>
                 </span>
-            <%-- <% } %> --%>   
+            <% } %>
             </div>
 
             <!-- 게시물 목록 -->
-            <!-- case1. 게시글이 하나도 없을 경우 -->
+
              <table class="community-content">
 
-                <% if(list.isEmpty()) { %>
-                <tr id="content-none"> 조회된 게시글이 없습니다.</tr>
+				<!-- case1. 게시글이 있을 경우 -->
+				<% if(!list.isEmpty()) { %>
+				<% for(Community c : list) { %>					
+				<tr class="list-table-header">
+					<td id="content-no"><%= c.getCommNo() %> </td>
+					<td id="community-title" 
+						onclick="location.href='<%= contextPath%>/detail.co?contentNo=<%=c.getCommNo()%>'"> 
+						<%= c.getCommTitle() %> 
+					</td>
+					<td id="community-count" rowspan="3"> 
+						<i class="fas fa-eye" id="content-count" ></i> &nbsp; <%= c.getCount() %> <br>
+						<i class="fas fa-comment-dots" id="reply-count"></i> &nbsp; <%= c.getReplyCount() %> <br>
+						<i class="fas fa-heart" id="like-count"></i> &nbsp; <%= c.getLikeCount() %>
+					</td>
+				</tr>
+				<tr class="list-table-body">
+					<td> &nbsp; </td>
+					<td id="community-body"> <%= c.getCommContent() %> </td>
+				</tr>
+				<tr class="list-table-foot">
+					<td> &nbsp; </td>
+					<td id="community-writer"> <%= c.getCommWriter() %> &nbsp;&nbsp;&nbsp; <%= c.getCreateDate() %></td>
+				</tr>
+				<% } %>
+				
+	            <!-- case2. 게시글이 하나도 없을 경우 -->
 				<% }else { %>
-				<!-- case2.게시글이 있을 경우 -->
-					<% for(Community c : list) { %>
-	                <tr>
-						<td id="content-no"><%= c.getCommNo() %></td>
-	                    <td id="community-title"><h5><%= c.getCommTitle() %></h5></td>
-	                    <td id="reply-count" rowspan="3">
-	                        <div class="reply-zzim-count">
-	                            <div class="reply-count-circle">
-	                                <span id="reply-count-no"><%= c.getReplyCount() %></span>
-	                                <span id="reply-mark">댓글</span>
-	                            </div>
-	                            <div class="zzim-count-heart">
-	                                <span id="zzim-heart"><i class="fas fa-heart"></i></span>
-	                                <span id="zzim-count"><%= c.getLikeCount() %></span>
-	                            </div>
-	                        </div>
-	                    </td>
-	                </tr>
-	                <tr>
-	                    <td id="community-body"><p><%= c.getCommContent() %></p></td>
-	                    <td  rowspan="2">
-	                    </td>
-	                </tr>
-	                <tr>
-	                    <td id="writer-info"><%= c.getCommWriter() %>&nbsp;&nbsp;&nbsp;<%= c.getCreateDate() %></td>
-	                </tr>
-					<% } %>
-                </table>   
+				<tr id="content-none"> 조회된 게시글이 없습니다.</tr>
                 <% } %>
                 
-                <script>
-	                function hideRow() {	<!-- 글번호 td 숨기기 -->
-	                	const row = document.getElementById('content-no');
-	                	row.style.display = 'none';
-	                }
-                
-                	$(function() {
-                		$(".community-content tr").click(function(){
-                			location.href = "<%= request.getContextPath() %>/detail.co?no=" + $(this).children().eq(0).text();
-                		})
-                	})
-                
-                </script>
-          
-      
+                </table>
+
             <br>
             <br>
             <br>
@@ -132,15 +127,15 @@
             <div class="paging-area">
                 <ul class="pagination">
                 	<% if(currentPage != 1) { %>	<!-- 보고 있는 페이지가 1번 페이지일 때 이전 버튼선택 X -->
-                    	<li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage-1 %>">&lt;</a></li>
+                    	<li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage-1 %>">&lt;</a></li>
 	                <% } %>
 	                
 	                <% for(int p=startPage; p<=endPage; p++) { %>
-	                    <li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/list.co?category=<%= categoryNo %>&cpage=<%= p %>"><%= p %></a></li>
+	                    <li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= p %>"><%= p %></a></li>
 	                <% } %>
 	                
 	                <% if(currentPage != maxPage) { %>    
-	                    <li class="page-item"><a class="page-link" href="<%= request.getContextPath() %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage+1 %>">&gt;</a></li>
+	                    <li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage+1 %>">&gt;</a></li>
 	                <% } %>    
                   </ul>
             </div>

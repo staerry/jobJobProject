@@ -1,4 +1,4 @@
-package com.jj.member.controller;
+package com.jj.admin.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,21 +6,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.jj.member.model.service.MemberService;
+import com.jj.admin.model.service.AdminService2;
 
 /**
- * Servlet implementation class MemberDeleteController
+ * Servlet implementation class WithdrawalMentorController
  */
-@WebServlet("/delete.me")
-public class MemberDeleteController extends HttpServlet {
+@WebServlet("/withdrawalMen.up")
+public class WithdrawalMentorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberDeleteController() {
+    public WithdrawalMentorController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,20 +28,19 @@ public class MemberDeleteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
+		String prevNo = request.getParameter("no");
+		int startNo = prevNo.indexOf("(");
+		int endNo = prevNo.lastIndexOf(")");
+		int no = Integer.parseInt(prevNo.substring(startNo+1, endNo));
 		
-		int result = new MemberService().deleteMember(userId, userPwd);
-		
-		HttpSession session = request.getSession();
-		
-		if(result > 0) {
-			session.setAttribute("alertMsg", "성공적으로 회원탈퇴 되었습니다. 그동안 이용해주셔서 감사합니다.");
-			session.removeAttribute("loginUser");
-			response.sendRedirect(request.getContextPath());
+		int result = new AdminService2().withdrawalMen(no);
+
+		if(result>0) {
+			request.getSession().setAttribute("alertMsg", "회원탈퇴를 완료했습니다.");
+			response.sendRedirect(request.getContextPath()+"/mentorInfo.li?p=1");
 		}else {
-			session.setAttribute("alertMsg", "회원탈퇴 실패");
-			response.sendRedirect(request.getContextPath() + "/myPage.me");
+			request.getSession().setAttribute("alertMsg", "회원탈퇴처리에 실패했습니다.");
+			response.sendRedirect(request.getContextPath()+"/mentorInfo.li?p=1");
 		}
 	}
 

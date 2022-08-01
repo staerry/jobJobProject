@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.jj.community.model.vo.Community"%>
+    
+<%
+	Community c = (Community)request.getAttribute("c");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,30 +36,44 @@
                 <tr>
                     <td colspan="2">
                         <div class="board-btns">
-                            <span><button id="content-category">카테고리명</button></span>
-                            
-                            <!-- 로그인한 사용자에게만 수정, 삭제 버튼 노출 -->
-                            <span class="edit-delete-btn">
-                                <button id="edit-btn"><a href=""><i class="far fa-eraser"></i>&nbsp;수정</a></button>
-                                <button id="delete-btn"><a href=""><i class="far fa-trash"></i>&nbsp;삭제</a></button>                            </span>
+                            <span><button id="content-category"><%= c.getCommCategory() %></button></span>
+                             
+                             <!--로그인 + 글 주인 회원에게만 수정, 버튼이 보이게 함 -->
+                             <%if(loginUser != null && loginUser.getUserId().equals(c.getCommWriterId())) { %>                                                       	
+                             <span class="edit-delete-btn">
+                                <button id="edit-btn"><a href="<%= contextPath %>/updateForm.co?contentNo=<%=c.getCommNo()%>"><i class="far fa-eraser"></i>&nbsp;수정</a></button>
+                                <button id="delete-btn"><a href="<%= contextPath %>/delete.co?contentNo=<%=c.getCommNo()%>" onclick="return userConfirm();"><i class="far fa-trash"></i>&nbsp;삭제</a></button>                            
+                             </span>
+                             
+	                            <script>
+	                            	function userConfirm() {
+	                            		if(confirm('게시물을 삭제하시겠습니까?')) {
+	                            			return true;
+	                            		}else {
+	                            			return false;
+	                            		}
+	                            	}
+	                            </script>
+                            <% } %>
+                                                        
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" id="content-title">%= 제목 %</td>
+                    <td colspan="2" id="content-title"><%= c.getCommTitle() %></td>
                 </tr>
                 <tr>
-                    <td id="content-writer">작성자</td>
-                    <td id="content-date">%= 작성일 %</td>
+                    <td id="content-writer"><%= c.getCommWriter() %></td>
+                    <td id="content-date"><%= c.getCreateDate() %></td>
                 </tr>
                 <tr>
                     <td id="content-count" colspan="2">
-                        <span>%= 조회수 %</span>
+                        <span>조회수 <%= c.getCount() %></span>
                         
                     </td>
                 </tr>
                 <tr>
-                    <td id="content-body" colspan="2"><p>%= 게시글내용 %</p></td>
+                    <td id="content-body" colspan="2"><p><%= c.getCommContent() %></p></td>
                 </tr>
             </table>
         
@@ -63,8 +81,8 @@
 
             <!-- 뒤로가기(목록으로), 찜 버튼 -->
             <div class="back-zzim-btn">
-                <button onclick=""><i class="fas fa-arrow-left"></i></button>
-                <button onclick=""><i class="far fa-heart"> 11</i></button>
+                <button onclick="history.back();"><i class="fas fa-arrow-left"></i></button>
+                <button onclick=""><i class="far fa-heart">&nbsp;<%= c.getLikeCount() %></i></button>
                 <!-- 찜 누르기 전에는 빈 하트, 나중에는 찬 하트로 바뀌게 구현 -->
             </div>
 
@@ -73,7 +91,11 @@
                 <table class="community-reply">
                     <tr>
                         <td id="reply-head">
-                            <span id="reply-please">%=회원명%님, 답변해주세요!&nbsp;&nbsp;<i class="fas fa-comment-dots"></i></span>
+                        <% if (loginUser != null) { %>
+                            <span id="reply-please"><%= loginUser.getUserName() %>님, 답변해주세요!&nbsp;&nbsp;<i class="fas fa-comment-dots"></i></span>
+                        <% } else { %>
+                        <span id="reply-please">로그인 후 댓글 작성이 가능합니다. &nbsp;&nbsp;<i class="fas fa-comment-dots"></i></span>
+                        <% } %>    
                             <span id="reply-sub-please">모두에게 도움이 되는 답변의 주인공이 되어주세요!</span>
                         </td>
                     </tr>
@@ -82,31 +104,91 @@
                     </tr>
                     <tr>
                         <td id="reply-write">
-                            <textarea cols="95" rows="3" style="resize:none"></textarea>
-                            <button id="reply-enroll">댓글 등록</button></td>
+                        <!-- 로그인한 회원만 댓글 등록 허용 -->
+                            <% if (loginUser != null) { %>
+                            <textarea cols="95" rows="3" style="resize:none" id="reply-body"></textarea>
+                            <button id="reply-enroll" onclick="insertReply();">댓글 등록</button>
+                            <% } %>
                         </td>
+                        
+                        <!-- 직무질문 게시판의 경우 멘토회원에게만 댓글 허용 -->
+						<!-- user_division 이용하면 됨 -->
+						                        
                 </table>
             </div>
+            
+            <script>
+            
+            $(function(){
+            	selectReplyList();
+            	setInterval(selectReplyList, 1000);            	
+            })
+            
+            function insertReply(){
+            	
+            	$.ajax({
+            		url:"<%= contextPath %>/rinsert.co",
+            		data:{
+            			content:$("#reply-body").val(),
+            			contentNo:<%= c.getCommNo() %>
+            		},
+            		type:"post",
+            		success:function(result){
+            			if(result > 0) {
+            				selectReplyList();
+            				$("#reply-body").val("");	// 댓글 작성 완료 시 textarea 초기화
+            			}
+            		},error:function(){
+            			console.log("댓글 작성용 AJAX 통신 실패");
+            		}
+            	})
+            }
+            </script>
 
             <!-- 댓글 목록 영역 -->
             <div class="reply-list-area">
                 <table class="reply-list">
-                    <tr>
+<!--                     <tr>
                         <td id="reply-userId">회원명</td>
                         <td id="reply-content">%= 댓글 내용 %</td>
                         <td id="reply-date">%= xxxx-xx-xx HH:MI%</td>
-                    </tr>
-                    <tr>
-                        <td id="reply-userId">%= 회원명 %</td>
-                        <td id="reply-content">%= 댓글 내용 %</td>
-                        <td id="reply-date">%= xxxx-xx-xx HH:MI%</td>
-                    </tr>
-                    <tr>
-                        <td id="reply-userId">%= 회원명 %</td>
-                        <td id="reply-content">%= 댓글 내용 %</td>
-                        <td id="reply-date">%= xxxx-xx-xx HH:MI%</td>
-                    </tr>                   
+                    </tr>  -->           
                 </table>
+                
+                <script>
+                	$(function(){
+                		selectReplyList();
+                	})
+                	
+                	function selectReplyList(){
+                		
+                		$.ajax({
+                			url:"<%= contextPath %>/rlist.co",
+                			data:{contentNo:<%= c.getCommNo() %>},
+                			success:function(list){
+                				let value ="";
+                				
+                				if(Array.isArray(list) && list.length==0) {
+                					value += "<tr><td> &nbsp;&nbsp; 아직 등록된 댓글이 없습니다. 첫 번째 댓글을 남겨주세요. 🥺 </td></tr>";
+	                				
+                				}else {
+                					for(let i=0; i<list.length; i++) {
+	                					value += "<tr>"
+	                					             + "<td id='reply-userId'>" + list[i].userNo + "</td>"
+	                					             + "<td id='reply-content'>" + list[i].replyContent + "</td>"
+	                					             + "<td id='reply-date'>" + list[i].createDate + "</td>"
+	                					       + "</tr>";
+	                				}
+                				}
+	                				
+                				$(".reply-list").html(value);
+                				
+                			},error:function(){
+                				console.log("댓글목록 조회용 ajax 통신 실패");
+                			}
+                		})
+                	}
+                </script>
             </div>
         </div>
     </div>

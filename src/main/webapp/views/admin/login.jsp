@@ -15,9 +15,11 @@
 <body>
 
 	<% if(u == null){ %>
+		<!-- 로그인 전 보여질 화면 -->
 		<div style="display : none;">
 			<%@ include file="common/topbar.jsp" %>
 		</div>
+		
 	    <div class="admin-login-area">
 	        <img src="${pageContext.request.contextPath}/resources/image/logo.png" alt="logo" width="150">
 	        <p>관리자로그인</p>
@@ -28,17 +30,18 @@
 	        </form>
 	    </div>
 	<% } else { %>
+		<!-- 로그인 후 보여질 화면 -->
 		<%@ include file="common/topbar.jsp" %>
 	
 		<div class="content-wrap">
-	    	<!--이 부분에 좌측메뉴 넣으세요-->
 	    	<div class="left">
 				<%@ include file="common/menubar.jsp" %>
 			</div>
 	
-		    <!--이 부분은 우측 컨텐츠 입니다.-->
 		    <div class="right">
 		        <h3 style="color : #6363ff">대시보드</h3>
+		        
+		        <!-- 통꼐 -->
 		        <div class="statistics-area">
 					<div class="item1">
 						<div class="text">
@@ -77,7 +80,8 @@
 						</div>
 					</div>
 		        </div>
-
+				
+				<!-- 게시글 -->
 		        <div class="post-area">
 						<ul class="item1">
 							<li class="item-title">
@@ -140,7 +144,8 @@
 							</li>
 						</ul>
 				</div>
-
+				
+				<!-- 알림 -->
 		        <div class="notification-area">
 					<div class="item1">
 						<div class="text">
@@ -190,8 +195,5 @@
 		    </div>
 	    </div>
 	<% } %>
-
-
-		
 </body>
 </html>

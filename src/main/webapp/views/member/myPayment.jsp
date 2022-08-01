@@ -20,7 +20,7 @@
         <br>
         <h4>강의리스트로 조회</h4>
         <br>
-        <form action="/myPostSearch.do">
+        <!-- <form action="/myPostSearch.do"> -->
           <div class="form-check-inline">
             <label class="form-check-label" for="all">
               <input type="radio" class="form-check-input" name="searchKeyword" value="all" checked>전체
@@ -62,7 +62,7 @@
                 <td>남궁성</td>
                 <td>xxxx-xx-xx</td>
                 <td>
-                  <button class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
+                  <button onclick="location='myPaymentDetails.jsp'" class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
                   <button class="btn btn-danger">환불신청</button>
                 
                 </td>
@@ -73,7 +73,7 @@
                 <td>남궁성</td>
                 <td>xxxx-xx-xx</td>
                 <td>
-                  <button class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
+                  <button onclick="location='myPaymentDetails.jsp'"class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
                   <button class="btn btn-danger">환불신청</button>
                 </td>
               </tr>
@@ -83,7 +83,7 @@
                 <td>남궁성</td>
                 <td>xxxx-xx-xx</td>
                 <td>
-                  <button class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
+                  <button onclick="location='myPaymentDetails.jsp'"class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button></a>
                   <button class="btn btn-danger">환불신청</button>
                 </td>
               </tr>
@@ -102,8 +102,16 @@
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
               </ul>
         </div>
+        
+        <!--  
 
-    </form>
+          <script>
+            function myPaymentDetails(){
+              a
+            }
+          </script>
+        -->
+    <!-- </form> -->
 </div>
 
  <%@ include file="../common/footer.jsp" %>

@@ -71,12 +71,10 @@
 
         function linkbutton(num){
             switch(num){
-        		// request.getContextPath();가 변수에 안담겨서 직접 사용합니다
                 case 1: 
                 	location.href="<%= request.getContextPath() %>/login.ad";
                 	break;
                 case 2:
-                	// 페이지 이동용도 포워딩 서블릿만 작성 했습니다.
                 	location.href="<%= request.getContextPath() %>/mentorApprovalListView.ad";
                 	break;
                 case 3:
@@ -86,10 +84,10 @@
                 	location.href="<%= request.getContextPath() %>/mentorVodApprovalListView.ad";
                 	break;
                 case 5:
-                	location.href="<%= request.getContextPath() %>/mentorClassListView.ad";
+                	location.href="<%= request.getContextPath() %>/mentorClassListView.ad?cpage=1";
                 	break;
                 case 6:
-                	location.href="<%= request.getContextPath() %>/postListView.ad";
+                	location.href="<%= request.getContextPath() %>/postWorkListView.ad?cpage=1";
                 	break;
                 case 7: 
                 	location.href="<%= request.getContextPath() %>/noticeListView.ad?cpage=1";
@@ -101,7 +99,7 @@
                 	location.href="<%= request.getContextPath() %>/mtmListView.ad?cpage=1";
                 	break;
                 case 10: 
-                	location.href="<%= request.getContextPath() %>/couponManage.ad"; 
+                	location.href="<%= request.getContextPath() %>/couponManage.ad?p=1"; 
                 	break;
                 case 11: 
                 	location.href="<%= request.getContextPath() %>/mentorInfo.li?p=1"; 
@@ -110,7 +108,7 @@
                 	location.href="<%= request.getContextPath() %>/stuInfo.li?p=1"; 
                 	break;
                 case 13: 
-                	location.href="<%= request.getContextPath() %>/paymentselect.bo"; 
+                	location.href="<%= request.getContextPath() %>/paymentselect.bo?p=1"; 
                 	break;
                 case 14: 
                 	location.href="<%= request.getContextPath() %>/refundRequest.li"; 
