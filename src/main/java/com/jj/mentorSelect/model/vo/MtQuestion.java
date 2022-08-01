@@ -19,6 +19,23 @@ public class MtQuestion {
 	private String ansDate;	// TO_CHAR 사용
 
 	public MtQuestion() {}
+	
+	/**
+	 * 관리자 페이지 멘토 질문/답변 관리 페이지 생성자
+	 */
+	public MtQuestion(int mtQueNo, String queWriterName, String queTitle, String queContent, Date queEnrolldate,
+			int queLike, String ansWriterName, String ansContent, Date ansEnrollDate) {
+		super();
+		this.mtQueNo = mtQueNo;
+		this.queWriterName = queWriterName;
+		this.queTitle = queTitle;
+		this.queContent = queContent;
+		this.queEnrolldate = queEnrolldate;
+		this.queLike = queLike;
+		this.ansWriterName = ansWriterName;
+		this.ansContent = ansContent;
+		this.ansEnrollDate = ansEnrollDate;
+	}
 
 	public MtQuestion(int mtQueNo, int queWriterNo, String queWriterName, String queTitle, String queContent,
 			Date queEnrolldate) {
