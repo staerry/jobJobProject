@@ -32,9 +32,11 @@
 
     <div class="container" align="center">
 
-        <form action="<%= contextPath %>" method="post" id="pwd-area">
+        <div id="pwd-area">
 
-            <h2>비밀번호 재설정</h2>
+            <br><br>
+
+            <h2>비밀번호 재설정</h2><br>
             <span style="font-size: 10px; text-align: center;">계정으로 사용하는 이메일을 입력하면, 비밀번호 재설정 링크를 전송해 드립니다.</span><br><br>
 
             <input type="text" name="pwdEmail" placeholder="이메일 주소 입력"><br><br>
@@ -53,9 +55,9 @@
                         alert("발송완료!");
                         location.href = "<%= contextPath %>";
                     }else{
-                        // 이메일 다시 입력해주세요 alert => 이메일 칸 번쩍이도록
+                        
                         alert("이메일 다시 입력해주세요!");
-                        return false;
+                        location.reload();
                         $emailInput.focus();
                         
                     }
@@ -63,8 +65,8 @@
                 }
 
             </script>
-
-        </form>
+        </div>
+       
     </div>
     
     <br><br>
