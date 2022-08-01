@@ -15,6 +15,7 @@ import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.classSelect.model.vo.ClassIng;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.coupon.vo.Coupon;
+import com.jj.coupon.vo.IssuanceCoupon;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.member.model.vo.Mentor;
@@ -388,6 +389,58 @@ public class AdminDao2 {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public int MemberCouponBeforCount(Connection conn,String search) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("MemberCouponBeforCount");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search);
+			pstmt.setString(2, a);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public int MemberCouponAfterCount(Connection conn,String search) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("MemberCouponAfterCount");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search);
+			pstmt.setString(2, a);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -1050,6 +1103,84 @@ public class AdminDao2 {
 		return list;
 	}
 	
+	public ArrayList<IssuanceCoupon> MemberCouponBeforList(Connection conn, PageInfo pi,String search){
+		ArrayList<IssuanceCoupon> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("MemberCouponBeforList");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			
+			pstmt.setString(1, search);
+			pstmt.setString(2, a);
+			pstmt.setInt(3,startRow);
+			pstmt.setInt(4,endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new IssuanceCoupon(rset.getInt("isucp_no"),
+										    rset.getString("user_no"),
+										    rset.getString("cp_no"),
+										    rset.getString("cp_status"),
+										    rset.getDate("cp_issuedate"),
+										    rset.getDate("cp_enddate"),
+										    rset.getString("user_name"),
+										    rset.getString("cp_name")));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<IssuanceCoupon> MemberCouponAfterList(Connection conn, PageInfo pi,String search){
+		ArrayList<IssuanceCoupon> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("MemberCouponAfterList");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			
+			pstmt.setString(1, search);
+			pstmt.setString(2, a);
+			pstmt.setInt(3,startRow);
+			pstmt.setInt(4,endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new IssuanceCoupon(rset.getInt("isucp_no"),
+										    rset.getString("user_no"),
+										    rset.getString("cp_no"),
+										    rset.getString("cp_status"),
+										    rset.getDate("cp_issuedate"),
+										    rset.getDate("cp_enddate"),
+										    rset.getString("user_name"),
+										    rset.getString("cp_name")));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
 	public ArrayList<Coupon> couponList(Connection conn,PageInfo pi){
 		ArrayList<Coupon> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -1233,6 +1364,73 @@ public class AdminDao2 {
 		return result2;
 	}
 	
+	public int couponStop(Connection conn, int no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("couponStop");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int couponRestore(Connection conn, int no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("couponRestore");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int couponDelete(Connection conn, int no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("couponDelete");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int deleteUserCp(Connection conn, int no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteUserCp");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 	

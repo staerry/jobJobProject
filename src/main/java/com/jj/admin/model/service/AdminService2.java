@@ -14,6 +14,7 @@ import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.classSelect.model.vo.ClassIng;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.coupon.vo.Coupon;
+import com.jj.coupon.vo.IssuanceCoupon;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.member.model.vo.Mentor;
@@ -209,6 +210,32 @@ public class AdminService2 {
 	public int couponListCount() {
 		Connection conn = getConnection();
 		int listCount = new AdminDao2().couponListCount(conn);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 키워드에맞는 회원이 보유중인쿠폰수를 세는 메소드
+	 * @param search 키워드
+	 * @return 조회수
+	 */
+	public int MemberCouponBeforCount(String search) {
+		Connection conn = getConnection();
+		int listCount = new AdminDao2().MemberCouponBeforCount(conn,search);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
+	 * 키워드에맞는 회원이 사용한쿠폰수 세는 메소드
+	 * @param search 키워드
+	 * @return 조회수
+	 */
+	public int MemberCouponAfterCount(String search) {
+		Connection conn = getConnection();
+		int listCount = new AdminDao2().MemberCouponAfterCount(conn,search);
 		close(conn);
 		
 		return listCount;
@@ -516,6 +543,32 @@ public class AdminService2 {
 	}
 	
 	/**
+	 * 키워드와 페이지에맞는 회원쿠폰보유현황리스트를 가져오는 메소드
+	 * @param pi 페이지정보
+	 * @param search 키워드
+	 * @return 리스트
+	 */
+	public ArrayList<IssuanceCoupon> MemberCouponBeforList(PageInfo pi,String search){
+		Connection conn = getConnection();
+		ArrayList<IssuanceCoupon> list = new AdminDao2().MemberCouponBeforList(conn,pi,search);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 키워드와 페이지에맞는 회원이사용한쿠폰리스트를 가져오는 메소드
+	 * @param pi 페이지정보
+	 * @param search 키워드
+	 * @return 리스트
+	 */
+	public ArrayList<IssuanceCoupon> MemberCouponAfterList(PageInfo pi,String search){
+		Connection conn = getConnection();
+		ArrayList<IssuanceCoupon> list = new AdminDao2().MemberCouponAfterList(conn,pi,search);
+		close(conn);
+		return list;
+	}
+	
+	/**
 	 * 쿠폰등록을하는메소드
 	 * @param cpName 등록할쿠폰명
 	 * @param discount 등록할쿠폰할인가격
@@ -602,8 +655,73 @@ public class AdminService2 {
 		return result2;
 	}
 	
+	/**
+	 * 쿠폰번호로 쿠폰발급중단하는 메소드
+	 * @param no 중단할 쿠폰번호
+	 * @return 결과값
+	 */
+	public int couponStop(int no) {
+		Connection conn = getConnection();
+		int result = new AdminDao2().couponStop(conn,no);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
+	/**
+	 * 쿠폰번호로 쿠폰발급을 재개하는 메소드
+	 * @param no 재개할 쿠폰번호
+	 * @return 결과값
+	 */
+	public int couponRestore(int no) {
+		Connection conn = getConnection();
+		int result = new AdminDao2().couponRestore(conn,no);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
+	/**
+	 * 쿠폰번호로 쿠폰을 삭제하는 메소드
+	 * @param no 삭제할 쿠폰번호
+	 * @return 결과값
+	 */
+	public int couponDelete(int no) {
+		Connection conn = getConnection();
+		int result = new AdminDao2().couponDelete(conn,no);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	/**
+	 * 회원쿠폰고유번호로 쿠폰보유내역 삭제하는 메소드
+	 * @param no 회원쿠폰고유번호
+	 * @return 결과값
+	 */
+	public int deleteUserCp(int no) {
+		Connection conn = getConnection();
+		int result = new AdminDao2().deleteUserCp(conn,no);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
 	
 	

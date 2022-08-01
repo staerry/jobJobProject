@@ -228,7 +228,7 @@
 						<%} %>
 						<%if(currentPage < maxPage - pageLimit ){ %>
 							<a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=doubleNext%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&gt&gt</a>
-							<%} %>
+						<%} %>
 					</div>
 				</div>
 			</div>  
