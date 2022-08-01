@@ -40,9 +40,10 @@ public class Class {
 		this.clTitle = clTitle;
 	}
 
-	public Class(int clNo, String clTitle, String clInfo, String clCurri, int clPrice, String clThumbnailPath) {
+	public Class(int clNo, String clCategory, String clTitle, String clInfo, String clCurri, int clPrice, String clThumbnailPath) {
 		super();
 		this.clNo = clNo;
+		this.clCategory = clCategory;
 		this.clTitle = clTitle;
 		this.clInfo = clInfo;
 		this.clCurri = clCurri;

@@ -541,6 +541,58 @@ SELECT *
 	 WHERE USER_NO = ?
 </entry>
 
+<entry key="selectApprovalClassCount">
+	SELECT COUNT(*) COUNT
+	  FROM CLASS
+	 WHERE CL_GRANT = 'W'
+</entry>
+
+<entry key="selectApprovalClassList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT CL_NO
+	             , USER_NAME
+	             , CLCG_NAME
+	             , CL_TITLE
+	          FROM CLASS C
+	          JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+	          JOIN CL_CATEGORY CC ON (C.CL_CATEGORY = CC.CLCG_NO)
+	         WHERE CL_GRANT = 'W'
+	         ORDER BY CL_NO DESC
+	           )A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="selectClassApproval">
+	SELECT CL_NO
+	     , CLCG_NAME
+	     , CL_TITLE
+	     , CL_THUMBNAILPATH
+	     , CL_INFO
+	     , CL_CURRI
+	     , CL_PRICE
+	  FROM CLASS C
+	  JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+	  JOIN CL_CATEGORY CC ON (C.CL_CATEGORY = CC.CLCG_NO)
+	 WHERE CL_NO = ?
+</entry>
+
+<entry key="classApproval">
+	UPDATE CLASS
+	   SET CL_GRANT = 'A'
+	 WHERE CL_NO = ?
+</entry>
+
+<entry key="classApprovalFusal">
+	 UPDATE CLASS
+	   SET CL_GRANT = 'D'
+	 WHERE CL_NO = ?	
+</entry>
+
+
 
 
 
