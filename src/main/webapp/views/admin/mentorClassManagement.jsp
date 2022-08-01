@@ -47,7 +47,17 @@
 	                        <td><%= i.getClTitle() %></td>
 	                        <td><%= i.getClCategory() %></td>
 	                        <td><%= i.getUserNo() %></td>
-	                        <td><button class="btn btn-sm btn-danger" onclick="location.href='<%= contextPath %>/deleteClass.ad?no=<%= i.getClNo() %>'">삭제</button></td>
+	                        <td>
+	                        	<button class="btn btn-sm btn-danger" onclick="deleteContent(<%= i.getClNo() %>);">삭제</button>
+		                        <script>
+								    function deleteContent(num){
+								        if(confirm("정말 삭제 하시겠습니끼?")){
+								            location.href='<%= contextPath %>/deleteClass.ad?no=' + num;
+								        }
+								    }
+			                    </script> 
+	                        </td>
+	                        
 	                    </tr>
                     <% } %>
                 </tbody>
