@@ -513,6 +513,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 		FROM PAY P
 		JOIN USERINFO U USING(USER_NO)
 		WHERE (USER_NO = ?
+		   OR PAY_NO = ?
 		   OR USER_NAME LIKE ?)
 		  AND REFUND = 'Y'
 </entry>
@@ -541,12 +542,102 @@ SELECT COUNT(*) AS "LISTCOUNT"
                       LEFT JOIN ISSUANCECOUPON USING(ISUCP_NO)
                       LEFT JOIN COUPON C USING(CP_NO)
 	                 WHERE (P.USER_NO = ? 
+	                    OR PAY_NO = ?
                         OR USER_NAME LIKE ?)
                        AND REFUND = 'Y'
 	                 ORDER 
 	                    BY PAY_NO DESC) A)
 	 WHERE RNO BETWEEN ? AND ?
 </entry>
+
+<entry key="paymentRefundFinishCount">
+		SELECT COUNT(*) AS "LISTCOUNT"
+		FROM PAY P
+		JOIN USERINFO U USING(USER_NO)
+		WHERE (USER_NO = ?
+		   OR  PAY_NO = ?
+		   OR  USER_NAME LIKE ?)
+		  AND (REFUND = 'Y'
+		   OR  REFUND = 'D')
+</entry>
+
+<entry key="paymentRefundFinish">
+	 SELECT *
+	  FROM (SELECT ROWNUM AS "RNO", A.*
+	          FROM (SELECT 
+	                       PAY_NO
+	                     , P.USER_NO
+	                     , CL_TITLE
+	                     , CP_NAME
+	                     , PAYMENT
+	                     , REFUND
+	                     , FINAL_PAYMENT
+	                     , ORDER_NAME
+	                     , ORDER_PHONE
+	                     , ORDER_EMAIL
+                         , PAY_DATE
+                         , REFUND_DATE
+                         , USER_NAME
+                         , USER_ID    
+	                  FROM PAY P
+                      JOIN USERINFO U ON(P.USER_NO=U.USER_NO)
+                      JOIN CLASS USING(CL_NO)
+                      LEFT JOIN ISSUANCECOUPON USING(ISUCP_NO)
+                      LEFT JOIN COUPON C USING(CP_NO)
+	                 WHERE (P.USER_NO = ? 
+	                    OR  PAY_NO = ?
+                        OR USER_NAME LIKE ?)
+                       AND (REFUND = 'Y'
+                        OR  REFUND = 'D')
+	                 ORDER 
+	                    BY PAY_NO DESC) A)
+	 WHERE RNO BETWEEN ? AND ?
+</entry>
+
+<entry key="paymentRefundDenyCount">
+		SELECT COUNT(*) AS "LISTCOUNT"
+		FROM PAY P
+		JOIN USERINFO U USING(USER_NO)
+		WHERE (USER_NO = ?
+		   OR  PAY_NO = ?
+		   OR  USER_NAME LIKE ?)
+		  AND (REFUND = 'D')
+</entry>
+
+<entry key="paymentRefundDeny">
+	 SELECT *
+	  FROM (SELECT ROWNUM AS "RNO", A.*
+	          FROM (SELECT 
+	                       PAY_NO
+	                     , P.USER_NO
+	                     , CL_TITLE
+	                     , CP_NAME
+	                     , PAYMENT
+	                     , REFUND
+	                     , FINAL_PAYMENT
+	                     , ORDER_NAME
+	                     , ORDER_PHONE
+	                     , ORDER_EMAIL
+                         , PAY_DATE
+                         , REFUND_DATE
+                         , USER_NAME
+                         , USER_ID    
+	                  FROM PAY P
+                      JOIN USERINFO U ON(P.USER_NO=U.USER_NO)
+                      JOIN CLASS USING(CL_NO)
+                      LEFT JOIN ISSUANCECOUPON USING(ISUCP_NO)
+                      LEFT JOIN COUPON C USING(CP_NO)
+	                 WHERE (P.USER_NO = ? 
+	                    OR  PAY_NO = ?
+                        OR USER_NAME LIKE ?)
+                       AND (REFUND = 'D')
+	                 ORDER 
+	                    BY PAY_NO DESC) A)
+	 WHERE RNO BETWEEN ? AND ?
+</entry>
+
+
+
 
 <entry key="couponListCount">
 	SELECT COUNT(*) AS "LISTCOUNT"

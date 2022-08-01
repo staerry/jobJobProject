@@ -60,8 +60,8 @@ public class MemberService {
 		
 		return result1 * result2;
 	}
-		
-	/*
+	
+
 	public int deleteMember(String userId, String userPwd) {
 		Connection conn = getConnection();
 		int result = new MemberDao().deleteMember(conn, userId, userPwd);
@@ -72,11 +72,12 @@ public class MemberService {
 			rollback(conn);
 		}
 		
-		close(conn);
+		close(conn); 
 		
 		return result;
 		
 	}
+	/*
 	
 	public int updateInfo(String userId, String userPwd, String userNewPwd, String userCheckPwd, String email, String phone) {
 		Connection conn = getConnection();
@@ -91,22 +92,7 @@ public class MemberService {
 		close(conn);
 		
 		return result;
-	}*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	}
+	*/
 }

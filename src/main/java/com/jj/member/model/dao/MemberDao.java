@@ -180,7 +180,7 @@ public class MemberDao {
 
 	
 
-	/*
+	
 	public int deleteMember(Connection conn, String userId, String userPwd) {
 		
 		   int result = 0;
@@ -225,18 +225,5 @@ public class MemberDao {
 			close(pstmt);
 		}
 		   return result;
-	}*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}
 }

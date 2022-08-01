@@ -6,6 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.jj.member.model.service.MemberService;
 
 /**
  * Servlet implementation class MemberDeleteLastPageController
@@ -27,7 +30,28 @@ public class MemberDeleteLastPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/member/memberDeleteLastPage.jsp").forward(request, response);
+		String userId = request.getParameter("userId");
+		String userPwd = request.getParameter("userPwd");
+		
+		int result = new MemberService().deleteMember(userId, userPwd);
+		
+		HttpSession session = request.getSession();
+		
+		if(result > 0) {
+			
+			session.setAttribute("alertMsg", "회원탈퇴 성공");
+			session.removeAttribute("loginUser");
+			request.getRequestDispatcher("views/member/memberDeleteLastPage.jsp").forward(request, response);
+			
+			
+		}else {
+			
+			session.setAttribute("alertMsg", "회원탈퇴 실패");
+			response.sendRedirect(request.getContextPath());
+			
+			
+		}
+		
 		
 		
 		

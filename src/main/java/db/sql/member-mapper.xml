@@ -50,9 +50,8 @@
 	</entry>
 	
 	<entry key = "deleteMember">
-		UPDATE MEMBER
-		   SET STATUS = 'N'
-		     , MODIFY_DATE = SYSDATE
+		UPDATE USERINFO
+		   SET USER_STATUS = 'Y'
 		 WHERE USER_ID = ?
 		   AND USER_PWD = ?  
 	</entry>

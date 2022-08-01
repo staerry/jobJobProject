@@ -364,7 +364,62 @@ public class AdminDao2 {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
-			pstmt.setString(2, a);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public int paymentRefundFinishCount(Connection conn,String search) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("paymentRefundFinishCount");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public int paymentRefundDenyCount(Connection conn,String search) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("paymentRefundDenyCount");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -1145,9 +1200,102 @@ public class AdminDao2 {
 			int endRow = startRow + pi.getBoardLimit()-1;
 			
 			pstmt.setString(1, search);
-			pstmt.setString(2, a);
-			pstmt.setInt(3,startRow);
-			pstmt.setInt(4,endRow);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
+			pstmt.setInt(4,startRow);
+			pstmt.setInt(5,endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Pay(rset.getInt("pay_no"),
+									rset.getString("user_no"),
+									rset.getString("cl_title"),
+									rset.getString("cp_name"),
+									rset.getString("payment"),
+									rset.getString("refund"),
+									rset.getInt("final_payment"),
+									rset.getString("order_name"),
+									rset.getString("order_phone"),
+									rset.getString("order_email"),
+									rset.getDate("pay_date"),
+									rset.getDate("refund_date"),
+									rset.getString("user_name"),
+									rset.getString("user_id")));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<Pay> paymentRefundFinish(Connection conn,PageInfo pi,String search){
+		ArrayList<Pay> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("paymentRefundFinish");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
+			pstmt.setInt(4,startRow);
+			pstmt.setInt(5,endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Pay(rset.getInt("pay_no"),
+									rset.getString("user_no"),
+									rset.getString("cl_title"),
+									rset.getString("cp_name"),
+									rset.getString("payment"),
+									rset.getString("refund"),
+									rset.getInt("final_payment"),
+									rset.getString("order_name"),
+									rset.getString("order_phone"),
+									rset.getString("order_email"),
+									rset.getDate("pay_date"),
+									rset.getDate("refund_date"),
+									rset.getString("user_name"),
+									rset.getString("user_id")));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<Pay> paymentRefundDeny(Connection conn,PageInfo pi,String search){
+		ArrayList<Pay> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("paymentRefundDeny");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
+			pstmt.setInt(4,startRow);
+			pstmt.setInt(5,endRow);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {

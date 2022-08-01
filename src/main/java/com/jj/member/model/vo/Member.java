@@ -40,6 +40,8 @@ public class Member {
 		this.adminStatus = adminStatus;
 		this.userDivision = userDivision;
 	}
+	
+	
 
 	public int getUserNo() {
 		return userNo;
