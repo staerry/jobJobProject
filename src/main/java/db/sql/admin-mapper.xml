@@ -637,6 +637,11 @@ SELECT *
 	 WHERE VOD_NO = ?
 </entry>
 
+<entry key="selectQueCount">
+	SELECT COUNT(*) COUNT
+	  FROM MT_QUE
+</entry>
+
 
 
 

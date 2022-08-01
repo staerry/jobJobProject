@@ -23,7 +23,6 @@
 	<%@ include file="common/topbar.jsp" %>
 	
 	<div class="content-wrap">
-	
 		<div class="left">
 			<%@ include file="common/menubar.jsp" %>
 		</div>
@@ -41,14 +40,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                	<% for(Vod i : list){ %>
-	                    <tr>
-	                        <td><%= i.getVodNo() %></td>
-	                        <td><%= i.getClNo() %></td>
-	                        <td><%= i.getVodTitle() %></td>
-	                        <td><%= i.getMentorName() %></td>
-	                    </tr>
-                    <% } %>
+                	<% if(list.isEmpty()){ %>
+	                	<tr>
+		                    <td colspan="4">조회된 요청이 없습니다.</td>
+		                </tr>
+                	<% } else { %>            	
+	                	<% for(Vod i : list){ %>
+		                    <tr>
+		                        <td><%= i.getVodNo() %></td>
+		                        <td><%= i.getClNo() %></td>
+		                        <td><%= i.getVodTitle() %></td>
+		                        <td><%= i.getMentorName() %></td>
+		                    </tr>
+	                    <% } %>
+                	<% } %>
                 </tbody>
             </table>
 

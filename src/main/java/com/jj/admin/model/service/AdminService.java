@@ -940,8 +940,20 @@ public class AdminService {
 		return result;
 	}
 	
-	
-	
+	/**
+	 * 멘토질문 총 갯수 조회 요청 처리를 해주는 메소드
+	 * @return 멘토질문 총 갯수
+	 * @author youngheonchoi
+	 */
+	public int selectQueCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectQueCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
 	
 	
 	

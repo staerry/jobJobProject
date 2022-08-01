@@ -41,14 +41,20 @@
 	                    </tr>
 	                </thead>
 	                <tbody>
-	                	<% for(Mtm i : list){ %>
-		                    <tr>
-		                        <td><%= i.getMtmNo() %></td>
-		                        <td><%= i.getMtmTitle() %></td>
-		                        <td><%= i.getUserNo() %></td>
-		                        <td><%= i.getMtmEnrolldate() %></td>
-		                    </tr>
-	                    <% } %>
+	                	<% if(list.isEmpty()){ %>
+		                	<tr>
+			                    <td colspan="4">조회된 1대1문의가 없습니다.</td>
+			                </tr>
+	                	<% } else { %>
+		                	<% for(Mtm i : list){ %>
+			                    <tr>
+			                        <td><%= i.getMtmNo() %></td>
+			                        <td><%= i.getMtmTitle() %></td>
+			                        <td><%= i.getUserNo() %></td>
+			                        <td><%= i.getMtmEnrolldate() %></td>
+			                    </tr>
+		                    <% } %>   	
+	                	<% } %>
 	                </tbody>
 	            </table>
 	

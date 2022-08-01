@@ -23,9 +23,9 @@
 	<%@ include file="common/topbar.jsp" %>
 	
 	<div class="content-wrap">
-	<div class="left">
-		<%@ include file="common/menubar.jsp" %>
-	</div>
+		<div class="left">
+			<%@ include file="common/menubar.jsp" %>
+		</div>
 	
 		<div class="right">
 		    <h3>멘토 클래스 등록 승인</h3>
@@ -40,14 +40,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                	<% for(Class i : list){ %>
-	                    <tr>
-	                        <td><%= i.getClNo() %></td>
-	                        <td><%= i.getClTitle() %></td>
-	                        <td><%= i.getClCategory() %></td>
-	                        <td><%= i.getUserNo() %></td>
-	                    </tr>
-                    <% } %>
+                	<% if(list.isEmpty()){ %>
+	                	<tr>
+		                    <td colspan="4">조회된 요청이 없습니다.</td>
+		                </tr>
+                	<% } else { %>
+	                	<% for(Class i : list){ %>
+		                    <tr>
+		                        <td><%= i.getClNo() %></td>
+		                        <td><%= i.getClTitle() %></td>
+		                        <td><%= i.getClCategory() %></td>
+		                        <td><%= i.getUserNo() %></td>
+		                    </tr>
+	                    <% } %>
+                	<% } %>
                 </tbody>
             </table>
 
