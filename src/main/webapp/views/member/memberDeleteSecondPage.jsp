@@ -14,6 +14,12 @@
 <body>
 
 	<%@ include file="../common/menubar.jsp" %>
+
+	<%
+	String userId = loginUser.getUserId();
+	String userName = loginUser.getUserName();
+	String userPwd = loginUser.getUserPwd();
+	%>
 	<br><br>
 	<div align="center" style="padding-top: 120px; padding-bottom: 120px;">
 		<form action="<%= contextPath %>/deleteLast.me" method="post" id="delete-form">
@@ -28,12 +34,13 @@
 			</tr>
 			<tr>
 				<th><h2>아이디</h2></th>
-				<td><h2><%=loginUser.getUserId() %></h2></td>
+				<td><h2><%=userId %></h2></td>
+				<input type="hidden" name="userId" value="<%=userId%>">
 			</tr>
 
 			<tr>
 				<th><h2>비밀번호</h2></th>
-				<td><input type="password" placeholder="비밀번호를 입력해주세요" name="pwd"><br></td>
+				<td><input type="password" placeholder="비밀번호를 입력해주세요" name="userPwd"><br></td>
 			</tr>
 
 			<tr align="center">
@@ -51,7 +58,7 @@
 		
 		<script>
        	function validatePwd(){
-     		if( "<%=loginUser.getUserPwd()%>" != $("input[name=pwd]").val() ){
+     		if( "<%=userPwd%>" != $("input[name=userPwd]").val() ){
      			alert("비밀번호가 일치하지 않습니다.");
      			return false;
     		}

@@ -20,21 +20,21 @@
     <div class="container">
     <form action="<%=contextPath%>">
         <div class="form-group">
-        <label for="id"><h5>아이디 : </h5></label>
-        <input type="email" class="form-control" placeholder="<%= loginUser.getUserId() %>" name="id" disabled>
+        <label for="userId"><h5>아이디 : </h5></label>
+        <input type="email" id="userId" class="form-control" placeholder="<%= loginUser.getUserId() %>" name="userId" disabled>
         </div>
         <!--현재 비밀번호와 일치하는지 확인-->
         <div class="form-group">
-        <label for="pwd"><h5>현재 비밀번호 : </h5></label>
-        <input type="password" id="pwd" class="form-control" placeholder="비밀번호를 입력해주세요" name="pwd">
+        <label for="userPwd"><h5>현재 비밀번호 : </h5></label>
+        <input type="password" id="userPwd" class="form-control" placeholder="비밀번호를 입력해주세요" name="userPwd">
         </div>
         <div class="form-group">
-            <label for="newPwd"><h5>변경할 비밀번호 : </h5></label>
-            <input type="password" id="newPwd" class="form-control" placeholder="비밀번호를 입력해주세요" name="newPwd">
+            <label for="userNewPwd"><h5>변경할 비밀번호 : </h5></label>
+            <input type="password" id="userNewPwd" class="form-control" placeholder="비밀번호를 입력해주세요" name="userNewPwd">
         </div>
         <div class="form-group">
-            <label for="checkPwd"><h5>변경할 비밀번호 확인 : </h5></label>
-            <input type="password" id="checkPwd" class="form-control" placeholder="비밀번호를 입력해주세요" name="checkPwd" onchange="check_pw()">&nbsp;<span id="check"></span>
+            <label for="userCheckPwd"><h5>변경할 비밀번호 확인 : </h5></label>
+            <input type="password" id="userCheckPwd" class="form-control" placeholder="비밀번호를 입력해주세요" name="userCheckPwd" onchange="check_pw()">&nbsp;<span id="check"></span>
         </div>
         <div class="form-group">
             <label for="email"><h5>이메일 : </h5></label>
@@ -55,8 +55,8 @@
 
         <script>
             function check_pw(){
-                if(document.getElementById('newPwd').value != "&& document.getElementById('checkPwd').value!="){
-                    if(document.getElementById('newPwd').value== document.getElementById('checkPwd').value){
+                if(document.getElementById('userNewPwd').value != "&& document.getElementById('userCheckPwd').value!="){
+                    if(document.getElementById('userNewPwd').value== document.getElementById('userCheckPwd').value){
                         document.getElementById('check').innerHTML='비밀번호가 일치합니다.';
                         document.getElementById('check').style.color='blue';
                     }else{
@@ -68,12 +68,12 @@
             
             // 현재 비밀번호가 틀렸을 경우
          	function validatePwd(){
-         		if( "<%=loginUser.getUserPwd()%>" != $("input[name=pwd]").val() ){
+         		if( "<%=loginUser.getUserPwd()%>" != $("input[name=userPwd]").val() ){
          			alert("현재 비밀번호가 일치하지 않습니다.");
          			return false;
          			
          	// 변경할 비밀번호와 변경할 비밀번호 재확인이 일치하지 않았을 경우 		
-        		} if ( $("input[name=newPwd]").val() != $("input[name=checkPwd]").val() ){
+        		} if ( $("input[name=userNewPwd]").val() != $("input[name=userCheckPwd]").val() ){
              			alert("변경할 비밀번호가 일치하지 않습니다.");
              			return false;
         		}else{
