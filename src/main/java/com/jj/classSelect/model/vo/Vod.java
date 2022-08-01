@@ -26,6 +26,22 @@ public class Vod {
 		this.vodStatus = vodStatus;
 		this.mentorName = mentorName;
 	}
+	
+	
+	public Vod(int vodNo, String clNo, String vodTitle, String mentorName) {
+		super();
+		this.vodNo = vodNo;
+		this.clNo = clNo;
+		this.vodTitle = vodTitle;
+		this.mentorName = mentorName;
+	}
+	
+	public Vod(int vodNo, String vodTitle, String vodFile) {
+		super();
+		this.vodNo = vodNo;
+		this.vodTitle = vodTitle;
+		this.vodFile = vodFile;
+	}
 
 	public int getVodNo() {
 		return vodNo;

@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.classSelect.model.vo.Class;
+import com.jj.classSelect.model.vo.Vod;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.community.model.vo.Community;
 import com.jj.community.model.vo.Reply;
@@ -1483,13 +1484,123 @@ public class AdminDao {
 		return result;
 	}
 	
+	public int selectVodCount(Connection conn) {
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectVodCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
 	
+	public ArrayList<Vod> selectVodList(Connection conn, PageInfo pageInfo){
+		ArrayList <Vod> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectVodList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit() + 1;
+			int endRow = startRow + pageInfo.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Vod(rset.getInt("vod_no")
+						       , rset.getString("cl_title")
+						       , rset.getString("vod_title")
+						       , rset.getString("user_name")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
+	public Vod selectVod(Connection conn, int vodNo) {
+		Vod vod = new Vod();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectVod");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, vodNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				vod = new Vod(rset.getInt("vod_no")
+						    , rset.getString("vod_title")
+						    , rset.getString("vod_file"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return vod;
+	}
 	
-	
-	
-	
-	
+	public int vodApproval(Connection conn, int vodNo, int answer) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = null;
+		if(answer == 1) {
+			sql = prop.getProperty("vodApproval");
+
+		}else {
+			sql = prop.getProperty("vodApprovalFusal");
+		}
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, vodNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	

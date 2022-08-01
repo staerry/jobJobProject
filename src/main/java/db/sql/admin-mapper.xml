@@ -592,6 +592,51 @@ SELECT *
 	 WHERE CL_NO = ?	
 </entry>
 
+<entry key="selectVodCount">
+	SELECT COUNT(*) COUNT
+	  FROM VOD
+	 WHERE VOD_STATUS = 'W'
+</entry>
+
+<entry key="selectVodList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT VOD_NO
+	             , CL_TITLE
+	             , VOD_TITLE
+	             , USER_NAME
+	          FROM VOD V
+	          JOIN CLASS C ON (V.CL_NO = C.CL_NO)
+	          JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+	         WHERE VOD_STATUS = 'W'
+	         ORDER BY VOD_NO DESC
+	           )A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="selectVod">
+	SELECT VOD_NO
+	     , VOD_TITLE
+	     , VOD_FILE
+	  FROM VOD
+	 WHERE VOD_NO = ?
+</entry>
+
+<entry key="vodApproval">
+	UPDATE VOD
+	   SET VOD_STATUS = 'A'
+	 WHERE VOD_NO = ?
+</entry>
+
+<entry key="vodApprovalFusal">
+	UPDATE VOD
+	   SET VOD_STATUS = 'D'
+	 WHERE VOD_NO = ?
+</entry>
+
 
 
 

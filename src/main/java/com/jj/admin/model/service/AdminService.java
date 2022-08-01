@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.jj.admin.model.dao.AdminDao;
 import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.classSelect.model.vo.Class;
+import com.jj.classSelect.model.vo.Vod;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.community.model.vo.Community;
 import com.jj.community.model.vo.Reply;
@@ -869,17 +870,75 @@ public class AdminService {
 		return result;
 	}
 	
+	/**
+	 * 승인 대기중인 vod 갯수 조회 요청을 처리해주는 메소드
+	 * @return 승인 대기중인 vod 갯수
+	 * @author youngheonchoi 
+	 */
+	public int selectVodCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdminDao().selectVodCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
 	
+	/**
+	 * 승인 대기중인 vod리스트 조회 요청 처리를 해주는 메소드
+	 * @param pageInfo : 페이징 버튼 객체
+	 * @return 승인 대기중인 vod 리스트
+	 * @author youngheonchoi 
+	 */
+	public ArrayList<Vod> selectVodList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<Vod> list = new AdminDao().selectVodList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
 	
+	/**
+	 * 해당 번호의 vod정보 조회 요청 처리를 해주는 메소드
+	 * @param vodNo : 정보를 조회할 vod번호
+	 * @return vod 정보
+	 * @author youngheonchoi
+	 */
+	public Vod selectVod(int vodNo) {
+		Connection conn = getConnection();
+		
+		Vod vod = new AdminDao().selectVod(conn, vodNo);
+		
+		close(conn);
+		
+		return vod;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * vod업로드 승인/거절 요청을 처리해주는 메소드
+	 * @param vodNo : 승인/거절할 vod 번호
+	 * @param answer : 1(승인), 2(거절)
+	 * @return 업데이트된 행 갯수
+	 * @author youngheonchoi
+	 */
+	public int vodApproval(int vodNo, int answer) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().vodApproval(conn, vodNo, answer);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 	
 	
 	
