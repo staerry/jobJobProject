@@ -30,7 +30,33 @@ public class Class {
 		this.clTitle = clTitle;
 		this.userNo = userNo;
 		this.clEnrolldate = clEnrolldate;
+	}
+
+	public Class(int clNo, String userNo, String clCategory, String clTitle) {
+		super();
+		this.clNo = clNo;
+		this.userNo = userNo;
+		this.clCategory = clCategory;
+		this.clTitle = clTitle;
+	}
+
+	public Class(int clNo, String clTitle, String clInfo, String clCurri, int clPrice, String clThumbnailPath) {
+		super();
+		this.clNo = clNo;
+		this.clTitle = clTitle;
+		this.clInfo = clInfo;
+		this.clCurri = clCurri;
+		this.clPrice = clPrice;
 		this.clThumbnailPath = clThumbnailPath;
+	}
+
+	public Class(int clNo, String clTitle, String clInfo, String clCurri, int clPrice) {
+		super();
+		this.clNo = clNo;
+		this.clTitle = clTitle;
+		this.clInfo = clInfo;
+		this.clCurri = clCurri;
+		this.clPrice = clPrice;
 	}
 
 	public Class(int clNo, String userNo, String clCategory, String clTitle, String clSubtitle, String clInfo,
