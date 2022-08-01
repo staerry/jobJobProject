@@ -20,6 +20,7 @@ public class Pay {
 	private PageInfo pi;
 	private String userName;
 	private String userId;
+	private String clTitle;
 	
 	public Pay() {}
 
@@ -80,6 +81,30 @@ public class Pay {
 		this.refundDate = refundDate;
 		this.userName = userName;
 		this.userId = userId;
+	}
+	
+	
+
+	public Pay(int payNo, String userNo, String clNo, String isuCpNo, String payment, String refund, int finalPayment,
+			String orderName, String orderPhone, String orderEmail, Date payDate, Date refundDate, 
+			String userName, String userId, String clTitle) {
+		super();
+		this.payNo = payNo;
+		this.userNo = userNo;
+		this.clNo = clNo;
+		this.isuCpNo = isuCpNo;
+		this.payment = payment;
+		this.refund = refund;
+		this.finalPayment = finalPayment;
+		this.orderName = orderName;
+		this.orderPhone = orderPhone;
+		this.orderEmail = orderEmail;
+		this.payDate = payDate;
+		this.refundDate = refundDate;
+		this.pi = pi;
+		this.userName = userName;
+		this.userId = userId;
+		this.clTitle = clTitle;
 	}
 
 	public int getPayNo() {
@@ -202,6 +227,15 @@ public class Pay {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	
+
+	public String getClTitle() {
+		return clTitle;
+	}
+
+	public void setClTitle(String clName) {
+		this.clTitle = clName;
 	}
 
 	@Override

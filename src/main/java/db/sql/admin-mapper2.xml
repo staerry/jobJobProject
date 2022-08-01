@@ -125,6 +125,16 @@ SELECT COUNT(*) AS "LISTCOUNT"
 		  AND CP_STATUS = 'Y'
 </entry>
 
+<entry key="refundRequestCount">
+	SELECT COUNT(*) AS "LISTCOUNT"
+	FROM PAY P
+	JOIN USERINFO U ON(P.USER_NO = U.USER_NO)
+	WHERE (P.USER_NO = ?
+	   OR PAY_NO = ?
+	   OR USER_NAME LIKE ?)
+	  AND REFUND = 'W'
+</entry>
+
 <entry key="studentInfo">
 	SELECT *
 	  FROM (SELECT ROWNUM AS "RNO", A.*
@@ -465,6 +475,39 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	 WHERE RNO BETWEEN ? AND ?
 </entry>
 
+<entry key="refundRequestList">
+	 SELECT *
+	  FROM (SELECT ROWNUM AS "RNO", A.*
+	          FROM (SELECT 
+	                       PAY_NO
+	                     , P.USER_NO
+	                     , P.CL_NO
+	                     , CL_TITLE
+	                     , CP_NAME
+	                     , PAYMENT
+	                     , REFUND
+	                     , FINAL_PAYMENT
+	                     , ORDER_NAME
+	                     , ORDER_PHONE
+	                     , ORDER_EMAIL
+                         , PAY_DATE
+                         , REFUND_DATE
+                         , USER_NAME
+                         , USER_ID    
+	                  FROM PAY P
+                      JOIN USERINFO U ON(P.USER_NO=U.USER_NO)
+                      JOIN CLASS CL ON(P.CL_NO=CL.CL_NO)
+                      LEFT JOIN ISSUANCECOUPON USING(ISUCP_NO)
+                      LEFT JOIN COUPON C USING(CP_NO)
+	                 WHERE (P.USER_NO = ?
+	                    OR PAY_NO = ? 
+                        OR USER_NAME LIKE ?)
+                       AND REFUND = 'W' 
+	                 ORDER 
+	                    BY PAY_NO DESC) A)
+	 WHERE RNO BETWEEN ? AND ?
+</entry>
+
 <entry key="paymentRefundListCount">
 		SELECT COUNT(*) AS "LISTCOUNT"
 		FROM PAY P
@@ -642,6 +685,26 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	DELETE 
 	  FROM ISSUANCECOUPON
 	 WHERE ISUCP_NO = ?
+</entry>
+
+<entry key="insertUserCp">
+	INSERT
+	  INTO ISSUANCECOUPON
+	VALUES (SEQ_ISUCP.NEXTVAL,?,?,DEFAULT,DEFAULT,DEFAULT)
+</entry>
+
+<entry key="refundAccess">
+	UPDATE PAY
+	   SET REFUND = 'Y'
+	  ,REFUND_DATE = SYSDATE
+	 WHERE PAY_NO = ?
+</entry>
+
+<entry key="refundDeny">
+	UPDATE PAY
+	   SET REFUND = 'D'
+	  ,REFUND_DATE = SYSDATE
+	 WHERE PAY_NO = ?
 </entry>
 
 </properties>

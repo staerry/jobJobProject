@@ -111,7 +111,7 @@
                 	location.href="<%= request.getContextPath() %>/paymentselect.bo?p=1"; 
                 	break;
                 case 14: 
-                	location.href="<%= request.getContextPath() %>/refundRequest.li"; 
+                	location.href="<%= request.getContextPath() %>/refundRequest.li?p=1"; 
                 	break;
                 case 15: 
                 	location.href="<%= request.getContextPath() %>/replyListView.ad?cpage=1"; 

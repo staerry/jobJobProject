@@ -456,6 +456,33 @@ public class AdminDao2 {
 		return listCount;
 	}
 	
+	public int refundRequestCount(Connection conn,String search) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("refundRequestCount");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
 	
 	
 	public ArrayList<Member> studentInfo(Connection conn,PageInfo pi,String search){
@@ -1058,6 +1085,53 @@ public class AdminDao2 {
 		return list;
 	}
 	
+	public ArrayList<Pay> refundRequestList(Connection conn,PageInfo pi,String search){
+		ArrayList<Pay> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("refundRequestList");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
+			pstmt.setInt(4,startRow);
+			pstmt.setInt(5,endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Pay(rset.getInt("pay_no"),
+									rset.getString("user_no"),
+									rset.getString("cl_no"),
+									rset.getString("cp_name"),
+									rset.getString("payment"),
+									rset.getString("refund"),
+									rset.getInt("final_payment"),
+									rset.getString("order_name"),
+									rset.getString("order_phone"),
+									rset.getString("order_email"),
+									rset.getDate("pay_date"),
+									rset.getDate("refund_date"),
+									rset.getString("user_name"),
+									rset.getString("user_id"),
+									rset.getString("cl_title")));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
 	public ArrayList<Pay> paymentRefundList(Connection conn,PageInfo pi,String search){
 		ArrayList<Pay> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -1432,6 +1506,57 @@ public class AdminDao2 {
 		return result;
 	}
 	
+	public int insertUserCp(Connection conn,int userNo,int cpNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertUserCp");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, cpNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int refundAccess(Connection conn,int payNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("refundAccess");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, payNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int refundDeny(Connection conn,int payNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("refundDeny");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, payNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 }
