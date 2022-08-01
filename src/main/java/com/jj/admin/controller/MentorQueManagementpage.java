@@ -1,6 +1,7 @@
 package com.jj.admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jj.admin.model.service.AdminService;
 import com.jj.common.model.vo.PageInfo;
+import com.jj.mentorSelect.model.vo.MtQuestion;
 
 /**
  * Servlet implementation class MentorQueManagementpage
@@ -43,7 +45,11 @@ public class MentorQueManagementpage extends HttpServlet {
 		}
 		
 		PageInfo pageInfo = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		// ArrayList 출력하는 것부터 이어서
+		ArrayList<MtQuestion> list = new AdminService().selectQueList(pageInfo);
+		
+		request.setAttribute("pageInfo", pageInfo);
+		request.setAttribute("MtQuestion", list);
+		request.getRequestDispatcher("views/admin/mentorQueManagement.jsp").forward(request, response);
 	}
 
 	/**

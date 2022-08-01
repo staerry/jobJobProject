@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.jj.mentorSelect.model.vo.MtQuestion, com.jj.common.model.vo.PageInfo" %>
+<%
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	ArrayList<MtQuestion> list = (ArrayList<MtQuestion>)request.getAttribute("MtQuestion");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +22,7 @@
 		text-align : left;
 		padding : 10px 50px 10px 50px;
 		border : 1px solid lightgray;
+		background-color : #ececec;
 	}
 	
 	.que-content span {
@@ -44,7 +49,7 @@
 			alert("유효하지않은 접근입니다.");
 			location.href="<%= request.getContextPath() %>/login.ad";
 		</script>
-	<%}else{ %>
+	<% }else{ %>
 	
 	<%@ include file="common/topbar.jsp" %>
 	
@@ -69,33 +74,50 @@
                     </tr>
                 </thead>
                 <tbody>
-					<tr>
-						<td>1</td>
-						<td>제목</td>
-						<td>홍길동</td>
-						<td>멘토명</td>
-						<td>20</td>
-						<td>2022-12-12</td>
-						<td>
-							<button class="btn btn-sm btn-danger">삭제</button>
-						</td>
-					</tr>
-					<tr class="answer" style="display : none">
-						<td colspan="7">
-							<div class="que-content">
-								<span>질문 내용</span>
-								<br>
-								<pre>dfdfdfasdasdasds sadas</pre>
-								<br>
-								<span>답변 내용</span>
-								<!-- if문 처리해서 답변이 없으면 답변이 없다고 뜨게 -->
-								<!-- 여기도 게시글 없으면 게시글업다고 띄워주는거 작성 해야함 -->
-								<pre>dfdfdfasdasdasds sadas</pre>
-								<span class="date">2022-12-12</span>
-								<!-- 여기까지 -->
-							</div>
-						</td>
-					</tr>
+                	<% if(list.isEmpty()){ %>
+						<tr>
+							<td>조회된 질문이 없습니다.</td>
+						</tr>
+                	<%} else { %>
+                		<% for(MtQuestion i : list){ %>
+							<tr>
+								<td><%= i.getMtQueNo() %></td>
+								<td><%= i.getQueTitle() %></td>
+								<td><%= i.getQueWriterName() %></td>
+								<td><%= i.getAnsWriterName() %></td>
+								<td><%= i.getQueLike() %></td>
+								<td><%= i.getQueEnrolldate() %></td>
+								<td>
+									<button class="btn btn-sm btn-danger" onclick="deleteQue(<%= i.getMtQueNo() %>);">삭제</button>
+									
+									<script>
+										function deleteQue(num){
+											if(confirm("정말 삭제 하시겠습니까?")){
+												location.href="<%= contextPath %>/deleteQue.ad?no=" + num;
+											}
+										}
+									</script>
+								</td>
+							</tr>
+							<tr class="answer" style="display : none">
+								<td colspan="7">
+									<div class="que-content">
+										<span>질문 내용</span>
+										<br>
+										<pre><%= i.getQueContent() %></pre>
+										<br>
+										<span>답변 내용</span>
+										<% if(i.getAnsContent().isEmpty()){ %>
+											<pre>아직 답변이 없습니다.</pre>
+										<% } else { %>
+											<pre><%= i.getAnsContent() %></pre>
+											<span class="date"><%= i.getAnsEnrollDate() %></span>
+										<% } %>
+									</div>
+								</td>
+							</tr>
+						<% } %>
+					<% } %>
                 </tbody>
             </table>
             
@@ -112,13 +134,25 @@
             </script>
 
             <div class="paging-area">
-                <a href="">&lt</a>
-                	<a href="" style="background-color : gray;">1</a>
-                <a href="">&gt</a>
+                
+                <% if(pageInfo.getCurrentPage() != 1){ %>
+                	<a href="<%= contextPath %>/mentorQueListView.ad?cpage=<%= pageInfo.getCurrentPage() - 1 %>">&lt</a>
+                <% } %>
+                
+                <% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++){ %>
+                	<% if(pageInfo.getCurrentPage() == i){ %>
+                		<a href="<%= contextPath %>/mentorQueListView.ad?cpage=<%= i %>" style="background-color : gray;"><%= i %></a>
+                	<% } else { %>
+						<a href="<%= contextPath %>/mentorQueListView.ad?cpage=<%= i %>"><%= i %></a>
+                	<% } %>
+                <% } %>
+                
+                <% if(pageInfo.getCurrentPage() != pageInfo.getMaxPage()){ %>
+                	<a href="<%= contextPath %>/mentorQueListView.ad?cpage=<%= pageInfo.getCurrentPage() + 1 %>">&gt</a>
+            	<% } %>
             </div>
 		</div>
-		
 	</div>
-	<%} %>
+	<% } %>
 </body>
 </html>

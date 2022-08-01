@@ -19,6 +19,7 @@ import com.jj.community.model.vo.Review;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.member.model.vo.MentorApproval;
+import com.jj.mentorSelect.model.vo.MtQuestion;
 import com.jj.mtm.model.vo.Mtm;
 import com.jj.notice.model.vo.Notice;
 
@@ -956,10 +957,37 @@ public class AdminService {
 	}
 	
 	
+	public ArrayList<MtQuestion> selectQueList(PageInfo pageInfo){
+		Connection conn = getConnection();
+		
+		ArrayList<MtQuestion> list = new AdminDao().selectQueList(conn, pageInfo);
+		
+		close(conn);
+		
+		return list;
+	}
 	
-	
-	
-	
+	/**
+	 * 멘토질문 삭제 요청을 처리해주는 메소드
+	 * @param queNo : 삭제할 멘토질문 번호
+	 * @return 업데이트된 행 갯수
+	 * @author youngheonchoi
+	 */
+	public int deleteQue(int queNo) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().deleteQue(conn, queNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 	
 	
 	

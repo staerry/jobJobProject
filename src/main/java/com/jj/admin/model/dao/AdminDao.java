@@ -21,6 +21,7 @@ import com.jj.community.model.vo.Review;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.member.model.vo.MentorApproval;
+import com.jj.mentorSelect.model.vo.MtQuestion;
 import com.jj.mtm.model.vo.Mtm;
 import com.jj.notice.model.vo.Notice;
 
@@ -1628,9 +1629,66 @@ public class AdminDao {
 		return listCount;
 	}
 	
+	public ArrayList<MtQuestion> selectQueList(Connection conn, PageInfo pageInfo){
+		ArrayList<MtQuestion> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectQueList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit() + 1;
+			int endRow = startRow + pageInfo.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new MtQuestion(rset.getInt("mt_que_no")
+						              , rset.getString("username")
+						              , rset.getString("que_title")
+						              , rset.getString("que_content")
+						              , rset.getDate("que_enrolldate")
+						              , rset.getInt("que_like")
+						              , rset.getString("mentorname")
+						              , rset.getString("ans_content")
+						              , rset.getDate("ans_date")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
-	
-	
+	public int deleteQue(Connection conn, int queNo) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteQue");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, queNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	

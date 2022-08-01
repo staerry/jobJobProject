@@ -642,6 +642,35 @@ SELECT *
 	  FROM MT_QUE
 </entry>
 
+<entry key="selectQueList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT MT_QUE_NO
+	             , QUE_TITLE
+	             , U.USER_NAME AS "USERNAME"
+	             , I.USER_NAME AS "MENTORNAME"
+	             , QUE_LIKE
+	             , QUE_ENROLLDATE
+	             , QUE_CONTENT
+	             , ANS_CONTENT
+	             , ANS_DATE
+	          FROM MT_QUE M
+	          JOIN USERINFO U ON (U.USER_NO = M.ANS_NO)
+	          JOIN USERINFO I ON (I.USER_NO = M.USER_NO)
+	         ORDER BY MT_QUE_NO DESC
+	           )A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="deleteQue">
+	DELETE
+	  FROM MT_QUE
+	 WHERE MT_QUE_NO = ?
+</entry>
+
 
 
 
