@@ -89,15 +89,16 @@ public class ClassDao {
 				list.add(new Class(rset.getInt("cl_no"),
 								   rset.getString("user_name"),
 								   rset.getString("mt_company"),
-								   rset.getString("clcg_name"),
+								   rset.getString("clcg_no"),
 								   rset.getString("cl_title"),
 								   rset.getString("cl_subtitle"),
 								   rset.getString("cl_info"),
 								   rset.getString("cl_curri"),
-								   rset.getInt("cl_price"),
+								   rset.getString("cl_price"),
 								   rset.getDate("cl_enrolldate"),
 								   rset.getString("cl_grant"),
-								   rset.getString("cl_thumbnailpath")			
+								   rset.getString("cl_thumbnailpath"),
+								   rset.getDouble("review_score")					   
 						));
 			}
 		} catch (SQLException e) {
@@ -106,6 +107,8 @@ public class ClassDao {
 			close(rset);
 			close(pstmt);
 		}
+		
+		System.out.println(list);
 		
 		return list;
 		
@@ -126,15 +129,16 @@ public class ClassDao {
 				list.add(new Class(rset.getInt("cl_no"),
 								   rset.getString("user_name"),
 								   rset.getString("mt_company"),
-								   rset.getString("clcg_name"),
+								   rset.getString("clcg_no"),
 								   rset.getString("cl_title"),
 								   rset.getString("cl_subtitle"),
 								   rset.getString("cl_info"),
 								   rset.getString("cl_curri"),
-								   rset.getInt("cl_price"),
+								   rset.getString("cl_price"),
 								   rset.getDate("cl_enrolldate"),
 								   rset.getString("cl_grant"),
-								   rset.getString("cl_thumbnailpath")			
+								   rset.getString("cl_thumbnailpath"),
+								   rset.getDouble("review_score")
 						));
 			}
 		} catch (SQLException e) {
@@ -143,7 +147,7 @@ public class ClassDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println(list);
 		return list;
 	}
 	
@@ -264,6 +268,151 @@ public class ClassDao {
 		
 		return list;
 		
+	}
+	
+	public ArrayList<Class> selectListAllByPrice(Connection conn) {
+		ArrayList<Class> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectListAllByPrice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Class(rset.getInt("cl_no"),
+						   rset.getString("user_name"),
+						   rset.getString("mt_company"),
+						   rset.getString("clcg_no"),
+						   rset.getString("cl_title"),
+						   rset.getString("cl_subtitle"),
+						   rset.getString("cl_info"),
+						   rset.getString("cl_curri"),
+						   rset.getString("cl_price"),
+						   rset.getDate("cl_enrolldate"),
+						   rset.getString("cl_grant"),
+						   rset.getString("cl_thumbnailpath"),
+						   rset.getDouble("review_score")
+				));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println(list);
+		return list;
+		
+	}
+	
+	public ArrayList<Class> selectListByPrice(Connection conn, String category) {
+		ArrayList<Class> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectListByPrice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, category);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Class(rset.getInt("cl_no"),
+								   rset.getString("user_name"),
+								   rset.getString("mt_company"),
+								   rset.getString("clcg_no"),
+								   rset.getString("cl_title"),
+								   rset.getString("cl_subtitle"),
+								   rset.getString("cl_info"),
+								   rset.getString("cl_curri"),
+								   rset.getString("cl_price"),
+								   rset.getDate("cl_enrolldate"),
+								   rset.getString("cl_grant"),
+								   rset.getString("cl_thumbnailpath"),
+								   rset.getDouble("review_score")
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println(list);
+		return list;
+	}
+	
+	public ArrayList<Class> selectListAllByScore(Connection conn) {
+		ArrayList<Class> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectListAllByScore");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Class(rset.getInt("cl_no"),
+						   rset.getString("user_name"),
+						   rset.getString("mt_company"),
+						   rset.getString("clcg_no"),
+						   rset.getString("cl_title"),
+						   rset.getString("cl_subtitle"),
+						   rset.getString("cl_info"),
+						   rset.getString("cl_curri"),
+						   rset.getString("cl_price"),
+						   rset.getDate("cl_enrolldate"),
+						   rset.getString("cl_grant"),
+						   rset.getString("cl_thumbnailpath"),
+						   rset.getDouble("review_score")
+				));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println(list);
+		return list;
+	}
+	
+	public ArrayList<Class> selectListByScore(Connection conn, String category) {
+		ArrayList<Class> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectListByScore");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, category);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Class(rset.getInt("cl_no"),
+								   rset.getString("user_name"),
+								   rset.getString("mt_company"),
+								   rset.getString("clcg_no"),
+								   rset.getString("cl_title"),
+								   rset.getString("cl_subtitle"),
+								   rset.getString("cl_info"),
+								   rset.getString("cl_curri"),
+								   rset.getString("cl_price"),
+								   rset.getDate("cl_enrolldate"),
+								   rset.getString("cl_grant"),
+								   rset.getString("cl_thumbnailpath"),
+								   rset.getDouble("review_score")
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println(list);
+		return list;
 	}
 
 }

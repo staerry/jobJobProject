@@ -10,56 +10,67 @@
 	 	
 	<!-- 전체 강의 리스트 최신순 조회 -->
 	<entry key="selectListAll">
-		SELECT
-		       CL_NO
-		     , USER_NAME
-		     , MT_COMPANY
-		     , CLCG_NAME
-		     , CL_TITLE
-		     , CL_SUBTITLE
-		     , CL_INFO
-		     , CL_CURRI
-		     , CL_PRICE
-		     , CL_ENROLLDATE
-		     , CL_GRANT
-		     , CL_THUMBNAILPATH
-		  FROM CLASS
-		  JOIN USERINFO USING(USER_NO)
-		  JOIN CL_CATEGORY ON (CL_CATEGORY = CLCG_NO)
-		  JOIN MENTOR USING(USER_NO)
-		 ORDER
-            BY CL_NO DESC
+	 	 SELECT
+	           CL_NO
+	         , USER_NAME
+	         , MT_COMPANY
+	         , C.CLCG_NO AS CLCG_NO
+	         , CL_TITLE
+	         , CL_SUBTITLE
+	         , CL_INFO
+	         , CL_CURRI
+	         , TO_CHAR(CL_PRICE, 'L99,999') AS CL_PRICE
+	         , CL_ENROLLDATE
+	         , CL_GRANT
+	         , CL_THUMBNAILPATH
+	         , REVIEW_SCORE
+	      FROM CLASS
+	      JOIN USERINFO USING(USER_NO)
+	      JOIN CL_CATEGORY C ON(CL_CATEGORY = CLCG_NO)
+	      JOIN MENTOR USING(USER_NO)
+	      JOIN (SELECT CL_NO
+	                 , NVL(ROUND(AVG(REVIEW_SCORE), 1), 0) AS REVIEW_SCORE
+	              FROM CLASS
+	              LEFT JOIN REVIEW USING(CL_NO)
+	             GROUP BY CL_NO) A USING(CL_NO)
+	    ORDER BY CL_NO DESC
     </entry>
     
     <!-- 카테고리별 강의 수 조회 -->
 	<entry key="selectListCount">
 		SELECT COUNT(*) AS "COUNT"
 		  FROM CLASS
-		 WHERE CL_CATEGORY =?
+		 WHERE CL_CATEGORY = ?
 	</entry>
     
 	<!-- 카테고리별 강의 리스트 최신순 조회 -->
 	<entry key="selectList">
-		SELECT
-		       CL_NO
-		     , USER_NAME
-		     , MT_COMPANY
-		     , CLCG_NAME
-		     , CL_TITLE
-		     , CL_SUBTITLE
-		     , CL_INFO
-		     , CL_CURRI
-		     , CL_PRICE
-		     , CL_ENROLLDATE
-		     , CL_GRANT
-		     , CL_THUMBNAILPATH
-		  FROM CLASS
-		  JOIN USERINFO USING(USER_NO)
-  		  JOIN CL_CATEGORY ON(CL_CATEGORY = CLCG_NO)
-  		  JOIN MENTOR USING(USER_NO)  		  
-		 WHERE CL_CATEGORY = ?
-         ORDER
-            BY CL_NO DESC
+	 	 SELECT
+	           CL_NO
+	         , USER_NAME
+	         , MT_COMPANY
+	         , C.CLCG_NO AS CLCG_NO
+	         , CL_TITLE
+	         , CL_SUBTITLE
+	         , CL_INFO
+	         , CL_CURRI
+	         , TO_CHAR(CL_PRICE, 'L99,999') AS CL_PRICE
+	         , CL_ENROLLDATE
+	         , CL_GRANT
+	         , CL_THUMBNAILPATH
+	         , REVIEW_SCORE
+	      FROM CLASS
+	      JOIN USERINFO USING(USER_NO)
+	      JOIN CL_CATEGORY C ON(CL_CATEGORY = CLCG_NO)
+	      JOIN MENTOR USING(USER_NO)
+	      JOIN (SELECT CL_NO
+	                 , NVL(ROUND(AVG(REVIEW_SCORE), 1), 0) AS REVIEW_SCORE
+	              FROM CLASS
+	              LEFT JOIN REVIEW USING(CL_NO)
+	             GROUP BY CL_NO) A USING(CL_NO)
+	     WHERE CL_CATEGORY = ?
+	     ORDER 
+	     	BY CL_NO DESC
 	</entry>
 	
 	<!-- 강의 정보 조회 -->
@@ -113,5 +124,121 @@
 		 ORDER
 		    BY REVIEW_NO DESC
      </entry>
+    
+     <!-- 전체 강의 수강료 순 조회 -->
+     <entry key="selectListAllByPrice">
+ 	 	SELECT
+	           CL_NO
+	         , USER_NAME
+	         , MT_COMPANY
+	         , C.CLCG_NO AS CLCG_NO
+	         , CL_TITLE
+	         , CL_SUBTITLE
+	         , CL_INFO
+	         , CL_CURRI
+	         , TO_CHAR(CL_PRICE, 'L99,999') AS CL_PRICE
+	         , CL_ENROLLDATE
+	         , CL_GRANT
+	         , CL_THUMBNAILPATH
+	         , REVIEW_SCORE
+	      FROM CLASS
+	      JOIN USERINFO USING(USER_NO)
+	      JOIN CL_CATEGORY C ON(CL_CATEGORY = CLCG_NO)
+	      JOIN MENTOR USING(USER_NO)
+	      JOIN (SELECT CL_NO
+	                 , NVL(ROUND(AVG(REVIEW_SCORE), 1), 0) AS REVIEW_SCORE
+	              FROM CLASS
+	              LEFT JOIN REVIEW USING(CL_NO)
+	             GROUP BY CL_NO) A USING(CL_NO)
+	    ORDER BY CL_PRICE DESC
+    </entry>
+    
+    <entry key="selectListByPrice">
+			 	 SELECT
+	           CL_NO
+	         , USER_NAME
+	         , MT_COMPANY
+	         , C.CLCG_NO AS CLCG_NO
+	         , CL_TITLE
+	         , CL_SUBTITLE
+	         , CL_INFO
+	         , CL_CURRI
+	         , TO_CHAR(CL_PRICE, 'L99,999') AS CL_PRICE
+	         , CL_ENROLLDATE
+	         , CL_GRANT
+	         , CL_THUMBNAILPATH
+	         , REVIEW_SCORE
+	      FROM CLASS
+	      JOIN USERINFO USING(USER_NO)
+	      JOIN CL_CATEGORY C ON(CL_CATEGORY = CLCG_NO)
+	      JOIN MENTOR USING(USER_NO)
+	      JOIN (SELECT CL_NO
+	                 , NVL(ROUND(AVG(REVIEW_SCORE), 1), 0) AS REVIEW_SCORE
+	              FROM CLASS
+	              LEFT JOIN REVIEW USING(CL_NO)
+	             GROUP BY CL_NO) A USING(CL_NO)
+	     WHERE CL_CATEGORY = ?        
+	     ORDER 
+	        BY CL_PRICE DESC
+    </entry>
+    
+    <entry key="selectListAllByScore">
+	    SELECT
+	           CL_NO
+	         , USER_NAME
+	         , MT_COMPANY
+	         , C.CLCG_NO AS CLCG_NO
+	         , CL_TITLE
+	         , CL_SUBTITLE
+	         , CL_INFO
+	         , CL_CURRI
+	         , TO_CHAR(CL_PRICE, 'L99,999') AS CL_PRICE
+	         , CL_ENROLLDATE
+	         , CL_GRANT
+	         , CL_THUMBNAILPATH
+	         , REVIEW_SCORE
+	      FROM CLASS
+	      JOIN USERINFO USING(USER_NO)
+	      JOIN CL_CATEGORY C ON(CL_CATEGORY = CLCG_NO)
+	      JOIN MENTOR USING(USER_NO)
+	      JOIN (SELECT CL_NO
+	                 , NVL(ROUND(AVG(REVIEW_SCORE), 1), 0) AS REVIEW_SCORE
+	              FROM CLASS
+	              LEFT JOIN REVIEW USING(CL_NO)
+	             GROUP BY CL_NO) A USING(CL_NO)
+	     ORDER 
+	    	BY REVIEW_SCORE DESC
+    </entry>
+    
+    <entry key="selectListByScore">
+ 	 SELECT
+	           CL_NO
+	         , USER_NAME
+	         , MT_COMPANY
+	         , C.CLCG_NO AS CLCG_NO
+	         , CL_TITLE
+	         , CL_SUBTITLE
+	         , CL_INFO
+	         , CL_CURRI
+	         , TO_CHAR(CL_PRICE, 'L99,999') AS CL_PRICE
+	         , CL_ENROLLDATE
+	         , CL_GRANT
+	         , CL_THUMBNAILPATH
+	         , REVIEW_SCORE
+	      FROM CLASS
+	      JOIN USERINFO USING(USER_NO)
+	      JOIN CL_CATEGORY C ON(CL_CATEGORY = CLCG_NO)
+	      JOIN MENTOR USING(USER_NO)
+	      JOIN (SELECT CL_NO
+	                , NVL(ROUND(AVG(REVIEW_SCORE), 1), 0) AS REVIEW_SCORE
+	              FROM CLASS
+	              LEFT JOIN REVIEW USING(CL_NO)
+	             GROUP BY CL_NO) A USING(CL_NO)
+	     WHERE C.CLCG_NO = ?
+	     ORDER 
+	        BY REVIEW_SCORE DESC
+    </entry>
+    
+    
     
 </properties>

@@ -67,4 +67,33 @@ public class ClassService {
 		close(conn);
 		return list;
 	}
+	
+	public ArrayList<Class> selectListAllByPrice(){
+		Connection conn = getConnection();
+		ArrayList<Class> list = new ClassDao().selectListAllByPrice(conn);
+		close(conn);
+		return list;
+	}
+	
+	public ArrayList<Class> selectListByPrice(String category){
+		Connection conn = getConnection();
+		ArrayList<Class> list = new ClassDao().selectListByPrice(conn, category);
+		close(conn);
+		return list;
+	}
+	
+	public ArrayList<Class> selectListAllByScore() {
+		Connection conn = getConnection();
+		ArrayList<Class> list = new ClassDao().selectListAllByScore(conn);
+		close(conn);
+		return list;
+		
+	}
+	
+	public ArrayList<Class> selectListByScore(String category) {
+		Connection conn = getConnection();
+		ArrayList<Class> list = new ClassDao().selectListByScore(conn, category);
+		close(conn);
+		return list;
+	}
 }
