@@ -14,18 +14,18 @@
 </head>
 <body>
 	<%if(session.getAttribute("UserInfoAd") == null){ %>
-	<script>
-		alert("유효하지않은 접근입니다.");
-		location.href="<%= request.getContextPath() %>/login.ad";
-	</script>
+		<script>
+			alert("유효하지않은 접근입니다.");
+			location.href="<%= request.getContextPath() %>/login.ad";
+		</script>
 	<%}else{ %>
+	
 	<%@ include file="common/topbar.jsp" %>
 	
 	<div class="content-wrap">
-	
-	<div class="left">
-		<%@ include file="common/menubar.jsp" %>
-	</div>
+		<div class="left">
+			<%@ include file="common/menubar.jsp" %>
+		</div>
 	
 		<div class="right">
 		    <h3>클래스 관리</h3>
@@ -41,15 +41,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                	<% for(Class i : list){ %>
-	                    <tr>
-	                        <td><%= i.getClNo() %></td>
-	                        <td><%= i.getClTitle() %></td>
-	                        <td><%= i.getClCategory() %></td>
-	                        <td><%= i.getUserNo() %></td>
-	                        <td><button class="btn btn-sm btn-danger" onclick="location.href='<%= contextPath %>/deleteClass.ad?no=<%= i.getClNo() %>'">삭제</button></td>
-	                    </tr>
-                    <% } %>
+                	<% if(list.isEmpty()){ %>
+	                	<tr>
+		                    <td colspan="5">조회된 클래스가 없습니다.</td>
+		                </tr>
+                	<% } else { %>          	
+	                	<% for(Class i : list){ %>
+		                    <tr>
+		                        <td><%= i.getClNo() %></td>
+		                        <td><%= i.getClTitle() %></td>
+		                        <td><%= i.getClCategory() %></td>
+		                        <td><%= i.getUserNo() %></td>
+		                        <td>
+		                        	<button class="btn btn-sm btn-danger" onclick="deleteContent(<%= i.getClNo() %>);">삭제</button>
+			                        <script>
+									    function deleteContent(num){
+									        if(confirm("정말 삭제 하시겠습니끼?")){
+									            location.href='<%= contextPath %>/deleteClass.ad?no=' + num;
+									        }
+									    }
+				                    </script> 
+		                        </td>
+		                        
+		                    </tr>
+	                    <% } %>
+                	<% } %>
                 </tbody>
             </table>
 
@@ -69,7 +85,6 @@
                 <% } %>
             </div>
 		</div>
-		
 	</div>
 	<%} %>
 </body>

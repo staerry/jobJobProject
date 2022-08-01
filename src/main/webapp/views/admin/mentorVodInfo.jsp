@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.jj.classSelect.model.vo.Vod" %>
+    
+<%
+	Vod vod = (Vod)request.getAttribute("vod");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,21 +33,38 @@
 			<table class="admin-table">
 					<tr>
 						<th width="150">강의 제목</th>
-						<td>강의 영상 제목 입니다.</td>
+						<td><%= vod.getVodTitle() %></td>
 					</tr>
 					<tr>
 						<th>강의 영상 첨부파일</th>
-						<td>영상 첨부파일이 들어갈 자리</td>
+						<td>
+							<video src="<%= contextPath %>/<%= vod.getVodFile() %>">강의 영상</video>
+						</td>
 					</tr>
 			</table>
 
 			<div class="mentoRegistInfo-controller-btn">
 				<div class="left-controller">
-					<button type="button">승인</button>
-					<button type="button">거절</button>
+					<button type="button" onclick="approval(1);">승인</button>
+					<button type="button" onclick="approval(2);">거절</button>
 				</div>
+				
+				<script>
+					function approval(answer){
+						if(answer == 1){
+							if(confirm("승인 하시겠습니까?")){
+								location.href="<%= contextPath %>/vodApproval.ad?no=<%= vod.getVodNo() %>&answer=1";
+							}
+						}else{
+							if(confirm("거절 하시겠습니까?")){
+								location.href="<%= contextPath %>/vodApproval.ad?no=<%= vod.getVodNo() %>&answer=2";
+							}
+						}
+					}
+				</script>
+				
 				<div class="right-controller">
-					<button type="button">돌아가기</button>
+					<button type="button" onclick="history.back();">돌아가기</button>
 				</div>
 			</div>
 	    </div>

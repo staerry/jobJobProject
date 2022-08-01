@@ -15,6 +15,7 @@ import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.classSelect.model.vo.ClassIng;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.coupon.vo.Coupon;
+import com.jj.coupon.vo.IssuanceCoupon;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.member.model.vo.Mentor;
@@ -363,7 +364,62 @@ public class AdminDao2 {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
-			pstmt.setString(2, a);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public int paymentRefundFinishCount(Connection conn,String search) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("paymentRefundFinishCount");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public int paymentRefundDenyCount(Connection conn,String search) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("paymentRefundDenyCount");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -388,6 +444,85 @@ public class AdminDao2 {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public int MemberCouponBeforCount(Connection conn,String search) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("MemberCouponBeforCount");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search);
+			pstmt.setString(2, a);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public int MemberCouponAfterCount(Connection conn,String search) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("MemberCouponAfterCount");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search);
+			pstmt.setString(2, a);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	public int refundRequestCount(Connection conn,String search) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("refundRequestCount");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -1005,6 +1140,53 @@ public class AdminDao2 {
 		return list;
 	}
 	
+	public ArrayList<Pay> refundRequestList(Connection conn,PageInfo pi,String search){
+		ArrayList<Pay> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("refundRequestList");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
+			pstmt.setInt(4,startRow);
+			pstmt.setInt(5,endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Pay(rset.getInt("pay_no"),
+									rset.getString("user_no"),
+									rset.getString("cl_no"),
+									rset.getString("cp_name"),
+									rset.getString("payment"),
+									rset.getString("refund"),
+									rset.getInt("final_payment"),
+									rset.getString("order_name"),
+									rset.getString("order_phone"),
+									rset.getString("order_email"),
+									rset.getDate("pay_date"),
+									rset.getDate("refund_date"),
+									rset.getString("user_name"),
+									rset.getString("user_id"),
+									rset.getString("cl_title")));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
 	public ArrayList<Pay> paymentRefundList(Connection conn,PageInfo pi,String search){
 		ArrayList<Pay> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -1018,9 +1200,10 @@ public class AdminDao2 {
 			int endRow = startRow + pi.getBoardLimit()-1;
 			
 			pstmt.setString(1, search);
-			pstmt.setString(2, a);
-			pstmt.setInt(3,startRow);
-			pstmt.setInt(4,endRow);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
+			pstmt.setInt(4,startRow);
+			pstmt.setInt(5,endRow);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -1038,6 +1221,176 @@ public class AdminDao2 {
 									rset.getDate("refund_date"),
 									rset.getString("user_name"),
 									rset.getString("user_id")));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<Pay> paymentRefundFinish(Connection conn,PageInfo pi,String search){
+		ArrayList<Pay> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("paymentRefundFinish");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
+			pstmt.setInt(4,startRow);
+			pstmt.setInt(5,endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Pay(rset.getInt("pay_no"),
+									rset.getString("user_no"),
+									rset.getString("cl_title"),
+									rset.getString("cp_name"),
+									rset.getString("payment"),
+									rset.getString("refund"),
+									rset.getInt("final_payment"),
+									rset.getString("order_name"),
+									rset.getString("order_phone"),
+									rset.getString("order_email"),
+									rset.getDate("pay_date"),
+									rset.getDate("refund_date"),
+									rset.getString("user_name"),
+									rset.getString("user_id")));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<Pay> paymentRefundDeny(Connection conn,PageInfo pi,String search){
+		ArrayList<Pay> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("paymentRefundDeny");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			
+			pstmt.setString(1, search);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
+			pstmt.setInt(4,startRow);
+			pstmt.setInt(5,endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Pay(rset.getInt("pay_no"),
+									rset.getString("user_no"),
+									rset.getString("cl_title"),
+									rset.getString("cp_name"),
+									rset.getString("payment"),
+									rset.getString("refund"),
+									rset.getInt("final_payment"),
+									rset.getString("order_name"),
+									rset.getString("order_phone"),
+									rset.getString("order_email"),
+									rset.getDate("pay_date"),
+									rset.getDate("refund_date"),
+									rset.getString("user_name"),
+									rset.getString("user_id")));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<IssuanceCoupon> MemberCouponBeforList(Connection conn, PageInfo pi,String search){
+		ArrayList<IssuanceCoupon> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("MemberCouponBeforList");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			
+			pstmt.setString(1, search);
+			pstmt.setString(2, a);
+			pstmt.setInt(3,startRow);
+			pstmt.setInt(4,endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new IssuanceCoupon(rset.getInt("isucp_no"),
+										    rset.getString("user_no"),
+										    rset.getString("cp_no"),
+										    rset.getString("cp_status"),
+										    rset.getDate("cp_issuedate"),
+										    rset.getDate("cp_enddate"),
+										    rset.getString("user_name"),
+										    rset.getString("cp_name")));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<IssuanceCoupon> MemberCouponAfterList(Connection conn, PageInfo pi,String search){
+		ArrayList<IssuanceCoupon> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("MemberCouponAfterList");
+		String a = '%'+search+'%';
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			
+			pstmt.setString(1, search);
+			pstmt.setString(2, a);
+			pstmt.setInt(3,startRow);
+			pstmt.setInt(4,endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new IssuanceCoupon(rset.getInt("isucp_no"),
+										    rset.getString("user_no"),
+										    rset.getString("cp_no"),
+										    rset.getString("cp_status"),
+										    rset.getDate("cp_issuedate"),
+										    rset.getDate("cp_enddate"),
+										    rset.getString("user_name"),
+										    rset.getString("cp_name")));
 			}
 			
 			
@@ -1233,7 +1586,125 @@ public class AdminDao2 {
 		return result2;
 	}
 	
+	public int couponStop(Connection conn, int no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("couponStop");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
+	public int couponRestore(Connection conn, int no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("couponRestore");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int couponDelete(Connection conn, int no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("couponDelete");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int deleteUserCp(Connection conn, int no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteUserCp");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertUserCp(Connection conn,int userNo,int cpNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertUserCp");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, cpNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int refundAccess(Connection conn,int payNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("refundAccess");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, payNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int refundDeny(Connection conn,int payNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("refundDeny");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, payNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 }

@@ -56,7 +56,7 @@
 		   AND USER_PWD = ?  
 	</entry>
 	
-	<entry key="insertMentorToUserInfo">
+	<entry key="insertMtoUserInfo">
 		INSERT
 		  INTO USERINFO
 		  (
@@ -80,7 +80,7 @@
 		  )
 	</entry>
 	
-	<entry key="insertMentor">
+	<entry key="insertMtoMentor">
 		INSERT
 		  INTO MENTOR
 		  (
@@ -95,7 +95,7 @@
 		  )
 		  VALUES
 		  (
-		    ?
+		    SEQ_USER.CURRVAL
 		  , ?
 		  , ? 
 		  , ?
@@ -106,21 +106,7 @@
 		  )
 	</entry>
 	
-	<entry key="insertAttachment">
-		INSERT
-		  INTO SLIDE_ATTACHMENT
-		  (
-		    FILE_NO
-		  , FILE_NAME
-		  , FILE_PATH
-		  )
-		  VALUES
-		  (
-		    SEQ_ATT
-		  , ?
-		  , ?
-		  )
-	</entry>
+	
 
 
 

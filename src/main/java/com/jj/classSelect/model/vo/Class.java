@@ -19,11 +19,71 @@ public class Class {
 	private String ltrInfo;
 	private String ltrCareer;
 	private String ltrProfilePath;
+	private double clScore;
 	
 	public Class() {
 		
 	}
 	
+	
+	
+	public Class(int clNo, String userNo, String mtCompany, String clCategory, String clTitle, String clSubtitle,
+			String clInfo, String clCurri, String clPriceWon, Date clEnrolldate, String clGrant, String clThumbnailPath,
+			double clScore) {
+		super();
+		this.clNo = clNo;
+		this.userNo = userNo;
+		this.mtCompany = mtCompany;
+		this.clCategory = clCategory;
+		this.clTitle = clTitle;
+		this.clSubtitle = clSubtitle;
+		this.clInfo = clInfo;
+		this.clCurri = clCurri;
+		this.clPriceWon = clPriceWon;
+		this.clEnrolldate = clEnrolldate;
+		this.clGrant = clGrant;
+		this.clThumbnailPath = clThumbnailPath;
+		this.clScore = clScore;
+	}
+
+
+
+	public Class(int clNo, String clTitle, String userNo, Date clEnrolldate, String clThumbnailPath) {
+		super();
+		this.clNo = clNo;
+		this.clTitle = clTitle;
+		this.userNo = userNo;
+		this.clEnrolldate = clEnrolldate;
+	}
+
+	public Class(int clNo, String userNo, String clCategory, String clTitle) {
+		super();
+		this.clNo = clNo;
+		this.userNo = userNo;
+		this.clCategory = clCategory;
+		this.clTitle = clTitle;
+	}
+
+	public Class(int clNo, String clCategory, String clTitle, String clInfo, String clCurri, int clPrice, String clThumbnailPath) {
+		super();
+		this.clNo = clNo;
+		this.clCategory = clCategory;
+		this.clTitle = clTitle;
+		this.clInfo = clInfo;
+		this.clCurri = clCurri;
+		this.clPrice = clPrice;
+		this.clThumbnailPath = clThumbnailPath;
+	}
+
+	public Class(int clNo, String clTitle, String clInfo, String clCurri, int clPrice) {
+		super();
+		this.clNo = clNo;
+		this.clTitle = clTitle;
+		this.clInfo = clInfo;
+		this.clCurri = clCurri;
+		this.clPrice = clPrice;
+	}
+
 	public Class(int clNo, String userNo, String clCategory, String clTitle, String clSubtitle, String clInfo,
 			String clCurri, String clPriceWon, String clThumbnailPath, String ltrInfo, String ltrCareer,
 			String ltrProfilePath) {
@@ -115,6 +175,18 @@ public class Class {
 		this.ltrCareer = ltrCareer;
 		this.ltrProfilePath = ltrProfilePath;
 	}
+	
+	public double getClScore() {
+		return clScore;
+	}
+
+
+
+	public void setClScore(double clScore) {
+		this.clScore = clScore;
+	}
+
+
 
 	public String getMtCompany() {
 		return mtCompany;

@@ -485,6 +485,194 @@ SELECT *
 	   AND CM_NO = ?
 </entry>
 
+<entry key="selectMentorCount">
+	SELECT COUNT(*) COUNT
+	  FROM USERINFO U
+	  JOIN MENTOR M ON (U.USER_NO = M.USER_NO)
+	 WHERE MT_GRANT = 'W'
+</entry>
+
+<entry key="selectMentorList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT U.USER_NO
+	             , USER_NAME
+	             , USER_PHONE
+	             , MT_COMPANY
+	             , MT_JOB
+	             , USER_EMAIL
+	          FROM USERINFO U
+	          JOIN MENTOR M ON (U.USER_NO = M.USER_NO)
+	         WHERE USER_DIVISION = 2
+	           AND MT_GRANT = 'W'
+	         ORDER BY U.USER_NO DESC
+	           ) A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="selectMentor">
+	SELECT U.USER_NO
+	     , USER_NAME
+	     , USER_PHONE
+	     , MT_COMPANY
+	     , MT_JOB
+	     , USER_EMAIL
+	     , CLCG_NAME
+	     , EMPCARD_PATH
+	     , IDCARD_PATH
+	  FROM USERINFO U
+	  JOIN MENTOR M ON (U.USER_NO = M.USER_NO)
+	  JOIN CL_CATEGORY C ON (M.CLCG_NO = C.CLCG_NO)
+	 WHERE U.USER_NO = ?
+</entry>
+
+<entry key="mentorApproval">
+	UPDATE MENTOR
+	   SET MT_GRANT = 'A'
+	 WHERE USER_NO = ?
+</entry>
+
+<entry key="mentorApprovalFusal">
+	 UPDATE MENTOR
+	   SET MT_GRANT = 'D'
+	 WHERE USER_NO = ?
+</entry>
+
+<entry key="selectApprovalClassCount">
+	SELECT COUNT(*) COUNT
+	  FROM CLASS
+	 WHERE CL_GRANT = 'W'
+</entry>
+
+<entry key="selectApprovalClassList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT CL_NO
+	             , USER_NAME
+	             , CLCG_NAME
+	             , CL_TITLE
+	          FROM CLASS C
+	          JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+	          JOIN CL_CATEGORY CC ON (C.CL_CATEGORY = CC.CLCG_NO)
+	         WHERE CL_GRANT = 'W'
+	         ORDER BY CL_NO DESC
+	           )A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="selectClassApproval">
+	SELECT CL_NO
+	     , CLCG_NAME
+	     , CL_TITLE
+	     , CL_THUMBNAILPATH
+	     , CL_INFO
+	     , CL_CURRI
+	     , CL_PRICE
+	  FROM CLASS C
+	  JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+	  JOIN CL_CATEGORY CC ON (C.CL_CATEGORY = CC.CLCG_NO)
+	 WHERE CL_NO = ?
+</entry>
+
+<entry key="classApproval">
+	UPDATE CLASS
+	   SET CL_GRANT = 'A'
+	 WHERE CL_NO = ?
+</entry>
+
+<entry key="classApprovalFusal">
+	 UPDATE CLASS
+	   SET CL_GRANT = 'D'
+	 WHERE CL_NO = ?	
+</entry>
+
+<entry key="selectVodCount">
+	SELECT COUNT(*) COUNT
+	  FROM VOD
+	 WHERE VOD_STATUS = 'W'
+</entry>
+
+<entry key="selectVodList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT VOD_NO
+	             , CL_TITLE
+	             , VOD_TITLE
+	             , USER_NAME
+	          FROM VOD V
+	          JOIN CLASS C ON (V.CL_NO = C.CL_NO)
+	          JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+	         WHERE VOD_STATUS = 'W'
+	         ORDER BY VOD_NO DESC
+	           )A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="selectVod">
+	SELECT VOD_NO
+	     , VOD_TITLE
+	     , VOD_FILE
+	  FROM VOD
+	 WHERE VOD_NO = ?
+</entry>
+
+<entry key="vodApproval">
+	UPDATE VOD
+	   SET VOD_STATUS = 'A'
+	 WHERE VOD_NO = ?
+</entry>
+
+<entry key="vodApprovalFusal">
+	UPDATE VOD
+	   SET VOD_STATUS = 'D'
+	 WHERE VOD_NO = ?
+</entry>
+
+<entry key="selectQueCount">
+	SELECT COUNT(*) COUNT
+	  FROM MT_QUE
+</entry>
+
+<entry key="selectQueList">
+	SELECT *
+	  FROM (
+	    SELECT ROWNUM RNUM, A.*
+	      FROM (
+	        SELECT MT_QUE_NO
+	             , QUE_TITLE
+	             , U.USER_NAME AS "USERNAME"
+	             , I.USER_NAME AS "MENTORNAME"
+	             , QUE_LIKE
+	             , QUE_ENROLLDATE
+	             , QUE_CONTENT
+	             , ANS_CONTENT
+	             , ANS_DATE
+	          FROM MT_QUE M
+	          JOIN USERINFO U ON (U.USER_NO = M.ANS_NO)
+	          JOIN USERINFO I ON (I.USER_NO = M.USER_NO)
+	         ORDER BY MT_QUE_NO DESC
+	           )A
+	       )
+	 WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="deleteQue">
+	DELETE
+	  FROM MT_QUE
+	 WHERE MT_QUE_NO = ?
+</entry>
+
+
+
 
 
 

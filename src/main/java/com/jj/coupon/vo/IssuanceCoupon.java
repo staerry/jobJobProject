@@ -9,6 +9,8 @@ public class IssuanceCoupon {
 	private String cpStatus;
 	private Date cpIssuDate;
 	private Date cpEndDate;
+	private String userName;
+	private String cpName;
 	
 	public IssuanceCoupon() {}
 
@@ -20,6 +22,19 @@ public class IssuanceCoupon {
 		this.cpStatus = cpStatus;
 		this.cpIssuDate = cpIssuDate;
 		this.cpEndDate = cpEndDate;
+	}
+
+	public IssuanceCoupon(int isuCpNo, String userNo, String cpNo, String cpStatus, Date cpIssuDate, Date cpEndDate,
+			String userName, String cpName) {
+		super();
+		this.isuCpNo = isuCpNo;
+		this.userNo = userNo;
+		this.cpNo = cpNo;
+		this.cpStatus = cpStatus;
+		this.cpIssuDate = cpIssuDate;
+		this.cpEndDate = cpEndDate;
+		this.userName = userName;
+		this.cpName = cpName;
 	}
 
 	public int getIsuCpNo() {
@@ -68,6 +83,26 @@ public class IssuanceCoupon {
 
 	public void setCpEndDate(Date cpEndDate) {
 		this.cpEndDate = cpEndDate;
+	}
+	
+	
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	
+
+	public String getCpName() {
+		return cpName;
+	}
+
+	public void setCpName(String cpName) {
+		this.cpName = cpName;
 	}
 
 	@Override

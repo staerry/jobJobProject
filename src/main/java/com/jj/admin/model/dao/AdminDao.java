@@ -13,12 +13,15 @@ import java.util.Properties;
 
 import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.classSelect.model.vo.Class;
+import com.jj.classSelect.model.vo.Vod;
 import com.jj.common.model.vo.PageInfo;
 import com.jj.community.model.vo.Community;
 import com.jj.community.model.vo.Reply;
 import com.jj.community.model.vo.Review;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
+import com.jj.member.model.vo.MentorApproval;
+import com.jj.mentorSelect.model.vo.MtQuestion;
 import com.jj.mtm.model.vo.Mtm;
 import com.jj.notice.model.vo.Notice;
 
@@ -1204,32 +1207,488 @@ public class AdminDao {
 		return result;
 	}
 	
+	public int selectMentorCount(Connection conn) {
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMentorCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
 	
+	public ArrayList<MentorApproval> selectMentorList(Connection conn, PageInfo pageInfo){
+		ArrayList<MentorApproval> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMentorList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit() + 1;
+			int endRow = startRow + pageInfo.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2,  endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new MentorApproval(rset.getString("user_no")
+						          , rset.getString("user_name")
+						          , rset.getString("user_email")
+						          , rset.getString("user_phone")
+						          , rset.getString("mt_company")
+						          ,rset.getString("mt_job")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
+	public MentorApproval selectMentor(Connection conn, int mentorNo) {
+		MentorApproval mentorApproval = new MentorApproval();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMentor");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mentorNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				mentorApproval = new MentorApproval(rset.getString("user_no")
+						                          , rset.getString("user_name")
+						                          , rset.getString("user_phone")
+						                          , rset.getString("mt_company")
+						                          , rset.getString("mt_job")
+						                          , rset.getString("user_email")
+						                          , rset.getString("clcg_name")
+						                          , rset.getString("empcard_path")
+						                          , rset.getString("idcard_path"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return mentorApproval;
+	}
 	
+	public int mentorApproval(Connection conn, int mentorNo) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("mentorApproval");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mentorNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
+	public int mentorApprovalFusal(Connection conn, int mentorNo) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("mentorApprovalFusal");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mentorNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
+	public int selectApprovalClassCount(Connection conn) {
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectApprovalClassCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
 	
+	public ArrayList<Class> selectApprovalClassList(Connection conn, PageInfo pageInfo){
+		ArrayList<Class> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectApprovalClassList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit() + 1;
+			int endRow = startRow + pageInfo.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Class(rset.getInt("cl_no")
+						         , rset.getString("user_name")
+						         , rset.getString("clcg_name")
+						         , rset.getString("cl_title")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
+	public Class selectClassApproval(Connection conn, int classNo) {
+		Class classInfo = new Class();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectClassApproval");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, classNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				classInfo = new Class(rset.getInt("cl_no")
+						            , rset.getString("clcg_name")
+						            , rset.getString("cl_title")
+						            , rset.getString("cl_info")
+						            , rset.getString("cl_curri")
+						            , rset.getInt("cl_price")
+						            , rset.getString("cl_thumbnailpath"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return classInfo;
+	}
 	
+	public int classApproval(Connection conn, int classNo) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("classApproval");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, classNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
+	public int classApprovalFusal(Connection conn, int classNo) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("classApproval");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, classNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
+	public int selectVodCount(Connection conn) {
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectVodCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
 	
+	public ArrayList<Vod> selectVodList(Connection conn, PageInfo pageInfo){
+		ArrayList <Vod> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectVodList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit() + 1;
+			int endRow = startRow + pageInfo.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Vod(rset.getInt("vod_no")
+						       , rset.getString("cl_title")
+						       , rset.getString("vod_title")
+						       , rset.getString("user_name")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
+	public Vod selectVod(Connection conn, int vodNo) {
+		Vod vod = new Vod();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectVod");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, vodNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				vod = new Vod(rset.getInt("vod_no")
+						    , rset.getString("vod_title")
+						    , rset.getString("vod_file"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return vod;
+	}
 	
+	public int vodApproval(Connection conn, int vodNo, int answer) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = null;
+		if(answer == 1) {
+			sql = prop.getProperty("vodApproval");
+
+		}else {
+			sql = prop.getProperty("vodApprovalFusal");
+		}
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, vodNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
+	public int selectQueCount(Connection conn){
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectQueCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
 	
+	public ArrayList<MtQuestion> selectQueList(Connection conn, PageInfo pageInfo){
+		ArrayList<MtQuestion> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectQueList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pageInfo.getCurrentPage() - 1) * pageInfo.getBoardLimit() + 1;
+			int endRow = startRow + pageInfo.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new MtQuestion(rset.getInt("mt_que_no")
+						              , rset.getString("username")
+						              , rset.getString("que_title")
+						              , rset.getString("que_content")
+						              , rset.getDate("que_enrolldate")
+						              , rset.getInt("que_like")
+						              , rset.getString("mentorname")
+						              , rset.getString("ans_content")
+						              , rset.getDate("ans_date")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public int deleteQue(Connection conn, int queNo) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteQue");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, queNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	

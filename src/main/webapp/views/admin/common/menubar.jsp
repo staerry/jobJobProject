@@ -29,6 +29,7 @@
             <li onclick="linkbutton(5);">클래스관리</li>
             <li onclick="linkbutton(6);">게시글관리</li>
             <li onclick="linkbutton(15);">댓글관리</li>
+            <li onclick="linkbutton(16);">멘토질문관리</li>
             <li onclick="linkbutton(7);">공지사항관리</li>
             <li onclick="linkbutton(8);">FAQ관리</li>
             <li onclick="linkbutton(9);">1대1문의관리</li>
@@ -75,13 +76,13 @@
                 	location.href="<%= request.getContextPath() %>/login.ad";
                 	break;
                 case 2:
-                	location.href="<%= request.getContextPath() %>/mentorApprovalListView.ad";
+                	location.href="<%= request.getContextPath() %>/mentorApprovalListView.ad?cpage=1";
                 	break;
                 case 3:
-                	location.href="<%= request.getContextPath() %>/mentorClassApprovalListView.ad";
+                	location.href="<%= request.getContextPath() %>/mentorClassApprovalListView.ad?cpage=1";
                 	break;
                 case 4: 
-                	location.href="<%= request.getContextPath() %>/mentorVodApprovalListView.ad";
+                	location.href="<%= request.getContextPath() %>/mentorVodApprovalListView.ad?cpage=1";
                 	break;
                 case 5:
                 	location.href="<%= request.getContextPath() %>/mentorClassListView.ad?cpage=1";
@@ -111,10 +112,13 @@
                 	location.href="<%= request.getContextPath() %>/paymentselect.bo?p=1"; 
                 	break;
                 case 14: 
-                	location.href="<%= request.getContextPath() %>/refundRequest.li"; 
+                	location.href="<%= request.getContextPath() %>/refundRequest.li?p=1"; 
                 	break;
                 case 15: 
                 	location.href="<%= request.getContextPath() %>/replyListView.ad?cpage=1"; 
+                	break;
+                case 16: 
+                	location.href="<%= request.getContextPath() %>/mentorQueListView.ad?cpage=1"; 
                 	break;
             }
         }

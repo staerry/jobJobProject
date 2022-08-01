@@ -122,11 +122,11 @@ public class MemberDao {
 		return count;
 	}
 	
-	public int insertMentorToUserInfo(Connection conn, Member m) {
+	public int insertMtoUserInfo(Connection conn, Member m) {
 		// insert문 => DML문 => 처리된 행수
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertMentorToUserInfo");
+		String sql = prop.getProperty("insertMtoUserInfo");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -147,46 +147,23 @@ public class MemberDao {
 		}
 		return result;
 	}
-
-
-	public int insertMentor(Connection conn, Member m, Mentor mt) {
+	
+	public int insertMtoMentor(Connection conn, Member m, Mentor mt) {
 		// Mentor에 insert => 처리된 행수
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertMentor");
+		String sql = prop.getProperty("insertMtoMentor");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, m.getUserNo()); // Member에 먼저 들어간 멘토회원의 USER_NO를 이렇게 불러와도되나요??
-			pstmt.setInt(2, mt.getClcgNo());
-			pstmt.setString(3, mt.getMtCompany());
-			pstmt.setString(4, mt.getMtJob());
-			pstmt.setString(5, mt.getEmpCardPath());
-			pstmt.setString(6, mt.getEmpCardOriginName());
-			pstmt.setString(7, mt.getIdCardPath());
-			pstmt.setString(8, mt.getIdCardOriginName());
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		return result;
-	}
-	
-	public int insertEmpCardAttachment(Connection conn, Member m, Mentor mt) {
-		// slide_attachment에 insert => 처리된 행수
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertAttachment");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, mt.getEmpCardOriginName());
-			pstmt.setString(2, mt.getEmpCardPath());
+			pstmt.setInt(1, mt.getClcgNo());
+			pstmt.setString(2, mt.getMtCompany());
+			pstmt.setString(3, mt.getMtJob());
+			pstmt.setString(4, mt.getEmpCardPath());
+			pstmt.setString(5, mt.getEmpCardOriginName());
+			pstmt.setString(6, mt.getIdCardPath());
+			pstmt.setString(7, mt.getIdCardOriginName());
 			
 			result = pstmt.executeUpdate();
 			
@@ -198,29 +175,9 @@ public class MemberDao {
 		}
 		return result;
 	}
-	
-	public int insertIdCardAttachment(Connection conn, Member m, Mentor mt) {
-		// slide_attachment에 insert => 처리된 행수
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertAttachment");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, mt.getIdCardOriginName());
-			pstmt.setString(2, mt.getIdCardPath());
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		return result;
-	}
+
+
+
 	
 
 	
