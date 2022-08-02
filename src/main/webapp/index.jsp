@@ -7,24 +7,64 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/setting.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
 
-<script src="https://kit.fontawesome.com/ea8287c514.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
 <title>Insert title here</title>
+    <style>
+        /* Make the image fully responsive */
+        .carousel-inner img {
+          width: 870px;
+          height: 200px;
+        }
+        
+        .carousel slide{
+        	width : 870px;
+        	overflow : hidden;
+        }
+        
+        .carousel-inner {
+        	width : 870px;
+        }
+        </style>
 </head>
 <body>
 	<%@ include file="views/common/menubar.jsp" %>
 	
 	<div class="main-banner-wrap">
-		<ul class="main-slide-area">
-			<li class="prev">
-				<i class="fas fa-angle-left"></i>
-			</li>
-			<li class="img1">슬라이드이미지1</li>
-			<li class="img2" style="display : none">슬라이드이미지2</li>
-			<li class="img3" style="display : none">슬라이드이미지3</li>
-			<li class="next">
-				<i class="fas fa-angle-right"></i>
-			</li>
-		</ul>
+	    <div id="demo" class="carousel slide" data-ride="carousel">
+	
+	        <!-- Indicators -->
+	        <ul class="carousel-indicators">
+	          <li data-target="#demo" data-slide-to="0" class="active"></li>
+	          <li data-target="#demo" data-slide-to="1"></li>
+	          <li data-target="#demo" data-slide-to="2"></li>
+	        </ul>
+	      
+	        <!-- The slideshow -->
+	        <div class="carousel-inner">
+	          <div class="carousel-item active">
+	            <img src="https://svrforum.com/files/attach/images/2020/12/26/ac5610f38af46e7c135a9065561734e0.jpg" alt="Los Angeles">
+	          </div>
+	          <div class="carousel-item">
+	            <img src="https://svrforum.com/files/attach/images/2020/12/26/ac5610f38af46e7c135a9065561734e0.jpg" alt="Chicago">
+	          </div>
+	          <div class="carousel-item">
+	            <img src="https://svrforum.com/files/attach/images/2020/12/26/ac5610f38af46e7c135a9065561734e0.jpg" alt="New York">
+	          </div>
+	        </div>
+	      
+	        <!-- Left and right controls -->
+	        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+	          <span class="carousel-control-prev-icon"></span>
+	        </a>
+	        <a class="carousel-control-next" href="#demo" data-slide="next">
+	          <span class="carousel-control-next-icon"></span>
+	        </a>
+	      
+	      </div>
 		<div class="main-login-area">
 			<% if(loginUser == null){ %>
 				<a href="<%= contextPath %>/firstlogin.me" class="main-login-btn">로그인</a>
