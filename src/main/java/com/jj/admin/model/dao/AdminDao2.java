@@ -77,6 +77,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, a);
@@ -102,6 +108,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("stuListCountSearch");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -130,6 +142,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, a);
@@ -154,6 +172,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectMentorListCount");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -182,6 +206,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, a);
@@ -206,6 +236,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("lecturerCount");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -234,6 +270,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, a);
@@ -260,6 +302,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, a);
@@ -284,6 +332,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("outAllUserCount");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -336,6 +390,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, a);
@@ -360,6 +420,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("paymentRefundListCount");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -389,6 +455,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, search);
@@ -414,6 +486,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("paymentRefundDenyCount");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -491,6 +569,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, a);
@@ -517,6 +601,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, a);
@@ -541,6 +631,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("refundRequestCount");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -570,6 +666,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("studentInfo");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -613,6 +715,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -652,6 +760,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("stuInfoOutSearch");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -695,6 +809,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -734,6 +854,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("currentInfo");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -777,6 +903,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -816,6 +948,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("outMentorList");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -1003,6 +1141,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -1042,6 +1186,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("outAllUserList");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -1127,6 +1277,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -1170,6 +1326,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("refundRequestList");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -1219,6 +1381,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -1263,6 +1431,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("paymentRefundFinish");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -1311,6 +1485,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -1357,6 +1537,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -1394,6 +1580,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("MemberCouponAfterList");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

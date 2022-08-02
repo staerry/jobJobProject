@@ -279,21 +279,20 @@
 							$(this).parent().parent().css('display','none')
 							
 						})
-						console.log(arr)
+						
 						
 						for(let i=0;i<arr.length;i++){
 							for(let j=0;j<rNo.length;j++){
 								if(arr[i]==rNo[j]){
 									$('#aaa'+rNo[j]).parent().parent().css('display','')
 									$('#aaa'+rNo[j]).prop('checked',false)
-									rNo.splice(j,1)
+									console.log(rNo.splice(j,1))
 								}
 							}
 						}
 						
 					
-						console.log(rNo)
-						console.log(rNo.join(','))
+						
 						$.ajax({
 							
 							url:"<%= request.getContextPath() %>/rbutton.cl",
@@ -361,33 +360,42 @@
 						let cp = $('input[name="grade"]:checked')
 						let cpNo = cp.parent().parent().siblings('.cpNo').text()
 						let userNo = rNo.join(',')
-						
-					
-							for(let i=0;i<rNo.length;i++){
-							$.ajax({
-								url:"<%= request.getContextPath() %>/cpSendButton.cl",
-								data:{
-									"cpNo":cpNo,
-									"userNo":rNo[i]
-								},
-								type:"post",
-								success:function(result){
-									if(result>0){
-										
-									}else{
-										alert('쿠폰전달이 중간에 실패했습니다('+i+'번째'+rNo[i]+'번 회원번호에서 오류).')
-										
-									}
-								},
-								error:function(){
-									alert('오류')
-									
+						if(cpNo==null || cpNo==""){
+							alert('쿠폰을 선택해주세요')
+						}else{
+							if(userNo=="" || userNo==null){
+								alert('쿠폰을전달할 회원을 선택하세요')
+							}else{
+								for(let i=0;i<rNo.length;i++){
+									$.ajax({
+										url:"<%= request.getContextPath() %>/cpSendButton.cl",
+										data:{
+											"cpNo":cpNo,
+											"userNo":rNo[i]
+										},
+										type:"post",
+										success:function(result){
+											if(result>0){
+												
+											}else{
+												alert('쿠폰전달이 중간에 실패했습니다('+i+'번째'+rNo[i]+'번 회원번호에서 오류).')
+												
+											}
+										},
+										error:function(){
+											alert('오류')
+											
+										}
+									})
 								}
-							})
+								alert('쿠폰전달에 성공했습니다.')
+								location.href="<%= request.getContextPath() %>/couponManage.ad?p=1"
+							}
 						}
 						
-						alert('쿠폰전달에 성공했습니다.')
-						location.href="<%= request.getContextPath() %>/couponManage.ad?p=1"
+							
+						
+						
 					})
 					
 				</script>

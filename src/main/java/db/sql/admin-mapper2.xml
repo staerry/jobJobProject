@@ -245,7 +245,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                   WHERE USER_STATUS = 'N'
 	                     AND USER_DIVISION = 2
 	                     AND MT_GRADE = 1
-	                     AND MT_GRANT = 'A'
+	                     AND MT_GRANT = 'A' OR MT_GRANT = 'W'
 	                     AND (USER_NO = ? OR USER_NAME LIKE ?)
 	                   ORDER 
 		                    BY USER_NO DESC) A)

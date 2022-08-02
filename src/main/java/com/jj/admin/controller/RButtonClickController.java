@@ -47,7 +47,7 @@ public class RButtonClickController extends HttpServlet {
 		System.out.println(sql);
 		
 		ArrayList<Member> list = new AdminService2().rbutton(sql);
-		System.out.println(list.get(0));
+		
 		
 		response.setContentType("applycation/json; charset=UTF-8");
 		new Gson().toJson(list,response.getWriter());
