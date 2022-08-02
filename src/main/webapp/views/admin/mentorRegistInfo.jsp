@@ -57,13 +57,16 @@
 					<tr>
 						<th>신분증</th>
 						<td>
-							<img src="<%= contextPath %>/<%= mentorApproval.getIdCardPath() %>" alt="신분증 이미지" height="200">
+							<img src="<%= contextPath %>/<%= mentorApproval.getIdCardPath() %>" alt="신분증 이미지" width="200">
 						</td>
 					</tr>
 					<tr>
+						<th>&nbsp</th>
+					</tr>	
+					<tr>
 						<th>사원증</th>
 						<td>
-							<img src="<%= contextPath %>/<%= mentorApproval.getEmpCardPath() %>" alt="사원증 이미지" height="200">
+							<img src="<%= contextPath %>/<%= mentorApproval.getEmpCardPath() %>" alt="사원증 이미지" width="200">
 						</td>
 					</tr>
 			</table>
