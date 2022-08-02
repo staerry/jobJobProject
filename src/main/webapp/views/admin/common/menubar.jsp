@@ -33,6 +33,7 @@
             <li onclick="linkbutton(7);">공지사항관리</li>
             <li onclick="linkbutton(8);">FAQ관리</li>
             <li onclick="linkbutton(9);">1대1문의관리</li>
+            <li onclick="linkbutton(17);">슬라이드관리</li>
             <li onclick="linkbutton(10);">쿠폰관리</li>
         </ul>
         <br><br>
@@ -119,6 +120,9 @@
                 	break;
                 case 16: 
                 	location.href="<%= request.getContextPath() %>/mentorQueListView.ad?cpage=1"; 
+                	break;
+                case 17: 
+                	location.href="<%= request.getContextPath() %>/slideListView.ad"; 
                 	break;
             }
         }
