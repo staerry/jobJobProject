@@ -20,5 +20,236 @@
 		  JOIN USERINFO USING(USER_NO)
 		  JOIN MENTOR USING(USER_NO)
 		  JOIN CL_CATEGORY USING(CLCG_NO)
+		 ORDER
+		    BY USER_NO DESC
 	</entry>
+	
+	<entry key="selectLecturer">
+		SELECT 
+		       USER_NO	<!-- 동명이인이 있을 수 있으므로 항상 유저번호 조회해야 함 -->
+		     , USER_NAME
+		     , MT_COMPANY
+		     , MT_JOB
+		     , CLCG_NAME
+		     , LTR_INFO
+		     , LTR_CAREER
+		     , PROFILE_PATH
+		  FROM LECTURER
+		  JOIN USERINFO USING(USER_NO)
+		  JOIN MENTOR USING(USER_NO)
+		  JOIN CL_CATEGORY USING(CLCG_NO)
+		 WHERE USER_NO = ?
+	</entry>
+	
+	<entry key="selectClass">
+		SELECT 
+		       CL_NO
+		     , CL_TITLE
+		     , USER_NAME
+		     , CL_ENROLLDATE
+		     , CL_THUMBNAILPATH
+		  FROM CLASS
+		  JOIN USERINFO USING(USER_NO)
+		 WHERE USER_NO = ?
+		 ORDER
+		    BY CL_ENROLLDATE DESC
+	</entry>
+	
+	<entry key="selectListCountOne">
+		SELECT COUNT(*) LT_COUNT
+		  FROM LECTURER
+		  JOIN MENTOR USING(USER_NO)
+		 WHERE CLCG_NO = ?
+	</entry>
+
+	<entry key="selectListCountTwo">
+		SELECT COUNT(*) LT_COUNT
+		  FROM LECTURER
+		  JOIN MENTOR USING(USER_NO)
+		 WHERE CLCG_NO IN (?, ?)
+	</entry>
+
+	<entry key="selectListCountThree">
+		SELECT COUNT(*) LT_COUNT
+		  FROM LECTURER
+		  JOIN MENTOR USING(USER_NO)
+		 WHERE CLCG_NO IN (?, ?, ?)
+	</entry>	
+
+	<entry key="selectListCountFour">
+		SELECT COUNT(*) LT_COUNT
+		  FROM LECTURER
+		  JOIN MENTOR USING(USER_NO)
+		 WHERE CLCG_NO IN (?, ?, ?, ?)
+	</entry>	
+	
+	<entry key="selectListCountFive">
+		SELECT COUNT(*) LT_COUNT
+		  FROM LECTURER
+		  JOIN MENTOR USING(USER_NO)
+		 WHERE CLCG_NO IN (?, ?, ?, ?, ?)
+	</entry>	
+	
+	<entry key="selectListCountSix">
+		SELECT COUNT(*) LT_COUNT
+		  FROM LECTURER
+		  JOIN MENTOR USING(USER_NO)
+		 WHERE CLCG_NO IN (?, ?, ?, ?, ?, ?)
+	</entry>	
+	
+	<entry key="selectListOne">
+		SELECT 
+		       USER_NO	
+		     , USER_NAME
+		     , MT_COMPANY
+		     , CLCG_NAME
+		     , PROFILE_PATH
+		  FROM LECTURER
+		  JOIN USERINFO USING(USER_NO)
+		  JOIN MENTOR USING(USER_NO)
+		  JOIN CL_CATEGORY USING(CLCG_NO)
+		 WHERE CLCG_NO = ?
+		 ORDER
+		    BY USER_NO DESC
+	</entry>
+	
+	<entry key="selectListTwo">
+		SELECT 
+		       USER_NO
+		     , USER_NAME
+		     , MT_COMPANY
+		     , CLCG_NAME
+		     , PROFILE_PATH
+		  FROM LECTURER
+		  JOIN USERINFO USING(USER_NO)
+		  JOIN MENTOR USING(USER_NO)
+		  JOIN CL_CATEGORY USING(CLCG_NO)
+		 WHERE CLCG_NO IN(?, ?)
+		 ORDER
+		    BY USER_NO DESC
+	</entry>
+	
+	<entry key="selectListThree">
+		SELECT 
+		       USER_NO	
+		     , USER_NAME
+		     , MT_COMPANY
+		     , CLCG_NAME
+		     , PROFILE_PATH
+		  FROM LECTURER
+		  JOIN USERINFO USING(USER_NO)
+		  JOIN MENTOR USING(USER_NO)
+		  JOIN CL_CATEGORY USING(CLCG_NO)
+		 WHERE CLCG_NO IN(?, ?, ?)
+		 ORDER
+		    BY USER_NO DESC
+	</entry>
+	
+	<entry key="selectListFour">
+		SELECT 
+		       USER_NO	
+		     , USER_NAME
+		     , MT_COMPANY
+		     , CLCG_NAME
+		     , PROFILE_PATH
+		  FROM LECTURER
+		  JOIN USERINFO USING(USER_NO)
+		  JOIN MENTOR USING(USER_NO)
+		  JOIN CL_CATEGORY USING(CLCG_NO)
+		 WHERE CLCG_NO IN(?, ?, ?, ?)
+		 ORDER
+		    BY USER_NO DESC
+	</entry>
+	
+	<entry key="selectListFive">
+		SELECT 
+		       USER_NO	
+		     , USER_NAME
+		     , MT_COMPANY
+		     , CLCG_NAME
+		     , PROFILE_PATH
+		  FROM LECTURER
+		  JOIN USERINFO USING(USER_NO)
+		  JOIN MENTOR USING(USER_NO)
+		  JOIN CL_CATEGORY USING(CLCG_NO)
+		 WHERE CLCG_NO IN(?, ?, ?, ?, ?)
+		 ORDER
+		    BY USER_NO DESC
+	</entry>
+
+	<entry key="selectListSix">
+		SELECT 
+		       USER_NO	
+		     , USER_NAME
+		     , MT_COMPANY
+		     , CLCG_NAME
+		     , PROFILE_PATH
+		  FROM LECTURER
+		  JOIN USERINFO USING(USER_NO)
+		  JOIN MENTOR USING(USER_NO)
+		  JOIN CL_CATEGORY USING(CLCG_NO)
+		 WHERE CLCG_NO IN(?, ?, ?, ?, ?, ?)
+		 ORDER
+		    BY USER_NO DESC
+	</entry>
+	
+<!--질문 / 답변 따로 조회해올 것임
+질문 : 게시물 번호, 질문자 고유번호, 질문자 이름, 질문 제목, 질문 내용, 질문 작성일, 
+답변 : 게시물 번호, 답변자 멘토 고유번호, 답변자 이름, 답변 내용, 답변 작성일
+넘길 값 : 멘토 고유번호
+-->
+
+	<!-- 질문 조회 -->
+	<entry key="selectQuestion">
+		SELECT 
+		       MT_QUE_NO
+		     , USER_NO AS QUE_USER_NO <!-- 질문자 고유번호 -->  
+		     , USER_NAME AS QUE_USER_NAME <!-- 질문자 이름 -->
+		     , QUE_TITLE
+		     , QUE_CONTENT
+		     , QUE_ENROLLDATE
+		  FROM MT_QUE
+		  JOIN USERINFO USING(USER_NO)
+		 WHERE ANS_NO = ?	
+	</entry>
+	
+	<!-- 멘토에게 질문 & 답변 조회 -->
+	<entry key="selectQna">
+		SELECT 
+		       MT_QUE_NO
+		     , Q.USER_NO AS QUE_USER_NO
+		     , U.USER_NAME AS QUE_USER_NAME
+		     , TO_CHAR(QUE_ENROLLDATE, 'YYYY-MM-DD HH:MI:SS') AS QUE_DATE
+		     , QUE_TITLE
+		     , QUE_CONTENT
+		     , ANS_NO AS ANS_USER_NO
+		     , I.USER_NAME AS ANS_USER_NAME
+		     , TO_CHAR(ANS_DATE, 'YYYY-MM-DD HH:MI:SS') AS ANS_DATE
+		     , ANS_CONTENT 
+		  FROM MT_QUE Q
+		  JOIN USERINFO U ON(U.USER_NO = Q.USER_NO)
+		  JOIN USERINFO I ON(I.USER_NO = Q.ANS_NO)
+		 WHERE ANS_NO = ?
+		 ORDER
+		    BY MT_QUE_NO DESC
+ 	</entry>
+ 	
+ 	<!-- 멘토에게 질문하기 입력 -->
+ 	<entry key="insertQuestion">
+ 		INSERT 
+ 		  INTO MT_QUE
+ 		  ( USER_NO
+ 		  , QUE_TITLE
+ 		  , QUE_CONTENT
+ 		  , ANS_NO
+ 		  )
+ 		  VALUES
+ 		  ( ?
+ 		  , ?
+ 		  , ?
+ 		  , ?
+ 		  )
+ 	</entry>
+ 	
+ 	
 </properties>

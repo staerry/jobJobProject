@@ -21,15 +21,5 @@
             </ul>
         </div>
         
-        <script>
-        
-        function goCategory(no){
-        	$.ajax({
-        		url:"<%= request.getContextPath() %>/list.cl?category=no";
-        		
-        	})
-        }
-        </script>
-        
 </body>
 </html>

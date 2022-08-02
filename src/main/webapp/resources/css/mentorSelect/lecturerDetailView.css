@@ -124,6 +124,7 @@
 
 .class-thumbnail * {
     float:left;
+    cursor: pointer;
 }
 
 .question-area{

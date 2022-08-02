@@ -20,7 +20,17 @@ public class Lecturer {
 		this.ltrCareer = ltrCareer;
 		this.ltrProfilePath = ltrProfilePath;
 	}
+		
 	
+	public Lecturer(int userNo, String userName, String ltrCompany, String ltrCategory, String ltrProfilePath) {
+		super();
+		this.userNo = userNo;
+		this.userName = userName;
+		this.ltrCompany = ltrCompany;
+		this.ltrCategory = ltrCategory;
+		this.ltrProfilePath = ltrProfilePath;
+	}
+
 	public Lecturer(int userNo, String userName, String ltrCompany, String ltrJob, String ltrCategory, String ltrInfo,
 			String ltrCareer, String ltrProfilePath) {
 		super();

@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <!-- css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/setting.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mentorSelect/mentorListView.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mentorSelect/lecturerListView.css">
 <meta charset="UTF-8">
 
 <!-- 부트스트랩 아이콘 -->
@@ -67,7 +67,7 @@
                         </tr>
                         <tr>
                             <td id="button-cell" align="center">
-                                <button onclick="location.href='<%= contextPath %>/detail.lt';" id="mentor-visit">방문하기</button>
+                                <button onclick="location.href='<%= contextPath %>/detail.lt?lecNo=<%= l.getUserNo() %>';" id="mentor-visit">방문하기</button>
                             </td>
                         </tr>
                     </table>
