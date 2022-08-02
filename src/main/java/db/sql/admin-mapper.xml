@@ -671,6 +671,52 @@ SELECT *
 	 WHERE MT_QUE_NO = ?
 </entry>
 
+<entry key="selectSlideList">
+	SELECT FILE_NO
+	     , FILE_NAME
+	     , FILE_PATH
+	     , UPLOAD_DATE
+	  FROM SLIDE_ATTACHMENT
+</entry>
+
+<entry key="deleteSlide">
+	DELETE 
+	  FROM SLIDE_ATTACHMENT
+	 WHERE FILE_NO = ?
+</entry>
+
+<entry key="insertSlide">
+	INSERT 
+	  INTO SLIDE_ATTACHMENT
+	       (
+	       FILE_NO
+	     , FILE_NAME
+	     , FILE_PATH
+	     , UPLOAD_DATE
+	       )
+	VALUES (
+	       SEQ_SLIDE.NEXTVAL
+	     , ?
+	     , ?
+	     , SYSDATE
+	       )
+</entry>
+
+<entry key="selectSlide">
+	SELECT FILE_NO
+	     , FILE_NAME
+	     , FILE_PATH
+	     , UPLOAD_DATE
+	  FROM SLIDE_ATTACHMENT
+	 WHERE FILE_NO = ?
+</entry>
+
+<entry key="updateSlide">
+	UPDATE SLIDE_ATTACHMENT
+	   SET FILE_NAME = ?
+	 WHERE FILE_NO = ?
+</entry>
+
 
 
 

@@ -47,7 +47,26 @@ public class MemberSecondLoginPageController extends HttpServlet {
 			
 		}else {// 로그인 성공
 			session.setAttribute("loginUser", loginUser);
-			response.sendRedirect(request.getContextPath() + "/userlogin.me");
+			
+			if (loginUser.getMtGrade() == 1) { // mtgrade = 1 >> 현직자
+
+				session.setAttribute("alertMsg", "현직자 로그인 성공");
+				response.sendRedirect(request.getContextPath() + "/userlogin.me");
+
+			} else if (loginUser.getMtGrade() == 0) { // mtgrade = 0 >> 사용자
+				
+				session.setAttribute("alertMsg", "사용자 로그인 성공");
+				response.sendRedirect(request.getContextPath() + "/userlogin.me");
+				
+			} else { // mtgrade = 2 >> 강의자
+
+				session.setAttribute("alertMsg", "강의자 로그인 성공");
+				response.sendRedirect(request.getContextPath() + "/userlogin.me");
+			}
+			
+			System.out.println("mtgrade= " + loginUser.getMtGrade());
+			System.out.println(loginUser);
+		
 		}
 	}
 
