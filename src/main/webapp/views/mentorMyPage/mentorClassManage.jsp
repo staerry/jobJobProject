@@ -13,8 +13,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/setting.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/userMyPage/mainTemplate.css">
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/userMyPage/mainTemplate.css">
 <title>Insert title here</title>
 <style>
 
@@ -94,13 +94,12 @@ width:200px;
 								</div> 
 								
 								
-								
-								<%-- <% if(session.getAttribute("멘토객체") == 1) {   // 현직자 상태%>
+						  <% if(loginUser.getMtGrade() == 1) {   // 현직자 상태%>
 										
 										<div class="boxbox">클래스를 등록하고 강의자가 되어보세요</div>
 			
-								<% else { // 강의자상태  %>
-								 --%>
+								<% }else { // 강의자상태  %>
+								
 							
 			
 						<div class="container">
@@ -122,7 +121,7 @@ width:200px;
 								      <td>한번에 끝내는 자바</td>
 								      <td>n명</td>
 								      <td>2022-08-12</td>
-								      <td class="btn btn-primary">대기중</td>
+								      <td class="btn btn-primary btn-sm">대기중</td>
 								    </tr>
 								
 								    <tr>
@@ -156,10 +155,10 @@ width:200px;
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
               </ul>
         </div>
-								
-						<%-- 		<%	}  %> --%>
-								
+		    <%} %>						
+						
 								<button onclick="location.href='<%= contextPath %>/createClass.my';" id=btn-upload class="btn btn-primary btn-lg" style="background-color:#6363FF; color:white"
+								
 								 >새로운 클래스 등록</button>
 				
 								</div>	
@@ -168,7 +167,7 @@ width:200px;
 			</div>
 					
 	 
-    
+
      
      <br>
      <br> 

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.jj.member.model.vo.Member"%>
 <% 
-	String contextPath = request.getContextPath(); // /job
+	String contextPath = request.getContextPath();
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	String alertMsg = (String)session.getAttribute("alertMsg");
 %>
@@ -45,7 +45,7 @@
                 <span><a href="<%=contextPath%>/userlogin.me">로그인</a></span>
                 <% } else { %>
                 <!--로그인후-->
-                <span><a href="">마이페이지</a></span>
+                <span><a href="<%=contextPath%>/myPage.my">마이페이지</a></span>
                 <span><a href="<%=contextPath%>/userlogout.me">로그아웃</a></span>
                 <span><b><%= loginUser.getUserName() %></b>님</span>
                 <% } %>

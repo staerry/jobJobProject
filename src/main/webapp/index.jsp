@@ -78,7 +78,7 @@
 				<p class="main-mypage-menu">
 					<b><%= loginUser.getUserName() %></b>님<br><br>
 					<b><a href="">수강중인강의 3</a></b><br><br>
-					<b><a href="">마이페이지</a></b>
+					<b><a href="<%=contextPath%>/myPage.my">마이페이지</a></b>
 				</p>
 			<% } %>
 		</div>

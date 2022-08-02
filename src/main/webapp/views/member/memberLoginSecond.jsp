@@ -60,7 +60,7 @@
         	<b><%= loginUser.getUserName() %></b>님의 방문을 환영합니다. <br><br>
 
             <div align="center">
-                <a href="">마이페이지</a>&nbsp;&nbsp;
+                <a href="<%=contextPath%>/myPage.my">마이페이지</a>&nbsp;&nbsp;
                 <a href="<%=contextPath%>/userlogout.me">로그아웃</a>
             </div>
             <br>

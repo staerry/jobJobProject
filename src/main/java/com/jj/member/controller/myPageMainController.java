@@ -43,20 +43,59 @@ public class myPageMainController extends HttpServlet {
 		Member m =(Member) session.getAttribute("loginUser");
 		int userDivision = m.getUserDivision();
 		
-		if(session.getAttribute("loginUser")== null) {
-			
-			session.setAttribute("alertMsg", "로그인 후 이용 가능한 서비스 입니다.");
-			response.sendRedirect(request.getContextPath()+"/userlogin.me");
+		int mtGrade = m.getMtGrade();
 		
-		}else if(userDivision ==1){ //일반회원
-//			response 객체에 아무값도 안담아도 된다.세션객체에 로그인정보이미 담겨있으니..? (질문)
-			request.getRequestDispatcher("views/userMyPage/userMyPageMain.jsp").forward(request, response);
+//		
+//		if(loginUser == null) {// 로그인 실패
+//			
+//			session.setAttribute("alertMsg", "회원 로그인 실패");
+//			response.sendRedirect(request.getContextPath() + "/userlogin.me");
+//			
+//		}else {// 로그인 성공
+//			session.setAttribute("loginUser", loginUser);
+//			
+//			if (loginUser.getMtGrade() == 1) { // mtgrade = 1 >> 현직자
+//
+//				session.setAttribute("alertMsg", "현직자 로그인 성공");
+//				response.sendRedirect(request.getContextPath() + "/userlogin.me");
+//
+//			} else if (loginUser.getMtGrade() == 0) { // mtgrade = 0 >> 사용자
+//				
+//				session.setAttribute("alertMsg", "사용자 로그인 성공");
+//				response.sendRedirect(request.getContextPath() + "/userlogin.me");
+//				
+//			} else { // mtgrade = 2 >> 강의자
+//
+//				session.setAttribute("alertMsg", "강의자 로그인 성공");
+//				response.sendRedirect(request.getContextPath() + "/userlogin.me");
+//			}
+//			
+//			System.out.println("mtgrade= " + loginUser.getMtGrade());
+//			System.out.println(loginUser);
+		
+	 if(userDivision ==1){ //일반회원
+//		
+			request.getRequestDispatcher("views/userMyPage/userMyPageMain2.jsp").forward(request, response);
+			
+			
 		
 		}else if(userDivision ==2) {//멘토회원
 			
-			request.getRequestDispatcher("views/mentorMyPage/mentorMyPageMain.jsp").forward(request, response);
-			;
-			session.setAttribute("alertMsg", "관리자입니다.");
+			if(mtGrade==1) {	//  mtgrade = 1 >> 현직자
+				request.getRequestDispatcher("views/mentorMyPage/mentorClassManage.jsp").forward(request, response);
+				
+			}else {
+				 // mtgrade = 2 >> 강의자
+				request.getRequestDispatcher("views/mentorMyPage/mentorClassManage.jsp").forward(request, response);
+			}
+			
+		}else {
+			
+			session.setAttribute("alertMsg", "로그인 후 이용 가능한 서비스 입니다.");
+			response.sendRedirect(request.getContextPath()+"/userlogin.me");
+			
+			
+		}
 //			 int userNo = (Member)(request.getSession().getAttribute("loginUser").getUserNo());
 		
 //			 HttpSession session = request.getSession();
@@ -75,10 +114,7 @@ public class myPageMainController extends HttpServlet {
 //		 userDivision은 number값인데 int로 가져오면 null이 0? 안되면 select시 NVL함수 써서 바꾸기
 	
 			
-		}else {//관리자
-		
-			
-		}
+	
 
 
 	
