@@ -55,7 +55,7 @@
 			                    <td><%= i.getFileName() %></td>
 								<td><%= i.getUploadDate() %></td>
 			                    <td>
-			                    	<button class="btn btn-sm btn-warning" onclick="">수정</button>
+			                    	<button class="btn btn-sm btn-warning" onclick="location.href='<%= contextPath %>/modifySlideView.ad?no=<%= i.getFileNo() %>'">수정</button>
 			                    	<button class="btn btn-sm btn-danger" onclick="deleteImg(<%= i.getFileNo() %>);">삭제</button>
 			                    	
 			                    	<script>

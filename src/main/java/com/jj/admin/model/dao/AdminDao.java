@@ -1794,7 +1794,27 @@ public class AdminDao {
 		return slide;
 	}
 	
-	
+	public int updateSlide(Connection conn, SlideAttachment slide) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateSlide");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, slide.getFileName());
+			pstmt.setInt(2, slide.getFileNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	

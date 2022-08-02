@@ -711,6 +711,12 @@ SELECT *
 	 WHERE FILE_NO = ?
 </entry>
 
+<entry key="updateSlide">
+	UPDATE SLIDE_ATTACHMENT
+	   SET FILE_NAME = ?
+	 WHERE FILE_NO = ?
+</entry>
+
 
 
 

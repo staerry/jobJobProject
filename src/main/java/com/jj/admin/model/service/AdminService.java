@@ -1050,9 +1050,10 @@ public class AdminService {
 	}
 	
 	/**
-	 * 삭제할 슬라이드 이미지 객체 조회 요청을 처리해주는 메소드
+	 * 슬라이드 이미지 객체 조회 요청을 처리해주는 메소드
 	 * @param slideNo : 조회할 슬라이드 이미지 번호
-	 * @return 삭제할 슬라이드 이미지 객체
+	 * @return 슬라이드 이미지 객체
+	 * @author youngheonchoi
 	 */
 	public SlideAttachment selectSlide(int slideNo) {
 		Connection conn = getConnection();
@@ -1062,6 +1063,28 @@ public class AdminService {
 		close(conn);
 		
 		return slide;
+	}
+	
+	/**
+	 * 슬라이드 이미지 수정 요청을 처리해주는 메소드
+	 * @param slide : 수정할 슬라이드 객체
+	 * @return 업데이트된 행 갯수
+	 * @author youngheonchoi
+	 */
+	public int updateSlide(SlideAttachment slide) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().updateSlide(conn, slide);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
 	}
 	
 	
