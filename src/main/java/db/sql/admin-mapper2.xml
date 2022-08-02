@@ -245,7 +245,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                   WHERE USER_STATUS = 'N'
 	                     AND USER_DIVISION = 2
 	                     AND MT_GRADE = 1
-	                     AND MT_GRANT = 'A'
+	                     AND MT_GRANT = 'A' OR MT_GRANT = 'W'
 	                     AND (USER_NO = ? OR USER_NAME LIKE ?)
 	                   ORDER 
 		                    BY USER_NO DESC) A)
@@ -645,6 +645,13 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	ORDER BY CP_NO DESC
 </entry>
 
+<entry key="couponListCountA">
+	SELECT COUNT(*) AS "LISTCOUNT"
+	FROM COUPON
+	WHERE CP_STATUS = 'Y'
+	ORDER BY CP_NO DESC
+</entry>
+
 <entry key="couponList">
 	SELECT * 
 	  FROM(SELECT ROWNUM RNO, A.*
@@ -655,6 +662,21 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                  , CP_ADDDATE
 	                  , CP_STATUS
 	            FROM COUPON
+	            ORDER BY CP_NO DESC) A)
+	WHERE RNO BETWEEN ? AND ?
+</entry>
+	
+<entry key="couponListA">
+	SELECT * 
+	  FROM(SELECT ROWNUM RNO, A.*
+	        FROM (SELECT 
+	                    CP_NO
+	                  , CP_NAME
+	                  , DISCOUNT
+	                  , CP_ADDDATE
+	                  , CP_STATUS
+	            FROM COUPON
+	            WHERE CP_STATUS = 'Y'
 	            ORDER BY CP_NO DESC) A)
 	WHERE RNO BETWEEN ? AND ?
 </entry>
@@ -796,6 +818,27 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	   SET REFUND = 'D'
 	  ,REFUND_DATE = SYSDATE
 	 WHERE PAY_NO = ?
+</entry>
+
+<entry key="memberSimpleInfo">
+	SELECT USER_NO,USER_ID,USER_NAME
+	  FROM USERINFO
+	 WHERE USER_STATUS ='N'
+	   AND ADMIN_STATUS = 'N'
+</entry>
+
+<entry key="sbutton">
+	SELECT USER_NO
+	FROM USERINFO
+	WHERE (USER_NO = ?
+	   OR USER_NAME LIKE ?)
+	  AND ADMIN_STATUS = 'N'
+</entry>
+	
+<entry key="cpSendButton">
+	INSERT 
+	  INTO ISSUANCECOUPON (ISUCP_NO,USER_NO,CP_NO) 
+	VALUES (SEQ_ISUCP.NEXTVAL,?,?)
 </entry>
 
 </properties>

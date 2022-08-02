@@ -77,6 +77,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, a);
@@ -102,6 +108,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("stuListCountSearch");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -130,6 +142,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, a);
@@ -154,6 +172,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectMentorListCount");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -182,6 +206,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, a);
@@ -206,6 +236,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("lecturerCount");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -234,6 +270,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, a);
@@ -260,6 +302,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, a);
@@ -284,6 +332,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("outAllUserCount");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -336,6 +390,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, a);
@@ -360,6 +420,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("paymentRefundListCount");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -389,6 +455,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, search);
@@ -414,6 +486,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("paymentRefundDenyCount");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -459,12 +537,42 @@ public class AdminDao2 {
 		return listCount;
 	}
 	
+	public int couponListCountA(Connection conn) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("couponListCountA");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
 	public int MemberCouponBeforCount(Connection conn,String search) {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("MemberCouponBeforCount");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -493,6 +601,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
 			pstmt.setString(2, a);
@@ -517,6 +631,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("refundRequestCount");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -546,6 +666,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("studentInfo");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -589,6 +715,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -628,6 +760,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("stuInfoOutSearch");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -671,6 +809,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -710,6 +854,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("currentInfo");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -753,6 +903,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -792,6 +948,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("outMentorList");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -979,6 +1141,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -1018,6 +1186,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("outAllUserList");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -1103,6 +1277,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -1146,6 +1326,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("refundRequestList");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -1195,6 +1381,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -1239,6 +1431,12 @@ public class AdminDao2 {
 		ResultSet rset = null;
 		String sql = prop.getProperty("paymentRefundFinish");
 		String a = '%'+search+'%';
+		
+		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -1287,6 +1485,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -1333,6 +1537,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -1372,6 +1582,12 @@ public class AdminDao2 {
 		String a = '%'+search+'%';
 		
 		try {
+			Integer.parseInt(search);
+			}catch(NumberFormatException e){
+				search="0";
+			}
+		
+		try {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
 			int endRow = startRow + pi.getBoardLimit()-1;
@@ -1408,6 +1624,38 @@ public class AdminDao2 {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("couponList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1)*pi.getBoardLimit()+1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			
+			pstmt.setInt(1,startRow);
+			pstmt.setInt(2,endRow);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Coupon(rset.getInt("cp_no"),
+						            rset.getString("cp_name"),
+						            rset.getInt("discount"),
+						            rset.getDate("cp_adddate"),
+						            rset.getString("cp_status")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<Coupon> couponListA(Connection conn,PageInfo pi){
+		ArrayList<Coupon> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("couponListA");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -1706,5 +1954,107 @@ public class AdminDao2 {
 		return result;
 	}
 	
+	public ArrayList<Member> memberSimpleInfo(Connection conn){
+		ArrayList<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("memberSimpleInfo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Member m = new Member();
+				m.setUserNo(rset.getInt("user_no"));
+				m.setUserId(rset.getString("user_id"));
+				m.setUserName(rset.getString("user_name"));
+				list.add(m);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 	
+	public ArrayList<Member> rbutton(Connection conn,String sql){
+		ArrayList<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Member m = new Member();
+				m.setUserNo(rset.getInt("user_no"));
+				m.setUserId(rset.getString("user_id"));
+				m.setUserName(rset.getString("user_name"));
+				list.add(m);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public ArrayList<Integer> sbutton(Connection conn,String search){
+		ArrayList<Integer> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String a = '%'+search+'%';
+		String sql = prop.getProperty("sbutton");
+		
+		try {
+		Integer.parseInt(search);
+		}catch(NumberFormatException e){
+			search="0";
+		}
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search);
+			pstmt.setString(2, a);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(rset.getInt("user_no"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public int cpSendButton(Connection conn, int cpNo,int userNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("cpSendButton");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, cpNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

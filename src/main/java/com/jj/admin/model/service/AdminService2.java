@@ -244,6 +244,19 @@ public class AdminService2 {
 	}
 	
 	/**
+	 * 쿠폰전체수를 세는 메소드
+	 * @return 쿠폰수
+	 * @author SJW
+	 */
+	public int couponListCountA() {
+		Connection conn = getConnection();
+		int listCount = new AdminDao2().couponListCountA(conn);
+		close(conn);
+		
+		return listCount;
+	}
+	
+	/**
 	 * 키워드에맞는 회원이 보유중인쿠폰수를 세는 메소드
 	 * @param search 키워드
 	 * @return 조회수
@@ -594,6 +607,18 @@ public class AdminService2 {
 	}
 	
 	/**
+	 * 쿠폰리스트를 페이지에 맞게 조회하는 메소드
+	 * @param pi 페이지정보객체
+	 * @return 쿠폰리스트
+	 */
+	public ArrayList<Coupon> couponListA(PageInfo pi){
+		Connection conn = getConnection();
+		ArrayList<Coupon> list = new AdminDao2().couponListA(conn,pi);
+		close(conn);
+		return list;
+	}
+	
+	/**
 	 * 강의를 수강하는학생번호를 알아오는 메소드
 	 * @return 수강학생번호객체
 	 */
@@ -850,8 +875,36 @@ public class AdminService2 {
 		return result;
 	}
 	
+	public ArrayList<Member> memberSimpleInfo() {
+		Connection conn = getConnection();
+		ArrayList<Member> list = new AdminDao2().memberSimpleInfo(conn);
+		close(conn);
+		return list;
+	}
 	
+	public ArrayList<Member> rbutton(String sql){
+		Connection conn = getConnection();
+		ArrayList<Member> list = new AdminDao2().rbutton(conn,sql);
+		close(conn);
+		return list;
+	}
 	
+	public ArrayList<Integer> sbutton(String search){
+		Connection conn = getConnection();
+		ArrayList<Integer> list = new AdminDao2().sbutton(conn,search);
+		close(conn);
+		return list;
+	}
 	
-	
+	public int cpSendButton(int cpNo,int userNo) {
+		Connection conn = getConnection();
+		int result = new AdminDao2().cpSendButton(conn,cpNo,userNo);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }
