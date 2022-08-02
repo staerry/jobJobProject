@@ -57,7 +57,7 @@
         <!-- 로그인 후 -->
         <div>
             <br>
-        	<b><%= loginUser.getUserName() %></b>의 방문을 환영합니다. <br><br>
+        	<b><%= loginUser.getUserName() %></b>님의 방문을 환영합니다. <br><br>
 
             <div align="center">
                 <a href="">마이페이지</a>&nbsp;&nbsp;

@@ -56,7 +56,17 @@ public class MemberDao {
 							   rset.getDate("user_enrolldate"),
 							   rset.getString("user_status"),
 							   rset.getString("admin_status"),
-							   rset.getInt("user_division")
+							   rset.getInt("user_division"),
+							   rset.getInt("clcg_no"),
+							   rset.getString("mt_company"),
+							   rset.getString("mt_job"),
+							   rset.getInt("mt_grade"),
+							   rset.getString("mt_grant"),
+							   rset.getDate("mt_enrolldate"),
+							   rset.getString("empcard_path"),
+							   rset.getString("empcard_originname"),
+							   rset.getString("idcard_path"),
+							   rset.getString("idcard_originname")
 							   ); // Member객체에 한줄의 정보를 담음
 			}
 

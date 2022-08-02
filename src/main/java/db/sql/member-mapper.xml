@@ -14,10 +14,22 @@
 			 , USER_STATUS
 			 , ADMIN_STATUS
 			 , USER_DIVISION
+             , CLCG_NO
+             , MT_COMPANY
+             , MT_JOB
+             , MT_GRADE
+             , MT_GRANT
+             , MT_ENROLLDATE
+             , EMPCARD_PATH
+             , EMPCARD_ORIGINNAME
+             , IDCARD_PATH
+             , IDCARD_ORIGINNAME
 		  FROM USERINFO
+          LEFT JOIN mentor USING(USER_NO)
 		 WHERE USER_STATUS = 'N'
 		   AND USER_ID = ?
 		   AND USER_PWD = ?
+           AND (MT_GRANT = 'A' or MT_GRANT is null)
 	</entry>
 	
 	<entry key="insertMember">
