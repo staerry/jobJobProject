@@ -96,7 +96,6 @@
                         <%if(list.isEmpty()){ %>
 							<script>
 							alert("조회된 쿠폰이 없습니다.")
-							location.href= "javascript:history.back()";
 							</script>
 						<%}else{ %>
                         <tbody>
