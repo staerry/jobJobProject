@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+<entry key="createClass">
+INSERT 
+	INTO CLASS
+	(
+	CL_NO
+	,USER_NO
+	,CL_CATEGORY
+	,CL_TITLE
+	,CL_SUBTITLE
+	,CL_INFO
+	,CL_CURRI
+	,CL_PRICE
+	,CL_ENROLLDATE
+	,CL_GRANT
+	,CL_THUMBNAILPATH
+
+	)
+	VALUES
+	(
+	SEQ_CL
+	,?
+	,?
+	,?
+	,?
+	,?
+	,?
+	,?
+	,?
+	)
+
+
+
+</entry>
+
+
+</properties>

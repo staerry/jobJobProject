@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+<entry key="selectListCp">
+SELECT 
+	CP_NAME
+	, DISCOUNT
+	, CP_ENDDATE
+FROM ISSUANCECOUPON I
+JOIN COUPON C ON I.CP_NO = C.CP_NO
+WHERE I.CP_STATUS = 'N'
+AND CP_ENDDATE >= SYSDATE
+AND USER_NO =?
+
+
+
+
+</entry>
+
+
+<entry key="countCp">
+SELECT 
+	COUNT(*)AS COUNT
+FROM(SELECT CP_NAME, DISCOUNT, CP_ENDDATE
+FROM ISSUANCECOUPON I
+JOIN COUPON C ON I.CP_NO = C.CP_NO
+WHERE I.CP_STATUS = 'N'
+AND CP_ENDDATE >= SYSDATE
+AND USER_NO =?)
+
+
+</entry>
+
+
+
+
+
+
+</properties>
