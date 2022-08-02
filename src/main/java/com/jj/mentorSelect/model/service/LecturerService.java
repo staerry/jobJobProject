@@ -41,27 +41,7 @@ public class LecturerService {
 		close(conn);
 		return classList;
 	}
-	
-	public ArrayList<MtQuestion> selectQna(String lecNo) {
-		Connection conn = getConnection();
-		ArrayList<MtQuestion> list = new LecturerDao().selectQna(conn, lecNo);
-		close(conn);
-		return list;
-	}
-	
-	public int insertQuestion(MtQuestion mq) {
-		Connection conn = getConnection();
-		int result = new LecturerDao().insertQuestion(conn, mq);
-		
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result;
-	}
-	
+			
 	public int selectListCountOne(String[] category) {
 		Connection conn = getConnection();
 		int listCount = new LecturerDao().selectListCountOne(conn, category);
@@ -144,5 +124,24 @@ public class LecturerService {
 		ArrayList<Lecturer> list = new LecturerDao().selectListSix(conn, category);
 		close(conn);
 		return list;
+	}
+	
+	public ArrayList<MtQuestion> selectQna(int ltrNo) {
+		Connection conn = getConnection();
+		ArrayList<MtQuestion> list = new LecturerDao().selectQna(conn, ltrNo);
+		close(conn);
+		return list;
+	}
+	
+	public int insertQuestion(MtQuestion mq) {
+		Connection conn = getConnection();
+		int result = new LecturerDao().insertQuestion(conn, mq);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 }

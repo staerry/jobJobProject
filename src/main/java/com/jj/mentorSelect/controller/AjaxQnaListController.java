@@ -9,21 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jj.classSelect.model.vo.Class;
+import com.google.gson.Gson;
 import com.jj.mentorSelect.model.service.LecturerService;
-import com.jj.mentorSelect.model.vo.Lecturer;
+import com.jj.mentorSelect.model.vo.MtQuestion;
 
 /**
- * Servlet implementation class LecturerDetailController
+ * Servlet implementation class AjaxQnaListController
  */
-@WebServlet("/detail.lt")
-public class LecturerDetailController extends HttpServlet {
+@WebServlet("/qlist.lt")
+public class AjaxQnaListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LecturerDetailController() {
+    public AjaxQnaListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,16 +32,12 @@ public class LecturerDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int ltrNo = Integer.parseInt(request.getParameter("ltrNo"));
 		
-		// 강의자 번호를 받아서 개별 강의자에 대한 정보 조회
-		int lecNo = Integer.parseInt(request.getParameter("lecNo"));
-		
-		Lecturer l = new LecturerService().selectLecturer(lecNo);
-		ArrayList<Class> classList = new LecturerService().selectClass(lecNo);
-				
-		request.setAttribute("l", l);
-		request.setAttribute("classList", classList);
-		request.getRequestDispatcher("views/mentorSelect/lecturerDetailView.jsp").forward(request, response);
+		ArrayList<MtQuestion> list = new LecturerService().selectQna(ltrNo);
+	
+		response.setContentType("application/json; charset=UTF-8");
+		new Gson().toJson(list, response.getWriter());
 		
 	}
 

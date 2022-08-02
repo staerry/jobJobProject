@@ -146,65 +146,7 @@ Properties prop = new Properties();
 		return classList;
 		
 	}
-	
-	public ArrayList<MtQuestion> selectQna(Connection conn, String lecNo) {
-		ArrayList<MtQuestion> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectQna");
 		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, lecNo);
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				list.add(new MtQuestion(rset.getInt("mt_que_no"),
-										rset.getInt("que_user_no"),
-										rset.getString("que_user_name"),
-										rset.getString("que_date"),
-										rset.getString("que_title"),
-										rset.getString("que_content"),
-										rset.getInt("ans_user_no"),
-										rset.getString("ans_user_name"),
-										rset.getString("ans_date"),
-										rset.getString("ans_content")
-								));
-				
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return list;
-		
-	}
-	
-	public int insertQuestion(Connection conn, MtQuestion mq) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertQuestion");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, mq.getQueWriterNo());
-			pstmt.setString(2, mq.getQueTitle());
-			pstmt.setString(3, mq.getQueContent());
-			pstmt.setInt(4, mq.getAnsWriterNo());
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-	
 	public int selectListCountOne(Connection conn, String[] category) {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
@@ -556,6 +498,68 @@ Properties prop = new Properties();
 			close(pstmt);
 		}
 		return list;	
+		
+	}
+	
+	public ArrayList<MtQuestion> selectQna(Connection conn, int ltrNo) {
+		ArrayList<MtQuestion> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectQna");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ltrNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new MtQuestion(rset.getInt("mt_que_no"),
+										rset.getInt("que_user_no"),
+										rset.getString("que_user_name"),
+										rset.getString("que_date"),
+										rset.getString("que_title"),
+										rset.getString("que_content"),
+										rset.getInt("ans_user_no"),
+										rset.getString("ans_user_name"),
+										rset.getString("ans_date"),
+										rset.getString("ans_content")
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list; 
+		
+	}
+	
+	public int insertQuestion(Connection conn, MtQuestion mq) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertQuestion");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mq.getQueWriterNo());
+			pstmt.setString(2, mq.getQueTitle());
+			pstmt.setString(3, mq.getQueContent());
+			pstmt.setInt(4, mq.getAnsWriterNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+		
+		
 		
 	}
 }

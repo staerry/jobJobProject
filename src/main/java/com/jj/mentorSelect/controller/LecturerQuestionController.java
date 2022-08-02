@@ -1,29 +1,23 @@
 package com.jj.mentorSelect.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jj.classSelect.model.vo.Class;
-import com.jj.mentorSelect.model.service.LecturerService;
-import com.jj.mentorSelect.model.vo.Lecturer;
-
 /**
- * Servlet implementation class LecturerDetailController
+ * Servlet implementation class LecturerQuestionController
  */
-@WebServlet("/detail.lt")
-public class LecturerDetailController extends HttpServlet {
+@WebServlet("/question.lt")
+public class LecturerQuestionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LecturerDetailController() {
+    public LecturerQuestionController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,16 +26,10 @@ public class LecturerDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		// 강의자 번호를 받아서 개별 강의자에 대한 정보 조회
-		int lecNo = Integer.parseInt(request.getParameter("lecNo"));
-		
-		Lecturer l = new LecturerService().selectLecturer(lecNo);
-		ArrayList<Class> classList = new LecturerService().selectClass(lecNo);
-				
-		request.setAttribute("l", l);
-		request.setAttribute("classList", classList);
-		request.getRequestDispatcher("views/mentorSelect/lecturerDetailView.jsp").forward(request, response);
+		// insert
+		// 입력해야 하는 정보
+		// user_no, que_title, que_content
+		// user_no는 loginUser 세션에서 빼오면 되고, que_title, que_content는 직접 넘기면 된다.
 		
 	}
 
