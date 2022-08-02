@@ -163,22 +163,16 @@ ul li ul li:hover {background:  #6363FF;;}
             <table class="table table-hover table-bordered">
               <thead align="center">
                 <tr>
-                  <th>결제방식</th>
-                  <th>카드명</th>
-                  <th>카드번호</th>
-                  <th>할부</th>
-                  <th>승인일시</th>
-                  <th>결제금액</th>
+                  <th colspan="2">결제방식</th>
+                  <th colspan="2">승인일시</th>
+                  <th colspan="2">결제금액</th>
                 </tr>
               </thead>
               <tbody align="center">
                 <tr>
-                  <td>카드</td>
-                  <td>현대카드</td>
-                  <td>512345******6571</td>
-                  <td>일시불</td>
-                  <td>xxxx-xx-xx</td>
-                  <td>23000원</td>
+                  <td colspan="2">카드</td>
+                  <td colspan="2">xxxx-xx-xx</td>
+                  <td colspan="2">23000원</td>
                 </tr>
             </table>
 

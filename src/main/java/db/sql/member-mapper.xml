@@ -106,6 +106,15 @@
 		  )
 	</entry>
 	
+	<entry key="updateInfo">
+		UPDATE USERINFO
+		   SET USER_PWD = ?
+		     , USER_PHONE =?
+		     , USER_EMAIL =?
+		 WHERE USER_ID = ?
+	
+	</entry>
+	
 	
 
 

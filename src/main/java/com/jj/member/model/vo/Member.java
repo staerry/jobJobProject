@@ -130,5 +130,7 @@ public class Member {
 				+ ", userStatus=" + userStatus + ", adminStatus=" + adminStatus + ", userDivision=" + userDivision
 				+ "]";
 	}
+
+
 	
 }

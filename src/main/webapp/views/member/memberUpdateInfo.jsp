@@ -16,33 +16,34 @@
 <body>
 	<%@ include file="../common/menubar.jsp" %>
     
+
     <br><br>
     <div class="container">
-    <form action="<%=contextPath%>">
+    <form action="<%=contextPath%>/update.me">
         <div class="form-group">
         <label for="userId"><h5>아이디 : </h5></label>
-        <input type="email" id="userId" class="form-control" placeholder="<%= loginUser.getUserId() %>" name="userId" disabled>
+        <input type="email" id="userId" class="form-control" readonly value="<%= loginUser.getUserId() %>" name="userId" >
         </div>
         <!--현재 비밀번호와 일치하는지 확인-->
         <div class="form-group">
         <label for="userPwd"><h5>현재 비밀번호 : </h5></label>
-        <input type="password" id="userPwd" class="form-control" placeholder="비밀번호를 입력해주세요" name="userPwd">
+        <input type="password" id="userPwd" class="form-control" placeholder="비밀번호를 입력해주세요" name="userPwd" required>
         </div>
         <div class="form-group">
             <label for="userNewPwd"><h5>변경할 비밀번호 : </h5></label>
-            <input type="password" id="userNewPwd" class="form-control" placeholder="비밀번호를 입력해주세요" name="userNewPwd">
+            <input type="password" id="userNewPwd" class="form-control" placeholder="비밀번호를 입력해주세요" name="userNewPwd" required onchange="check_pw()">
         </div>
         <div class="form-group">
             <label for="userCheckPwd"><h5>변경할 비밀번호 확인 : </h5></label>
-            <input type="password" id="userCheckPwd" class="form-control" placeholder="비밀번호를 입력해주세요" name="userCheckPwd" onchange="check_pw()">&nbsp;<span id="check"></span>
+            <input type="password" id="userCheckPwd" class="form-control" placeholder="비밀번호를 입력해주세요" name="userCheckPwd" required onchange="check_pw()">&nbsp;<span id="check"></span>
         </div>
         <div class="form-group">
-            <label for="email"><h5>이메일 : </h5></label>
-            <input type="email" id="email" class="form-control" placeholder="이메일을 입력해주세요" name="email">
+            <label for="userEmail"><h5>이메일 : </h5></label>
+            <input type="email" id="userEmail" class="form-control" value="<%= loginUser.getUserEmail() %>" name="userEmail">
         </div>
         <div class="form-group">
-            <label for="phone"><h5>연락처 : </h5></label>
-            <input type="tel" id="phone" class="form-control" placeholder="연락처를 입력해주세요" name="phone">
+            <label for="userPhone"><h5>연락처 : </h5></label>
+            <input type="tel" id="userPhone" class="form-control" value="<%= loginUser.getUserPhone() %>" name="userPhone">
         </div>
         <div class="notice">
             <span>* 현직자의 소속 회사 / 직급 변경에 관한 문의는 1:1 게시판을 이용해주시기 바랍니다.</span>
@@ -76,9 +77,7 @@
         		} if ( $("input[name=userNewPwd]").val() != $("input[name=userCheckPwd]").val() ){
              			alert("변경할 비밀번호가 일치하지 않습니다.");
              			return false;
-        		}else{
-                    alert("회원정보가 성공적으로 수정되었습니다.");
-                }
+        		}
 
            	}
             

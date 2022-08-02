@@ -20,7 +20,7 @@
         <br>
         <h4>강의리스트로 조회</h4>
         <br>
-        <!-- <form action="/myPostSearch.do"> -->
+        <form action="<%=contextPath%>/myPaymentDetails.me">
           <div class="form-check-inline">
             <label class="form-check-label" for="all">
               <input type="radio" class="form-check-input" name="searchKeyword" value="all" checked>전체
@@ -84,7 +84,7 @@
                 <td>xxxx-xx-xx</td>
                 <td>
                   <button onclick="location='myPaymentDetails.jsp'"class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button></a>
-                  <button class="btn btn-danger">환불신청</button>
+                  <button onclick="refund()" class="btn btn-danger">환불신청</button>
                 </td>
               </tr>
     
@@ -103,15 +103,20 @@
               </ul>
         </div>
         
-        <!--  
+          
 
           <script>
-            function myPaymentDetails(){
-              a
-            }
+            function refund(){
+              if (!confirm("환불신청 하시겠습니까?")) {
+                  alert("성공적으로 환불신청 되었습니다");
+              } else {
+                  alert("환불신청을 취소하셨습니다");
+              }
+          }
+            
           </script>
-        -->
-    <!-- </form> -->
+        
+        </form>
 </div>
 
  <%@ include file="../common/footer.jsp" %>

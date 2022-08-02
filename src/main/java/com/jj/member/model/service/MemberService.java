@@ -77,22 +77,27 @@ public class MemberService {
 		return result;
 		
 	}
-	/*
 	
-	public int updateInfo(String userId, String userPwd, String userNewPwd, String userCheckPwd, String email, String phone) {
+	
+	public Member updateInfo(String userId, String userPwd, String userNewPwd, String userEmail, String userPhone) {
 		Connection conn = getConnection();
-		int result = new MemberDao().deleteMember(conn, userId, userPwd);
+		int result = new MemberDao().updateInfo(conn, userId, userPwd, userNewPwd, userEmail, userPhone);
+		
+		Member updateMem = null;
 		
 		if(result > 0) {
 			commit(conn);
+			
+			updateMem = new MemberDao().loginMember(conn, userId , userNewPwd);
+			
 		}else {
 			rollback(conn);
 		}
 		
 		close(conn);
 		
-		return result;
+		return updateMem;
 
 	}
-	*/
+	
 }
