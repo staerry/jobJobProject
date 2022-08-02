@@ -60,7 +60,7 @@
                                 <div class="col">
                                     <span>관심분야(1개 선택해주세요)</span><br>
                                         
-                                    <input type="radio" name="field" id="computer" value="1">
+                                    <input type="radio" name="field" id="computer" value="1" checked>
                                     <label for="computer">IT개발</label>&nbsp;
 
                                     <input type="radio" name="field" id="marketing" value="2">
