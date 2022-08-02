@@ -21,6 +21,7 @@ import com.jj.community.model.vo.Review;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.member.model.vo.MentorApproval;
+import com.jj.member.model.vo.SlideAttachment;
 import com.jj.mentorSelect.model.vo.MtQuestion;
 import com.jj.mtm.model.vo.Mtm;
 import com.jj.notice.model.vo.Notice;
@@ -1690,13 +1691,108 @@ public class AdminDao {
 		return result;
 	}
 	
+	public ArrayList<SlideAttachment> selectSlideList(Connection conn){
+		ArrayList<SlideAttachment> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSlideList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new SlideAttachment(rset.getInt("file_no")
+						                   , rset.getString("file_name")
+						                   , rset.getString("file_path")
+						                   , rset.getDate("upload_date")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
+	public int deleteSlide(Connection conn, int slideNo) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteSlide");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, slideNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;	
+	}
 	
+	public int insertSlide(Connection conn, SlideAttachment slide) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertSlide");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, slide.getFileName());
+			pstmt.setString(2, slide.getFilePath());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
-	
-	
-	
-	
+	public SlideAttachment selectSlide(Connection conn, int slideNo) {
+		SlideAttachment slide = new SlideAttachment();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSlide");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, slideNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				slide = new SlideAttachment(rset.getInt("file_no")
+						                  , rset.getString("file_name")
+						                  , rset.getString("file_path")
+						                  , rset.getDate("upload_date"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return slide;
+	}
 	
 	
 	

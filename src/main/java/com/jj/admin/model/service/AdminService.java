@@ -19,6 +19,7 @@ import com.jj.community.model.vo.Review;
 import com.jj.faq.model.vo.Faq;
 import com.jj.member.model.vo.Member;
 import com.jj.member.model.vo.MentorApproval;
+import com.jj.member.model.vo.SlideAttachment;
 import com.jj.mentorSelect.model.vo.MtQuestion;
 import com.jj.mtm.model.vo.Mtm;
 import com.jj.notice.model.vo.Notice;
@@ -988,6 +989,94 @@ public class AdminService {
 		
 		return result;
 	}
+	
+	/**
+	 * 슬라이드 이미지 리스트 조회 요청을 처리해주는 메소드
+	 * @return 슬라이드 이미지 리스트
+	 * @author youngheonchoi
+	 */
+	public ArrayList<SlideAttachment> selectSlideList(){
+		Connection conn = getConnection();
+		
+		ArrayList<SlideAttachment> list = new AdminDao().selectSlideList(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	/**
+	 * 슬라이디 이미지 삭제 요청을 처리해주는 메소드
+	 * @param slideNo : 삭제할 슬라이드 이미지 번호
+	 * @return 업데이트된 행 갯수
+	 * @author youngheonchoi
+	 */
+	public int deleteSlide(int slideNo) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().deleteSlide(conn, slideNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	/**
+	 * 슬라이드 이미지 파일 업로드 요청 처리를 해주는 메소드
+	 * @param slide : 업로드할 슬라이드 이미지 객체
+	 * @return 업데이트된 행 갯수
+	 * @author youngheonchoi
+	 */
+	public int insertSlide(SlideAttachment slide) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().insertSlide(conn, slide);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	/**
+	 * 삭제할 슬라이드 이미지 객체 조회 요청을 처리해주는 메소드
+	 * @param slideNo : 조회할 슬라이드 이미지 번호
+	 * @return 삭제할 슬라이드 이미지 객체
+	 */
+	public SlideAttachment selectSlide(int slideNo) {
+		Connection conn = getConnection();
+		
+		SlideAttachment slide = new AdminDao().selectSlide(conn, slideNo);
+		
+		close(conn);
+		
+		return slide;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
