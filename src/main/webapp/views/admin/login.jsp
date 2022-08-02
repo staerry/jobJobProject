@@ -1,8 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.jj.admin.model.vo.UserInfoAd"%>
+    
+<%@ page import="java.util.ArrayList, com.jj.mtm.model.vo.Mtm, com.jj.notice.model.vo.Notice" %>
 <%
 	UserInfoAd u = (UserInfoAd)session.getAttribute("UserInfoAd");
 	String alertMsg = (String)session.getAttribute("alertMsg");
+	
+	ArrayList<Mtm> mtmList = (ArrayList<Mtm>)request.getAttribute("Mtm");
+	ArrayList<Notice> noticeList = (ArrayList<Notice>)request.getAttribute("Notice");
+	int mentorApprovalCount = (int)request.getAttribute("mentorApprovalCount");
+	int vodApprovalCount = (int)request.getAttribute("vodApprovalCount");
 %>
 <!DOCTYPE html>
 <html>
@@ -86,62 +93,39 @@
 						<ul class="item1">
 							<li class="item-title">
 								<span>1대1 문의관리</span>
-								<span><a href="<%= contextPath %>/mtmListView.ad">더보기</a></span>
+								<span><a href="<%= contextPath %>/mtmListView.ad?cpage=1">더보기</a></span>
 							</li>
-							<li class="item-content">
-								<span><a href="">문의드립니다.</a></span>
-								<span>2022-12-12</span>
-							</li>
-							<li class="item-content">
-								<span><a href="">문의드립니다.</a></span>
-								<span>2022-12-12</span>
-							</li>
-							<li class="item-content">
-								<span><a href="">문의드립니다.</a></span>
-								<span>2022-12-12</span>
-							</li>
-							<li class="item-content">
-								<span><a href="">문의드립니다.</a></span>
-								<span>2022-12-12</span>
-							</li>
-							<li class="item-content">
-								<span><a href="">문의드립니다.</a></span>
-								<span>2022-12-12</span>
-							</li>
-							<li class="item-content">
-								<span><a href="">문의드립니다.</a></span>
-								<span>2022-12-12</span>
-							</li>
+							<% if(mtmList.isEmpty()){ %>
+								<li class="item-content">
+									<span><a href="">조회된 문의가 없습니다.</a></span>
+								</li>
+							<% } else { %>
+									<% for(Mtm i : mtmList){ %>
+											<li class="item-content">
+												<span><a href="<%= contextPath %>/mtmAnswerForm.ad?no=<%= i.getMtmNo() %>"><%= i.getMtmTitle() %></a></span>
+												<span><%= i.getMtmEnrolldate() %></span>
+											</li>
+									<% } %>
+							<% } %>
 						</ul>
+						
 						<ul class="item2">
 							<li class="item-title">
 								<span>공지사항 관리</span>
-								<span><a href="<%= contextPath %>/noticeListView.ad">더보기</a></span>
+								<span><a href="<%= contextPath %>/noticeListView.ad?cpage=1">더보기</a></span>
 							</li>
-							<li class="item-content">
-								<span><a href="">문의드립니다.</a></span>
-								<span>2022-12-12</span>
-							</li>
-							<li class="item-content">
-								<span><a href="">문의드립니다.</a></span>
-								<span>2022-12-12</span>
-							</li>
-							<li class="item-content">
-								<span><a href="">문의드립니다.</a></span>
-								<span>2022-12-12</span>
-							</li>
-							<li class="item-content">
-								<span><a href="">문의드립니다.</a></span>
-								<span>2022-12-12</span>
-							</li>
-							<li class="item-content">
-								<span><a href="">문의드립니다.</a></span>
-								<span>2022-12-12</span>
-							</li>
-							<li class="item-content">
-								<span><a href="">문의드립니다.</a></span>
-								<span>2022-12-12</span>
-							</li>
+							<% if(noticeList.isEmpty()){ %>
+								<li class="item-content">
+									<span><a href="">조회된 공지사항이 없습니다.</a></span>
+								</li>
+							<% } else { %>
+									<% for(Notice i : noticeList){ %>
+										<li class="item-content">
+											<span><a href="<%= contextPath %>/noticeListView.ad?cpage=1"><%= i.getNoticeTitle() %></a></span>
+											<span><%= i.getNoticeEnrolldate() %></span>
+										</li>
+									<% } %>
+							<% } %>
 						</ul>
 				</div>
 				
@@ -150,10 +134,10 @@
 					<div class="item1">
 						<div class="text">
 							<span>멘토 가입 신청</span><br>
-							<span>2</span>
+							<span><%= mentorApprovalCount %></span>
 						</div>
 						<div class="img">
-							<a href="<%= contextPath %>/mentorApprovalListView.ad">
+							<a href="<%= contextPath %>/mentorApprovalListView.ad?cpage=1">
 								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>
@@ -161,10 +145,10 @@
 					<div class="item2">
 						<div class="text">
 							<span>강의 등록 신청</span><br>
-							<span>2</span>
+							<span><%= vodApprovalCount %></span>
 						</div>
 						<div class="img">
-							<a href="<%= contextPath %>/mentorVodApprovalListView.ad">
+							<a href="<%= contextPath %>/mentorVodApprovalListView.ad?cpage=1">
 								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>

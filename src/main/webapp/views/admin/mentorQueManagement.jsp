@@ -107,7 +107,7 @@
 										<pre><%= i.getQueContent() %></pre>
 										<br>
 										<span>답변 내용</span>
-										<% if(i.getAnsContent().isEmpty()){ %>
+										<% if(i.getAnsContent() == null){ %>
 											<pre>아직 답변이 없습니다.</pre>
 										<% } else { %>
 											<pre><%= i.getAnsContent() %></pre>
