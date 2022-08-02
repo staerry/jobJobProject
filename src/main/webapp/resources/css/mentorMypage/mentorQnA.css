@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+  .wrap{
+            width:1000px;
+            margin-left:20px;
+        }
+
+        .head{
+            display:flex;
+            width:600px;
+        }
+        .head>h4{
+            font-weight:500;
+            margin-left:auto;
+            color:grey;
+        }
+
+        #text-body{
+        width:600px;
+        height:350px;
+        resize:none;
+        /* border:solid 0.5px grey; */
+        border: 1px solid #ba68c8;
+        
+        border-radius: 5px;
+        
+        padding:20px;
+
+
+        }
+
+        #text-body:focus {
+    border: 1px solid #ba68c8;
+    box-shadow: 0 0 0 0.2rem rgba(186, 96, 202, 0.25);
+}
+        .answer-wrapper{
+         display:inline-block; height:300px; margin-top:10px; box-sizing:border-box"
+        }
+
+        #num{
+            color:grey;
+            margin-left:10px;
+        }
+        .body>input{
+            width:600px;
+            /* height:50px; */
+        }
+
+        #mentor-profile-photo-container{
+      display:flex; width:500px; height:150px; margin:40px 0px 40px 20px; box-sizing:border-box; margin-right:auto;
+        
+        }
+
+        #mentor-profile-photo{
+            width:30%;
+            height:auto;
+        }
+        #name-company-container{
+
+        display:flex; flex-direction:column; 
+        }
+
+        #nameandcompany{
+             display:flex; flex-direction:row;height:15%;
+        }
+
+
+        #nameandcompany, #answer-bottom{
+            color:grey;
+            margin: auto 0 0;
+        }
+
+
+        /* 음 */
+       
+    /* #6363FF */

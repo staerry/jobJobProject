@@ -1,0 +1,126 @@
+@charset "UTF-8";
+
+#te,.te{
+        width:450px;
+        height:150px;
+         overflow:scroll;
+          border-radius:4px;
+           border:none;
+         background-color:#f0eded;
+         resize:none;
+    }
+
+    h4{
+        font-size:20px;
+       
+        margin-bottom:20px;
+    }
+
+    
+#editbtn{
+    background-color:white;
+    color:#6363FF;
+    padding-left:290px;
+
+}
+
+
+.container{ 
+    /* border:1px solid blue; */
+    width:1190px;
+    height:auto;
+    padding:28px 16px 100px 34px;
+}
+
+
+.mentor-detail-main {
+    display:flex;
+    justify-content: space-between;
+}
+
+.card-area {
+    width:280px;
+    height:480px;
+    background:#fff;
+    border-radius: 4px;
+    font-size: 14px;
+    margin:40px;
+    border:1px solid rgb(229, 231, 235);
+    box-shadow:0 4px 24px 0 rgb(0 0 0 / 4%);
+    padding: 29px 23px 23px 23px;
+    
+}
+
+.image-wrap {
+    width:100%;
+    height:200px;
+    margin-bottom:40px;
+}
+
+.image-inner {
+    width:200px;
+    height:100%;
+    margin:auto;
+}
+
+#mentor-image {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 50%;
+    border-radius: 50%;
+    display:block;
+    margin:auto;
+}
+
+#profile-wrap{
+    width:100%;
+    height:180px;
+}
+
+#mentor-profile{
+    margin:auto;
+    width:100%;
+    height:180px;
+    text-align:center;
+    border:none;
+}
+
+#mentor-field, #mentor-job, #mentor-name span {
+    font-size: 16px;
+}
+
+#mentor-name {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#mentor-job {
+    font-size: 20px;
+}
+
+.introduce-area {
+    width: 760px;
+    margin:40px;   
+    padding-top:0px; 
+}
+
+/* .menu-area{
+    width:100%;
+    /* text-align: center; 
+    padding:20px;
+}
+
+.menu-area button {
+    width:150px;
+    height:40px;
+    border-radius:4px;
+    background-color: #fff;
+    border:1px solid #E5E7EB;
+}
+
+.menu-area button:hover{
+    background-color: #6353ff;
+    color: white;
+    border:1px solid #6353ff;
+} */
