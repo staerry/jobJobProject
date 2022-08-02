@@ -497,6 +497,42 @@ public class AdminDao {
 		return list;
 	}
 	
+	public ArrayList<Notice> selectNoticeList(Connection conn){
+		ArrayList<Notice> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectNoticeList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, 6);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Notice(rset.getInt("notice_no")
+							      , rset.getString("user_no")
+						          , rset.getString("notice_title")
+						          , rset.getString("notice_content")
+						          , rset.getDate("notice_enrolldate")
+						          , rset.getDate("notice_modifydate")
+						          , rset.getInt("notice_count")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
 	public Notice selectNotice(Connection conn, int noticeNo) {
 		Notice notice = null;
 		
@@ -715,6 +751,42 @@ public class AdminDao {
 						       , rset.getString("admin_no")));
 			}
 			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	public ArrayList<Mtm> selectMtmList(Connection conn){
+		ArrayList<Mtm> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMtmList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, 6);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Mtm(rset.getInt("mtm_no")
+						       , rset.getString("user_name")
+						       , rset.getString("mtm_title")
+						       , rset.getString("mtm_content")
+						       , rset.getDate("mtm_enrolldate")
+						       , rset.getString("mtm_answer")
+						       , rset.getDate("mtm_answer_date")
+						       , rset.getString("admin_no")));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

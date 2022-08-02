@@ -43,10 +43,10 @@ public class firstAdminpage extends HttpServlet {
 		// 일일 접속자 수(이걸 어케해)
 		
 		// 1대1 문의 번호, 제목, 날짜
-		ArrayList<Mtm> mtmList = new AdminService().selectMtmList(pageInfo);
+		ArrayList<Mtm> mtmList = new AdminService().selectMtmList();
 		
 		// 공지사항 번호, 제목, 날짜
-		ArrayList<Notice> noticeList = new AdminService().selectNoticeList(pageInfo);
+		ArrayList<Notice> noticeList = new AdminService().selectNoticeList();
 		
 		// 멘토 가입 승인 대기 수
 		int mentorApprovalCount = new AdminService().selectMentorCount();

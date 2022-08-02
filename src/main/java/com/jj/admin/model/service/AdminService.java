@@ -265,6 +265,15 @@ public class AdminService {
 		
 		return list;
 	}
+	public ArrayList<Notice> selectNoticeList(){
+		Connection conn = getConnection();
+		
+		ArrayList<Notice> list = new AdminDao().selectNoticeList(conn);
+		
+		close(conn);
+		
+		return list;
+	}
 	
 	/**
 	 * 공지사항 수정 페이지에 공지사항 정보 출력 요청을 처리해주는 메소드
@@ -410,7 +419,15 @@ public class AdminService {
 		close(conn);
 		
 		return list;
+	}
+	public ArrayList<Mtm> selectMtmList(){
+		Connection conn = getConnection();
 		
+		ArrayList<Mtm> list = new AdminDao().selectMtmList(conn);
+		
+		close(conn);
+		
+		return list;
 	}
 	
 	/**
