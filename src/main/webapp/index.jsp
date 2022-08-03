@@ -72,7 +72,6 @@
 		        		url : "ajaxSlideImgList.me",
 		        		date : {},
 		        		success : function(result){
-		        			console.log(result);
 		        			
 		        			let value = "";
 		        			for(let i = 0; i < result.length; i++){
@@ -156,7 +155,6 @@
 						url : "ajaxClassList.me",
 						data : {},
 						success : function(result){
-							console.log(result);
 							
 							let value = "";
 							for(let i = 0; i < 9; i++){
@@ -245,90 +243,47 @@
 
             <div class="community-window">
                 <div class="community-container">
-                    <div class="community">
-                        <div class="text-area">
-                            <span>게시글 제목이 들어갈 자리 입니다.</span>
-                            <div class="text">
-                                게시글 내용이 들어갈 자리입니다.
-                            </div>
-                            <span>작성자</span>
-                        </div>
-                        <div class="reply-area">
-                            <span>0</span><br>
-                            <span>댓글</span>
-                        </div>
-                    </div>
-                    <div class="community">
-                        <div class="text-area">
-                            <span>게시글 제목이 들어갈 자리 입니다.</span>
-                            <div class="text">
-                                게시글 내용이 들어갈 자리입니다.
-                            </div>
-                            <span>작성자</span>
-                        </div>
-                        <div class="reply-area">
-                            <span>0</span><br>
-                            <span>댓글</span>
-                        </div>
-                    </div>
-                    <div class="community">
-                        <div class="text-area">
-                            <span>게시글 제목이 들어갈 자리 입니다.</span>
-                            <div class="text">
-                                게시글 내용이 들어갈 자리입니다.
-                            </div>
-                            <span>작성자</span>
-                        </div>
-                        <div class="reply-area">
-                            <span>0</span><br>
-                            <span>댓글</span>
-                        </div>
-                    </div>
-                    <div class="community">
-                        <div class="text-area">
-                            <span>게시글 제목이 들어갈 자리 입니다.</span>
-                            <div class="text">
-                                게시글 내용이 들어갈 자리입니다.
-                            </div>
-                            <span>작성자</span>
-                        </div>
-                        <div class="reply-area">
-                            <span>0</span><br>
-                            <span>댓글</span>
-                        </div>
-                    </div>
-                    <div class="community">
-                        <div class="text-area">
-                            <span>게시글 제목이 들어갈 자리 입니다.</span>
-                            <div class="text">
-                                게시글 내용이 들어갈 자리입니다.
-                            </div>
-                            <span>작성자</span>
-                        </div>
-                        <div class="reply-area">
-                            <span>0</span><br>
-                            <span>댓글</span>
-                        </div>
-                    </div>
-                    <div class="community">
-                        <div class="text-area">
-                            <span>게시글 제목이 들어갈 자리 입니다.</span>
-                            <div class="text">
-                                게시글 내용이 들어갈 자리입니다.
-                            </div>
-                            <span>작성자</span>
-                        </div>
-                        <div class="reply-area">
-                            <span>0</span><br>
-                            <span>댓글</span>
-                        </div>
-                    </div>
+					<!-- ajax 조회중 -->
                 </div>
             </div>
 
 			<div class="community-slide-btn-right">
 				<i class="fas fa-angle-right"></i>
 			</div>
+			
+			<!-- 커뮤니티 ajax -->
+			<script>
+				$(document).ready(function(){
+					$.ajax({
+						url : "ajaxPostList.me",
+						data : {},
+						success : function(result){
+							console.log(result);
+							
+							let value = "";
+							for(let i = 0; i < 6; i++){
+								value += '<div class="community" onclick="location.href=\'<%= contextPath %>\/detail.co?contentNo=' + result[i].commNo + '\'">'
+							          +  	'<div class="text-area">'
+						              +  		'<span>' + result[i].commTitle + '</span><br>'
+						              +  		'<pre class="text">' + result[i].commContent + '</pre>'
+						              +  		'<span>' + result[i].commWriter + '</span>'
+						              +  	'</div>'
+						              +  	'<div class="reply-area">'
+						              +  		'<span>' + result[i].count + '</span><br>'
+						              +  		'<span>조회수</span>'
+						              +  	'</div>'
+						              +  '</div>'
+							}
+							
+							$(".community-container").html(value);
+						},
+						error : function(){
+							console.log("커뮤니티 부분 ajax통신 실패");
+						}
+					})
+				})
+			</script>
+			
 		</div><!-- 커뮤니티 부분 끝 -->
 	</div>
 	
