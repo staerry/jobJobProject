@@ -235,7 +235,8 @@
 	</entry>
 	
 	<entry key="selectCommunityList">
-		SELECT CM_TITLE
+		SELECT CM_NO
+			 , CM_TITLE
 		     , CM_CONTENT
 		     , USER_NAME
 		     , CM_ENROLLDATE
