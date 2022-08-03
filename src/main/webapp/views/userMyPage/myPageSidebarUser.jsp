@@ -271,7 +271,7 @@
                         <ul class="small_menu">
                             <li><a href="#">개인정보 수정</a></li>
                             <li><a href="#">나의 결제내역</a></li>
-                            <li><a href="<%=contextPath %>/listCp.ump">나의 쿠폰</a></li>
+                            <li><a href="<%=request.getContextPath() %>/listCp.ump">나의 쿠폰</a></li>
                             <!-- <%--=contextPath --%>/listCp.ump -->
                             <li><a href="">회원 탈퇴</a></li>
                         </ul>

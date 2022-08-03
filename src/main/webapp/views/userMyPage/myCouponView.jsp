@@ -69,7 +69,7 @@
 						            </div>
 						
 						            <!--     <div class="coupon-body-right" style="float:right;"><button id="use-btn" type="submit">사용하러 가기</button> </div> -->
-						                    <button type="button" class="btn btn-primary btn-lg" id="use-btn" >사용하기</button>
+						                    <button type="button" onclick="location.href='<%=contextPath%>/list.cl'" class="btn btn-primary btn-lg" id="use-btn" >사용하기</button>
 						</div>
 						<%} %>
 								

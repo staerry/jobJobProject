@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+   
  
 <!DOCTYPE html>
 <html>
@@ -271,7 +271,7 @@
                         <ul class="small_menu">
                             <li><a href="#">개인정보 수정</a></li>
                             <li><a href="#">나의 결제내역</a></li>
-                            <li><a href="<%=contextPath %>//listCp.my">나의 쿠폰</a></li>
+                            <li><a href="<%=request.getContextPath() %>/listCp.my">나의 쿠폰</a></li>
                             <!-- <%--=contextPath --%>/listCp.ump -->
                             <li><a href="">회원 탈퇴</a></li>
                         </ul>

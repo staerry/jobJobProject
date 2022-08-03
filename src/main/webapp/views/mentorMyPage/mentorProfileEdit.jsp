@@ -24,7 +24,24 @@
 
 
 <title>Insert title here</title>
+<style>
+.main-web-wrap{
+display:inline-flex;
+padding-left:310px;}
+h3{
+margin-left:40px;
+margin-bottom:10px;
+margin-top:30px;
+font-size:28px;
+font-weight:bolder;
 
+}
+
+.introduce-area{
+width:80%;
+
+}
+</style>
 
 </head>
 <body>
@@ -34,16 +51,17 @@
 	
 	 <div class="main-web-wrap">
 	
-		<div class="left-content">
+		<div class="left-content" class="a">
             <!--여기에 좌측 메뉴-->
             <%@ include file="common/mypageSidebarMentor.jsp" %>
         </div>
         
-	 <div class="right-content">
+	 <div class="right-content" class="a">
       <!--여기에 컨텐츠-->
     <div class="container">
-    <div class="coupon-head">  <h3 style="color : #6363ff">나의 프로필 관리</h3>
-    
+    <div class= "mentor-detail-main">
+         <h3 style="color : #6363ff">나의 프로필 관리</h3>
+    </div>
         <div class="mentor-detail-main">
         <!-- 왼쪽 멘토 프로필 카드 -->
             <div class="card-area">
@@ -120,13 +138,15 @@
          -->
 
 
-    </div>
+    
 
 
 
   </div>
     </div>
-	
+	</div>
+    </div>
+   
 	<%@ include file="../common/footer.jsp" %>
 
 </body>

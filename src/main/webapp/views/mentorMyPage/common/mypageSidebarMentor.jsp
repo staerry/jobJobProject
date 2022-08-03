@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.jj.member.model.vo.Member"%>
+ 
+   
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -277,9 +280,19 @@
                     <ul class="big_menu">
                         <li class="large">멘토 <i class="arrow fas fa-angle-right"></i></li>
                         <ul class="small_menu">
-                            <li><a href="#">나의 클래스관리</a></li>
-                            <li><a href="#">나의 프로필 관리</a></li>
+                            <li><a href="<%=request.getContextPath() %>/myPage.my">나의 클래스관리</a></li>
+                            
+                            	
+						  <% Member m = (Member)request.getSession().getAttribute("loginUser"); 
+						  if((m.getMtGrade())== 1) {   // 현직자 상태%>
+							<!--  <li><a href="#">질문답변</a></li>	 -->		
+										
+			
+								<% }else { // 강의자상태  %>
+                           
+                            <li><a href="<%=request.getContextPath() %>/mtProEdit.my">나의 프로필 관리</a></li>
                             <li><a href="#">질문답변</a></li>
+                            <%} %>
                             <!-- <li><a href="">소메뉴1-3</a></li>
                             <li><a href="#">소메뉴1-4</a></li> -->
                         </ul>
