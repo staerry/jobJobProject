@@ -55,15 +55,7 @@
 	    <div id="demo" class="carousel slide" data-ride="carousel">
 	      
 	        <div class="carousel-inner">
-<!-- 	          <div class="carousel-item active">
-	            <img src="https://svrforum.com/files/attach/images/2020/12/26/ac5610f38af46e7c135a9065561734e0.jpg" alt="Los Angeles">
-	          </div>
-	          <div class="carousel-item">
-	            <img src="https://svrforum.com/files/attach/images/2020/12/26/ac5610f38af46e7c135a9065561734e0.jpg" alt="Chicago">
-	          </div>
-	          <div class="carousel-item">
-	            <img src="https://svrforum.com/files/attach/images/2020/12/26/ac5610f38af46e7c135a9065561734e0.jpg" alt="New York">
-	          </div> -->
+				<!-- ajax로 데이터 조회 중 -->
 	        </div>
 	      
 	        <a class="carousel-control-prev" href="#demo" data-slide="prev">
