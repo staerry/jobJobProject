@@ -103,17 +103,33 @@
 				<p class="main-regist">
 					처음이신가요? <a href="<%= contextPath %>/loginEnrollForm.me"><b>회원가입</b></a><br>
 					<a href="<%=contextPath%>/mentorEnroll.me"><b>멘토가입</b></a>
-				</p>
+				</p><!-- 로그인 전 보여질 부분 끝 -->
+			<!-- 로그인 후 보여질 부분 -->
 			<% } else { %>
 				<p class="main-logout"><b><a href="<%=contextPath%>/userlogout.me">로그아웃</a></b></p>
 				<div class="main-profile-img"></div>
 				<p class="main-mypage-menu">
-					<b><%= loginUser.getUserName() %></b>님<br><br>
-					<b><a href="">수강중인강의 3</a></b><br><br>
+					<b id="userName"><%= loginUser.getUserName() %></b>님<br><br>
+					<b id="classIng"><a href="">수강중인강의 3</a></b><br><br>
 					<b><a href="<%=contextPath%>/myPage.my">마이페이지</a></b>
-				</p>
+				</p><!-- 로그인 후 보여질 부분 끝 -->
 			<% } %>
-		</div><!-- 로그인 전 보여질 부분 끝 -->
+			
+			<script>
+				$(document).ready(function(){
+					$.ajax({
+						url : "ajaxSelectClassIng.me",
+						data : {name : $("#userName").text()},
+						success : function(result){
+							$("#classIng").text("수강중인강의 " + result);
+						},
+						error : function(){
+							console.log("로그인 부분 ajax통신 실패");
+						}
+					})
+				})
+			</script>
+		</div>
 	</div>
 
 	<div class="main-content-wrap">
