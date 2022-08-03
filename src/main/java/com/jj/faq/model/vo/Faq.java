@@ -13,6 +13,26 @@ public class Faq {
 	public Faq() {
 		
 	}
+	
+	public Faq(int faqNo, String userNo, String faqTitle, String faqAnswer, int faqCount) {
+		super();
+		this.faqNo = faqNo;
+		this.userNo = userNo;
+		this.faqTitle = faqTitle;
+		this.faqAnswer = faqAnswer;
+		this.faqCount = faqCount;
+	}
+
+
+
+	public Faq(int faqNo, String faqTitle, String faqAnswer, String userNo, Date faqEnrolldate) {
+		super();
+		this.faqNo = faqNo;
+		this.faqTitle = faqTitle;
+		this.faqAnswer = faqAnswer;
+		this.userNo = userNo;
+		this.faqEnrolldate = faqEnrolldate;
+	}
 
 	public Faq(int faqNo, String userNo, String faqTitle, String faqAnswer, Date faqEnrolldate, int faqCount) {
 		super();

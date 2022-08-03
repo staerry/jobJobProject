@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="selectFaqList">
+		SELECT
+		        FAQ_NO
+		      , USER_ID
+		      , FAQ_TITLE
+		      , FAQ_ANSWER
+		      , FAQ_COUNT
+		   FROM FAQ
+		   JOIN USERINFO USING(USER_NO)
+		  ORDER
+		     BY FAQ_NO DESC
+	</entry>
+	
+	<entry key="insertMTM">
+		INSERT
+		  INTO MTM
+		  (
+		     MTM_NO
+		   , USER_NO
+		   , MTM_TITLE
+		   , MTM_CONTENT    
+		  )
+		  VALUES
+		  (
+		  	 SEQ_MTM.NEXTVAL	
+		   , ?
+		   , ?
+		   , ?
+		  )
+	</entry>
+
+	<entry key="increaseCount">
+		UPDATE FAQ
+		   SET FAQ_COUNT = FAQ_COUNT + 1
+		 WHERE FAQ_NO = ?
+	</entry>
+
+	<entry key="selectFaq">
+		SELECT
+		        FAQ_NO
+		      , FAQ_TITLE
+		      , FAQ_ANSWER
+		      , USER_ID
+		      , FAQ_ENROLLDATE
+		  FROM FAQ
+		  JOIN USERINFO USING(USER_NO)
+		 WHERE FAQ_NO = ?
+	</entry>
+
+
+
+
+
+
+
+
+</properties>

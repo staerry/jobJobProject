@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.jj.faq.model.vo.Faq"%>
+<%
+	Faq fq = (Faq)request.getAttribute("faq");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,57 +15,73 @@
 </head>
 <title>Insert title here</title>
 <style>
-    table{
-        margin-left: auto;
-        margin-right: auto;
-    }
+   
+    .container{
+    width:1190px;
+    height:auto;
+    flex-direction:row;
+    justify-content: space-between;
+    padding:28px 16px 100px 34px;
+}
 
 </style>
 </head>
 <body>
 
-    <div class="outer" >
+	<%@ include file="../common/menubar.jsp" %>
 
-        <br>
+    <div class="container" align="center">
+        
+        <div class="outer">
 
-        <form action="" method="post">
+            <br>
 
-            <table >
-                <tr>
-                    <td colspan="2" width="200"><p style="font-size: 20px; border: 1px solid lightgray; border-radius: 5px; margin: 0;">결제방법문의</p></td>
-                    <td width="200" style="text-align:right; font-size: 12px;">xxxx-xx-xx</td>
-                </tr>
+            <form action="" method="post">
 
-                <tr>
-                    <td colspan="3"><hr></td>
-                </tr>
+                <table>
+                    <tr>
+                        <td colspan="2" width="200"><p style="font-size: 20px; border: 1px solid lightgray; border-radius: 5px; margin: 0;"><%= fq.getFaqTitle() %></p></td>
+                        <td width="200" style="text-align:right; font-size: 12px;"><%= fq.getFaqEnrolldate() %></td>
+                    </tr>
 
-                <tr>
-                    <td colspan="3" style="font-size: 14px;">
-                        <p style="height: 300px; border: 1px solid lightgray; border-radius: 5px;">답변내용자리</p>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td colspan="3"><hr></td>
-                </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: right; font-size: 13px"><%= fq.getUserNo() %></td>
+                    </tr>
 
-                <tr>
-                    <td colspan="3"></td>
-                </tr>
+                    <tr>
+                        <td colspan="3" style="font-size: 14px;">
+                            <textarea name="content" cols="100" rows="10" style="resize:none; border: 1px solid lightgray; border-radius: 5px;"><%= fq.getFaqAnswer() %></textarea>
+                            <!--<p style="height: 300px; border: 1px solid lightgray; border-radius: 5px;"><%= fq.getFaqAnswer() %></p>-->
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="3"><hr></td>
+                    </tr>
 
-                <tr>
-                    <td colspan="2"><button class="btn" style="background: lightgray;">이전질문</button></td>
-                    <td><button class="btn" style="float:right; background: #6363FF; color: white;">목록으로</button></td>
-                </tr>
+                    <tr>
+                        <td colspan="2">
+                        	<% if(fq.getFaqNo() == 1){ %>
+								<!-- 이전으로 버튼 비활성화 하기 -->
+								                        		
+                        	<%} else{ %>
+                        		<a href="<%= contextPath %>/detail.faq?no=<%= fq.getFaqNo() - 1 %>" class="btn btn-sm" style="background: lightgray;">이전글로</a>
+                        	<% } %>
+                            
+                        </td>
+                        <td>
+                            <a href="<%=contextPath %>/list.faq" class="btn btn-sm"  style="float:right; background: #6363FF; color: white;">목록으로</a>
+                        </td>
+                    </tr>
 
-            </table>
+                </table>
 
 
 
 
-        </form>
+            </form>
 
+        </div>
     </div>
 
 

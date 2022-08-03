@@ -1,7 +1,6 @@
 package com.jj.faq.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,16 +12,16 @@ import com.jj.faq.model.service.FaqService;
 import com.jj.faq.model.vo.Faq;
 
 /**
- * Servlet implementation class FaqListController
+ * Servlet implementation class FaqDeatilController
  */
-@WebServlet("/list.faq")
-public class FaqListController extends HttpServlet {
+@WebServlet("/detail.faq")
+public class FaqDeatilController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FaqListController() {
+    public FaqDeatilController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,15 +30,33 @@ public class FaqListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// FAQ 상세조회 요청
+		int faqNo = Integer.parseInt(request.getParameter("no")); 
+		// no=?? 어디에서 받아오는 name값인지?
 		
-		// FAQ목록 조회용
+		// 1) 조회수 증가 (update)
+		int result = new FaqService().increaseCount(faqNo);
 		
-		// 3) 요청처리(응답페이지에 필요한 데이터를 조회)
-		ArrayList<Faq> list = new FaqService().selectFaqList();
+		if(result > 0) { // 조회수 증가 성공 => 조회가능한 공지사항 맞다
+			
+			// 2) 데이터 조회 (select)
+			Faq fq = new FaqService().selectFaq(faqNo);
+			
+			request.setAttribute("faq", fq);
+			request.getRequestDispatcher("views/member/faqDetailPage.jsp").forward(request, response);
+			
+			
+		}else { // 조회수 증가 실패 => 유효한 글 번호가 아니거나 삭제된 글번호
+			// 에러문구
+			request.setAttribute("alert", "조회수증가실패");
+			
+		}
 		
-		// 4) 응답뷰 => faqList.jsp
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/member/faqList.jsp").forward(request, response);
+	
+	
+	
+	
 	}
 
 	/**

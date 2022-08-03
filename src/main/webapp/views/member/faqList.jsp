@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.jj.faq.model.vo.Faq"%>
+<%
+	ArrayList<Faq> list = (ArrayList)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,46 +68,47 @@
             </button>
           
             <!-- 모달 -->
-            <div class="modal" id="myModal">
-              <div class="modal-dialog">
-                <div class="modal-content">
+            
+            <!-- <!--<input type="hidden" name="userNo" value="">-->
+            <form action="<%= contextPath %>/insert.mtm" id="enroll-form" method="post">
+              
+              <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
 
-                  <!-- 모달 Header -->
-                  <div class="modalHeader" style="margin-top: 3%; margin-right: 3%; margin-left: 3%;">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class=>1:1 문의하기</h4>
-                    <div style="font-size: 10px;">문제가 해결되지 않으셨다면 1:1 로 문의하세요.<br>
-                    문의 주신 내용은 48시간 내로 최대한 빠르게 답변드리도록 하겠습니다. 
-                    남겨주신 이메일을 확인해주세요.</div>
-                  </div>
-
-                  <hr>
-                  
-                  <!-- Modal body -->
-                  <div class="modal-body" style="padding: 3%;">
-                    <input type="text" placeholder="제목" style="width: 100%;"><br><br>
-                    <textarea style="width:100%;" cols="30" rows="10">내용</textarea><br><br>
-
-                  
-                    <input type="text" placeholder="답변받을 이메일 주소" style="width: 100%;">
-                    <br>
-                    
-                    <div>
-                    <input type="checkbox">
-                    <span style="font-size: 10px;">개인정보 수집 및 이용에 동의합니다. 1:1 문의를 위한 최소한의 개인정보만을 수집하고 있습니다. 개인정보는 ‘개인정보 처리방침’에 근거하여 관리됩니다.</span>
+                    <!-- 모달 Header -->
+                    <div class="modalHeader" style="margin-top: 3%; margin-right: 3%; margin-left: 3%;">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class=>1:1 문의하기</h4>
+                      <div style="font-size: 10px;">문제가 해결되지 않으셨다면 1:1 로 문의하세요.<br>
+                      문의 주신 내용은 48시간 내로 최대한 빠르게 답변드리도록 하겠습니다. 
+                      남겨주신 이메일을 확인해주세요.</div>
                     </div>
 
+                    <hr>
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body" style="padding: 3%;">
+                      <input type="text" name="mtmTitle" placeholder="제목" style="width: 100%;" required><br><br>
+                      <textarea name="mtmContent" style="width:100%; resize: none;" cols="30" rows="10" placeholder="내용" required></textarea><br><br>
 
+                      <div>
+                      <input type="checkbox">
+                      <span style="font-size: 10px;">개인정보 수집 및 이용에 동의합니다. 1:1 문의를 위한 최소한의 개인정보만을 수집하고 있습니다. 개인정보는 ‘개인정보 처리방침’에 근거하여 관리됩니다.</span>
+                      </div>
+
+                    </div>
+                    
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                      <button type="submit" class="btn" style="background: #6363FF; color: white;">문의하기</button>
+                    </div>
+                    
                   </div>
-                  
-                  <!-- Modal footer -->
-                  <div class="modal-footer">
-                    <button type="button" class="btn" data-dismiss="modal" style="background: #6363FF; color: white;">문의하기</button>
-                  </div>
-                  
                 </div>
               </div>
-            </div>
+            </form>
+
           </div>
         </td>
       </tr>
@@ -114,55 +118,30 @@
 
     <div class="container">
                    
-        <table class="table table-hover">
+        <table class="table table-hover list-area">
           <thead align="center">
             <tr>
               <th>NO</th>
               <th>내용</th>
             </tr>
           </thead>
+
           <tbody align="center">
-            <tr>
-              <td>1</td>
-              <td>결제방법은 뭐가있나요?</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>현직자에서 강의자가 되려면?</td>
-             
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>질문내용</td>
-            </tr>
-            <tr>
-               <td>4</td>
-               <td>질문내용</td>
-            </tr>
-            <tr>
-               <td>5</td>
-               <td>질문내용</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>질문내용</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>질문내용</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>질문내용</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>질문내용</td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>질문내용</td>
-            </tr>
+          	<% if(list.isEmpty()){ %>
+          	
+          		<!-- case1: 공지글이 없는 경우 -->
+	            <tr>
+	              <td colspan="2">존재하는 공지사항이 없습니다.</td>
+	            </tr>
+	        <% }else{ %>
+            	<!-- case2. 공지글이 있을 경우 -->
+            	<% for(Faq fq : list){ %>
+		            <tr>
+		              <td><%= fq.getFaqNo() %></td>
+		              <td><%= fq.getFaqTitle() %></td>
+		            </tr>
+				<% } %>          
+            <% } %>
           </tbody>
         </table>
     </div>
@@ -190,12 +169,26 @@
 
     </div>
 
+    <script>
+      $(function(){
+        $(".list-area>tbody>tr").click(function(){
+
+            const num = $(this).children().eq(0).text(); // 클릭했을 때의 글 번호
+
+            // 요청할 url ? 키 = 벨류 & 키 = 벨류
+            // 요청시 전달값 '키=벨류' 로 넘기는걸 => 쿼리스트링
+            // /web/list.faq.no?no=xx
+            location.href = '<%= contextPath %>/detail.faq?no=' + num;
+
+        })
+      })
+    </script>
+
+
+
+
     <br><br><br>
 
-  
-      
-
-
-      <br><br><br><br>
+    <br><br><br><br>
 </body>
 </html>
