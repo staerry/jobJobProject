@@ -562,4 +562,34 @@ Properties prop = new Properties();
 		
 		
 	}
+	
+	public ArrayList<Lecturer> selectMainMentorList(Connection conn){
+		ArrayList<Lecturer> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMainMentorList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Lecturer(rset.getInt("user_no")
+						            , rset.getString("user_name")
+						            , rset.getString("mt_company")
+						            , rset.getString("clcg_name")
+						            , rset.getString("profile_path")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 }

@@ -144,4 +144,16 @@ public class LecturerService {
 		close(conn);
 		return result;
 	}
+	
+	/**
+	 * 메인페이지 멘토 리스트 출력 요청 처리를 해주는 메소드
+	 * @return 멘토 리스트
+	 * @author youngheonchoi 
+	 */
+	public ArrayList<Lecturer> selectMainMentorList(){
+		Connection conn = getConnection();
+		ArrayList<Lecturer> list = new LecturerDao().selectMainMentorList(conn);
+		close(conn);
+		return list;
+	}
 }

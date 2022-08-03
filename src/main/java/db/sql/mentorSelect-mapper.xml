@@ -255,4 +255,18 @@
 		  )	 
  	</entry>
  	
+ 	<!-- 작성자 : 최영헌 -->
+ 	<entry key="selectMainMentorList">
+		SELECT U.USER_NO
+		     , USER_NAME
+		     , MT_COMPANY
+		     , CLCG_NAME
+		     , PROFILE_PATH
+		  FROM USERINFO U
+		  JOIN MENTOR M ON (U.USER_NO = M.USER_NO)
+		  JOIN LECTURER L ON (U.USER_NO = L.USER_NO)
+		  JOIN CL_CATEGORY C ON (M.CLCG_NO = C.CLCG_NO)
+		 ORDER BY USER_NO DESC
+ 	</entry>
+ 	
 </properties>
