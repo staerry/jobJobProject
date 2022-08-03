@@ -435,4 +435,34 @@ public class CommunityDao {
 		return searchList;
 		
 	}
+	
+	public ArrayList<Community> selectCommunityAllList(Connection conn){
+		ArrayList<Community> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectCommunityAllList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Community(rset.getInt("cm_no")
+						             , rset.getString("user_name")
+						             , rset.getString("cm_title")
+						             , rset.getString("cm_content")
+						             , rset.getInt("cm_count")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 }

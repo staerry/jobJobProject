@@ -144,4 +144,16 @@ public class CommunityService {
 		close(conn);
 		return searchList;
 	}
+	
+	/**
+	 * 메인페이지에 출력할 커뮤니티 게시글 리스트 조회 요청 처리를 해주는 메소드
+	 * @return 커뮤니티 게시글 리스트
+	 * @author youngheonchoi 
+	 */
+	public ArrayList<Community> selectCommunityAllList(){
+		Connection conn = getConnection();
+		ArrayList<Community> list = new CommunityDao().selectCommunityAllList(conn);
+		close(conn);
+		return list;
+	}
 }

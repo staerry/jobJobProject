@@ -223,4 +223,15 @@
 		     BY CM_NO DESC
 	</entry>
 
+	<entry key="selectCommunityAllList">
+		SELECT CM_NO
+		     , USER_NAME
+		     , CM_TITLE
+		     , CM_CONTENT
+		     , CM_COUNT
+		  FROM COMMUNITY C
+		  JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+		 ORDER BY CM_COUNT DESC
+	</entry>
+
 </properties>
