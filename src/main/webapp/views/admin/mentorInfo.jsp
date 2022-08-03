@@ -21,7 +21,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/mentorInfo.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/newmentorInfo.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -114,33 +114,46 @@
 								<th height="300px"><br><br><br><br><br>멘토분야</th>
 								<td>
 									<div class="checks2">
-										<br>
-										&nbsp;&nbsp;&nbsp;&nbsp;
-										<input type="radio" id="radio2" name="cate" value="2"> 
-										<label for="radio2">마케팅,MD,영업</label>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<input type="radio" id="radio1" name="cate" value="1"> 
-										<label for="radio1">IT개발</label>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<br><br>
-										<input type="radio" id="radio3" name="cate" value="3"> 
-										<label for="radio3">회계,재무,금융</label>
-										&nbsp;&nbsp;
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<input type="radio" id="radio4" name="cate" value="4"> 
-										<label for="radio4">전략,기획</label> 
-										<br><br>
-										<input type="radio" id="radio5" name="cate" value="5"> 
-										<label for="radio5">유통,무역,구매&nbsp;&nbsp;&nbsp;</label>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<input type="radio" id="radio7" name="cate" value="7"> 
-										<label for="radio7">전문,특수</label>
-										<br><br>
-										<input type="radio" id="radio6" name="cate" value="6"> 
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<label for="radio6">공사,공기업,공무원</label> 
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										
+										<table style="margin-top:5px; text-align:left " border=0>
+										<tr>
+											<td><input type="radio" id="radio2" name="cate" value="2"> 
+												<label for="radio2">마케팅,MD,영업</label>
+											</td>
+											<td><input type="radio" id="radio1" name="cate" value="1"> 
+												<label for="radio1">IT개발</label>
+											</td>
+										</tr>
+											<td>
+												<input type="radio" id="radio3" name="cate" value="3"> 
+												<label for="radio3">회계,재무,금융</label>
+											</td>
+											<td>
+												<input type="radio" id="radio4" name="cate" value="4"> 
+												<label for="radio4">전략,기획</label>
+											</td>
+										<tr>
+										</tr>
+										<tr>
+											<td>
+												<input type="radio" id="radio5" name="cate" value="5"> 
+												<label for="radio5">유통,무역,구매&nbsp;&nbsp;&nbsp;</label>
+											</td>
+											<td>
+												<input type="radio" id="radio7" name="cate" value="7"> 
+												<label for="radio7">전문,특수</label>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<input type="radio" id="radio6" name="cate" value="6">
+												<label for="radio6">공사,공기업,공무원</label> 
+											</td>
+											<td>
+											
+											</td>
+										</tr>
+										</table>
 										
 									</div>
 								</td>

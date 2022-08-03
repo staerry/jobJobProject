@@ -21,7 +21,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/studentInfo.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/newstudentInfo.css">
 <title>Insert title here</title>
 </head>
 <body>

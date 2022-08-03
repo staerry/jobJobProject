@@ -53,7 +53,7 @@
 					<div class="item1">
 						<div class="text">
 							<span>총 회원수</span><br>
-							<span>12321</span>
+							<span><%=request.getAttribute("totalMember") %></span>
 						</div>
 						<div class="img">
 							<i class="fas fa-user-friends"></i>
@@ -62,7 +62,7 @@
 					<div class="item2">
 						<div class="text">
 							<span>수강생수</span><br>
-							<span>12321</span>
+							<span><%=request.getAttribute("totalStu") %></span>
 						</div>
 						<div class="img">
 							<i class="fas fa-user-alt"></i>
@@ -71,7 +71,7 @@
 					<div class="item3">
 						<div class="text">
 							<span>멘토수</span><br>
-							<span>12321</span>
+							<span><%=request.getAttribute("totalMentor") %></span>
 						</div>
 						<div class="img">
 							<i class="fas fa-user-alt"></i>
@@ -80,7 +80,7 @@
 					<div class="item4">
 						<div class="text">
 							<span>일일 접속자</span><br>
-							<span>12321</span>
+							<span></span>
 						</div>
 						<div class="img">
 							<i class="fas fa-user-friends"></i>
@@ -156,10 +156,10 @@
 					<div class="item3">
 						<div class="text">
 							<span>결제</span><br>
-							<span>2</span>
+							<span><%=request.getAttribute("todayPay") %></span>
 						</div>
 						<div class="img">
-							<a href="<%= contextPath %>/paymentselect.bo">
+							<a href="<%= contextPath %>/paymentselect.bo?p=1">
 								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>
@@ -167,10 +167,10 @@
 					<div class="item4">
 						<div class="text">
 							<span>환불 요청</span><br>
-							<span>2</span>
+							<span><%=request.getAttribute("rqRefundCount") %></span>
 						</div>
 						<div class="img">
-							<a href="<%= contextPath %>/refundRequest.li">
+							<a href="<%= contextPath %>/refundRequest.li?p=1">
 								<i class="fas fa-angle-right"></i>
 							</a>
 						</div>

@@ -22,7 +22,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/sendcoupon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/newsendcoupon.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -224,14 +224,14 @@
                     <button type="button" class="button1" id="sendcp">쿠폰발송</button>
                 </div>
                 <script>
-            		let rNo = [];
+            		let rNo = [0];
             		let lNo = [];
             		
                 	$('.rbtn').on('click',function(){
                 		$('#ch1').prop('checked',false)
                 	
                 		let arr = [];
-                    	var li = $('input[class="userNo"]:checked');
+                    	let li = $('input[class="userNo"]:checked');
 						$(li).each(function(){
 							arr.push($(this).val())
 							$(this).parent().parent().css('display','none')
@@ -240,6 +240,7 @@
 						
 						for(let i=0;i<arr.length;i++){
 							rNo.push(arr[i])
+							$('#aaa'+arr[i]).prop('checked',false)
 						}
 					
 						$.ajax({
@@ -273,20 +274,22 @@
 						$('#ch2').prop('checked',false)
                 	
                 		let arr = [];
-                    	var li = $('input[class="selectNo"]:checked');
+                    	let li = $('input[class="selectNo"]:checked');
 						$(li).each(function(){
 							arr.push($(this).val())
 							$(this).parent().parent().css('display','none')
-							
+							$(this).prop('checked',false)
 						})
 						
 						
 						for(let i=0;i<arr.length;i++){
 							for(let j=0;j<rNo.length;j++){
 								if(arr[i]==rNo[j]){
+									
 									$('#aaa'+rNo[j]).parent().parent().css('display','')
 									$('#aaa'+rNo[j]).prop('checked',false)
-									console.log(rNo.splice(j,1))
+									console.log('제거수:'+rNo.splice(j,1))
+									
 								}
 							}
 						}
@@ -304,12 +307,15 @@
 								let a = "";
 								for(let i=0;i<list.length;i++){
 									a +=   '<li>'
-			                           + 	'<div class="checks11">'
-	                                   +			'<input type="checkbox" id="aaa'+i+'" value='+list[i].userNo+'>'     
-	                                   +			'<label for="aaa'+i+'">'+list[i].userName+'('+list[i].userId+')</label>'
-	                            	   +		'</div>'
-	                        		   +	'</li>'
+				                           + 	'<div class="checks11">'
+		                                   +			'<input type="checkbox" class="selectNo" id="bbb'+list[i].userNo+'" value='+list[i].userNo+'>'     
+		                                   +			'<label for="bbb'+list[i].userNo+'">'+list[i].userName+'('+list[i].userId+')</label>'
+		                            	   +		'</div>'
+		                        		   +	'</li>'
+	                        		  
 								}
+								
+								
 								
 								$('.rbox').html(a);
 							},
@@ -335,7 +341,7 @@
 								},
 								type:"post",
 								success:function(list){
-									console.log(list)
+									
 									$('.userNo').parent().parent().css('display','none')
 									
 									for(let i=0;i<list.length;i++){
@@ -356,7 +362,9 @@
 						}
 					})
 					
+					
 					$('#sendcp').on('click',function(){
+						let result1 = 1;
 						let cp = $('input[name="grade"]:checked')
 						let cpNo = cp.parent().parent().siblings('.cpNo').text()
 						let userNo = rNo.join(',')
@@ -376,20 +384,22 @@
 										type:"post",
 										success:function(result){
 											if(result>0){
-												
+												result1 = result1*result
 											}else{
 												alert('쿠폰전달이 중간에 실패했습니다('+i+'번째'+rNo[i]+'번 회원번호에서 오류).')
-												
+												result1=0;
 											}
 										},
 										error:function(){
 											alert('오류')
-											
+											result1=0;
 										}
 									})
 								}
-								alert('쿠폰전달에 성공했습니다.')
-								location.href="<%= request.getContextPath() %>/couponManage.ad?p=1"
+								if(result1>0){
+									alert('쿠폰전달에 성공했습니다.')
+									location.href="<%= request.getContextPath() %>/couponManage.ad?p=1"
+								}
 							}
 						}
 						

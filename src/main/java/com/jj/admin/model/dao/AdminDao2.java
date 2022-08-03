@@ -577,7 +577,8 @@ public class AdminDao2 {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
-			pstmt.setString(2, a);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -609,7 +610,8 @@ public class AdminDao2 {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
-			pstmt.setString(2, a);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -1548,9 +1550,10 @@ public class AdminDao2 {
 			int endRow = startRow + pi.getBoardLimit()-1;
 			
 			pstmt.setString(1, search);
-			pstmt.setString(2, a);
-			pstmt.setInt(3,startRow);
-			pstmt.setInt(4,endRow);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
+			pstmt.setInt(4,startRow);
+			pstmt.setInt(5,endRow);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -1593,9 +1596,10 @@ public class AdminDao2 {
 			int endRow = startRow + pi.getBoardLimit()-1;
 			
 			pstmt.setString(1, search);
-			pstmt.setString(2, a);
-			pstmt.setInt(3,startRow);
-			pstmt.setInt(4,endRow);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
+			pstmt.setInt(4,startRow);
+			pstmt.setInt(5,endRow);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -2056,5 +2060,131 @@ public class AdminDao2 {
 			close(pstmt);
 		}
 		return result;
+	}
+	
+	public int totalMember(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("totalMember");
+		int totalMember = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				totalMember = rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return totalMember;
+	}
+	
+	public int totalStu(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("totalStu");
+		int totalStu = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				totalStu = rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return totalStu;
+	}
+	
+	public int totalMentor(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("totalMentor");
+		int totalMentor = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				totalMentor = rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return totalMentor;
+	}
+	
+	public int todayConnect(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("todayConnect");
+		int todayConnect = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				todayConnect = rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return todayConnect;
+	}
+	
+	public int todayPay(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("todayPay");
+		int todayPay = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				todayPay = rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return todayPay;
+	}
+	
+	public int rqRefundCount(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("rqRefundCount");
+		int rqRefundCount = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				rqRefundCount = rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return rqRefundCount;
 	}
 }

@@ -65,7 +65,8 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	   WHERE USER_STATUS = 'N'
 		 AND USER_DIVISION = 2
 		 AND MT_GRADE = 1
-		 AND MT_GRANT = 'A'
+		 AND (MT_GRANT = 'A'
+		  OR MT_GRANT = 'W')
 		 AND (USER_NO = ? OR USER_NAME LIKE ?)
 </entry>
 
@@ -112,6 +113,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 		FROM ISSUANCECOUPON I
 		JOIN USERINFO U ON(I.USER_NO=U.USER_NO)
 		WHERE (I.USER_NO = ?
+		   OR I.CP_NO = ?
 		   OR USER_NAME LIKE ?)
 		  AND CP_STATUS = 'N'
 </entry>
@@ -121,6 +123,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 		FROM ISSUANCECOUPON I
 		JOIN USERINFO U ON(I.USER_NO=U.USER_NO)
 		WHERE (I.USER_NO = ?
+		   OR  I.CP_NO = ?
 		   OR USER_NAME LIKE ?)
 		  AND CP_STATUS = 'Y'
 </entry>
@@ -245,7 +248,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                   WHERE USER_STATUS = 'N'
 	                     AND USER_DIVISION = 2
 	                     AND MT_GRADE = 1
-	                     AND MT_GRANT = 'A' OR MT_GRANT = 'W'
+	                     AND (MT_GRANT = 'A' OR MT_GRANT = 'W')
 	                     AND (USER_NO = ? OR USER_NAME LIKE ?)
 	                   ORDER 
 		                    BY USER_NO DESC) A)
@@ -722,6 +725,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 		                JOIN USERINFO U ON(I.USER_NO=U.USER_NO)
 		                JOIN COUPON C ON(I.CP_NO=C.CP_NO)
 		                WHERE (I.USER_NO = ?
+		                   OR I.CP_NO = ?
 		                   OR USER_NAME LIKE ?)
 		                  AND I.CP_STATUS = 'N'
 		                ORDER
@@ -745,6 +749,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 		                JOIN USERINFO U ON(I.USER_NO=U.USER_NO)
 		                JOIN COUPON C ON(I.CP_NO=C.CP_NO)
 		                WHERE (I.USER_NO = ?
+		                   OR I.CP_NO = ?
 		                   OR USER_NAME LIKE ?)
 		                  AND I.CP_STATUS = 'Y'
 		                ORDER
@@ -839,6 +844,49 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	INSERT 
 	  INTO ISSUANCECOUPON (ISUCP_NO,USER_NO,CP_NO) 
 	VALUES (SEQ_ISUCP.NEXTVAL,?,?)
+</entry>
+
+<entry key="totalMember">
+	SELECT COUNT(*) AS "COUNT"
+	  FROM USERINFO
+	 WHERE USER_STATUS = 'N'
+	   AND ADMIN_STATUS = 'N'
+</entry>
+
+<entry key="totalStu">
+	SELECT COUNT(*) AS "COUNT"
+	  FROM USERINFO
+	 WHERE USER_STATUS = 'N'
+	   AND ADMIN_STATUS = 'N'
+	   AND USER_DIVISION = 1
+</entry>
+
+<entry key="totalMentor">
+	SELECT COUNT(*) AS "COUNT"
+	  FROM USERINFO U
+      JOIN MENTOR M ON(M.USER_NO=U.USER_NO)
+	 WHERE USER_STATUS  = 'N'
+	   AND U.ADMIN_STATUS = 'N'
+	   AND U.USER_DIVISION = 2
+	   AND M.MT_GRANT = 'A'
+</entry>
+
+<entry key="todayConnect">
+	  SELECT COUNT(*) AS "COUNT"
+		FROM USERINFO U
+	   WHERE TO_CHAR(U.USER_RECENTDATE,'YYYY/MM/DD') = TO_CHAR(SYSDATE,'YYYY/MM/DD')
+</entry>
+
+<entry key="todayPay">
+	  SELECT COUNT(*) AS "COUNT"
+		FROM PAY
+	   WHERE TO_CHAR(PAY_DATE,'YYYY/MM/DD') = TO_CHAR(SYSDATE,'YYYY/MM/DD')
+</entry>
+
+<entry key="rqRefundCount">
+	  SELECT COUNT(*) AS "COUNT"
+		FROM PAY
+	   WHERE REFUND = 'W'
 </entry>
 
 </properties>

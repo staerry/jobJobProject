@@ -21,7 +21,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/selectCoupon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/newselectCoupon.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -78,7 +78,7 @@
 	                <input type="checkbox" id="check2" name="check" value="2"> 
 	                <label for="check2">사용완료</label> 
 	                &nbsp;&nbsp;
-	                <input type="text" style="line-height: 30px; width: 200px; text-align:center;" id="searchclick" name="search" placeholder="이름또는 회원번호로 검색">
+	                <input type="text" style="line-height: 30px; width: 200px; text-align:center;" id="searchclick" name="search" placeholder="이름,회원번호,쿠폰번호">
 	                <label for="searchclick"><button id="searchbtn" style="line-height: 30px;" class="btnpurple">검색</button></label>
 	            </form>
 	        </div>

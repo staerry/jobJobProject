@@ -907,4 +907,46 @@ public class AdminService2 {
 		close(conn);
 		return result;
 	}
+	
+	public int totalMember() {
+		Connection conn = getConnection();
+		int totalMember = new AdminDao2().totalMember(conn);
+		close(conn);
+		return totalMember;
+	}
+	
+	public int totalStu() {
+		Connection conn = getConnection();
+		int totalStu = new AdminDao2().totalStu(conn);
+		close(conn);
+		return totalStu;
+	}
+	
+	public int totalMentor() {
+		Connection conn = getConnection();
+		int totalMentor = new AdminDao2().totalMentor(conn);
+		close(conn);
+		return totalMentor;
+	}
+	
+	public int todayConnect() {
+		Connection conn = getConnection();
+		int todayConnect = new AdminDao2().todayConnect(conn);
+		close(conn);
+		return todayConnect;
+	}
+	
+	public int todayPay() {
+		Connection conn = getConnection();
+		int todayPay = new AdminDao2().todayPay(conn);
+		close(conn);
+		return todayPay;
+	}
+
+	public int rqRefundCount() {
+		Connection conn = getConnection();
+		int rqRefundCount = new AdminDao2().rqRefundCount(conn);
+		close(conn);
+		return rqRefundCount;
+	}
 }
