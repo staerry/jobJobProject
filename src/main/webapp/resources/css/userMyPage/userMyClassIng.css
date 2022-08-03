@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+@charset "UTF-8";
+
+	
+
+	/*vod부분*/
+	.main-vod-title{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-end;
+	}
+
+	.main-vod-title>p>b>a{
+		color : #6363ff; 
+		font-size : 12px;
+	}
+
+	.main-vod-list{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		margin-top : 20px;
+	}
+
+
+
+.main-window{
+    overflow: hidden;
+    /* border : 4px solid red; */
+    height : 220px;
+    width : 1000px;
+    position : relative;
+}
+
+.main-window>.main-container{
+    position : absolute;
+    width : 2500px;
+    height : 220px;
+    /* border : 4px solid green; */
+    transition: all 1s;
+}
+
+.main-window>.main-container>.vod{
+    width : 230px;
+    height : 200px;
+    background-color: white;
+    box-shadow: 5px 5px 5px rgb(216, 214, 214);
+    border-radius: 10px;
+    padding : 15px;
+    transition: all 0.3s;
+    cursor: pointer;
+
+    display: inline-block;
+    margin : 8px 8px;
+    /* border : 4px solid pink; */
+}
+
+.main-vod-list .vod:hover{
+    transform: scale(1.05);
+}
+
+.main-vod-list .vod>p{
+    font-size : 12px;
+    margin-top : 30px;
+}
+
+.main-vod-list .vod .class-thumbnail{
+    width : 100%;
+    height : 70px;
+    background-color: #ccc;
+    margin : 10px 0 5px 0;
+}
+
+.main-vod-list .vod span{
+    font-size : 16px;
+    cursor: pointer;
+    color : #ccc;
+}
+
+
+
+	
