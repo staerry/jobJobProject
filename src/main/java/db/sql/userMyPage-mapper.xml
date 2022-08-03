@@ -46,6 +46,23 @@ SELECT
  
 </entry>
 
+<entry key="selectMyPost">
+
+SELECT
+          CM_NO
+        , CMCG_NO
+        , CM_TITLE
+        , CM_CONTENT
+        , CM_ENROLLDATE
+        , CM_COUNT
+        , USER_NAME
+  FROM COMMUNITY
+  JOIN USERINFO USING(USER_NO)
+ WHERE USER_NO = ?
+ 
+</entry>
+
+
 
 
 

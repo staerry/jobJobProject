@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "java.util.ArrayList, com.jj.userMyPage.model.vo.Post" %>
+<%
+	ArrayList<Post> list = (ArrayList<Post>)request.getAttribute("list");		
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,7 +63,7 @@
             <thead>
 
                 <tr style="background-color:whitesmoke">
-                    <th colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <th colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="checkbox">&nbsp;&nbsp;전체선택&nbsp;&nbsp;&nbsp;&nbsp;
                     <button class="btn btn-sm btn-danger">삭제</button></th>
                 </tr>
@@ -75,29 +79,22 @@
               </tr>
             </thead>
             <tbody align="center">
+            <% if(list.isEmpty()) { %>
+              <tr>
+                <td colspan="6">조회된 게시글이 없습니다.</td>
+              </tr>
+              <%} else{ %>
+                <%for(Post p : list){ %>
               <tr>
                 <td><input type="checkbox"></td>
-                <td>xxxxxxx</td>
-                <td>제목입니다</td>
-                <td>xxx</td>
-                <td>xxxx-xx-xx</td>
-                <td>10</td>
+                <td><p><%= p.getCmNo()%></p></td>
+                <td><p><%= p.getCmTitle()%></p></td>
+                <td><p><%= p.getUserName()%></p></td>
+                <td><p><%= p.getCmEnrollDate()%></p></td>
+                <td><p><%= p.getCmCount()%></p></td>
               </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>xxxxxxx</td>
-                <td>제목입니다</td>
-                <td>xxx</td>
-                <td>xxxx-xx-xx</td>
-                <td>10</td>
-              </tr>            <tr>
-                <td><input type="checkbox"></td>
-                <td>xxxxxxx</td>
-                <td>제목입니다</td>
-                <td>xxx</td>
-                <td>xxxx-xx-xx</td>
-                <td>10</td>
-              </tr>
+   				<% } %>
+			<% } %> 
       
             </tbody>
           </table>

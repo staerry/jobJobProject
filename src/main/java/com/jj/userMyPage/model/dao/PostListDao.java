@@ -10,27 +10,27 @@ import java.util.ArrayList;
 import java.util.Properties;
 import static com.jj.common.JDBCTemplate.*;
 
-import com.jj.userMyPage.model.vo.Reply;
+import com.jj.userMyPage.model.vo.Post;
 
-public class ReplyListDao {
+public class PostListDao {
 	
 	Properties prop = new Properties();
 	
-	public ReplyListDao() {
+	public PostListDao() {
 		try {
-			prop.loadFromXML(new FileInputStream(ReplyListDao.class.getResource("/db/sql/userMyPage-mapper.xml").getPath()));
+			prop.loadFromXML(new FileInputStream(PostListDao.class.getResource("/db/sql/userMyPage-mapper.xml").getPath()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public ArrayList<Reply> selectMyReply(Connection conn, int userNo){
+	public ArrayList<Post> selectMyPost(Connection conn, int userNo){
 		
-		ArrayList <Reply> list = new ArrayList<>();
+		ArrayList <Post> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset =null;
 		
-		String sql = prop.getProperty("selectMyReply");
+		String sql = prop.getProperty("selectMyPost");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -39,12 +39,15 @@ public class ReplyListDao {
 			
 			while(rset.next()) {
 						
-				list.add(new Reply(rset.getInt("REPLY_NO")
-								 , rset.getInt("CM_NO")
-								 , rset.getString("REPLY_CONTENT")
-								 , rset.getDate("REPLY_ENROLLDATE")
-							));
-						
+				list.add(new Post(rset.getInt("CM_NO")
+						 , rset.getInt("CMCG_NO")
+						 , rset.getString("CM_TITLE")
+						 , rset.getString("CM_CONTENT")
+						 , rset.getDate("CM_ENROLLDATE")
+						 , rset.getInt("CM_COUNT")
+						 , rset.getString("USER_NAME")
+					));
+			
 				
 				}
 			} catch (SQLException e) {
