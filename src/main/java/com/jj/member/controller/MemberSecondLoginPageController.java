@@ -63,9 +63,6 @@ public class MemberSecondLoginPageController extends HttpServlet {
 				session.setAttribute("alertMsg", "강의자 로그인 성공");
 				response.sendRedirect(request.getContextPath() + "/userlogin.me");
 			}
-			
-			System.out.println("mtgrade= " + loginUser.getMtGrade());
-			System.out.println(loginUser);
 		
 		}
 	}

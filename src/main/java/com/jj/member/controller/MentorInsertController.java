@@ -56,8 +56,7 @@ public class MentorInsertController extends HttpServlet {
 			
 			// 1_2) 전달된 파일을 저장시킬 폴더의 경로 알아내기
 			
-				// 멘토 사원증 저장할 폴더 : mentorEmpCardFiles
-				// 멘토 신분증 저장할 폴더 : mentorIdCardFIles
+				// 멘토 사원증, 신분증 저장할 폴더 : mentorEmpIdCardFiles
 			String savePath = session.getServletContext().getRealPath("/resources/image/mentorEmpIdCardFiles/");
 			
 			// 1_3) 전달된 파일의 파일명 수정 및 서버에 업로드 작업
@@ -113,15 +112,6 @@ public class MentorInsertController extends HttpServlet {
 			}
 			
 		
-			
-			/*if(multiRequest.getOriginalFileName("mtEmpCard") != null) { // not null 이니까 첨부파일이 넘어온 것 // 근데 우리는 무조건 사원증 받으니까 if문 안써도 되는지??
-				mt = new Mentor();
-				
-				mt.setEmpCardOriginName(multiRequest.getFilesystemName("mtEmpCard")); // 수정명을 원본명에 덮어씀
-				mt.setEmpCardPath("resources/image/mentorEmpCardFiles/");
-				
-			}*/	
-
 		}
 	
 	}
