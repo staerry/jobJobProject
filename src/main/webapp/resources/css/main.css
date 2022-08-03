@@ -330,9 +330,16 @@
 .main-mentor-list .mentor .mentor-profile-img{
     width : 70px;
     height : 70px;
+    overflow : hidden;
     background-color: #ccc;
     border-radius: 50px;
     margin : auto;
+}
+
+.main-mentor-list .mentor .mentor-profile-img>img{
+    width : 100%;
+    height : 100%;
+	object-fit : cover;
 }
 
 .main-mentor-list .mentor .mentor-info span{

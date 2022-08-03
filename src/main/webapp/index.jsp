@@ -212,7 +212,7 @@
 							for(let i = 0; i < 12; i ++){
 								value += '<div class="mentor">'
 								      +  	'<div class="mentor-profile-img">'
-								      +     	'<img>'
+								      +     	'<img src="' + result[0].ltrProfilePath + '" alt="profile-image">'
 								      +     '</div>'
 				                      +  	'<div class="mentor-info">'
 	                            	  +	 		'<span>' + result[i].userName + '</span>'
