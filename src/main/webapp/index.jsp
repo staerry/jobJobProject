@@ -50,18 +50,12 @@
 	<%@ include file="views/common/menubar.jsp" %>
 	
 	<div class="main-banner-wrap">
-	    <div id="demo" class="carousel slide" data-ride="carousel">
 	
-	        <!-- Indicators -->
-	        <ul class="carousel-indicators">
-	          <li data-target="#demo" data-slide-to="0" class="active"></li>
-	          <li data-target="#demo" data-slide-to="1"></li>
-	          <li data-target="#demo" data-slide-to="2"></li>
-	        </ul>
+		<!-- 슬라이드 이미지 부분 -->
+	    <div id="demo" class="carousel slide" data-ride="carousel">
 	      
-	        <!-- The slideshow -->
 	        <div class="carousel-inner">
-	          <div class="carousel-item active">
+<!-- 	          <div class="carousel-item active">
 	            <img src="https://svrforum.com/files/attach/images/2020/12/26/ac5610f38af46e7c135a9065561734e0.jpg" alt="Los Angeles">
 	          </div>
 	          <div class="carousel-item">
@@ -69,18 +63,50 @@
 	          </div>
 	          <div class="carousel-item">
 	            <img src="https://svrforum.com/files/attach/images/2020/12/26/ac5610f38af46e7c135a9065561734e0.jpg" alt="New York">
-	          </div>
+	          </div> -->
 	        </div>
 	      
-	        <!-- Left and right controls -->
 	        <a class="carousel-control-prev" href="#demo" data-slide="prev">
 	          <span class="carousel-control-prev-icon"></span>
 	        </a>
 	        <a class="carousel-control-next" href="#demo" data-slide="next">
 	          <span class="carousel-control-next-icon"></span>
 	        </a>
-	      
-	      </div>
+	        
+	        <!-- 슬라이드 데이터 출력 ajax -->
+	        <script>
+		        $(document).ready(function(){
+		        	$.ajax({
+		        		url : "ajaxSlideImgView.me",
+		        		date : {},
+		        		success : function(result){
+		        			console.log(result);
+		        			
+		        			let value = "";
+		        			for(let i = 0; i < result.length; i++){
+		        				if(i == 1){
+									value += '<div class="carousel-item active">'
+									      +  	'<img src="' + result[i].filePath + result[i].fileName + '" alt="slide-img-' + i + '">'
+									      +  '</div>'
+		        				}else{
+									value += '<div class="carousel-item">'
+									      +  	'<img src="' + result[i].filePath + result[i].fileName + '" alt="slide-img-' + i + '">'
+									      +  '</div>'
+		        				}
+		        			}
+		        			
+		        			$(".carousel-inner").html(value);
+		        		},
+		        		error : function(){
+		        			console.log("슬라이드 이미지 부분 ajax 통신 실패");
+		        		}
+		        	})
+		        });
+	        </script>
+	        
+	    </div><!-- 슬라이드 이미지 부분 끝 -->
+	    
+	    <!-- 로그인 전 보여질 부분 -->
 		<div class="main-login-area">
 			<% if(loginUser == null){ %>
 				<a href="<%= contextPath %>/firstlogin.me" class="main-login-btn">로그인</a>
@@ -97,11 +123,12 @@
 					<b><a href="<%=contextPath%>/myPage.my">마이페이지</a></b>
 				</p>
 			<% } %>
-		</div>
+		</div><!-- 로그인 전 보여질 부분 끝 -->
 	</div>
 
-	<!--검색 부분-->
 	<div class="main-content-wrap">
+
+		<!--검색 부분-->	
 		<div class="search-bar">
 			<form action="">
 				<input type="search">
@@ -109,7 +136,7 @@
 					<i class="fas fa-search"></i>
 				</button>
 			</form>
-		</div>
+		</div><!-- 검색 부분 끝 -->
 
 		<!--vod 부분-->
 		<div class="main-vod-title">
@@ -193,7 +220,7 @@
 			<div class="vod-slide-btn-right">
 				<i class="fas fa-angle-right"></i>
 			</div>
-		</div>
+		</div><!-- vod부분 끝 -->
 
 		<!--멘토 부분-->
 		<div class="main-mentor-title">
@@ -309,7 +336,7 @@
 			<div class="mentor-slide-btn-right">
 				<i class="fas fa-angle-right"></i>
 			</div>
-		</div>
+		</div><!-- 멘토 부분 끝 -->
 
 		<!--커뮤니티 부분-->
 		<div class="main-community-title">
@@ -407,10 +434,11 @@
 			<div class="community-slide-btn-right">
 				<i class="fas fa-angle-right"></i>
 			</div>
-		</div>
+		</div><!-- 커뮤니티 부분 끝 -->
 	</div>
+	
 	<%@ include file="views/common/footer.jsp" %>
-	 
+	
 	<!--vod슬라이드 부분-->
     <script>
         let vodPosition = 0;
