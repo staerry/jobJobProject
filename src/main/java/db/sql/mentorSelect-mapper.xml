@@ -271,7 +271,8 @@
  	
  	 	<!-- 작성자 : 최영헌 -->
  	<entry key="selectMentorList">
-		SELECT PROFILE_PATH
+		SELECT U.USER_NO
+		     , PROFILE_PATH
 		     , USER_NAME
 		     , MT_COMPANY
 		  FROM LECTURER L

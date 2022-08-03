@@ -29,15 +29,15 @@
 		<ul class="category-area">
 			<li>총 <%= searchAllCount %>건&nbsp;&nbsp;|&nbsp;&nbsp;</li>
 			<li><a href="#a">클래스 <%= classCount %></a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-			<li><a href="#b">멘토 <%= lecturerCount %></a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+			<li><a href="#2">멘토 <%= lecturerCount %></a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
 			<li><a href="#c"> 게시글 <%= communityCount %></a></li>
 		</ul><!--카테고리부분 끝-->
 
 		<!--검색어 결과, 검색폼 부분-->
 		<div class="search-area">
 			<h2>"<%= keyword %>"의 결과</h2><br>
-			<form action="" method="post">
-				<input type="search" name="search" placeholder="검색">
+			<form action="searchResultView.me" method="post">
+				<input type="search" name="keyword" placeholder="클래스, 멘토, 게시글 검색">
 				<button type="submit">검색</button>
 			</form>
 		</div><!--검색어 결과, 검색폼 부분 끝-->
@@ -49,7 +49,7 @@
 			<% for(Class i : classList){ %>
 				<div class="class-item">
 					<div class="class-info">
-						<h4><a href=""><%= i.getClTitle() %></a></h4>
+						<h4><a href="<%= contextPath %>/detail.cl?class=<%= i.getClNo() %>"><%= i.getClTitle() %></a></h4>
 						<pre><%= i.getClSubtitle() %></pre>
 						<br>
 						<span><%= i.getUserNo() %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><%= i.getClCategory() %></span>
@@ -71,14 +71,12 @@
 					<div class="profile-box">
 						<img src="<%= i.getLtrProfilePath() %>" alt="프로필">
 					</div>
-					<h4><%= i.getUserName() %></h4>
-					<span><%= i.getLtrCompany() %></span><br>
-					<button type="button">방문하기</button>
+					<h4><%= i.getLtrInfo() %></h4>
+					<span><%= i.getLtrCareer() %></span><br>
+					<button type="button" onclick="location.href='<%= contextPath %>/detail.lt?lecNo=<%= i.getUserNo() %>'">방문하기</button>
 				</div>
 			<% } %>
 		</div><!--멘토 부분 끝-->
-
-		<hr>
 
 		<!--게시글 부분-->
 		<div class="post-wrap">
@@ -86,7 +84,7 @@
 			<% for(Community i : communityList){ %>
 				<div class="post-item">
 					<div class="post-info">
-						<h4><a href=""><%= i.getCommTitle() %></a></h4>
+						<h4><a href="<%= contextPath %>/detail.co?contentNo=<%= i.getCommNo() %>"><%= i.getCommTitle() %></a></h4>
 						<pre><%= i.getCommContent() %></pre>
 						<br>
 						<span><%= i.getCommWriter() %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><%= i.getCreateDate() %></span>

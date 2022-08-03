@@ -608,7 +608,8 @@ Properties prop = new Properties();
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Lecturer(rset.getString("user_name")
+				list.add(new Lecturer(rset.getInt("user_no")
+									, rset.getString("user_name")
 						            , rset.getString("mt_company")
 						            , rset.getString("profile_path")));
 			}
@@ -618,7 +619,7 @@ Properties prop = new Properties();
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println(list);
 		return list;
 	}
 }

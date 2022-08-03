@@ -17,9 +17,10 @@ public class Community {
 	
 	public Community() {}
 
-	public Community(String commWriter, String commTitle, String commContent, Date createDate, int count,
+	public Community(int commNo, String commWriter, String commTitle, String commContent, Date createDate, int count,
 			int likeCount) {
 		super();
+		this.commNo = commNo;
 		this.commWriter = commWriter;
 		this.commTitle = commTitle;
 		this.commContent = commContent;
