@@ -55,10 +55,13 @@
 		            case 3: categoryName = "스터디"; break;}
             %>            
                 <h3><%= categoryName %></h3>
+                <form action="<%= contextPath %>/search.co">
                 <div class="community-search-bar">
-                    <input type="search" name="searchKeyword" id="search-keyword" placeholder="궁금한 질문을 검색해 보세요!">
-                    <button onclick=""><i class="far fa-search"></i>&nbsp;검색</button>
+                    <input type="search" name="keyword" id="search-keyword" placeholder="니JOB내JOB에서 답을 찾아보세요! (제목 / 내용 / 작성자로 검색 가능)" required>
+                    <input type="hidden" name="category" value="<%= categoryNo%>">
+                    <button type="submit"><i class="far fa-search"></i>&nbsp;검색</button>
                 </div>
+                </form>
             </div>
             
             <script>

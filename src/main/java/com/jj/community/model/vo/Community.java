@@ -58,6 +58,17 @@ public class Community {
 		this.likeCount = likeCount;
 	}
 
+	
+	
+	public Community(int commNo, String commWriter, String commTitle, int count, Date createDate) {
+		super();
+		this.commNo = commNo;
+		this.commWriter = commWriter;
+		this.commTitle = commTitle;
+		this.count = count;
+		this.createDate = createDate;
+	}
+
 	public String getCommWriterId() {
 		return commWriterId;
 	}

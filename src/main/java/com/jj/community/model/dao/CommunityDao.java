@@ -368,4 +368,71 @@ public class CommunityDao {
 		return list;
 		
 	}
+	
+	public int searchListCount(Connection conn, int category, String keyword) {
+		int searchListCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("searchListCount");
+		
+		System.out.println(category);
+		System.out.println(keyword);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, category);
+			pstmt.setString(2, '%' + keyword + '%');
+			pstmt.setString(3, '%' + keyword + '%');
+			pstmt.setString(4, '%' + keyword + '%');
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				searchListCount = rset.getInt("search_count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		System.out.println(searchListCount);
+		return(searchListCount);
+		
+	}
+	
+	public ArrayList<Community> searchList(Connection conn, int category, String keyword){
+		ArrayList<Community> searchList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("searchList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, category);
+			pstmt.setString(2, '%' + keyword + '%');
+			pstmt.setString(3, '%' + keyword + '%');
+			pstmt.setString(4, '%' + keyword + '%');
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				searchList.add(new Community(rset.getInt("cm_no"),
+											 rset.getString("user_name"),
+											 rset.getString("cm_title"),
+											 rset.getInt("cm_count"),
+											 rset.getDate("cm_enrolldate")
+										    ));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println(searchList);
+		return searchList;
+		
+	}
 }

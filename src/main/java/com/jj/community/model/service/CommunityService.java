@@ -130,4 +130,18 @@ public class CommunityService {
 		close(conn);
 		return list;	
 	}
+	
+	public int searchListCount(int category, String keyword) {
+		Connection conn = getConnection();
+		int searchListCount = new CommunityDao().searchListCount(conn, category, keyword);
+		close(conn);
+		return searchListCount;
+	}
+	
+	public ArrayList<Community> searchList(int category, String keyword){
+		Connection conn = getConnection();
+		ArrayList<Community> searchList = new CommunityDao().searchList(conn, category, keyword);
+		close(conn);
+		return searchList;
+	}
 }

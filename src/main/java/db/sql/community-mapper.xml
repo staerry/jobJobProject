@@ -190,5 +190,37 @@
 	  		 WHERE RNUM BETWEEN ? AND ?
 		  		 
 	</entry>
+	
+	<entry key="searchListCount">
+		SELECT COUNT(*) AS SEARCH_COUNT
+		  FROM COMMUNITY 
+		  JOIN USERINFO USING(USER_NO)
+		 WHERE 
+		       CMCG_NO = ?
+		   AND (  
+		       UPPER(CM_TITLE) LIKE UPPER(?)
+		    OR UPPER(CM_CONTENT) LIKE UPPER(?)
+		    OR UPPER(USER_NAME) LIKE UPPER(?))
+	
+	</entry>
+	
+	<entry key="searchList">
+		SELECT
+		        CM_NO
+		      , USER_NAME
+		      , CM_TITLE
+		      , CM_COUNT
+		      , CM_ENROLLDATE
+		  FROM COMMUNITY 
+		  JOIN USERINFO USING(USER_NO)
+		 WHERE 
+		       CMCG_NO = ?
+		   AND (  
+		       UPPER(CM_TITLE) LIKE UPPER(?)
+		    OR UPPER(CM_CONTENT) LIKE UPPER(?)
+		    OR UPPER(USER_NAME) LIKE UPPER(?))
+		  ORDER
+		     BY CM_NO DESC
+	</entry>
 
 </properties>
