@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/userMyPage/mainTemplate.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/setting.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/userMyPage/userMyPageMain2.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/userMyPage/userMyClassLike.css">
 
 <script src="https://kit.fontawesome.com/ea8287c514.js" crossorigin="anonymous"></script>
 <title>Insert title here</title>
@@ -30,8 +30,8 @@
 		
 					<!--vod 부분-->
 					<div class="main-vod-title">
-						<h2>수강중인 클래스</h2>
-						<p><b><a href="<%=request.getContextPath() %>/myClassIng.my">더보기</a></b></p>
+						<h2>찜한 클래스</h2>
+						
 					</div>
 					<div class="main-vod-list">
 						
@@ -107,93 +107,13 @@
 			              
 			            </div>
 			
-						
+					
 					</div>
 					
 					
-					<!--vod2 부분-->
-					<div class="main2-vod-title">
-						<h2>찜한 클래스</h2>
-						<p><b><a href="<%=request.getContextPath() %>/classLike.my">더보기</a></b></p>
-					</div>
-					<div class="main2-vod-list">
-						
-			            <div class="main2-window">
-			                <div class="main2-container">
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                </div>
+					
 			                
-			              
-			            </div>
-			
-						
-					</div>
-					
-				
-		
+			         
 				
 		
 		           
@@ -210,7 +130,6 @@
 			
 	
 	
-	   
 
     
 

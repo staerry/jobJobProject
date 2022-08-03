@@ -70,9 +70,7 @@ public class myPageMainController extends HttpServlet {
 //				response.sendRedirect(request.getContextPath() + "/userlogin.me");
 //			}
 //			
-//			System.out.println("mtgrade= " + loginUser.getMtGrade());
-//			System.out.println(loginUser);
-		
+
 	 if(userDivision ==1){ //일반회원
 //		
 			request.getRequestDispatcher("views/userMyPage/userMyPageMain2.jsp").forward(request, response);

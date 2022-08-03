@@ -280,8 +280,8 @@
                     <ul class="big_menu">
                         <li class="large">나의 클래스 <i class="arrow fas fa-angle-right"></i></li>
                         <ul class="small_menu">
-                            <li><a href="#">수강 중인 클래스</a></li>
-                            <li><a href="#">찜한 클래스</a></li>
+                            <li><a href="<%=request.getContextPath() %>/myClassIng.my">수강 중인 클래스</a></li>
+                            <li><a href="<%=request.getContextPath() %>/classLike.my">찜한 클래스</a></li>
                             <!-- <li><a href="">소메뉴1-3</a></li>
                             <li><a href="#">소메뉴1-4</a></li> -->
                         </ul>
