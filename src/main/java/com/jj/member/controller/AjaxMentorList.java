@@ -1,23 +1,29 @@
 package com.jj.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.jj.mentorSelect.model.service.LecturerService;
+import com.jj.mentorSelect.model.vo.Lecturer;
+
 /**
- * Servlet implementation class SearchClassListView
+ * Servlet implementation class AjaxMentorList
  */
-@WebServlet("/searchListView.me")
-public class SearchListView extends HttpServlet {
+@WebServlet("/ajaxMentorList.me")
+public class AjaxMentorList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchListView() {
+    public AjaxMentorList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +32,9 @@ public class SearchListView extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/search/searchListView.jsp").forward(request, response);
+		ArrayList<Lecturer> list = new LecturerService().selectMainMentorList();
+		response.setContentType("application/json; charset=UTF-8");
+		new Gson().toJson(list, response.getWriter());
 	}
 
 	/**

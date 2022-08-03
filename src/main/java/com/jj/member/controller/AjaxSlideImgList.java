@@ -16,7 +16,7 @@ import com.jj.member.model.vo.SlideAttachment;
 /**
  * Servlet implementation class AjaxSlideImgList
  */
-@WebServlet("/ajaxSlideImgView.me")
+@WebServlet("/ajaxSlideImgList.me")
 public class AjaxSlideImgList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

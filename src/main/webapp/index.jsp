@@ -69,7 +69,7 @@
 	        <script>
 		        $(document).ready(function(){
 		        	$.ajax({
-		        		url : "ajaxSlideImgView.me",
+		        		url : "ajaxSlideImgList.me",
 		        		date : {},
 		        		success : function(result){
 		        			console.log(result);
@@ -95,7 +95,6 @@
 		        	})
 		        });
 	        </script>
-	        
 	    </div><!-- 슬라이드 이미지 부분 끝 -->
 	    
 	    <!-- 로그인 전 보여질 부분 -->
@@ -142,76 +141,43 @@
 
             <div class="main-window">
                 <div class="main-container">
-                    <div class="vod">
-                        <h4>클래스명이 들어갈 자리</h4>
-                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-                        <div class="class-thumbnail"></div>
-                        <span>
-                            <i class="fas fa-heart"></i>
-                        </span>
-                    </div>
-                    <div class="vod">
-                        <h4>클래스명이 들어갈 자리</h4>
-                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-                        <div class="class-thumbnail"></div>
-                        <span>
-                            <i class="fas fa-heart"></i>
-                        </span>
-                    </div>
-                    <div class="vod">
-                        <h4>클래스명이 들어갈 자리</h4>
-                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-                        <div class="class-thumbnail"></div>
-                        <span>
-                            <i class="fas fa-heart"></i>
-                        </span>
-                    </div>
-                    <div class="vod">
-                        <h4>클래스명이 들어갈 자리</h4>
-                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-                        <div class="class-thumbnail"></div>
-                        <span>
-                            <i class="fas fa-heart"></i>
-                        </span>
-                    </div>
-                    <div class="vod">
-                        <h4>클래스명이 들어갈 자리</h4>
-                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-                        <div class="class-thumbnail"></div>
-                        <span>
-                            <i class="fas fa-heart"></i>
-                        </span>
-                    </div>
-                    <div class="vod">
-                        <h4>클래스명이 들어갈 자리</h4>
-                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-                        <div class="class-thumbnail"></div>
-                        <span>
-                            <i class="fas fa-heart"></i>
-                        </span>
-                    </div>
-                    <div class="vod">
-                        <h4>클래스명이 들어갈 자리</h4>
-                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-                        <div class="class-thumbnail"></div>
-                        <span>
-                            <i class="fas fa-heart"></i>
-                        </span>
-                    </div>
-                    <div class="vod">
-                        <h4>클래스명이 들어갈 자리</h4>
-                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-                        <div class="class-thumbnail"></div>
-                        <span>
-                            <i class="fas fa-heart"></i>
-                        </span>
-                    </div>
+					<!-- ajax로 데이터 조회중 -->
                 </div>
             </div>
 
 			<div class="vod-slide-btn-right">
 				<i class="fas fa-angle-right"></i>
 			</div>
+			
+			<!-- vod부분 ajax -->
+			<script>
+				$(document).ready(function(){
+					$.ajax({
+						url : "ajaxClassList.me",
+						data : {},
+						success : function(result){
+							console.log(result);
+							
+							let value = "";
+							for(let i = 0; i < 9; i++){
+								value += '<div class="vod" onclick="location.href=\'<%= contextPath %>\/detail.cl?class=' + result[i].clNo +'\'">'
+								      +  	'<h4>' + result[i].clTitle + '</h4>'
+								      +     '<p>' + result[i].userNo + '&nbsp&nbsp&nbsp&nbsp' + result[i].mtCompany + '<p>'
+								      +     '<img class="class-thumbnail" src="' + result[i].clThumbnailPath + '" alt="thumbnail' + i + '">'
+								      +     '<span>'
+								      +     	'<i class="fas fa-heart"></i>'
+								      +     '</span>'
+								      +  '</div>'
+							}
+							
+							$(".main-container").html(value);
+						},
+						error : function(){
+							console.log("클래스 조회 부분 ajax통신 실패");
+						}
+					})
+				})
+			</script>
 		</div><!-- vod부분 끝 -->
 
 		<!--멘토 부분-->
@@ -226,108 +192,45 @@
 
             <div class="mentor-window">
                 <div class="mentor-container">
-                    <div class="mentor">
-                        <div class="mentor-profile-img"></div>
-                        <div class="mentor-info">
-                            <span>멘토명</span>
-                            <span>멘토 소속</span>
-                        </div>
-                        <a href="">방문하기</a>
-                    </div>
-                    <div class="mentor">
-                        <div class="mentor-profile-img"></div>
-                        <div class="mentor-info">
-                            <span>멘토명</span>
-                            <span>멘토 소속</span>
-                        </div>
-                        <a href="">방문하기</a>
-                    </div>
-                    <div class="mentor">
-                        <div class="mentor-profile-img"></div>
-                        <div class="mentor-info">
-                            <span>멘토명</span>
-                            <span>멘토 소속</span>
-                        </div>
-                        <a href="">방문하기</a>
-                    </div>
-                    <div class="mentor">
-                        <div class="mentor-profile-img"></div>
-                        <div class="mentor-info">
-                            <span>멘토명</span>
-                            <span>멘토 소속</span>
-                        </div>
-                        <a href="">방문하기</a>
-                    </div>
-                    <div class="mentor">
-                        <div class="mentor-profile-img"></div>
-                        <div class="mentor-info">
-                            <span>멘토명</span>
-                            <span>멘토 소속</span>
-                        </div>
-                        <a href="">방문하기</a>
-                    </div>
-                    <div class="mentor">
-                        <div class="mentor-profile-img"></div>
-                        <div class="mentor-info">
-                            <span>멘토명</span>
-                            <span>멘토 소속</span>
-                        </div>
-                        <a href="">방문하기</a>
-                    </div>
-                    <div class="mentor">
-                        <div class="mentor-profile-img"></div>
-                        <div class="mentor-info">
-                            <span>멘토명</span>
-                            <span>멘토 소속</span>
-                        </div>
-                        <a href="">방문하기</a>
-                    </div>
-                    <div class="mentor">
-                        <div class="mentor-profile-img"></div>
-                        <div class="mentor-info">
-                            <span>멘토명</span>
-                            <span>멘토 소속</span>
-                        </div>
-                        <a href="">방문하기</a>
-                    </div>
-                    <div class="mentor">
-                        <div class="mentor-profile-img"></div>
-                        <div class="mentor-info">
-                            <span>멘토명</span>
-                            <span>멘토 소속</span>
-                        </div>
-                        <a href="">방문하기</a>
-                    </div>
-                    <div class="mentor">
-                        <div class="mentor-profile-img"></div>
-                        <div class="mentor-info">
-                            <span>멘토명</span>
-                            <span>멘토 소속</span>
-                        </div>
-                        <a href="">방문하기</a>
-                    </div>
-                    <div class="mentor">
-                        <div class="mentor-profile-img"></div>
-                        <div class="mentor-info">
-                            <span>멘토명</span>
-                            <span>멘토 소속</span>
-                        </div>
-                        <a href="">방문하기</a>
-                    </div>
-                    <div class="mentor">
-                        <div class="mentor-profile-img"></div>
-                        <div class="mentor-info">
-                            <span>멘토명</span>
-                            <span>멘토 소속</span>
-                        </div>
-                        <a href="">방문하기</a>
-                    </div>
+					<!-- ajax 조회 중 -->
                 </div>
             </div>
 
 			<div class="mentor-slide-btn-right">
 				<i class="fas fa-angle-right"></i>
 			</div>
+			
+			<!-- 멘토부분 ajax -->
+			<script>
+				$(document).ready(function(){
+					$.ajax({
+						url : "ajaxMentorList.me",
+						data : {},
+						success : function(result){
+							
+							let value = "";
+							for(let i = 0; i < 12; i ++){
+								value += '<div class="mentor">'
+								      +  	'<div class="mentor-profile-img">'
+								      +     	'<img>'
+								      +     '</div>'
+				                      +  	'<div class="mentor-info">'
+	                            	  +	 		'<span>' + result[i].userName + '</span>'
+	                           		  +	    	'<span>' + result[i].ltrCompany + '</span>'
+	                        		  +	    '</div>'
+	                        		  + 	'<a href="<%= contextPath %>\/detail.lt?lecNo=' + result[i].userNo + '">방문하기</a>'
+	                        		  +  '</div>'
+							}
+							
+							$(".mentor-container").html(value);
+						},
+						error : function(){
+							console.log("멘토 조회 부분 ajsx통신 실패");
+						}
+					})
+				})
+			</script>
+			
 		</div><!-- 멘토 부분 끝 -->
 
 		<!--커뮤니티 부분-->
@@ -436,15 +339,15 @@
         let vodPosition = 0;
 
         $(".main-vod-list>.vod-slide-btn-right").click(function(){
-            vodPosition += 250;
+            vodPosition += 245;
             $(".main-container").css('transform', 'translateX(-'+ vodPosition +'px)');
             if(vodPosition >= 1000){
-                vodPosition = -250;
+                vodPosition = -245;
             }
         })
 
         $(".main-vod-list>.vod-slide-btn-left").click(function(){
-            vodPosition -= 250;
+            vodPosition -= 245;
             if(vodPosition <= 0){
                 vodPosition = 1000;
             }
@@ -457,15 +360,15 @@
         let mentorPosition = 0;
 
         $(".main-mentor-list>.mentor-slide-btn-right").click(function(){
-            mentorPosition += 165;
+            mentorPosition += 190;
             $(".mentor-container").css('transform', 'translateX(-'+ mentorPosition +'px)');
             if(mentorPosition >= 825){
-                mentorPosition = -165;
+                mentorPosition = -190;
             }
         })
 
         $(".main-mentor-list>.mentor-slide-btn-left").click(function(){
-            mentorPosition -= 165;
+            mentorPosition -= 190;
             if(mentorPosition <= 0){
                 mentorPosition = 825;
             }
