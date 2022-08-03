@@ -100,4 +100,17 @@ public class MemberService {
 
 	}
 	
+	/**
+	 * 수강중인 강의 수 조회 요청을 처리해주는 메소드
+	 * @param name : 조회할 멤버 명
+	 * @return 수강중인 강의 수
+	 * @author youngheonchoi
+	 */
+	public int selectClassIng(String name) {
+		Connection conn = getConnection();
+		int classIngCount = new MemberDao().selectClassIng(conn, name);
+		close(conn);
+		return classIngCount;
+	}
+	
 }

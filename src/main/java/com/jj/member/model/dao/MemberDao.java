@@ -243,4 +243,31 @@ public class MemberDao {
 		}
 		   return result;
 	}
+	
+	public int selectClassIng(Connection conn, String name) {
+		int classIngCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectClassIng");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				classIngCount = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return classIngCount;
+	}
 }

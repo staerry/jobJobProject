@@ -127,6 +127,13 @@
 	
 	</entry>
 	
+	<entry key="selectClassIng">
+		SELECT COUNT(*) COUNT
+		  FROM USERINFO U
+		  JOIN CLASS_ING C ON (U.USER_NO = C.USER_NO)
+		 WHERE USER_NAME = ?
+	</entry>
+	
 	
 
 
