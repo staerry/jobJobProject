@@ -37,7 +37,7 @@
 		<div class="search-area">
 			<h2>"<%= keyword %>"의 결과</h2><br>
 			<form action="searchResultView.me" method="post">
-				<input type="search" name="keyword" placeholder="클래스, 멘토, 게시글 검색">
+				<input type="search" name="keyword" placeholder="클래스, 강의자, 게시글 검색">
 				<button type="submit">검색</button>
 			</form>
 		</div><!--검색어 결과, 검색폼 부분 끝-->
@@ -77,6 +77,8 @@
 				</div>
 			<% } %>
 		</div><!--멘토 부분 끝-->
+
+		<hr>
 
 		<!--게시글 부분-->
 		<div class="post-wrap">
