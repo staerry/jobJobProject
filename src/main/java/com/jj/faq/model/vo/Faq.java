@@ -14,6 +14,19 @@ public class Faq {
 		
 	}
 	
+	public Faq(int faqNo, String faqTitle, int faqCount) {
+		super();
+		this.faqNo = faqNo;
+		this.faqTitle = faqTitle;
+		this.faqCount = faqCount;
+	}
+
+	public Faq(int faqNo, String faqTitle) {
+		super();
+		this.faqNo = faqNo;
+		this.faqTitle = faqTitle;
+	}
+
 	public Faq(int faqNo, String userNo, String faqTitle, String faqAnswer, int faqCount) {
 		super();
 		this.faqNo = faqNo;
@@ -22,8 +35,6 @@ public class Faq {
 		this.faqAnswer = faqAnswer;
 		this.faqCount = faqCount;
 	}
-
-
 
 	public Faq(int faqNo, String faqTitle, String faqAnswer, String userNo, Date faqEnrolldate) {
 		super();

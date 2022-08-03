@@ -134,9 +134,58 @@ public class FaqDao {
 		return fq;
 	}
 	
+	public ArrayList<Faq> selectNewFaqList(Connection conn){
+		// select문 => result set에 담김 (여러행조회) => ArrayList<Faq>에 담음
+		ArrayList<Faq> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectNewFaqList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Faq(rset.getInt("faq_no"),
+								 rset.getString("faq_title")
+						));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 	
-	
-	
+	public ArrayList<Faq> selectCountFaqList(Connection conn){
+		// select문 => result set에 담김 (여러행조회) => ArrayList<Faq>에 담음
+		ArrayList<Faq> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCountFaqList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Faq(rset.getInt("faq_no"),
+								 rset.getString("faq_title"),
+								 rset.getInt("faq_count")
+						));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 	
 	
 	

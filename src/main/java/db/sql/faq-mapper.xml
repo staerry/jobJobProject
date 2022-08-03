@@ -51,11 +51,23 @@
 		 WHERE FAQ_NO = ?
 	</entry>
 
+	<entry key="selectNewFaqList">
+		SELECT 
+				FAQ_NO
+			  , FAQ_TITLE
+		  FROM FAQ
+		 ORDER
+		    BY FAQ_NO DESC
+	</entry>
 
-
-
-
-
-
+	<entry key="selectCountFaqList">
+		SELECT 
+			    FAQ_NO
+			  , FAQ_TITLE
+			  , FAQ_COUNT
+		  FROM FAQ
+		 ORDER
+		    BY FAQ_COUNT DESC
+	</entry>
 
 </properties>

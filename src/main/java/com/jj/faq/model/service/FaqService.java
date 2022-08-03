@@ -17,6 +17,7 @@ public class FaqService {
 	public ArrayList<Faq> selectFaqList(){
 		Connection conn = getConnection();
 		ArrayList<Faq> list = new FaqDao().selectFaqList(conn);
+		close(conn);
 		return list;
 	}
 	
@@ -53,29 +54,18 @@ public class FaqService {
 		return fq;
 	}
 	
+	public ArrayList<Faq> selectNewFaqList(){
+		Connection conn = getConnection();
+		ArrayList<Faq> list = new FaqDao().selectNewFaqList(conn);
+		close(conn);
+		return list;
+	}
 	
+	public ArrayList<Faq> selectCountFaqList(){
+		Connection conn = getConnection();
+		ArrayList<Faq> list = new FaqDao().selectCountFaqList(conn);
+		close(conn);
+		return list;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

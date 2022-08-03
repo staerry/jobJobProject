@@ -41,9 +41,6 @@ public class MTMInsertController extends HttpServlet {
 		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		String mtmTitle = request.getParameter("mtmTitle");
 		String mtmContent = request.getParameter("mtmContent");
-			
-		// 로그인한 회원번호 => session으로 뽑아서
-		// userNo 필드에 담기 
 		
 		MTM m = new MTM();
 		m.setUserNo(userNo);
