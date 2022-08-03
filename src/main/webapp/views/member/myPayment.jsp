@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<meta charset="UTF-8">
+<title>Document</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -17,34 +15,9 @@
     <br><br>
     <div class="container">
         <h2>결제내역</h2>
-        <br>
-        <h4>강의리스트로 조회</h4>
-        <br>
-        <form action="<%=contextPath%>/myPaymentDetails.me">
-          <div class="form-check-inline">
-            <label class="form-check-label" for="all">
-              <input type="radio" class="form-check-input" name="searchKeyword" value="all" checked>전체
-            </label>
-          </div>
-          <div class="form-check-inline">
-            <label class="form-check-label" for="QnA">
-              <input type="radio" class="form-check-input" name="searchKeyword" value="className">강의명
-            </label>
-          </div>
-          <div class="form-check-inline">
-            <label class="form-check-label" for="study">
-              <input type="radio" class="form-check-input" name="searchKeyword" value="tutorName">강사명
-            </label>
-          </div>
-          <br>
-          <input type="text" placeholder="이름으로 검색">&nbsp;
-          <button type="submit" class="btn" style="background-color: #6363FF; color: white;">검색</button>
-          <br>
-
-          <!--검색결과 조회 시 -->
-          <br>
-          <span>검색결과 조회</span>
-          <br><br>
+        <br><br>
+        <h4><span style="color: #6363FF;">강의리스트</span>로 조회</h4>
+         <br>
           <table class="table table-hover">
             <thead align="center">
               <tr>
@@ -62,8 +35,8 @@
                 <td>남궁성</td>
                 <td>xxxx-xx-xx</td>
                 <td>
-                  <button onclick="location='myPaymentDetails.jsp'" class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
-                  <button class="btn btn-danger">환불신청</button>
+                  <button onclick="location.href='<%=contextPath%>/paymentDetails.me'" class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
+                  <button onclick="location.href='<%=contextPath%>/paymentRefund.me'"class="btn btn-danger">환불신청</button>
                 
                 </td>
               </tr>
@@ -73,7 +46,7 @@
                 <td>남궁성</td>
                 <td>xxxx-xx-xx</td>
                 <td>
-                  <button onclick="location='myPaymentDetails.jsp'"class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
+                  <button onclick="location.href='<%=contextPath%>/paymentDetails.me'"class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
                   <button class="btn btn-danger">환불신청</button>
                 </td>
               </tr>
@@ -83,8 +56,8 @@
                 <td>남궁성</td>
                 <td>xxxx-xx-xx</td>
                 <td>
-                  <button onclick="location='myPaymentDetails.jsp'"class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button></a>
-                  <button onclick="refund()" class="btn btn-danger">환불신청</button>
+                  <button onclick="location.href='<%=contextPath%>/paymentDetails.me'"class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button></a>
+                  <button onclick="refund();" class="btn btn-danger">환불신청</button>
                 </td>
               </tr>
     
@@ -106,18 +79,22 @@
           
 
           <script>
+          
+   
             function refund(){
-              if (!confirm("환불신청 하시겠습니까?")) {
-                  alert("성공적으로 환불신청 되었습니다");
-              } else {
-                  alert("환불신청을 취소하셨습니다");
-              }
+             
+            	if (widow.confirm("환불신청 하시겠습니까?")){
+            		window.alert("환불신청 성공");
+            	}else{
+            		window.alert("취소 버튼을 클릭했습니다")
+            	}
+                  
+        
           }
             
           </script>
         
-        </form>
-</div>
+		</div>
 
  <%@ include file="../common/footer.jsp" %>
 </body>

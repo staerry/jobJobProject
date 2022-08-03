@@ -11,124 +11,12 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-  body {
-    margin: 0;
-    font-family: "Lato", sans-serif;
-  }
-  
-  .sidebar {
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: #f1f1f1;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
-  }
-  
-  .sidebar a {
-    display: block;
-    color: black;
-    padding: 16px;
-    text-decoration: none;
-  }
-   /*
-  .sidebar a.active {
-     background-color: #6363FF;
-     color: white; 
-    }
-    */
-  
-  .sidebar a:hover:not(.active) {
-    background-color: #6363FF;;
-    color: white;
-  }
-  
-  div.content {
-    margin-left: 200px;
-    padding: 1px 16px;
-    height: 1000px;
-  }
-  div a {
-  text-decoration: none;
-  color: white;
-  font-size: 20px;
-  padding: 15px;
-  display:inline-block;
-}
-ul {
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-ul li {display: inline-block;}
-ul li:hover {background: #6363FF;;}
-ul li:hover ul {display: block;}
-ul li ul {
-  position: absolute;
-  width: 200px;
-  display: none;
-}
-ul li ul li { 
-  background:  #6363FF;; 
-  display: block; 
-}
-ul li ul li a {display:block !important;} 
-ul li ul li:hover {background:  #6363FF;;}
-  
-  @media screen and (max-width: 700px) {
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-    }
-    .sidebar a {float: left;}
-    div.content {margin-left: 0;}
-  }
-  
-  @media screen and (max-width: 400px) {
-    .sidebar a {
-      text-align: center;
-      float: none;
-    }
-  }
-  .page-link {
-    color: #6363FF; 
-    background-color: #fff;
-    border: 1.5px solid #6363FF; 
-  }
-  
-  .page-item.active .page-link {
-   z-index: 1;
-   color: #555;
-   font-weight:bold;
-   background-color: #f1f1f1;
-   border-color: #ccc;
-   
-  }
-  
-  .page-link:focus, .page-link:hover {
-    color: white;
-    background-color: #6363FF; 
-    border-color: #ccc;
-  }
 
-  </style>
 </head>
 
 <body>
   <%@ include file="../common/menubar.jsp" %>
   
-  <div class="sidebar">
-    <a href="">결제</a>
-    <a class="active" href="#home">마이페이지</a>
-    <a href="#news">강의</a>
-    <a href="#contact">커뮤니티</a>
-    
-  </div>
-  
-
     <div class="container">
       <br><br>
         <h2>내 게시글</h2>

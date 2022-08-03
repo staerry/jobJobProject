@@ -33,6 +33,19 @@ AND USER_NO =?)
 
 </entry>
 
+<entry key="selectMyReply">
+
+SELECT
+          REPLY_NO
+        , CM_NO
+        , REPLY_CONTENT
+        , REPLY_ENROLLDATE
+  FROM REPLY
+  JOIN USERINFO USING(USER_NO)
+ WHERE USER_NO = ?
+ 
+</entry>
+
 
 
 

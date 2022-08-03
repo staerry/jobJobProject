@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "java.util.ArrayList, com.jj.userMyPage.model.vo.Reply" %>
+<%
+	ArrayList<Reply> list = (ArrayList<Reply>)request.getAttribute("list");		
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +52,7 @@
           <button type="submit" class="btn" style="background-color: #6363FF; color: white;">검색</button>
           <br>
 
-          <!--검색결과 조회 시 -->
+          
           <br>
           <span>검색결과 조회</span>
           <br><br>
@@ -63,27 +67,21 @@
             </thead>
 
             <tbody>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>
-                  xxxx-xx-xx
-                  <p>내용이 들어갈 자리입니다.</p>
-                </td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>
-                  xxxx-xx-xx
-                  <p>내용이 들어갈 자리입니다.</p>
-                </td>
-              </tr>
-              <tr>
-                <td><input type="checkbox"></td>
-                <td>
-                  xxxx-xx-xx
-                  <p>내용이 들어갈 자리입니다.</p>
-                </td>
-              </tr>
+           	<% if(list.isEmpty()) { %>
+	        	<tr>
+	        		<td>조회된 댓글이 없습니다.</td>
+	        	</tr>
+            	<%} else{ %>
+            		<%for(Reply r : list){ %>
+				<tr>
+				  <td><input type="checkbox"></td>
+				  <td>
+				    <p><%= r.getReplyEnrollDate() %></p>
+				   <p><%= r.getReplyContent() %></p>
+				  </td>
+				</tr>
+				<% } %>
+			<% } %>
      
             </tbody>
           </table>
