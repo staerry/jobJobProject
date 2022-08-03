@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class SearchClassListView
  */
-@WebServlet("/searchClassListView.me")
-public class SearchClassListView extends HttpServlet {
+@WebServlet("/searchListView.me")
+public class SearchListView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchClassListView() {
+    public SearchListView() {
         super();
         // TODO Auto-generated constructor stub
     }
