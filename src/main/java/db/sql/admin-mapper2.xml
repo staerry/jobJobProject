@@ -549,7 +549,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
                         OR USER_NAME LIKE ?)
                        AND REFUND = 'Y'
 	                 ORDER 
-	                    BY PAY_NO DESC) A)
+	                    BY REFUND_DATE DESC) A)
 	 WHERE RNO BETWEEN ? AND ?
 </entry>
 
@@ -593,7 +593,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
                        AND (REFUND = 'Y'
                         OR  REFUND = 'D')
 	                 ORDER 
-	                    BY PAY_NO DESC) A)
+	                    BY REFUND_DATE DESC) A)
 	 WHERE RNO BETWEEN ? AND ?
 </entry>
 
@@ -635,7 +635,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
                         OR USER_NAME LIKE ?)
                        AND (REFUND = 'D')
 	                 ORDER 
-	                    BY PAY_NO DESC) A)
+	                    BY REFUND_DATE DESC) A)
 	 WHERE RNO BETWEEN ? AND ?
 </entry>
 

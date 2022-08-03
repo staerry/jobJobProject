@@ -150,7 +150,7 @@
 			            		<a href="<%=request.getContextPath()%>/paymentselect.bo?p=<%=i%>&search=<%=request.getAttribute("search")%>"><%=i %></a>
 			            	<%} %>
 		            	<%} %>
-		            	<%if(currentPage != maxPage || currentPage < maxPage){ %>
+		            	<%if(currentPage != maxPage && currentPage < maxPage){ %>
 							<a href="<%=request.getContextPath()%>/paymentselect.bo?p=<%=currentPage+1%>&search=<%=request.getAttribute("search")%>">&gt</a>
 						<%} %>
 						<%if(currentPage < maxPage - pageLimit ){ %>
