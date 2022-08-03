@@ -25,8 +25,17 @@ public class Class {
 		
 	}
 	
-	
-	
+	public Class(int clNo, String userNo, String clCategory, String clTitle, String clSubtitle,
+			String clThumbnailPath) {
+		super();
+		this.clNo = clNo;
+		this.userNo = userNo;
+		this.clCategory = clCategory;
+		this.clTitle = clTitle;
+		this.clSubtitle = clSubtitle;
+		this.clThumbnailPath = clThumbnailPath;
+	}
+
 	public Class(int clNo, String userNo, String mtCompany, String clCategory, String clTitle, String clSubtitle,
 			String clInfo, String clCurri, String clPriceWon, Date clEnrolldate, String clGrant, String clThumbnailPath,
 			double clScore) {

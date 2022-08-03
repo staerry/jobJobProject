@@ -414,5 +414,35 @@ public class ClassDao {
 		System.out.println(list);
 		return list;
 	}
+	
+	public ArrayList<Class> selectClassList(Connection conn, String keyword) {
+		ArrayList<Class> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectClassList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + keyword + "%");
+			pstmt.setString(2, "%" + keyword + "%");
+			pstmt.setString(3, "%" + keyword + "%");
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Class(rset.getInt("cl_no")
+						         , rset.getString("cl_title")
+						         , rset.getString("cl_subtitle")
+				                 , rset.getString("user_name")
+				                 , rset.getString("clcg_name")
+				                 , rset.getString("cl_thumbnailpath")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 
 }

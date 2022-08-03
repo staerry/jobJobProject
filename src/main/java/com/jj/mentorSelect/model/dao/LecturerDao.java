@@ -592,4 +592,33 @@ Properties prop = new Properties();
 		
 		return list;
 	}
+	public ArrayList<Lecturer> selectMainMentorList(Connection conn, String keyword){
+		ArrayList<Lecturer> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMentorList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + keyword + "%");
+			pstmt.setString(2, "%" + keyword + "%");
+			pstmt.setString(3, "%" + keyword + "%");
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Lecturer(rset.getString("user_name")
+						            , rset.getString("mt_company")
+						            , rset.getString("profile_path")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 }

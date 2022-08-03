@@ -17,6 +17,17 @@ public class Community {
 	
 	public Community() {}
 
+	public Community(String commWriter, String commTitle, String commContent, Date createDate, int count,
+			int likeCount) {
+		super();
+		this.commWriter = commWriter;
+		this.commTitle = commTitle;
+		this.commContent = commContent;
+		this.createDate = createDate;
+		this.count = count;
+		this.likeCount = likeCount;
+	}
+
 	public Community(int commNo, String commWriter, String commTitle, String commContent, int count) {
 		super();
 		this.commNo = commNo;

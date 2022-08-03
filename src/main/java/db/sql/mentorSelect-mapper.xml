@@ -269,4 +269,17 @@
 		 ORDER BY USER_NO DESC
  	</entry>
  	
+ 	 	<!-- 작성자 : 최영헌 -->
+ 	<entry key="selectMentorList">
+		SELECT PROFILE_PATH
+		     , USER_NAME
+		     , MT_COMPANY
+		  FROM LECTURER L
+		  JOIN USERINFO U ON (L.USER_NO = U.USER_NO)
+		  JOIN MENTOR M ON (L.USER_NO = M.USER_NO)
+		 WHERE USER_NAME LIKE ?
+		    OR MT_COMPANY LIKE ?
+		    OR MT_COMPANY LIKE ?
+ 	</entry>
+ 	
 </properties>

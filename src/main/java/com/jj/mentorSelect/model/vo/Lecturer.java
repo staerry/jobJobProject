@@ -13,6 +13,13 @@ public class Lecturer {
 	
 	public Lecturer() {}
 
+	public Lecturer(String userName, String ltrCompany, String ltrProfilePath) {
+		super();
+		this.userName = userName;
+		this.ltrCompany = ltrCompany;
+		this.ltrProfilePath = ltrProfilePath;
+	}
+
 	public Lecturer(int userNo, String ltrInfo, String ltrCareer, String ltrProfilePath) {
 		super();
 		this.userNo = userNo;

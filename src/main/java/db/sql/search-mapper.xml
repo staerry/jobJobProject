@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<entry key="searchClassCount">
+	SELECT COUNT(*) COUNT
+	  FROM (
+	      SELECT CL_NO
+	         , CL_TITLE
+	         , CL_SUBTITLE
+	         , USER_NAME
+	         , CLCG_NAME
+	         , CL_THUMBNAILPATH
+	      FROM CLASS C
+	      JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+	      JOIN CL_CATEGORY CC ON (C.CL_CATEGORY = CC.CLCG_NO)
+	      WHERE CL_TITLE LIKE ?
+	         OR CL_SUBTITLE LIKE ?
+	         OR USER_NAME LIKE ?
+	       )
+</entry>
+
+<entry key="searchLecturerCount">
+	SELECT COUNT(*) COUNT
+	  FROM (
+	    SELECT PROFILE_PATH
+	         , USER_NAME
+	         , MT_COMPANY
+	      FROM LECTURER L
+	      JOIN USERINFO U ON (L.USER_NO = U.USER_NO)
+	      JOIN MENTOR M ON (L.USER_NO = M.USER_NO)
+	     WHERE USER_NAME LIKE ?
+	        OR MT_COMPANY LIKE ?
+	        OR MT_COMPANY LIKE ?
+	       )
+</entry>
+
+
+<entry key="searchCommunityCount">
+	SELECT COUNT(*) COUNT
+	  FROM (
+	    SELECT CM_TITLE
+	         , CM_CONTENT
+	         , USER_NAME
+	         , CM_ENROLLDATE
+	         , CM_COUNT
+	         , CM_LIKE_COUNT
+	     FROM COMMUNITY C
+	     JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+	    WHERE USER_NAME LIKE ?
+	       OR CM_TITLE LIKE ?
+	       OR CM_CONTENT LIKE ?
+	       )
+</entry>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</properties>

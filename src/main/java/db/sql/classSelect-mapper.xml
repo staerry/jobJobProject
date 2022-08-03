@@ -239,6 +239,21 @@
 	        BY REVIEW_SCORE DESC
     </entry>
     
+    <entry key="selectClassList">
+		SELECT CL_NO
+		     , CL_TITLE
+		     , CL_SUBTITLE
+		     , USER_NAME
+		     , CLCG_NAME
+		     , CL_THUMBNAILPATH
+		  FROM CLASS C
+		  JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+		  JOIN CL_CATEGORY CC ON (C.CL_CATEGORY = CC.CLCG_NO)
+		  WHERE CL_TITLE LIKE ?
+		     OR CL_SUBTITLE LIKE ?
+		     OR USER_NAME LIKE ?
+    </entry>
+    
     
     
 </properties>

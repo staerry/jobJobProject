@@ -136,8 +136,8 @@
 
 		<!--검색 부분-->	
 		<div class="search-bar">
-			<form action="">
-				<input type="search">
+			<form action="searchResultView.me">
+				<input type="search" name="keyword" placeholder="클래스, 멘토, 게시글 검색">
 				<button type="submit">
 					<i class="fas fa-search"></i>
 				</button>

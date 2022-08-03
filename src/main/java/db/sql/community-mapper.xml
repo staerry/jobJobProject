@@ -233,5 +233,19 @@
 		  JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
 		 ORDER BY CM_COUNT DESC
 	</entry>
+	
+	<entry key="selectCommunityList">
+		SELECT CM_TITLE
+		     , CM_CONTENT
+		     , USER_NAME
+		     , CM_ENROLLDATE
+		     , CM_COUNT
+		     , CM_LIKE_COUNT
+		 FROM COMMUNITY C
+		 JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
+		WHERE USER_NAME LIKE ?
+		   OR CM_TITLE LIKE ?
+		   OR CM_CONTENT LIKE ?
+	</entry>
 
 </properties>
