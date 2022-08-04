@@ -249,9 +249,9 @@
 		  FROM CLASS C
 		  JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
 		  JOIN CL_CATEGORY CC ON (C.CL_CATEGORY = CC.CLCG_NO)
-		  WHERE CL_TITLE LIKE ?
-		     OR CL_SUBTITLE LIKE ?
-		     OR USER_NAME LIKE ?
+		  WHERE CL_TITLE LIKE UPPER(?)
+		     OR CL_SUBTITLE LIKE UPPER(?)
+		     OR USER_NAME LIKE UPPER(?)
     </entry>
     
         <!-- 수강신청용 강의 정보 -->
