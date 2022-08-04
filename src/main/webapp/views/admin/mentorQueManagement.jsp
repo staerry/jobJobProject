@@ -68,7 +68,7 @@
                         <th width="400">질문제목</th>
                         <th width="100">작성자</th>
                         <th width="100">멘토명</th>
-                        <th width="60">좋아요</th>
+                        <!-- <th width="60">좋아요</th> -->
                         <th width="100">작성일</th>
                         <th width="60">삭제</th>
                     </tr>
@@ -85,7 +85,7 @@
 								<td><%= i.getQueTitle() %></td>
 								<td><%= i.getQueWriterName() %></td>
 								<td><%= i.getAnsWriterName() %></td>
-								<td><%= i.getQueLike() %></td>
+								<%-- <td><%= i.getQueLike() %></td> --%>
 								<td><%= i.getQueEnrolldate() %></td>
 								<td>
 									<button class="btn btn-sm btn-danger" onclick="deleteQue(<%= i.getMtQueNo() %>);">삭제</button>
