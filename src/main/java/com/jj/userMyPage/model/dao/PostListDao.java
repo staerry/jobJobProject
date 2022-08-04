@@ -62,9 +62,34 @@ public class PostListDao {
 		}
 	
 	
+	public int deleteMyPost(Connection conn, int userNo, String cmNo) {
+		
+		System.out.println(userNo);
+		System.out.println(cmNo);
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteMyPost");
+		
+		sql += "AND CM_NO IN (" + cmNo + ")";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
 	}
 	
-	
+}
 	
 	
 	

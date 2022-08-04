@@ -717,6 +717,24 @@ SELECT *
 	 WHERE FILE_NO = ?
 </entry>
 
+<entry key="insertNotice">
+	INSERT 
+	  INTO NOTICE
+	       (
+	       NOTICE_NO
+	     , USER_NO
+	     , NOTICE_TITLE
+	     , NOTICE_CONTENT
+	     , NOTICE_ENROLLDATE
+	       )
+	VALUES (
+	       SEQ_NOTICE.NEXTVAL
+	     , ?
+	     , ?
+	     , ?
+	     , SYSDATE
+	       )
+</entry>
 
 
 

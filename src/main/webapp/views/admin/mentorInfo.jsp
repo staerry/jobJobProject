@@ -54,7 +54,7 @@
 						<input type="checkbox" id="check2" name="check" value="2" class="set" checked> 
 						<label for="check2">강의자</label>
 						<input type="checkbox" id="check3" name="check" value="3" > 
-						<label for="check3">탈퇴한멘토</label> &nbsp;&nbsp;
+						<label for="check3">거절/탈퇴멘토</label> &nbsp;&nbsp;
 						<input type="text" name="search" style="line-height: 30px; width: 200px; text-align:center" id="searchclick" placeholder="이름또는 회원번호로 검색" >
 						<button type="submit" id="searchbtn" style="line-height: 30px;" class="btnpurple">검색</button>
 					</form>
@@ -93,7 +93,8 @@
 					<h3>멘토정보수정</h3>
 					<form action="<%=request.getContextPath()%>/mentorupdate.up">
 						<input type="hidden" id="mNo" name="mNo">
-						<table class="table table-bordered table-hover stutable">
+						<table class="table table-bordered stutable">
+							
 							<tr>
 								<th>이름</th>
 								<td width="10px"><input id="DName" type="text" style="margin-right:100px; text-align:center" readonly></td>
@@ -110,12 +111,13 @@
 									</div>
 								</td>
 							</tr>
+							
 							<tr>
 								<th height="300px"><br><br><br><br><br>멘토분야</th>
 								<td>
 									<div class="checks2">
 										
-										<table style="margin-top:5px; text-align:left " border=0>
+										<table style="margin-top:5px; text-align:left " class="ab">
 										<tr>
 											<td><input type="radio" id="radio2" name="cate" value="2"> 
 												<label for="radio2">마케팅,MD,영업</label>
@@ -132,9 +134,8 @@
 												<input type="radio" id="radio4" name="cate" value="4"> 
 												<label for="radio4">전략,기획</label>
 											</td>
-										<tr>
-										</tr>
-										<tr>
+									
+										<tr >
 											<td>
 												<input type="radio" id="radio5" name="cate" value="5"> 
 												<label for="radio5">유통,무역,구매&nbsp;&nbsp;&nbsp;</label>
@@ -153,6 +154,7 @@
 											
 											</td>
 										</tr>
+										
 										</table>
 										
 									</div>
@@ -209,6 +211,7 @@
 											<button type="button" class="button1">수정</button>
 											<button type="button" class="outbutton">탈퇴</button>
 										<%}else{ %>
+											<button type="button" class="button1">수정</button>
 											<button type="button" id="searchbtn" class="restore">복구</button>
 										<%} %>
 									</td>

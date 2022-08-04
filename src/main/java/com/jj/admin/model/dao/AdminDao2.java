@@ -1351,7 +1351,7 @@ public class AdminDao2 {
 				list.add(new Pay(rset.getInt("pay_no"),
 									rset.getString("user_no"),
 									rset.getString("cl_no"),
-									rset.getString("cp_name"),
+									rset.getString("isucp_no"),
 									rset.getString("payment"),
 									rset.getString("refund"),
 									rset.getInt("final_payment"),
@@ -1932,6 +1932,41 @@ public class AdminDao2 {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, payNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int refundClass(Connection conn,int userNo, int clNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("refundClass");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, clNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int refundCoupon(Connection conn,int isucpNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("refundCoupon");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, isucpNo);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -3,16 +3,25 @@
 <properties>
 
 	<entry key="selectFaqList">
-		SELECT
-		        FAQ_NO
-		      , USER_ID
-		      , FAQ_TITLE
-		      , FAQ_ANSWER
-		      , FAQ_COUNT
-		   FROM FAQ
-		   JOIN USERINFO USING(USER_NO)
-		  ORDER
-		     BY FAQ_NO DESC
+	SELECT * 
+	  FROM(
+	        SELECT ROWNUM RNUM, A.*
+	          FROM (
+	                SELECT
+	                        FAQ_NO
+	                      , USER_ID
+	                      , FAQ_TITLE
+	                      , FAQ_ANSWER
+	                      , FAQ_COUNT
+	                  FROM FAQ
+	                  JOIN USERINFO USING(USER_NO)
+	                 WHERE FAQ_TITLE LIKE ?
+		    		    OR FAQ_ANSWER LIKE ?
+	                 ORDER
+	                    BY FAQ_NO DESC   
+	            ) A
+	    ) 
+	 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="insertMTM">
@@ -51,23 +60,43 @@
 		 WHERE FAQ_NO = ?
 	</entry>
 
-	<entry key="selectNewFaqList">
-		SELECT 
-				FAQ_NO
-			  , FAQ_TITLE
-		  FROM FAQ
-		 ORDER
-		    BY FAQ_NO DESC
-	</entry>
 
 	<entry key="selectCountFaqList">
-		SELECT 
-			    FAQ_NO
-			  , FAQ_TITLE
-			  , FAQ_COUNT
+		SELECT * 
+		  FROM(
+		        SELECT ROWNUM RNUM, A.*
+		          FROM (
+		                SELECT
+		                        FAQ_NO
+		                      , FAQ_TITLE
+		                      , FAQ_COUNT
+		                  FROM FAQ
+		                 WHERE FAQ_TITLE LIKE ?
+		    		        OR FAQ_ANSWER LIKE ?
+		                 ORDER
+		                    BY FAQ_COUNT DESC   
+		            ) A
+		    ) 
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectListCount">
+		SELECT COUNT(*) as "COUNT"
+  		  FROM FAQ
+  		 WHERE FAQ_TITLE LIKE ?
+		    OR FAQ_ANSWER LIKE ?
+	</entry>
+	
+	<entry key="selectSearchFaq">
+		SELECT
+		       FAQ_NO
+		     , FAQ_TITLE
+		     , FAQ_ANSWER
 		  FROM FAQ
+		 WHERE FAQ_TITLE LIKE ?
+		    OR FAQ_ANSWER LIKE ?
 		 ORDER
-		    BY FAQ_COUNT DESC
+		    BY FAQ_NO DESC
 	</entry>
 
 </properties>

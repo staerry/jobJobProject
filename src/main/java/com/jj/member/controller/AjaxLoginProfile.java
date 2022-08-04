@@ -1,7 +1,10 @@
-package com.jj.faq.controller;
+package com.jj.member.controller;
+
+import static com.jj.common.JDBCTemplate.close;
+import static com.jj.common.JDBCTemplate.getConnection;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +12,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jj.faq.model.service.FaqService;
-import com.jj.faq.model.vo.Faq;
+import com.jj.mentorSelect.model.dao.LecturerDao;
 
 /**
- * Servlet implementation class FaqSortController
+ * Servlet implementation class AjaxLoginProfile
  */
-@WebServlet("/sortNew.faq")
-public class FaqSortNewController extends HttpServlet {
+@WebServlet("/ajaxLoginProfile.me")
+public class AjaxLoginProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FaqSortNewController() {
+    public AjaxLoginProfile() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,12 +33,16 @@ public class FaqSortNewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 최신순 조회
-		ArrayList<Faq> list = new FaqService().selectNewFaqList();
+		int userNo = Integer.parseInt(request.getParameter("no"));
 		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/member/faqList.jsp").forward(request, response);
-	
+		Connection conn = getConnection();
+		
+		String imgPath = new LecturerDao().selectProfilePath(conn, userNo);
+		
+		close(conn);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().print(imgPath);
 	}
 
 	/**

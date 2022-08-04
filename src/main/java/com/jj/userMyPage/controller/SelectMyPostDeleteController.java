@@ -1,23 +1,29 @@
-package com.jj.member.controller;
+package com.jj.userMyPage.controller;
 
 import java.io.IOException;
+
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.jj.member.model.vo.Member;
+import com.jj.userMyPage.model.service.PostListService;
 
 /**
- * Servlet implementation class MyPaymentCotroller
+ * Servlet implementation class SelectMyPostDeleteController
  */
-@WebServlet("/payment.me")
-public class MyPaymentCotroller extends HttpServlet {
+@WebServlet("/myPostDelete.my")
+public class SelectMyPostDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPaymentCotroller() {
+    public SelectMyPostDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,9 +32,19 @@ public class MyPaymentCotroller extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/member/myPayment.jsp").forward(request, response);
+	
+		HttpSession session = request.getSession();
+		
+		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		
 		
+		String cmNo = request.getParameter("cmNo"); // "21,41"
+		
+		int result = new PostListService().deleteMyPost(userNo, cmNo);
+		 
+		response.getWriter().print(result);
+		
+		System.out.println(result);
 	}
 
 	/**

@@ -70,7 +70,7 @@
                             
                         </td>
                         <td>
-                            <a href="<%=contextPath %>/list.faq" class="btn btn-sm"  style="float:right; background: #6363FF; color: white;">목록으로</a>
+                            <a href="<%=contextPath %>/list.faq?cpage=1" class="btn btn-sm"  style="float:right; background: #6363FF; color: white;">목록으로</a>
                         </td>
                     </tr>
 

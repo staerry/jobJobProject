@@ -49,7 +49,7 @@
 	                	<% for(Class i : list){ %>
 		                    <tr>
 		                        <td><%= i.getClNo() %></td>
-		                        <td><%= i.getClTitle() %></td>
+		                        <td onclick="selectClass(<%= i.getClNo() %>);"><%= i.getClTitle() %></td>
 		                        <td><%= i.getClCategory() %></td>
 		                        <td><%= i.getUserNo() %></td>
 		                        <td>
@@ -59,6 +59,10 @@
 									        if(confirm("정말 삭제 하시겠습니끼?")){
 									            location.href='<%= contextPath %>/deleteClass.ad?no=' + num;
 									        }
+									    }
+									    
+									    function selectClass(num){
+									    	location.href="<%= contextPath %>/detail.cl?class=" + num;
 									    }
 				                    </script> 
 		                        </td>

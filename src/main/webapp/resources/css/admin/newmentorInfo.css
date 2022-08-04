@@ -7,9 +7,7 @@ table{
     text-align : center;
 }
 
-table>tbody>tr{
-    cursor: pointer;
-}
+
 
 .paging-area{
     text-align: center;
@@ -28,6 +26,9 @@ table>tbody>tr{
     background-color :#6363ff;
     color : white;
 }
+
+.ab{border:0 none;}
+.ab>tr>th{border:0 none;}
 
 .stutable{
     border-radius: 5px;

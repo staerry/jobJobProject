@@ -84,6 +84,32 @@ and
     u.user_no = ?
 </entry>
 
+<entry key="">
+SELECT 
+      PAY_NO
+    , CL_NO
+    , ISUCP_NO
+    , PAYMENT
+    , FINAL_PAYMENT
+    , ORDER_NAME
+    , ORDER_PHONE
+    , ORDER_EMAIL
+    , PAY_DATE
+ FROM PAY
+WHERE REFUND != 'Y'
+</entry>
+
+<entry key="deleteMyPost">
+DELETE
+  FROM COMMUNITY
+ WHERE USER_NO = ?
+</entry>
+
+<entry key="deleteMyReply">
+DELETE
+  FROM REPLY
+ WHERE USER_NO = ?
+</entry>
 
 <entry key="selectClassIng">
 

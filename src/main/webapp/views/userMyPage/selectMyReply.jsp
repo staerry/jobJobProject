@@ -21,7 +21,7 @@
     <br><br>
     <div class="container">
         <h2>내 댓글</h2>
-        <form action="/myPostSearch.do">
+        
           <div class="form-check-inline">
             <label class="form-check-label" for="all">
               <input type="radio" class="form-check-input" id="all" name="category" value="all" checked>전체
@@ -56,36 +56,93 @@
           <br>
           <span>검색결과 조회</span>
           <br><br>
-          <table class="table table-hover">
-            <thead>
+          <div class="checkbox-group">
 
+            <table class="table table-hover">
+              <thead>
+                
                 <tr style="background-color:whitesmoke">
-                    <th colspan="6">
-                    <input type="checkbox">&nbsp;&nbsp;&nbsp;&nbsp;전체선택&nbsp;&nbsp;
-                    <button class="btn btn-sm btn-danger">삭제</button></th>
-                </tr>
-            </thead>
+                  <th colspan="6">
+                    <input type="checkbox" name="check" id="checkAll">
+                    <label for="checkAll">전체선택</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-sm btn-danger" onclick="deleteChecked();">삭제</button></th>
+                  </tr>
+                </thead>
+                
+                <tbody>
+                  <% if(list.isEmpty()) { %>
+                    <tr>
+                      <td>조회된 댓글이 없습니다.</td>
+                    </tr>
+                    <%} else{ %>
+                      <%for(Reply r : list){ %>
+                        <tr>
+                          <td><input type="checkbox" class="selectedCheck" name="check"></td>
+                          <td>
+                            <p><%= r.getReplyEnrollDate() %></p>
+                            <p><%= r.getReplyContent() %></p>
+                          </td>
+                        </tr>
+                        <% } %>
+                        <% } %>
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                  <script>
 
-            <tbody>
-           	<% if(list.isEmpty()) { %>
-	        	<tr>
-	        		<td>조회된 댓글이 없습니다.</td>
-	        	</tr>
-            	<%} else{ %>
-            		<%for(Reply r : list){ %>
-				<tr>
-				  <td><input type="checkbox"></td>
-				  <td>
-				    <p><%= r.getReplyEnrollDate() %></p>
-				   <p><%= r.getReplyContent() %></p>
-				  </td>
-				</tr>
-				<% } %>
-			<% } %>
-     
-            </tbody>
-          </table>
- 
+                    $(".checkbox-group").on("click", "#checkAll", function(){
+                        $(this).parents(".checkbox-group").find("input").prop("checked", $(this).is(":checked"));
+                        
+                      });
+                      
+                    $(".checkbox-group").on("click", ".selectedCheck", function(){
+                        var isChecked = true;
+                
+                        $(".checkbox-group .selectedCheck").each(function(){
+                            isChecked = isChecked && $(this).is(":checked");
+                        });
+                
+                        $("#checkAll").prop("checked", isChecked);
+                
+                      });
+                       
+                      // 선택 삭제에 대한 함수
+                       function deleteChecked(){
+                          
+                          var deleteElement = "";
+                          
+                          // 체크된 게시글에 순차적으로 접근해 해당 요소의 val()값을 ,로 연결해 하나의 문자열 만들기
+                          $("input[name=check]:checked").each(function(){
+                             deleteElement = deleteElement + ($(this).val()) + ",";
+                          })   
+                               
+                          // "value값, value값, ... value값," 와 같은 형태의 문자열이 만들어지므로
+                          // 마지막 ","을 삭제해야 "value값, ... value값" 형태로 WHERE CM_NO IN ( ? ) 안에 넣을 수 있음
+                          // => 이것을 "동적 SQL문"이라고 함!!
+                          deleteElement = deleteElement.substring(0, deleteElement.lastIndexOf(","));
+                                
+                          $.ajax({
+                             url:"<%=contextPath%>/myReplyDelete.my", // 서블릿주소
+                             data:{
+                                userNo:$("<%=loginUser.getUserNo()%>").val(),
+                                replyNo:deleteElement // 삭제할 요소들 (3, 4, 5, ... 번호)
+                                },
+                             success:function(result){
+                              if(result > 0){
+                                    alert("선택한 댓글 삭제에 성공하였습니다.");
+                                    location.reload(); // = url재요청
+                                
+                              }
+                             }, 
+                             error:function(){
+                                alert("선택한 댓글 삭제에 실패하였습니다.");
+                             }
+                          })
+                          
+                        }
+                        </script>
+                    
         <div class="paging-area" style="margin:auto;">
             <ul class="pagination justify-content-center" style="margin:20px 0">
                 <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
@@ -98,7 +155,7 @@
               </ul>
         </div>
 
-    </form>
+    
 </div>
 
  <%@ include file="../common/footer.jsp" %>

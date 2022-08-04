@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import="com.jj.classSelect.model.vo.Class, java.util.ArrayList, com.jj.coupon.vo.IssuanceCoupon"
+%>
+    
+<%
+	Class c = (Class)request.getAttribute("c");
+	ArrayList<IssuanceCoupon> cpList = (ArrayList<IssuanceCoupon>)request.getAttribute("list");
+	
+	String userName = (String)((Member)request.getSession().getAttribute("loginUser")).getUserName();
+	String userPhone = (String)((Member)request.getSession().getAttribute("loginUser")).getUserPhone();
+	String userEmail = (String)((Member)request.getSession().getAttribute("loginUser")).getUserEmail();
+	
+	
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,174 +35,158 @@
 
 	<%@ include file="../common/menubar.jsp" %>
 
-    <!-- 전체를 감싸는 div -->
-    <div class="container">
+	<div class="container">
+	
+		<div class="class-enroll">
 
-        <!-- 수강신청 대상 클래스 -->
-        <div class="class-info">
-            <h2>수강신청</h2>
-            <hr>
-            <table class="thumbnail-info">
-                <tr>
-                    <td rowspan="3" width="200" height="150"><img src="썸네일이미지경로" width="200" height="150"></td>
-                    <td width="500">
-                        <h5>%= 강의명 %</h5>
-                    </td>
-                </tr>
-                <tr>
-                    <td>VOD(무제한 수강)</td>
-                </tr>
-                <tr>
-                    <td>%= 회원명(강의자) %</td>
-                </tr>
-            </table>
-        </div>
+			<div class="class-info">
+				<h3>수강신청</h3>
+				<hr>
 
-        <form action="" method="get" id="order-form">
-            <!-- 왼쪽 주문 정보 -->
-            <div class="user-area">
-                <div class="user-header">
-                    <h4>구매자 정보</h4>
-                    <span>
-                        <input type="checkbox" name="infoCopy" id="check-copy">
-                        <label for="check-copy">회원정보와 동일</label>
-                    </span>
-                </div>
-                <br>
+				<table class="class-summary">
+					<tr>
+						<td rowspan="3" width"200" height="150"><img src="<%= contextPath %>/<%= c.getClThumbnailPath() %>" width="200" height="150"></td>
+						<td width="500"><h5><%= c.getClTitle() %></h5></td>
+					</tr>
+					<tr><td><%= c.getClPriceWon() %>&nbsp;&nbsp;|&nbsp;&nbsp;VOD (무제한 수강)</td></tr>
+					<tr><td><%= c.getUserNo() %></td>
+				</table>
 
-                <table class="user-info">
-                    <tr>
-                        <td>이름 <font color="red">*</font>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" name="userName" required placeholder="이름을 입력해주세요."></td>
-                    </tr>
-                    <tr>
-                        <td>휴대전화 번호 <font color="red">*</font>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="phone" name="phone" required placeholder="휴대전화 번호(- 포함)"></td>
-                    </tr>
-                    <tr>
-                        <td>이메일 <font color="red">*</font>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="email" name="email" required placeholder="goodee@njnj.com"></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
+			<hr>
+			</div>
 
-            <!-- 오른쪽 상세 결제 정보 -->
-            <div class="payment-area">
-                <table class="coupon-info" width="100%">
-                    <tr>
-                        <td colspan="2">
-                            <h5>쿠폰</h5>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="30%">쿠폰 선택</td>
-                        <td>
-                            <select name="coupon" id="coupon" style="width:350px">
-                                <option value="coupon1">%= 쿠폰명1 %</option>
-                                <option value="coupon2">%= 쿠폰명2 %</option>
-                                <option value="coupon3">%= 쿠폰명3 %</option>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-                <br>
-
-                <table class="payment-info">
-                    <tr>
-                        <td colspan="2">
-                            <h5>결제 수단 선택</h5>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="50%">
-                            <input type="radio" id="radio-card" name="payment" value="card">
-                            <label for="radio-card">신용카드 결제</label>
-                        </td>
-                        <td>
-                            <input type="radio" id="radio-cash" name="payment" value="cash">
-                            <label for="radio-cash">무통장 입금</label>
-                        </td>
-                    </tr>
-                </table>
-                <br>
-
-                <table class="payment-total">
-                    <tr>
-                        <td colspan="2">
-                            <h4>총 결제금액</h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="30%">수강료</td>
-                        <td align="right">%= 수강료%</td>
-                    </tr>
-                    <tr>
-                        <td width>쿠폰 할인</td>
-                        <td align="right">(-) %= 할인금액 %</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td align="right">
-                            <h4> %= 수강료 - 할인금액 %원</h4>
-                        </td>
-                    </tr>
-                </table>
-                <br>
-
-                <table class="privacy-policy">
-                    <tr>
-                        <td width="90%">
-                            <h5>개인정보 수집 제공</h5>
-                        </td>
-                        <td>
-                            <!-- 개인정보 정책 모달창 -->
-                            <button type="button" data-toggle="modal" data-target="#privacyPolicy">
-                                보기
-                            </button>
-
-                            <div class="modal" id="privacyPolicy">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-
-                                        <!-- Modal body -->
-                                        <div class="modal-body">
-                                            개인정보 취급방침 ~~~~~~
-                                        </div>
-
-                                        <!-- Modal footer -->
-                                        <div class="modal-footer">
-                                            <button type="button" data-dismiss="modal">Close</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">위 개인 정보 제공 안내 내용을 확인하였으며, 결제에 동의합니다.</td>
-                    </tr>
-                </table>
-                <br>
-
-                <div class="button-area">
-                    <button type="submit" id="go-payment">%= 수강료 - 할인금액 %원 결제하기</button>
-                </div>                
-            </div>
-        </form>
-    </div>
+			<script>
+				function getDc(event) {
+					document.getElementById('coupon-discount').value = event.target.value;
+					document.getElementById('total-price').value = <%= c.getClPrice() %> - event.target.value;
+				}
+			</script>
+			
+			<form action="<%= contextPath %>/enroll.cl" method="post" id="order-form">
+				<input type="hidden" name="clNo" value="<%= c.getClNo() %>">
+				<div class="order-info-area">
+					<div class="user-info">
+						<h4>구매자 정보</h4>
+						<p>회원 정보와 구매자 정보가 다른 경우 직접 입력해 주세요.<br><br></p>
+						
+						<table id="order-info-table">
+						<tr>
+							<td><h5>이름 <font color="red">*</font></h5></td>
+							<td><input type="text" name="orderName" id="userName" value="<%= userName %>" required ></td>
+						</tr>
+						<tr>
+							
+						</tr>
+						<tr>
+							<td><h5>휴대전화 번호 <font color="red">*</font> (- 포함)</h5></td>
+							<td><input type="phone" name="orderPhone" id="userPhone" value="<%= userPhone %>" required></td>
+						</tr>
+						<tr>
+							
+						</tr>
+						<tr>
+							<td><h5>이메일 <font color="red">*</font></h5></td>
+							<td><input type="email" name="orderEmail" id="userEmail" value="<%= userEmail %>" required placeholder="goodee@njnj.com"></td>
+						</tr>
+						<tr>
+							
+						</tr>
+						<tr>
+							<td><h5>결제수단</h5></td>
+							<td>
+								<input type="radio" id="radio-card" name="payment" value="신용카드" required>
+								<label for="radio-card">신용카드 결제</label><br>
+								<input type="radio" id="radio-cash" name="payment" value="무통장 입금" required>
+								<label for="radio-cash">무통장 입금</label>
+							</td>
+						</tr>
+						<tr>
+							
+						</tr>
+						<tr>
+							<td colspan="2"><h5>쿠폰</h5></td>
+						</tr>
+						<tr>
+							<td colspan="2"><% if(!cpList.isEmpty()) { %>
+								<% for(IssuanceCoupon cp : cpList) { %>
+								<input type="radio" name="coupon" value="<%= cp.getDiscount() %>" id="dc-coupon" onclick="getDc(event)" required>
+								<input type="hidden" name="isuCpNo" value="<%= cp.getIsuCpNo() %>">
+								<label for="dc-coupon">&nbsp;<%= cp.getCpName() %> ----- <%=cp.getDiscountWon() %> 할인</label><br>		
+								<% } %>
+								<input type="radio" name="coupon" value="0" id="no-coupon" onclick="getDc(event)" required> 
+								<label for="no-coupon">&nbsp;사용 안 함</label>
+								<% }else { %>
+								<input type="radio" name="coupon" value="0" id="no-coupon" onclick="getDc(event)" required>
+								<label for="no-coupon">&nbsp;보유 중인 쿠폰이 없습니다.</label>
+								<% } %></td>
+						</tr>
+						<tr>
+							<td colspan=><h5>개인정보 취급방침</h5>
+							<td>	
+								<!-- Button to Open the Modal -->
+								<button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#myModal">
+									자세히 보기
+								</button>
+								
+								<!-- The Modal -->
+								<div class="modal fade" id="myModal">
+									<div class="modal-dialog modal-lg">
+									<div class="modal-content">
+									
+										<!-- Modal Header -->
+										<div class="modal-header">
+										<h4>구매조건 및 개인정보취급방침</h4>
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										</div>
+										
+										<!-- Modal body -->
+										<div class="modal-body">
+											<p>
+											제 3장. 유료 서비스 <br>
+											제 19조. 유료서비스의 제공<br>
+											
+											“회원”은 “회사”가 제공하는 절차에 의하여 유료서비스 이용계약(이하 “청약”을 신청합니다. “회사”는 원칙적으로 “회원”의 청약 신청을 승낙합니다. 다만, 다음 각 호에 해당하는 경우에는 승낙하지 않거나 승낙을 유보할 수 있습니다.<br>
+											실명이 아니거나 타인의 명의를 이용한 경우<br>
+											허위의 정보를 기재하거나, "회사”가 제시하는 내용을 기재하지 않은 경우<br>
+											미성년자가 청소년보호법 등 관련법에 의해서 이용이 금지되는 유료 서비스를 이용하고자 하는 경우<br>
+											"서비스"의 위상이나 명예에 부정적인 영향을 줄 수 있는 경우<br>
+											“유료서비스"에서 제공하는 서비스의 공급량의 제한의 이유로 "서비스"를 제공할 수 없는 경우<br>
+											이 약관에 위배되는 내용을 “회사”에 요구한 이력이 있는 “회원”일 경우<br>
+											질문에 대한 권리는 “유료서비스”에 포함되지 않습니다.<br>
+											청약의 성립시기는 결제가 완료된 시점으로 합니다.<br>
+											“회사”는 계약 체결 전에 “회원”이 청약의 내용을 확인하고, 정정 또는 취소할 수 있도록 적절한 절차를 갖추어야 합니다.<br>
+											“회원”는 계약 전에 이 약관 및 개별 안내 페이지에서 “회사”가 안내하는 사항을 숙지하여 착오 없이 거래할 수 있도록 하여야 합니다.<br>
+											</p>
+										</div>
+									</div>
+									</div>
+								</div>
+								</div></td>
+							</td>
+						</tr>
+						<tr>
+							<td><h4>총 결제 금액</h4></td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center"><input type="text" id="origin-price" value="<%=c.getClPrice() %>" readonly required>
+								<span>&nbsp; - &nbsp;</span>
+								<input type="text" id="coupon-discount" value="" readonly required>
+								<span>&nbsp; = &nbsp;</span>
+								<input type="text" name="totalPrice" id="total-price" value="" readonly required><span> 원</span>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center">회원 본인은 주문 내용을 확인했으며, 구매조건 및 개인정보 취급방침과 결제에 동의합니다.</td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center"><button type="submit" id="class-enroll-btn">결제하기</button></td>
+						</tr>
+						</table>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 
 	<%@ include file="../common/footer.jsp" %>
 

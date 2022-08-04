@@ -59,6 +59,15 @@ public class Faq {
 		return faqNo;
 	}
 
+	public Faq(int faqNo, String userNo, String faqTitle) {
+		super();
+		this.faqNo = faqNo;
+		this.userNo = userNo;
+		this.faqTitle = faqTitle;
+	}
+
+
+
 	public void setFaqNo(int faqNo) {
 		this.faqNo = faqNo;
 	}

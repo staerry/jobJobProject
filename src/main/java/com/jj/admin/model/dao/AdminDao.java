@@ -257,6 +257,29 @@ public class AdminDao {
 		return listCount;
 	}
 	
+	public int insertNotice(Connection conn, String noticeTitle, String noticeContent, int userId) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userId);
+			pstmt.setString(2, noticeTitle);
+			pstmt.setString(3, noticeContent);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
 	/**
 	 * @param conn
 	 * @return

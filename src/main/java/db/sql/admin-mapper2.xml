@@ -486,7 +486,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                     , P.USER_NO
 	                     , P.CL_NO
 	                     , CL_TITLE
-	                     , CP_NAME
+	                     , P.ISUCP_NO
 	                     , PAYMENT
 	                     , REFUND
 	                     , FINAL_PAYMENT
@@ -500,7 +500,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                  FROM PAY P
                       JOIN USERINFO U ON(P.USER_NO=U.USER_NO)
                       JOIN CLASS CL ON(P.CL_NO=CL.CL_NO)
-                      LEFT JOIN ISSUANCECOUPON USING(ISUCP_NO)
+                      LEFT JOIN ISSUANCECOUPON I ON(P.ISUCP_NO = I.ISUCP_NO)
                       LEFT JOIN COUPON C USING(CP_NO)
 	                 WHERE (P.USER_NO = ?
 	                    OR PAY_NO = ? 
@@ -816,6 +816,19 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	   SET REFUND = 'Y'
 	  ,REFUND_DATE = SYSDATE
 	 WHERE PAY_NO = ?
+</entry>
+
+<entry key="refundClass">
+	DELETE
+	  FROM CLASS_ING
+	 WHERE USER_NO = ?
+	   AND CL_NO = ? 
+</entry>
+
+<entry key="refundCoupon">
+	UPDATE ISSUANCECOUPON
+	   SET CP_STATUS = 'N'
+	 WHERE ISUCP_NO = ?
 </entry>
 
 <entry key="refundDeny">

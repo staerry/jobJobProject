@@ -1,22 +1,20 @@
 package com.jj.faq.model.service;
 
-import static com.jj.common.JDBCTemplate.close;
-import static com.jj.common.JDBCTemplate.commit;
-import static com.jj.common.JDBCTemplate.getConnection;
-import static com.jj.common.JDBCTemplate.rollback;
+import static com.jj.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.jj.faq.model.vo.PageInfoFaq;
 import com.jj.faq.model.dao.FaqDao;
 import com.jj.faq.model.vo.Faq;
 import com.jj.faq.model.vo.MTM;
 
 public class FaqService {
 	
-	public ArrayList<Faq> selectFaqList(){
+	public ArrayList<Faq> selectFaqList(PageInfoFaq pi, String searchWord){
 		Connection conn = getConnection();
-		ArrayList<Faq> list = new FaqDao().selectFaqList(conn);
+		ArrayList<Faq> list = new FaqDao().selectFaqList(conn, pi, searchWord);
 		close(conn);
 		return list;
 	}
@@ -46,7 +44,7 @@ public class FaqService {
 		close(conn);
 		return result;
 	}
-	
+	 
 	public Faq selectFaq(int faqNo) {
 		Connection conn = getConnection();
 		Faq fq = new FaqDao().selectFaq(conn, faqNo);
@@ -54,18 +52,18 @@ public class FaqService {
 		return fq;
 	}
 	
-	public ArrayList<Faq> selectNewFaqList(){
+	public ArrayList<Faq> selectCountFaqList(PageInfoFaq pi, String searchWord){
 		Connection conn = getConnection();
-		ArrayList<Faq> list = new FaqDao().selectNewFaqList(conn);
+		ArrayList<Faq> list = new FaqDao().selectCountFaqList(conn, pi, searchWord);
 		close(conn);
 		return list;
 	}
 	
-	public ArrayList<Faq> selectCountFaqList(){
+	public int selectListCount(String searchWord) {
 		Connection conn = getConnection();
-		ArrayList<Faq> list = new FaqDao().selectCountFaqList(conn);
+		int listCount = new FaqDao().selectListCount(conn, searchWord);
 		close(conn);
-		return list;
+		return listCount;
 	}
 	
 }

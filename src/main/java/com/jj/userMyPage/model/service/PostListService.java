@@ -20,4 +20,11 @@ public class PostListService {
 	}
 	
 
+	public int deleteMyPost(int userNo, String cmNo) {
+		
+		Connection conn = getConnection();
+		int result = new PostListDao().deleteMyPost(conn, userNo, cmNo);
+		close(conn);
+		return result;
+	}
 }

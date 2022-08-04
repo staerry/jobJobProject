@@ -1,28 +1,23 @@
-package com.jj.faq.controller;
+package com.jj.userMyPage.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jj.faq.model.service.FaqService;
-import com.jj.faq.model.vo.Faq;
-
 /**
- * Servlet implementation class FaqSortCountController
+ * Servlet implementation class MyPaymentDetailsController
  */
-@WebServlet("/sortCount.faq")
-public class FaqSortCountController extends HttpServlet {
+@WebServlet("/paymentDetails.my")
+public class MyPaymentDetailsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FaqSortCountController() {
+    public MyPaymentDetailsController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,12 +26,7 @@ public class FaqSortCountController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		ArrayList<Faq> list = new FaqService().selectCountFaqList();
-	
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/member/faqList.jsp").forward(request, response);
-	
+		request.getRequestDispatcher("views/userMyPage/myPaymentDetails.jsp").forward(request, response);
 	}
 
 	/**

@@ -15,13 +15,13 @@ import com.jj.faq.model.vo.Faq;
  * Servlet implementation class FaqDeatilController
  */
 @WebServlet("/detail.faq")
-public class FaqDeatilController extends HttpServlet {
+public class FaqDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FaqDeatilController() {
+    public FaqDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -53,10 +53,6 @@ public class FaqDeatilController extends HttpServlet {
 			
 		}
 		
-	
-	
-	
-	
 	}
 
 	/**

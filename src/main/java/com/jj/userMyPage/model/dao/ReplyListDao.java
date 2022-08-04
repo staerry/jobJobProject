@@ -58,7 +58,32 @@ public class ReplyListDao {
 			return list;
 		}
 	
-	
+	public int deleteMyPost(Connection conn, int userNo, String replyNo) {
+		
+		System.out.println(userNo);
+		System.out.println(replyNo);
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteMyReply");
+		
+		sql += "AND REPLY_NO IN (" + replyNo + ")";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
 	}
 	
 	
