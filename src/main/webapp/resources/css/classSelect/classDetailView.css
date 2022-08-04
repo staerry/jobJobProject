@@ -207,8 +207,13 @@ li>a{color: #abb0b5;}
 .review-score{
 	color:#3e4042;
 	font-weight:700;
-	font-size:700;
+
     line-height: 1.47;
     letter-spacing: -.3px;
     margin-left:3px;
+}
+
+#zzim-count{
+    font-weight:600;
+    font-size:16px;
 }

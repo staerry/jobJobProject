@@ -1,7 +1,6 @@
 package com.jj.classSelect.model.service;
 
 import static com.jj.common.JDBCTemplate.*;
-import static com.jj.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -162,4 +161,37 @@ public class ClassService {
 		return result;
 		
 	}
+	
+	public int selectBookmark(int clNo, int userNo) {
+		Connection conn = getConnection();
+		int likeCheck = new ClassDao().selectBookmark(conn, clNo, userNo);
+		close(conn);
+		return likeCheck;
+	}
+	
+	public int insertBookmark(int clNo, int userNo) {
+		Connection conn = getConnection();
+		int result = new ClassDao().insertBookmark(conn, clNo, userNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+		
+	}
+	
+	public int deleteBookmark(int clNo, int userNo) {
+		Connection conn = getConnection();
+		int result = new ClassDao().deleteBookmark(conn, clNo, userNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+		
+	}
+	
+
 }
