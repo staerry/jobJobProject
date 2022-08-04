@@ -84,6 +84,12 @@ DELETE
  WHERE USER_NO = ?
 </entry>
 
+<entry key="deleteMyReply">
+DELETE
+  FROM REPLY
+ WHERE USER_NO = ?
+</entry>
+
 
 
 

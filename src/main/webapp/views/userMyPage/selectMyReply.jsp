@@ -21,7 +21,7 @@
     <br><br>
     <div class="container">
         <h2>내 댓글</h2>
-        <form action="/myPostSearch.do">
+        
           <div class="form-check-inline">
             <label class="form-check-label" for="all">
               <input type="radio" class="form-check-input" id="all" name="category" value="all" checked>전체
@@ -65,7 +65,7 @@
                   <th colspan="6">
                     <input type="checkbox" name="check" id="checkAll">
                     <label for="checkAll">전체선택</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-sm btn-danger">삭제</button></th>
+                    <button class="btn btn-sm btn-danger" onclick="deleteChecked();">삭제</button></th>
                   </tr>
                 </thead>
                 
@@ -126,7 +126,7 @@
                              url:"<%=contextPath%>/myReplyDelete.my", // 서블릿주소
                              data:{
                                 userNo:$("<%=loginUser.getUserNo()%>").val(),
-                                cmNo:deleteElement // 삭제할 요소들 (3, 4, 5, ... 번호)
+                                replyNo:deleteElement // 삭제할 요소들 (3, 4, 5, ... 번호)
                                 },
                              success:function(result){
                               if(result > 0){
@@ -155,7 +155,7 @@
               </ul>
         </div>
 
-    </form>
+    
 </div>
 
  <%@ include file="../common/footer.jsp" %>

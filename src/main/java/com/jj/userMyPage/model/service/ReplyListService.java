@@ -3,6 +3,7 @@ package com.jj.userMyPage.model.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.jj.userMyPage.model.dao.PostListDao;
 import com.jj.userMyPage.model.dao.ReplyListDao;
 import com.jj.userMyPage.model.vo.Reply;
 
@@ -19,5 +20,11 @@ public class ReplyListService {
 		
 	}
 	
-
+	public int deleteMyPost(int userNo, String replyNo) {
+		
+		Connection conn = getConnection();
+		int result = new PostListDao().deleteMyPost(conn, userNo, replyNo);
+		close(conn);
+		return result;
+	}
 }
