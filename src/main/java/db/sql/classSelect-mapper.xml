@@ -34,6 +34,7 @@
 	              FROM CLASS
 	              LEFT JOIN REVIEW USING(CL_NO)
 	             GROUP BY CL_NO) A USING(CL_NO)
+	    WHERE CL_GRANT = 'A'
 	    ORDER BY CL_NO DESC
     </entry>
     
