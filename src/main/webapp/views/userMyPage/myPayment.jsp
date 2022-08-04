@@ -35,8 +35,8 @@
                 <td>남궁성</td>
                 <td>xxxx-xx-xx</td>
                 <td>
-                  <button onclick="location.href='<%=contextPath%>/paymentDetails.me'" class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
-                  <button onclick="location.href='<%=contextPath%>/paymentRefund.me'"class="btn btn-danger">환불신청</button>
+                  <button onclick="location.href='<%=contextPath%>/paymentDetails.my'" class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
+                  <button onclick="location.href='<%=contextPath%>/paymentRefund.my'"class="btn btn-danger">환불신청</button>
                 
                 </td>
               </tr>
@@ -46,7 +46,7 @@
                 <td>남궁성</td>
                 <td>xxxx-xx-xx</td>
                 <td>
-                  <button onclick="location.href='<%=contextPath%>/paymentDetails.me'"class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
+                  <button onclick="location.href='<%=contextPath%>/paymentDetails.my'"class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
                   <button class="btn btn-danger">환불신청</button>
                 </td>
               </tr>
@@ -56,7 +56,7 @@
                 <td>남궁성</td>
                 <td>xxxx-xx-xx</td>
                 <td>
-                  <button onclick="location.href='<%=contextPath%>/paymentDetails.me'"class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button></a>
+                  <button onclick="location.href='<%=contextPath%>/paymentDetails.my'"class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button></a>
                   <button onclick="refund();" class="btn btn-danger">환불신청</button>
                 </td>
               </tr>

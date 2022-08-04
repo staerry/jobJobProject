@@ -270,7 +270,7 @@
                         <li class="large">마이페이지 <i class="arrow fas fa-angle-right"></i></li>
                         <ul class="small_menu">
                             <li><a href="<%=request.getContextPath()%>/updateInfo.me">개인정보 수정</a></li>
-                            <li><a href="<%=request.getContextPath()%>/payment.me">나의 결제내역</a></li>
+                            <li><a href="<%=request.getContextPath()%>/payment.my">나의 결제내역</a></li>
                             <li><a href="<%=request.getContextPath() %>/listCp.my">나의 쿠폰</a></li>
                             <!-- <%--=contextPath --%>/listCp.ump -->
                             <li><a href="<%=request.getContextPath()%>/deleteFirst.me">회원 탈퇴</a></li>
