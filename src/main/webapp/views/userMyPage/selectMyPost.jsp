@@ -123,7 +123,7 @@
             
             var deleteElement = "";
             
-            // 체크된 상품에 순차적으로 접근해 해당 요소의 val()값을 ,로 연결해 하나의 문자열 만들기
+            // 체크된 게시글에 순차적으로 접근해 해당 요소의 val()값을 ,로 연결해 하나의 문자열 만들기
             $("input[name=check]:checked").each(function(){
                deleteElement = deleteElement + ($(this).val()) + ",";
             })   
