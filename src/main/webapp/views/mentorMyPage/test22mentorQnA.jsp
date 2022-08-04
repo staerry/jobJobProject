@@ -97,7 +97,7 @@
     <div class="main-web-wrap">
         <div class="left-content">
             <!--여기에 좌측 메뉴-->
-            <%@ include file="common/mypageSidebar.jsp" %>
+            <%@ include file="common/mypageSidebarMentor.jsp" %>
         </div>
         <div class="right-content">
             <!--여기에 컨텐츠-->

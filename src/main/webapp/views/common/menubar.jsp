@@ -48,6 +48,7 @@
                 <span><a href="<%=contextPath%>/myPage.my">마이페이지</a></span>
                 <span><a href="<%=contextPath%>/userlogout.me">로그아웃</a></span>
                 <span><b><%= loginUser.getUserName() %></b>님</span>
+               
                 <% } %>
             </div>
             <div class="logo-area">

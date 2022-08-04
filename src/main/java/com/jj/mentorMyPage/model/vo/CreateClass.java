@@ -68,6 +68,19 @@ public CreateClass(int clNo, String userNo, int clCategory, String clTitle, Stri
 
 
 
+public CreateClass(int clNo, int clCategory, String clTitle, Date clEnrollDate, String clGrant) {
+	super();
+	this.clNo = clNo;
+	this.clCategory = clCategory;
+	this.clTitle = clTitle;
+	this.clEnrollDate = clEnrollDate;
+	this.clGrant = clGrant;
+}
+
+
+
+
+
 
 public int getClNo() {
 	return clNo;

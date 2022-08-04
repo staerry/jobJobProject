@@ -38,5 +38,45 @@ INSERT
 
 </entry>
 
+<entry key="selectClass">
 
+SELECT
+	CL_NO
+	,CL_CATEGORY
+	,CL_TITLE
+	,CL_ENROLLDATE
+	,CL_GRANT
+	FROM CLASS
+	WHERE USER_NO = ?
+	
+</entry>
+
+<entry key="selectVodNo">
+select 
+	count(vod_no) vod_count 
+from 
+	vod 
+where 
+	cl_no = ?
+
+</entry>
+<entry key="insertVod">
+insert into vod values(
+	SEQ_VOD.nextval,
+	?,
+	?,
+	?,
+	default,
+	default
+)
+</entry>
+
+<entry key="selectOneClass">
+select 
+	* 
+from
+	class 
+where 
+	cl_no = ?
+</entry>
 </properties>

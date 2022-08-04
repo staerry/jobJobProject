@@ -6,11 +6,16 @@ import static com.jj.common.JDBCTemplate.getConnection;
 import static com.jj.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.jj.member.model.dao.MemberDao;
 import com.jj.member.model.vo.Member;
 import com.jj.mentorMyPage.model.dao.MentorMyDao;
 import com.jj.mentorMyPage.model.vo.CreateClass;
+import com.jj.mentorMyPage.model.vo.MtQuestion;
+import com.jj.mentorMyPage.model.vo.Vod;
+import com.jj.userMyPage.model.vo.Class;
 
 public class MentorMyService {
 
@@ -32,5 +37,35 @@ public class MentorMyService {
 		return result;
 	}
 
-	
+	public ArrayList<CreateClass> selectClass(int userNo) {
+		Connection conn = getConnection();
+		ArrayList<CreateClass> list = new MentorMyDao().selectClass(conn, userNo);
+		close(conn);
+		
+		return list;
+	}
+
+	public List<MtQuestion> selectAllQuestion(String userId) {
+		return null;
+	}
+
+	public int insertVod(Vod vod) {
+		Connection conn = getConnection();
+		int result = new MentorMyDao().insertVod(conn, vod);
+		
+		close(conn);
+		return result;
+	}
+
+	public int selectVodNo(int clNo) {
+		Connection conn = getConnection();
+		int vodNo = new MentorMyDao().selectVodNo(conn, clNo);
+		return vodNo;
+	}
+
+	public Class selectOneClass(int clNo) {
+		Connection conn = getConnection();
+		Class cls = new MentorMyDao().selectOneClass(conn, clNo);
+		return cls;
+	}
 }

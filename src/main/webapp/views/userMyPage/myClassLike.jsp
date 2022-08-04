@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.List, com.jj.userMyPage.model.vo.Bookmark"%>
+    
+<% List<Bookmark> list = (List<Bookmark>)request.getAttribute("list");  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +29,7 @@
 			<!-- 전체감싸는부분 -->
 			
 				
-		
+					
 					<!--vod 부분-->
 					<div class="main-vod-title">
 						<h2>찜한 클래스</h2>
@@ -38,70 +40,20 @@
 			
 			            <div class="main-window">
 			                <div class="main-container">
+			                <% for(Bookmark b : list) {%>
 			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
+			                        <h4><%=b.cls.getClTitle %></h4>
+			                        <p><%=b.getUserName %>&nbsp&nbsp&nbsp&nbsp<%=b.getMtCompany %></p>
+			                        
+			                        <!--  -->
 			                        <div class="class-thumbnail"></div>
 			                        <span>
 			                            <i class="fas fa-heart"></i>
 			                        </span>
 			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
+			                    <%} %>
+								
+			                    
 			                </div>
 			                
 			              

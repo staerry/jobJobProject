@@ -62,10 +62,32 @@ SELECT
  
 </entry>
 
+<entry key="selectListWish">
+
+	select
+  	  u.user_no,
+    u.user_id,
+    b.*,
+    c.cl_no,
+    c.cl_title,
+    c.cl_thumbnailpath,
+    u2.user_no cl_user_no,
+    u2.user_id cl_user_id,
+    u2.user_name cl_user_name
+from 
+    userinfo u join bookmark b on u.user_no = b.user_no
+    join class c on b.cl_no = c.cl_no 
+    join userinfo u2 on c.user_no = u2.user_no
+where
+    c.cl_grant = 'A'
+and
+    u.user_no = ?
+</entry>
 
 
+<entry key="selectClassIng">
 
-
+</entry>
 
 
 </properties>
