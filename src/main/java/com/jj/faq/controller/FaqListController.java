@@ -48,8 +48,13 @@ public class FaqListController extends HttpServlet {
 		
 		int sort = Integer.parseInt(request.getParameter("sort"));
 		
+		String searchWord = "";
+		if(request.getParameter("searchWord") != null) {
+			searchWord = request.getParameter("searchWord");
+		}
+		
 		if(sort == 1) {// 최신순일 때
-			listCount = new FaqService().selectListCount();
+			listCount = new FaqService().selectListCount(searchWord);
 			
 			currentPage = Integer.parseInt(request.getParameter("cpage"));
 			
@@ -69,7 +74,7 @@ public class FaqListController extends HttpServlet {
 			
 			PageInfoFaq pi = new PageInfoFaq(listCount, currentPage, pageLimit, faqLimit, maxPage, startPage, endPage);
 		
-			ArrayList<Faq> list = new FaqService().selectFaqList(pi);
+			ArrayList<Faq> list = new FaqService().selectFaqList(pi, searchWord);
 			
 			request.setAttribute("sort", sort);
 			request.setAttribute("pi", pi);
@@ -77,7 +82,7 @@ public class FaqListController extends HttpServlet {
 			request.getRequestDispatcher("views/member/faqList.jsp").forward(request, response);
 			
 		}else {// 조회순일때
-			listCount = new FaqService().selectListCount();
+			listCount = new FaqService().selectListCount(searchWord);
 			
 			currentPage = Integer.parseInt(request.getParameter("cpage"));
 			
@@ -100,7 +105,7 @@ public class FaqListController extends HttpServlet {
 			
 			PageInfoFaq pi = new PageInfoFaq(listCount, currentPage, pageLimit, faqLimit, maxPage, startPage, endPage);
 			
-			ArrayList<Faq> list = new FaqService().selectCountFaqList(pi);
+			ArrayList<Faq> list = new FaqService().selectCountFaqList(pi, searchWord);
 			
 			request.setAttribute("sort", sort);
 			request.setAttribute("pi", pi);

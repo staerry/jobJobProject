@@ -29,7 +29,7 @@
 		<ul class="category-area">
 			<li>총 <%= searchAllCount %>건&nbsp;&nbsp;|&nbsp;&nbsp;</li>
 			<li><a href="#a">클래스 <%= classCount %></a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-			<li><a href="#2">멘토 <%= lecturerCount %></a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+			<li><a href="#b">멘토 <%= lecturerCount %></a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
 			<li><a href="#c"> 게시글 <%= communityCount %></a></li>
 		</ul><!--카테고리부분 끝-->
 
@@ -49,10 +49,10 @@
 			<% for(Class i : classList){ %>
 				<div class="class-item">
 					<div class="class-info">
-						<h4><a href="<%= contextPath %>/detail.cl?class=<%= i.getClNo() %>"><%= i.getClTitle() %></a></h4>
-						<pre><%= i.getClSubtitle() %></pre>
+						<h4><a href="<%= contextPath %>/detail.cl?class=<%= i.getClNo() %>"><%= i.getUserNo() %></a></h4>
+						<pre><%= i.getClCategory() %></pre>
 						<br>
-						<span><%= i.getUserNo() %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><%= i.getClCategory() %></span>
+						<span><%= i.getClTitle() %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><%= i.getClSubtitle() %></span>
 					</div>
 					<div class="class-img">
 						<img src="<%= i.getClThumbnailPath() %>" alt="썸네일" height="100">

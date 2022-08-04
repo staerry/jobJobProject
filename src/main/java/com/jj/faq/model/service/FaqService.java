@@ -12,9 +12,9 @@ import com.jj.faq.model.vo.MTM;
 
 public class FaqService {
 	
-	public ArrayList<Faq> selectFaqList(PageInfoFaq pi){
+	public ArrayList<Faq> selectFaqList(PageInfoFaq pi, String searchWord){
 		Connection conn = getConnection();
-		ArrayList<Faq> list = new FaqDao().selectFaqList(conn, pi);
+		ArrayList<Faq> list = new FaqDao().selectFaqList(conn, pi, searchWord);
 		close(conn);
 		return list;
 	}
@@ -52,16 +52,16 @@ public class FaqService {
 		return fq;
 	}
 	
-	public ArrayList<Faq> selectCountFaqList(PageInfoFaq pi){
+	public ArrayList<Faq> selectCountFaqList(PageInfoFaq pi, String searchWord){
 		Connection conn = getConnection();
-		ArrayList<Faq> list = new FaqDao().selectCountFaqList(conn, pi);
+		ArrayList<Faq> list = new FaqDao().selectCountFaqList(conn, pi, searchWord);
 		close(conn);
 		return list;
 	}
 	
-	public int selectListCount() {
+	public int selectListCount(String searchWord) {
 		Connection conn = getConnection();
-		int listCount = new FaqDao().selectListCount(conn);
+		int listCount = new FaqDao().selectListCount(conn, searchWord);
 		close(conn);
 		return listCount;
 	}

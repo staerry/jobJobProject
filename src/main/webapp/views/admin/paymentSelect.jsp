@@ -107,7 +107,7 @@
 			                    <tr>
 			                        <th>결제강의</th>
 			                        <th>결제수단</th>
-			                        <th>결제(환불)일시</th>
+			                        <th>결제일시</th>
 			                        <th>최종결제금액</th>
 			                        <th>사용한쿠폰</th>
 			                        <th>환불여부</th>
@@ -226,20 +226,44 @@
 						let a = ""
 						let b = ""
 						let c = ""
-						if(list[i].refund=='Y'){
-							a = "<td>"+list[i].refundDate+"</td>"
-						}else{
+						let d = ""
+						let e = ""
+						let f = ""
+						let g = ""
+					
 							a = "<td>"+list[i].payDate+"</td>"	
-						}
+						
 						if(list[i].isuCpNo==null){
 							b = "<td>--</td>"
 						}else{
-							b = "<td>"+list[i].isuCpNo+"</td>"	
+						b = "<td>"+list[i].isuCpNo+"</td>"	
 						}
 						if(list[i].refund=='Y'){
 							c = "<td>환불완료</td>"
+						}else if(list[i].refund=='D'){
+							c = "<td>환불거절</td>"
 						}else{
 							c = "<td>--</td>"	
+						}
+						if(list[i].orderName==null){
+							d="--"
+						}else{
+							d=list[i].orderName
+						}
+						if(list[i].orderPhone==null){
+							e="--"
+						}else{
+							e=list[i].orderPhone
+						}
+						if(list[i].orderEmail==null){
+							f="--"
+						}else{
+							f=list[i].orderEmail
+						}
+						if(list[i].refundDate==null){
+							g="--"
+						}else{
+							g=list[i].refundDate
 						}
 	    			   result += '<tr class="def">'
 	    						+	"<td>"+list[i].clNo+"</td>"
@@ -249,11 +273,17 @@
 	    						+	b
 	    						+	c
 	    						+"</tr>"
-	    						+ "<tr class='add' style='display:none;'>"
-	    						+	"<td>1</td>"
-	    						+	"<td colspan='2'>2</td>"
-	    						+	"<td colspan='2'>3</td>"
-	    						+	"<td>4</td>"
+	    						+ "<tr class='add1' style='display:none;'>"
+	    						+	"<th>주문자명</th>"
+	    						+	"<td colspan='2' style='text-align:left'>"+d+"</td>"
+	    						+	"<th>주문자번호</th>"
+	    						+	"<td colspan='2' style='text-align:left'>"+e+"</td>"
+	    						+"</tr>"
+	    						+ "<tr class='add1' style='display:none;'>"
+	    						+	"<th>주문자이메일</th>"
+	    						+	"<td colspan='2' style='text-align:left'>"+f+"</td>"
+	    						+	"<th>환불일시</th>"
+	    						+	"<td colspan='2' style='text-align:left'>"+g+"</td>"
 	    						+"</tr>"
 	    			}
 					$('#pagenum').val(list[0].pi.currentPage)
@@ -284,25 +314,29 @@
 		$('.detailInfo').css('display',"")
 	})
 	
-	$(function(){
+	
 		 
-		 $(".def").on("click","tr[class='add']",function(){
-            	console("111")
+		 $(document).on("click",".def",function(){
+				
+				
             	const $li = $(this).next();
+            	const $li2 = $(this).next().next();
 
                 if( $li.css("display") == "none" ){
                      
-                      $(this).siblings("tr .add").slideUp();
+                	$('.add1').slideUp();
                        
                       $li.slideDown();
+                      $li2.slideDown();
                       
                   }else{
                       $li.slideUp(); 
+                      $li2.slideUp(); 
                       
                   }
             })
               
-        }) 
+       
 	
 	
 	$('.arrowR').click(function(e){
@@ -324,47 +358,85 @@
 					$('.arrowL').css('display','none')
 				}else{
 					let result=""
-					for(let i=0;i<list.length;i++){
-						let a = ""
-						let b = ""
-						let c = ""
-						if(list[i].refund=='Y'){
-							a = "<td>"+list[i].refundDate+"</td>"
-						}else{
-							a = "<td>"+list[i].payDate+"</td>"	
-						}
-						if(list[i].isuCpNo==null){
-							b = "<td>--</td>"
-						}else{
+						for(let i=0;i<list.length;i++){
+							let a = ""
+							let b = ""
+							let c = ""
+							let d = ""
+							let e = ""
+							let f = ""
+							let g = ""
+						
+								a = "<td>"+list[i].payDate+"</td>"	
+							
+							if(list[i].isuCpNo==null){
+								b = "<td>--</td>"
+							}else{
 							b = "<td>"+list[i].isuCpNo+"</td>"	
-						}
-						if(list[i].refund=='Y'){
-							c = "<td>환불완료</td>"
-						}else{
-							c = "<td>강의구매</td>"	
-						}
-	    			   result += "<tr>"
-	    						+	"<td>"+list[i].clNo+"</td>"
-	    						+	"<td>"+list[i].payment+"</td>"
-	    						+	a
-	    						+	"<td>"+list[i].finalPayment+"</td>"
-	    						+	b
-	    						+	c
-	    						+"</tr>";
-	    			}
-					$('#pagenum').val(list[0].pi.currentPage)
-					$('#userno').val(list[0].userNo)
-					if($('#pagenum').val()=='1'){
-	        			$('.arrowL').css('display','none')
-	        		}else{
-	        			$('.arrowL').css('display','')
-	        		}
-					if($('#pagenum').val()==list[0].pi.maxPage){
-	        			$('.arrowR').css('display','none')
-	        		}else{
-	        			$('.arrowR').css('display','')
-	        		}
-					$('#payselect').html(result)
+							}
+							if(list[i].refund=='Y'){
+								c = "<td>환불완료</td>"
+							}else if(list[i].refund=='D'){
+								c = "<td>환불거절</td>"
+							}else{
+								c = "<td>--</td>"	
+							}
+							if(list[i].orderName==null){
+								d="--"
+							}else{
+								d=list[i].orderName
+							}
+							if(list[i].orderPhone==null){
+								e="--"
+							}else{
+								e=list[i].orderPhone
+							}
+							if(list[i].orderEmail==null){
+								f="--"
+							}else{
+								f=list[i].orderEmail
+							}
+							if(list[i].refundDate==null){
+								g="--"
+							}else{
+								g=list[i].refundDate
+							}
+		    			   result += '<tr class="def">'
+		    						+	"<td>"+list[i].clNo+"</td>"
+		    						+	"<td>"+list[i].payment+"</td>"
+		    						+	a
+		    						+	"<td>"+list[i].finalPayment+"</td>"
+		    						+	b
+		    						+	c
+		    						+"</tr>"
+		    						+ "<tr class='add1' style='display:none;'>"
+		    						+	"<th>주문자명</th>"
+		    						+	"<td colspan='2' style='text-align:left'>"+d+"</td>"
+		    						+	"<th>주문자번호</th>"
+		    						+	"<td colspan='2' style='text-align:left'>"+e+"</td>"
+		    						+"</tr>"
+		    						+ "<tr class='add1' style='display:none;'>"
+		    						+	"<th>주문자이메일</th>"
+		    						+	"<td colspan='2' style='text-align:left'>"+f+"</td>"
+		    						+	"<th>환불일시</th>"
+		    						+	"<td colspan='2' style='text-align:left'>"+g+"</td>"
+		    						+"</tr>"
+		    			}
+						$('#pagenum').val(list[0].pi.currentPage)
+						$('#userno').val(list[0].userNo)
+						if($('#pagenum').val()=='1'){
+		        			$('.arrowL').css('display','none')
+		        		}else{
+		        			$('.arrowL').css('display','')
+		        		}
+						if($('#pagenum').val()==list[0].pi.maxPage){
+		        			$('.arrowR').css('display','none')
+		        		}else{
+		        			$('.arrowR').css('display','')
+		        		}
+						console.log(parseInt($('#pagenum').val())+1)
+						
+						$('#payselect').html(result)
 				}
 			},error:function(){
 				alert('정보를 찾지 못했습니다');
@@ -392,47 +464,85 @@
 					$('.arrowL').css('display','none')
 				}else{
 					let result=""
-					for(let i=0;i<list.length;i++){
-						let a = ""
-						let b = ""
-						let c = ""
-						if(list[i].refund=='Y'){
-							a = "<td>"+list[i].refundDate+"</td>"
-						}else{
-							a = "<td>"+list[i].payDate+"</td>"	
-						}
-						if(list[i].isuCpNo==null){
-							b = "<td>--</td>"
-						}else{
+						for(let i=0;i<list.length;i++){
+							let a = ""
+							let b = ""
+							let c = ""
+							let d = ""
+							let e = ""
+							let f = ""
+							let g = ""
+						
+								a = "<td>"+list[i].payDate+"</td>"	
+							
+							if(list[i].isuCpNo==null){
+								b = "<td>--</td>"
+							}else{
 							b = "<td>"+list[i].isuCpNo+"</td>"	
-						}
-						if(list[i].refund=='Y'){
-							c = "<td>환불완료</td>"
-						}else{
-							c = "<td>강의구매</td>"	
-						}
-	    			   result += "<tr>"
-	    						+	"<td>"+list[i].clNo+"</td>"
-	    						+	"<td>"+list[i].payment+"</td>"
-	    						+	a
-	    						+	"<td>"+list[i].finalPayment+"</td>"
-	    						+	b
-	    						+	c
-	    						+"</tr>";
-	    			}
-					$('#pagenum').val(list[0].pi.currentPage)
-					$('#userno').val(list[0].userNo)
-					if($('#pagenum').val()=='1'){
-	        			$('.arrowL').css('display','none')
-	        		}else{
-	        			$('.arrowL').css('display','')
-	        		}
-					if($('#pagenum').val()==list[0].pi.maxPage){
-	        			$('.arrowR').css('display','none')
-	        		}else{
-	        			$('.arrowR').css('display','')
-	        		}
-					$('#payselect').html(result)
+							}
+							if(list[i].refund=='Y'){
+								c = "<td>환불완료</td>"
+							}else if(list[i].refund=='D'){
+								c = "<td>환불거절</td>"
+							}else{
+								c = "<td>--</td>"	
+							}
+							if(list[i].orderName==null){
+								d="--"
+							}else{
+								d=list[i].orderName
+							}
+							if(list[i].orderPhone==null){
+								e="--"
+							}else{
+								e=list[i].orderPhone
+							}
+							if(list[i].orderEmail==null){
+								f="--"
+							}else{
+								f=list[i].orderEmail
+							}
+							if(list[i].refundDate==null){
+								g="--"
+							}else{
+								g=list[i].refundDate
+							}
+		    			   result += '<tr class="def">'
+		    						+	"<td>"+list[i].clNo+"</td>"
+		    						+	"<td>"+list[i].payment+"</td>"
+		    						+	a
+		    						+	"<td>"+list[i].finalPayment+"</td>"
+		    						+	b
+		    						+	c
+		    						+"</tr>"
+		    						+ "<tr class='add1' style='display:none;'>"
+		    						+	"<th>주문자명</th>"
+		    						+	"<td colspan='2' style='text-align:left'>"+d+"</td>"
+		    						+	"<th>주문자번호</th>"
+		    						+	"<td colspan='2' style='text-align:left'>"+e+"</td>"
+		    						+"</tr>"
+		    						+ "<tr class='add1' style='display:none;'>"
+		    						+	"<th>주문자이메일</th>"
+		    						+	"<td colspan='2' style='text-align:left'>"+f+"</td>"
+		    						+	"<th>환불일시</th>"
+		    						+	"<td colspan='2' style='text-align:left'>"+g+"</td>"
+		    						+"</tr>"
+		    			}
+						$('#pagenum').val(list[0].pi.currentPage)
+						$('#userno').val(list[0].userNo)
+						if($('#pagenum').val()=='1'){
+		        			$('.arrowL').css('display','none')
+		        		}else{
+		        			$('.arrowL').css('display','')
+		        		}
+						if($('#pagenum').val()==list[0].pi.maxPage){
+		        			$('.arrowR').css('display','none')
+		        		}else{
+		        			$('.arrowR').css('display','')
+		        		}
+						console.log(parseInt($('#pagenum').val())+1)
+						
+						$('#payselect').html(result)
 				}
 			},error:function(){
 				alert('정보를 찾지 못했습니다');

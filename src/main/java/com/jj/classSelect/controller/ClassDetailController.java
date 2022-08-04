@@ -53,6 +53,12 @@ public class ClassDetailController extends HttpServlet {
 		request.setAttribute("bookmarkCount", bookmarkCount);
 		request.setAttribute("list", list);
 		
+		System.out.println(c);
+		System.out.println(studentCount);
+		System.out.println(bookmarkCount);
+		System.out.println(list);
+		
+		
 		request.getRequestDispatcher("views/classSelect/classDetailView.jsp").forward(request, response);
 		
 	}

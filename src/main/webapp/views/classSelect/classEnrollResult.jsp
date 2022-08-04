@@ -32,8 +32,8 @@
             <br>
             <br>
             <div class="button-area">
-                <button id="return-main"><a href="">메인 페이지로</a></button>
-                <button id="go-mypage"><a href="">내 강의 보러가기</a></button>
+                <button id="return-main"><a href="<%= contextPath %>">메인 페이지로</a></button>
+                <button id="go-mypage"><a href="views/userMyPage/userMyPageMain2.jsp">내 강의 보러가기</a></button>
             </div>            
         </div>
     </div>

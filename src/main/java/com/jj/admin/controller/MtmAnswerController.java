@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jj.admin.model.service.AdminService;
-import com.jj.admin.model.service.SendMail;
+import com.jj.admin.model.service.MailSender;
 import com.jj.mtm.model.vo.Mtm;
 
 /**
@@ -44,7 +44,7 @@ public class MtmAnswerController extends HttpServlet {
 			Mtm userEmail = new AdminService().selectUserEmail(mtmNo);
 			
 //			메일 전송용 클래스 호출 => 답변내용, 유저 이메일 매개변수 작성
-			new SendMail().sendMail(mtmAnswer, userEmail);
+			new MailSender().sendMail(mtmAnswer, userEmail);
 			
 			request.getSession().setAttribute("alertMsg", "답변을 전송 했습니다.");
 		}else {

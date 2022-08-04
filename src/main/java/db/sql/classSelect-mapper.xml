@@ -260,8 +260,10 @@
 		       CL_NO
 		     , CL_TITLE
 		     , USER_NAME
-		     , TO_CHAR(CL_PRICE, 'L99,999') AS CL_PRICE
+		     , CL_PRICE
+		     , TO_CHAR(CL_PRICE, 'L99,999') AS CL_PRICE_WON
 		     , CL_THUMBNAILPATH
+		     , CL_ENROLLDATE
 		  FROM CLASS
 		  JOIN USERINFO USING(USER_NO)
 		 WHERE CL_NO = ?
@@ -274,7 +276,8 @@
 		     , CP_NAME
   		     , CP_NO
 		     , CP_ENDDATE
-		     , TO_CHAR(DISCOUNT, 'L99,999') AS DISCOUNT
+		     , DISCOUNT
+		     , TO_CHAR(DISCOUNT, 'L99,999') AS DISCOUNT_WON
 		  FROM ISSUANCECOUPON I  
 		  JOIN USERINFO USING(USER_NO)
 		  JOIN COUPON USING(CP_NO)
@@ -284,4 +287,90 @@
 		 ORDER 
 		    BY ISUCP_NO
     </entry>
+    
+    <!-- 수강 이력 확인 -->
+    <entry key="classEnrollCheck">
+	    SELECT COUNT(*) AS LISTCOUNT
+		  FROM CLASS_ING
+		 WHERE USER_NO = ?
+		   AND CL_NO = ?
+    </entry>
+    
+    <!-- 쿠폰을 사용하면서 수강신청 -->
+    <entry key="insertPayWithCoupon">
+    	INSERT
+		  INTO PAY
+		     ( PAY_NO
+		     , USER_NO
+		     , CL_NO
+		     , ISUCP_NO
+		     , PAYMENT
+		     , FINAL_PAYMENT
+		     , ORDER_NAME
+		     , ORDER_PHONE
+		     , ORDER_EMAIL
+		     )
+		  VALUES
+		     ( 
+		        SEQ_PAY.NEXTVAL
+		      , ?  
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      )
+    </entry>
+    
+    <!--  쿠폰 사용 상태 업데이트 -->
+    <entry key="updateIssuanceCoupon">
+	    UPDATE ISSUANCECOUPON
+	       SET CP_STATUS = 'Y'
+	     WHERE ISUCP_NO = ?
+<!-- 	       AND USER_NO = ?
+	       AND CP_NO = ? -->
+    </entry>
+    
+    <!-- 수강중인 클래스 등록 -->
+    <entry key="insertClassIng">
+    	INSERT
+    	   INTO CLASS_ING
+    	      ( USER_NO
+    	      , CL_NO)
+    	   VALUES
+    	      ( ?
+    	      , ?
+    	      )
+    </entry>
+    
+    <!-- 쿠폰을 사용하지 않고 수강신청 -->
+    <entry key="insertPayNoCoupon">
+    	INSERT
+		  INTO PAY
+		     ( PAY_NO
+		     , USER_NO
+		     , CL_NO
+		     , PAYMENT
+		     , FINAL_PAYMENT
+		     , ORDER_NAME
+		     , ORDER_PHONE
+		     , ORDER_EMAIL
+		     )
+		  VALUES
+		     ( 
+		        SEQ_PAY.NEXTVAL
+		      , ?  
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      )    
+    
+    </entry>
+    
+    
 </properties>

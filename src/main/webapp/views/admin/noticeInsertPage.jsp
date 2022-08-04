@@ -25,7 +25,7 @@
 			<div class="right">
 			    <h3>공지사항 작성</h3>
 			    
-				<form action="" method="post" class="notice-insert-area">
+				<form action="noticeInsertCotroller.ad" method="post" class="notice-insert-area">
 					<span>공지사항 제목</span><br>
 					<input type="text" name="noticeTitle" placeholder="제목을 입력하세요" class="form-control" id="title-input">
 					
@@ -37,8 +37,8 @@
 					<br>
 					
 					<div class="notice-btn">
-						<button type="button">돌아가기</button>
-						<button tyle="submit">작성하기</button>
+						<button type="button" onclick="history.back();">돌아가기</button>
+						<button type="submit">작성하기</button>
 					</div>
 				</form>
 			</div>

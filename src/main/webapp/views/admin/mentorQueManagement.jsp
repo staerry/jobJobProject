@@ -82,7 +82,7 @@
                 		<% for(MtQuestion i : list){ %>
 							<tr>
 								<td><%= i.getMtQueNo() %></td>
-								<td><%= i.getQueTitle() %></td>
+								<td class="title"><%= i.getQueTitle() %></td>
 								<td><%= i.getQueWriterName() %></td>
 								<td><%= i.getAnsWriterName() %></td>
 								<%-- <td><%= i.getQueLike() %></td> --%>
@@ -123,11 +123,11 @@
             
             <script>
             	$(function(){
-            		$(".admin-table > tbody > tr").click(function(){
-            			if($(this).next().css("display") == "none"){
-            				$(this).next().css("display", "");
+            		$(".title").click(function(){
+            			if($(this).parent().next().css("display") == "none"){
+            				$(this).parent().next().css("display", "");
             			}else{
-            				$(this).next().css("display", "none");
+            				$(this).parent().next().css("display", "none");
             			}	
             		})
             	})

@@ -24,7 +24,21 @@ public class Class {
 	public Class() {
 		
 	}
-	
+
+	public Class(int clNo, String clTitle, String userNo, int clPrice, String clPriceWon, String clThumbnailPath,
+			Date clEnrolldate) {
+		super();
+		this.clNo = clNo;
+		this.clTitle = clTitle;
+		this.userNo = userNo;
+		this.clPrice = clPrice;
+		this.clPriceWon = clPriceWon;
+		this.clThumbnailPath = clThumbnailPath;
+		this.clEnrolldate = clEnrolldate;
+	}
+
+
+
 	public Class(int clNo, String userNo, String clCategory, String clTitle, String clSubtitle,
 			String clThumbnailPath) {
 		super();
@@ -34,6 +48,16 @@ public class Class {
 		this.clTitle = clTitle;
 		this.clSubtitle = clSubtitle;
 		this.clThumbnailPath = clThumbnailPath;
+	}
+		
+	public Class(int clNo, String clTitle, String userNo, int clPrice, String clPriceWon, Date clEnrolldate) {
+		super();
+		this.clNo = clNo;
+		this.clTitle = clTitle;
+		this.userNo = userNo;
+		this.clPrice = clPrice;
+		this.clPriceWon = clPriceWon;
+		this.clEnrolldate = clEnrolldate;
 	}
 
 	public Class(int clNo, String userNo, String mtCompany, String clCategory, String clTitle, String clSubtitle,

@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.jj.classSelect.model.vo.Class;
 import com.jj.community.model.vo.Review;
+import com.jj.coupon.vo.IssuanceCoupon;
 
 public class ClassDao {
 	
@@ -108,7 +109,7 @@ public class ClassDao {
 			close(pstmt);
 		}
 		
-		System.out.println(list);
+//		System.out.println(list);
 		
 		return list;
 		
@@ -147,12 +148,12 @@ public class ClassDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(list);
+//		System.out.println(list);
 		return list;
 	}
 	
 	public Class selectClass(Connection conn, int clNo) {
-		Class c = null;
+		Class c = new Class();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectClass");
@@ -163,19 +164,35 @@ public class ClassDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				c = new Class(rset.getInt("cl_no"),
-							  rset.getString("user_name"),
-							  rset.getString("cl_category"),
-							  rset.getString("cl_title"),
-							  rset.getString("cl_subtitle"),
-							  rset.getString("cl_info"),
-							  rset.getString("cl_curri"),
-							  rset.getString("cl_price"),
-							  rset.getString("cl_thumbnailpath"),
-							  rset.getString("ltr_info"),
-							  rset.getString("ltr_career"),
-							  rset.getString("profile_path")
-							 );
+//				c = new Class(rset.getInt("cl_no"),
+//				  rset.getString("user_name"),
+//				  rset.getString("cl_category"),
+//				  rset.getString("cl_title"),
+//				  rset.getString("cl_subtitle"),
+//				  rset.getString("cl_info"),
+//				  rset.getString("cl_curri"),
+//				  rset.getString("cl_price"),
+//				  rset.getString("cl_thumbnailpath"),
+//				  rset.getString("ltr_info"),
+//				  rset.getString("ltr_career"),
+//				  rset.getString("profile_path")
+//				 );
+				
+				// 500 에러 수정 가능?
+				
+				c.setClNo(rset.getInt("cl_no"));
+				c.setUserNo(rset.getString("user_name"));
+				c.setClCategory(rset.getString("cl_category"));
+				c.setClTitle(rset.getString("cl_title"));
+				c.setClSubtitle(rset.getString("cl_subtitle"));
+				c.setClInfo(rset.getString("cl_info"));
+				c.setClCurri(rset.getString("cl_curri"));
+				c.setClPriceWon(rset.getString("cl_price"));
+				c.setClThumbnailPath(rset.getString("cl_thumbnailpath"));
+				c.setLtrInfo(rset.getString("ltr_info"));
+				c.setLtrCareer(rset.getString("ltr_career"));
+				c.setLtrProfilePath(rset.getString("profile_path"));
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -183,7 +200,7 @@ public class ClassDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println(c);
 		return c;
 	}
 	
@@ -301,7 +318,7 @@ public class ClassDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(list);
+//		System.out.println(list);
 		return list;
 		
 	}
@@ -339,7 +356,7 @@ public class ClassDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(list);
+//		System.out.println(list);
 		return list;
 	}
 	
@@ -374,7 +391,7 @@ public class ClassDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(list);
+//		System.out.println(list);
 		return list;
 	}
 	
@@ -411,7 +428,7 @@ public class ClassDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(list);
+//		System.out.println(list);
 		return list;
 	}
 	
@@ -445,4 +462,209 @@ public class ClassDao {
 		return list;
 	}
 
+	public Class selectClassEnroll(Connection conn, int clNo){
+		Class c = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectClassEnroll");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				c = new Class(rset.getInt("cl_no"),
+						      rset.getString("cl_title"),
+						      rset.getString("user_name"),
+						      rset.getInt("cl_price"),
+						      rset.getString("cl_price_won"),
+						      rset.getString("cl_thumbnailpath"),
+						      rset.getDate("cl_enrolldate"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return c;
+		
+	}
+	
+	public ArrayList<IssuanceCoupon> selectCouponList(Connection conn, int userNo) {
+		ArrayList<IssuanceCoupon> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCouponList");
+		
+		System.out.println(userNo);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+					
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new IssuanceCoupon(rset.getInt("isucp_no"),
+											rset.getString("cp_name"),
+											rset.getString("cp_no"),
+											rset.getDate("cp_enddate"),
+											rset.getString("discount"),
+											rset.getString("discount_won")
+										 	));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		System.out.println(list);
+		return list;
+	}
+	
+	public int classEnrollCheck(Connection conn, int userNo, int clNo) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("classEnrollCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, clNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+		
+	}
+	
+	public int insertPayWithCoupon(Connection conn, int userNo, int clNo, String isuCpNo, String payment, int finalPayment, String orderName, String orderPhone, String orderEmail) {
+		int payResult = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertPayWithCoupon");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, clNo);
+			pstmt.setString(3, isuCpNo);
+			pstmt.setString(4, payment);
+			pstmt.setInt(5, finalPayment);
+			pstmt.setString(6,  orderName);
+			pstmt.setString(7, orderPhone);
+			pstmt.setString(8, orderEmail);
+			
+			payResult = pstmt.executeUpdate();			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return payResult;
+	}
+	
+	public int updateIssuanceCoupon(Connection conn, String isuCpNo, int userNo) {
+		int couponResult = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateIssuanceCoupon");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, isuCpNo);
+//			pstmt.setInt(2, userNo);
+//			pstmt.setInt(3, clNo);
+			
+			couponResult = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return couponResult;
+		
+	}
+	
+	public int insertClassIng(Connection conn, int userNo, int clNo) {
+		int ingResult = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertClassIng");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, clNo);
+			
+			ingResult = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return ingResult;
+	}
+	
+	public int insertPayNoCoupon(Connection conn, int userNo, int clNo, String payment, int finalPayment, String orderName, String orderPhone, String orderEmail) {
+		int payResult = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertPayNoCoupon");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, clNo);
+			pstmt.setString(3, payment);
+			pstmt.setInt(4, finalPayment);
+			pstmt.setString(5, orderName);
+			pstmt.setString(6, orderPhone);
+			pstmt.setString(7, orderEmail);
+			
+			payResult = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return payResult;
+		
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -39,6 +39,7 @@ li>a{color:black;}
     border-bottom:1px solid #e5e7eb;
     border-right:1px solid #e5e7eb;
     border-left:1px solid #e5e7eb;
+    letter-spacing: -0.5px;
 }
 
 .mentor-list{
@@ -63,10 +64,10 @@ li>a{color:black;}
 }
 
 .class-sort-btn {
-	width:380px;
+	width:300px;
 	height:35px;
 	border:1px solid #ABB0B5;
-	border-radius:4px;
+	border-radius:8px;
 	background-color:#fff;
 	display:flex;
 	align-items:center;
@@ -74,7 +75,7 @@ li>a{color:black;}
 }
 
 .class-sort-btn *{
-	color:#ABB0B5;
+	color:#3e4042;
 	font-size:14px;
 	font-weight:500;
 }
@@ -95,6 +96,10 @@ li>a{color:black;}
 }
 
 .class-sort-btn button:hover{
+	color:#6363ff;
+}
+
+.class-sort-btn button:visited{
 	color:#6363ff;
 }
 
@@ -122,6 +127,7 @@ li>a{color:black;}
     flex-wrap:wrap;
     justify-content:flex-start;
     align-content:space-around;
+    
 }
 
 .class-cover {
@@ -135,6 +141,16 @@ li>a{color:black;}
     margin:17px;
 }
 
+.class-cover:hover{
+    transform: scale(1.05);
+    transition: all 0.3s;
+}
+
+.class-list span{
+    font-size:15px;
+    margin-bottom:1px;
+}
+
 .class-cover>h6{
 	font-weight:600;
 }
@@ -143,6 +159,12 @@ li>a{color:black;}
     color:#FFCE55;
 }
 
+#class-cover-img{
+	margin-top:3px;
+	margin-bottom:3px;
+}
+
 #zzim-count{
+	margin-top:3px;
     margin-right:10px;
 }
