@@ -11,9 +11,13 @@ public class IssuanceCoupon {
 	private Date cpEndDate;
 	private String userName;
 	private String cpName;
+	private String discount;
+	private String discountWon;	// TO_CHAR 형태 변환용 (태은)
 	
 	public IssuanceCoupon() {}
 
+	
+	
 	public IssuanceCoupon(int isuCpNo, String userNo, String cpNo, String cpStatus, Date cpIssuDate, Date cpEndDate) {
 		super();
 		this.isuCpNo = isuCpNo;
@@ -22,6 +26,17 @@ public class IssuanceCoupon {
 		this.cpStatus = cpStatus;
 		this.cpIssuDate = cpIssuDate;
 		this.cpEndDate = cpEndDate;
+	}
+
+	public IssuanceCoupon(int isuCpNo, String cpName, String cpNo, Date cpEndDate, String discount,
+			String discountWon) {
+		super();
+		this.isuCpNo = isuCpNo;
+		this.cpName = cpName;
+		this.cpNo = cpNo;
+		this.cpEndDate = cpEndDate;
+		this.discount = discount;
+		this.discountWon = discountWon;
 	}
 
 	public IssuanceCoupon(int isuCpNo, String userNo, String cpNo, String cpStatus, Date cpIssuDate, Date cpEndDate,
@@ -35,6 +50,37 @@ public class IssuanceCoupon {
 		this.cpEndDate = cpEndDate;
 		this.userName = userName;
 		this.cpName = cpName;
+	}
+	
+	public IssuanceCoupon(int isuCpNo, String cpName, String cpNo, Date cpEndDate, String discount) {
+		super();
+		this.isuCpNo = isuCpNo;
+		this.cpName = cpName;
+		this.cpNo = cpNo;
+		this.cpEndDate = cpEndDate;
+		this.discount = discount;
+	}
+
+	
+	
+	public String getDiscountWon() {
+		return discountWon;
+	}
+
+
+
+	public void setDiscountWon(String discountWon) {
+		this.discountWon = discountWon;
+	}
+
+
+
+	public String getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(String discount) {
+		this.discount = discount;
 	}
 
 	public int getIsuCpNo() {

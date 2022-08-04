@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList, com.jj.classSelect.model.vo.Class, com.jj.community.model.vo.Review"%>
 <%
 	Class c = (Class)request.getAttribute("c");
+
 	ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
 	int studentCount = (int)request.getAttribute("studentCount");
 	int bookmarkCount = (int)request.getAttribute("bookmarkCount");
@@ -109,10 +110,17 @@
                 	<% for(Review r : list) { %>
                     <table class="user-review">
                         <tr>
-                            <td>평점 : <%= r.getReviewScore() %> 점 (⭐️⭐️⭐️⭐️⭐️로 수정 필요)</td>
-                        </tr>
-                        <tr>
-                            <td id="review-user"><%= r.getUserNo() %></td>
+                        	<% if(r.getReviewScore() == 5) { %>
+                        	<td><%= r.getUserNo() %>&nbsp;&nbsp;⭐️⭐️⭐️⭐️⭐ <span class="review-score"><%= r.getReviewScore() %></span></td>
+                        	<% } else if(r.getReviewScore() == 4) {%>
+                        	<td><%= r.getUserNo() %>&nbsp;&nbsp;⭐️⭐️⭐️⭐ <span class="review-score"><%= r.getReviewScore() %></span>️</td>
+                        	<% } else if(r.getReviewScore() == 3) {%>
+                        	<td><%= r.getUserNo() %>&nbsp;&nbsp;⭐️⭐️⭐️️ <span class="review-score"><%= r.getReviewScore() %></span></td>
+                        	<% } else if(r.getReviewScore() == 2) {%>
+                        	<td><%= r.getUserNo() %>&nbsp;&nbsp;⭐️⭐️️️ <span class="review-score"><%= r.getReviewScore() %></span></td>
+                        	<% } else { %>
+                        	<td><%= r.getUserNo() %>&nbsp;&nbsp;⭐ <span class="review-score"><%= r.getReviewScore() %></span>️️️️</td>
+                        	<% } %>
                         </tr>
                         <tr>
                             <td id="review-date"><%= r.getReviewEnrolldate() %></td>
@@ -134,40 +142,61 @@
                 <!-- 수강료 표시 영역 -->
                 <div class="class-price">
                     <h4><%= c.getClPriceWon() %></h4>
+                    <span id="no-limit">/ &nbsp;무제한 수강</span>
                 </div>
 
                 <div class="order-btn">
                     <br>
                     <!-- 로그인한 사용자에게만 다음 페이지 이동 허용 -->
-                    <!-- 로그인 될 때까지 안되는 상태로 일단 테스트 -->
-                    <%-- <% if(loginUser == null) { %> --%>
-                    <!-- <button id="class-buy" onclick="pleaseLogin();">수강신청 하기</button><br><br>
-                    <button id="class-zzim" onclick="">❤️ 강의 찜하기</button> -->
-                    <%-- <% } else { %> --%>
-                    <button id="class-buy" onclick="location.href='<%= contextPath %>/enroll.cl?class=<%=c.getClNo()%>';">수강신청 하기</button><br><br>
-                    <button id="class-zzim" onclick="">❤️ 강의 찜하기</button>
+                   
+                    <% if(loginUser != null) {%>
+                    <button class="class-buy" onclick="location.href='<%= contextPath %>/enrollForm.cl?class=<%=c.getClNo()%>';">수강신청 하기</button><br><br>
+                    <button class="class-zzim" onclick="zzim()">❤️ 강의 찜하기</button>
+                    
+                    <% }else { %>
+					<button class="class-buy" onclick="alert('로그인 후 이용 가능한 서비스입니다.');">수강신청 하기</button><br><br>
+                    <button class="class-zzim" onclick="alert('로그인 후 이용 가능한 서비스입니다.');">❤️ 강의 찜하기</button>
+                    <% } %>
                     
                     <br><br>
                 </div>
                 
                 <script>
-                	function pleaseLogin(){
-                	}
+				
+				function zzim(){
+	                $.ajax({
+						url: "<%= contextPath %>/insert.bm",
+						data: {
+							clNo:<%= c.getClNo() %>},
+						type: "post",
+						success: function (likeCount) {
+							if(likeCount == 0){
+								alert("찜 성공!");
+							}else if(likeCount == 1){
+								alert("찜 취소 ㅠㅠ");
+							}
+							console.log("성공");
+						}, error: function () {
+							console.log("멘토에게 질문 작성용 AJAX 통신 실패");
+						}
+					})
+                 }             
+                </script>
+                
+                
+                <script>
+                
                 </script>
 
                 <div class="class-info">
                     <table class="class-type">
                         <tr>
-                            <td width="100px">수강기한</td>
-                            <td><b>무제한</b></td>
-                        </tr>
-                        <tr>
-                            <td>멘토</td>
-                            <td><%= c.getUserNo() %></td>
+                            <td width>멘토</td>
+                            <td align="center"><%= c.getUserNo() %></td>
                         </tr>
                         <tr>
                             <td>수강생 수</td>
-                            <td><%= studentCount %>명</td>
+                            <td align="center"><%= studentCount %>명</td>
                         </tr>
                     </table>
                     <div class="heart-icon">
