@@ -7,9 +7,7 @@ table{
     text-align : center;
 }
 
-table>tbody>tr{
-    cursor: pointer;
-}
+
 
 .paging-area{
     text-align: center;
@@ -47,6 +45,18 @@ table>tbody>tr{
 #formwraping{
     margin-left: 65%;
 }
+
+table>.ab {
+
+     border: 0 none;
+
+     }
+
+     td {
+
+     border: 0 none;
+
+     }
 
 .checks input[type="text"]{
     background: #fafafa;

@@ -1,23 +1,30 @@
-package com.jj.classSelect.controller;
+package com.jj.member.controller;
+
+import static com.jj.common.JDBCTemplate.close;
+import static com.jj.common.JDBCTemplate.getConnection;
 
 import java.io.IOException;
+import java.sql.Connection;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jj.mentorSelect.model.dao.LecturerDao;
+
 /**
- * Servlet implementation class ClassEnrollController
+ * Servlet implementation class AjaxLoginProfile
  */
-@WebServlet("/enroll.cl")
-public class ClassEnrollController extends HttpServlet {
+@WebServlet("/ajaxLoginProfile.me")
+public class AjaxLoginProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ClassEnrollController() {
+    public AjaxLoginProfile() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +33,16 @@ public class ClassEnrollController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int userNo = Integer.parseInt(request.getParameter("no"));
+		
+		Connection conn = getConnection();
+		
+		String imgPath = new LecturerDao().selectProfilePath(conn, userNo);
+		
+		close(conn);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().print(imgPath);
 	}
 
 	/**

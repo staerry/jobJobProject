@@ -278,9 +278,18 @@
 		  FROM LECTURER L
 		  JOIN USERINFO U ON (L.USER_NO = U.USER_NO)
 		  JOIN MENTOR M ON (L.USER_NO = M.USER_NO)
-		 WHERE USER_NAME LIKE ?
-		    OR MT_COMPANY LIKE ?
-		    OR MT_COMPANY LIKE ?
+		 WHERE USER_NAME LIKE UPPER(?)
+		    OR MT_COMPANY LIKE UPPER(?)
+		    OR MT_COMPANY LIKE UPPER(?)
+ 	</entry>
+ 	
+ 	 	 	<!-- 작성자 : 최영헌 -->
+ 	<entry key="selectProfilePath">
+		SELECT PROFILE_PATH AS PATH
+		  FROM LECTURER L
+		  JOIN MENTOR M ON (L.USER_NO = M.USER_NO)
+		 WHERE L.USER_NO = ?
+		   AND MT_GRADE = 2
  	</entry>
  	
 </properties>

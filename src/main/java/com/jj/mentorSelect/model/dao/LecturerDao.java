@@ -622,4 +622,31 @@ Properties prop = new Properties();
 		System.out.println(list);
 		return list;
 	}
+	
+	public String selectProfilePath(Connection conn, int userNo) {
+		String imgPath = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProfilePath");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				imgPath = rset.getString("path");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return imgPath;
+	}
 }

@@ -107,28 +107,52 @@
 			<!-- 로그인 후 보여질 부분 -->
 			<% } else { %>
 				<p class="main-logout"><b><a href="<%=contextPath%>/userlogout.me">로그아웃</a></b></p>
-				<div class="main-profile-img"></div>
+				<div class="main-profile-img">
+					<!-- ajax조회 중 -->
+				</div>
 				<p class="main-mypage-menu">
 					<b id="userName"><%= loginUser.getUserName() %></b>님<br><br>
 					<b id="classIng"><a href="">수강중인강의 3</a></b><br><br>
 					<b><a href="<%=contextPath%>/myPage.my">마이페이지</a></b>
+					
+					<script>
+						<!-- 수강중인 강의 수 출력 ajax -->
+						$(document).ready(function(){
+							<% if(loginUser != null){ %>
+								$.ajax({
+									url : "ajaxSelectClassIng.me",
+									data : {name : $("#userName").text()},
+									success : function(result){
+										$("#classIng").text("수강중인강의 " + result);
+									},
+									error : function(){
+										console.log("로그인 부분 ajax통신 실패");
+									}
+								})
+							<% } %>
+						})
+						
+						<!-- 프로필 이미지 ajax -->
+						$(document).ready(function(){
+							<% if(loginUser != null){ %>
+								$.ajax({
+									url : "ajaxLoginProfile.me",
+									data : {no : <%= loginUser.getUserNo() %>},
+									success : function(result){
+										let value = '<img class="login-profile-img" src="' + result + '" alt="profile">'
+										$(".main-profile-img").html(value);
+									},
+									error : function(){
+										console.log("프로필 이미지 부분 ajax통신 실패");
+									}
+								})
+							<% } %>
+						})
+					</script>
 				</p><!-- 로그인 후 보여질 부분 끝 -->
 			<% } %>
 			
-			<script>
-				$(document).ready(function(){
-					$.ajax({
-						url : "ajaxSelectClassIng.me",
-						data : {name : $("#userName").text()},
-						success : function(result){
-							$("#classIng").text("수강중인강의 " + result);
-						},
-						error : function(){
-							console.log("로그인 부분 ajax통신 실패");
-						}
-					})
-				})
-			</script>
+
 		</div>
 	</div>
 
@@ -271,8 +295,6 @@
 						url : "ajaxPostList.me",
 						data : {},
 						success : function(result){
-							console.log(result);
-							
 							let value = "";
 							for(let i = 0; i < 6; i++){
 								value += '<div class="community" onclick="location.href=\'<%= contextPath %>\/detail.co?contentNo=' + result[i].commNo + '\'">'

@@ -249,11 +249,39 @@
 		  FROM CLASS C
 		  JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
 		  JOIN CL_CATEGORY CC ON (C.CL_CATEGORY = CC.CLCG_NO)
-		  WHERE CL_TITLE LIKE ?
-		     OR CL_SUBTITLE LIKE ?
-		     OR USER_NAME LIKE ?
+		  WHERE CL_TITLE LIKE UPPER(?)
+		     OR CL_SUBTITLE LIKE UPPER(?)
+		     OR USER_NAME LIKE UPPER(?)
     </entry>
     
+        <!-- 수강신청용 강의 정보 -->
+    <entry key="selectClassEnroll">
+	    SELECT
+		       CL_NO
+		     , CL_TITLE
+		     , USER_NAME
+		     , TO_CHAR(CL_PRICE, 'L99,999') AS CL_PRICE
+		     , CL_THUMBNAILPATH
+		  FROM CLASS
+		  JOIN USERINFO USING(USER_NO)
+		 WHERE CL_NO = ?
+    </entry>
     
-    
+        <!-- 회원별 보유 쿠폰 조회 (사용 가능한 쿠폰) -->
+    <entry key="selectCouponList">
+	    SELECT
+		       ISUCP_NO
+		     , CP_NAME
+  		     , CP_NO
+		     , CP_ENDDATE
+		     , TO_CHAR(DISCOUNT, 'L99,999') AS DISCOUNT
+		  FROM ISSUANCECOUPON I  
+		  JOIN USERINFO USING(USER_NO)
+		  JOIN COUPON USING(CP_NO)
+		 WHERE I.CP_STATUS = 'N' <!-- 미사용 쿠폰만 조회 -->
+		   AND TO_CHAR(CP_ENDDATE, 'RRMMDD') >= TO_CHAR(SYSDATE, 'RRMMDD') <!-- 발급일이 지나지 않은 사용 가능한 쿠폰만 조회 -->
+		   AND USER_NO = ?
+		 ORDER 
+		    BY ISUCP_NO
+    </entry>
 </properties>
