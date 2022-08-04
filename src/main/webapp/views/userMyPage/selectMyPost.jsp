@@ -97,7 +97,7 @@
 		      			$(function(){
 		      				$.ajax({
 		      					url : /*서블릿호출값 */
-		      					data : {no : $("#no").text()} /*<- 키값 no입니다 서블릿에서 request.getParameter로 값 받아서 사용하세요*/
+		      					data : {no : $("#no").text()}, /*<- 키값 no입니다 서블릿에서 request.getParameter로 값 받아서 사용하세요*/
 		      					success : function(){
 		      						console.log("이게뜨면삭제댄거");
 		      					},
