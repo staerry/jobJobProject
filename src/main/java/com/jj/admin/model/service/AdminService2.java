@@ -846,9 +846,28 @@ public class AdminService2 {
 	 * @param payNo 결제내역고유번호
 	 * @return 결과값
 	 */
-	public int refundAccess(int payNo) {
+	public int refundAccess(int payNo,int userNo, int clNo) {
 		Connection conn = getConnection();
-		int result = new AdminDao2().refundAccess(conn,payNo);
+		int result1 = new AdminDao2().refundAccess(conn,payNo);
+		int result2 = new AdminDao2().refundClass(conn,userNo,clNo);
+		int result = result1*result2;
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	/**
+	 * 환불시 쿠폰있을경우 쿠폰 돌려주는 메소드
+	 * @param isucpNo 돌려줄 쿠폰회원발급번호
+	 * @return 결과값
+	 */
+	public int refundCoupon(int isucpNo) {
+		Connection conn = getConnection();
+		int result = new AdminDao2().refundCoupon(conn,isucpNo);
 		if(result>0) {
 			commit(conn);
 		}else {

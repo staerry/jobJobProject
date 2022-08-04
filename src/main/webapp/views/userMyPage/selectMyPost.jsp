@@ -54,7 +54,20 @@
           <input type="text" placeholder="키워드 입력">
           <button type="submit" class="btn" style="background-color: #6363FF; color: white;">검색</button>
           <br>
+          <!--
 
+            <script>
+              $(function(){
+                $(".form-check-input").change(function(){
+                  switch($(this).val()){
+                    case "QnA" : $.ajax(){
+                      
+                    }
+                  }
+                })
+              })
+            </script>
+          -->
           <!--검색결과 조회 시 -->
           <br>
           <span>검색결과 조회</span>
@@ -64,7 +77,7 @@
 
                 <tr style="background-color:whitesmoke">
                     <th colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox">&nbsp;&nbsp;전체선택&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label><input type="checkbox" id="checkAll" onclick="checkAll();">&nbsp;&nbsp;전체선택&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <button class="btn btn-sm btn-danger">삭제</button></th>
                 </tr>
             </thead>
@@ -86,16 +99,32 @@
               <%} else{ %>
                 <%for(Post p : list){ %>
               <tr>
-                <td><input type="checkbox"></td>
+                <td><input type="checkbox" class="checkEach"></td>
                 <td><p><%= p.getCmNo()%></p></td>
                 <td><p><%= p.getCmTitle()%></p></td>
                 <td><p><%= p.getUserName()%></p></td>
                 <td><p><%= p.getCmEnrollDate()%></p></td>
-                <td><p><%= p.getCmCount()%></p></td>
+                <td>
+                	<p><%= p.getCmCount()%></p>
+		      		<script>
+		      			$(function(){
+		      				$.ajax({
+		      					url : /*서블릿호출값 */
+		      					data : {no : $("#no").text()}, /*<- 키값 no입니다 서블릿에서 request.getParameter로 값 받아서 사용하세요*/
+		      					success : function(){
+		      						console.log("이게뜨면삭제댄거");
+		      					},
+		      					error : function(){
+		      						console.log("ajax통신 실패");
+		      					}
+		      				})
+		      			})
+		      		</script>
+                </td>
               </tr>
    				<% } %>
 			<% } %> 
-      
+
             </tbody>
           </table>
  
@@ -112,6 +141,38 @@
         </div>
 
       </form>
+      <script>
+           // 전체선택 checkbox에 대한 함수
+      function checkAll(){
+        if( $("#checkAll").is(':checked') ){
+         $(".checkEach").prop('checked', true);
+        }else {
+         $(".checkEach").prop('checked', false)
+        }
+      }
+      
+      // 선택삭제 checkbox에 대한 함수
+      function deleteChecked(){
+        $(".check-review:checked").each(function(){
+         $(this).parent().parent().remove();
+        })
+      }
+
+      // document-ready-function area
+      $(function(){
+
+         // 개별 checkbox가 하나라도 해제됐을 때 전체선택 checkbox의 'checked'를 false로 만드는 함수
+         $(".checkEach").change(function(){ 
+            // .check-review에 change이벤트가 발생했을 때 실행
+            //   ** document ready function은 문서의 요소가 '다 만들어지자마자' 실행되므로, 이 시점에 모든 checkbox는 체크되지 않은 상태
+            //       => 따라서, 각 checkbox에 변화가 생길 때(change이벤트 발생할 때)마다 조건검사 해주어야 제대로 작동
+            $(".checkEach").each(function(){
+               if(!$(this).prop('checked')){
+                  $("#checkAll").prop('checked', false);
+               }
+            })
+         })
+      </script>
     </div>
     <%@ include file="../common/footer.jsp" %>
 

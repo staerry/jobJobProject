@@ -31,7 +31,7 @@
 
             <tr align="center">
             	<!-- 메인페이지로 이동 -->
-                <th><br><br><button class="btn btn-lg" style="background-color:#6363FF; color:white;">니JOB내JOB첫 화면</button></th>
+                <th><br><br><button class="btn btn-lg" style="background-color:#6363FF; color:white;" onclick="location.href='<%=contextPath%>'">니JOB내JOB첫 화면</button></th>
             </tr>
         </table>
     </div>

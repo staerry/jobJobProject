@@ -32,10 +32,26 @@ public class RefundAccessController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int payNo = Integer.parseInt(request.getParameter("payNo"));
-		int result = new AdminService2().refundAccess(payNo);
+		int isucpNo = Integer.parseInt(request.getParameter("isucpNo"));
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		int clNo = Integer.parseInt(request.getParameter("clNo"));
+		
+		int result = new AdminService2().refundAccess(payNo,userNo,clNo);
 		if(result>0) {
+			if(isucpNo == 0) {
 			request.getSession().setAttribute("alertMsg", "환불승인에 성공했습니다.");
 			response.sendRedirect(request.getContextPath()+"/refundRequest.li?p=1");
+			}else {
+				int result2 = new AdminService2().refundCoupon(isucpNo);
+				if(result2>0) {
+					request.getSession().setAttribute("alertMsg", "환불승인과 쿠폰환불에 성공했습니다.");
+					response.sendRedirect(request.getContextPath()+"/refundRequest.li?p=1");
+				}else {
+					request.getSession().setAttribute("alertMsg", "환불승인성공, 쿠폰환불실패.");
+					response.sendRedirect(request.getContextPath()+"/refundRequest.li?p=1");
+				}
+			}
+			
 		}else {
 			request.getSession().setAttribute("alertMsg", "환불승인에 실패했습니다.");
 			response.sendRedirect(request.getContextPath()+"/refundRequest.li?p=1");

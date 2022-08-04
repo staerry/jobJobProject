@@ -62,7 +62,20 @@ SELECT
  
 </entry>
 
-
+<entry key="">
+SELECT 
+      PAY_NO
+    , CL_NO
+    , ISUCP_NO
+    , PAYMENT
+    , FINAL_PAYMENT
+    , ORDER_NAME
+    , ORDER_PHONE
+    , ORDER_EMAIL
+    , PAY_DATE
+ FROM PAY
+WHERE REFUND != 'Y';
+</entry>
 
 
 
