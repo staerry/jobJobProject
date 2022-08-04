@@ -97,6 +97,8 @@
 		                <tbody>
 		                	<%for(int i=0;i<list.size();i++){ %>
 			                    <tr>
+			                    	<input type="hidden" class="isucpNo" value=<%=list.get(i).getIsuCpNo()==null ? 0 : list.get(i).getIsuCpNo() %>>
+			                    	<input type="hidden" class="clNo" value=<%=list.get(i).getClNo() %>>
 			                        <td><%=lpage-i %></td>
 			                        <td class="payNo"><%=list.get(i).getPayNo()%> (<%=list.get(i).getUserNo()%>)</td>
 			                        <td class="userName"><%=list.get(i).getUserName() %></td>
@@ -116,7 +118,10 @@
 	                			let start = $(this).parent().siblings('.payNo').text().indexOf('(');
 	    	            		let end = $(this).parent().siblings('.payNo').text().indexOf(')');
 	    	            		let payNo = $(this).parent().siblings('.payNo').text().substring(0,start-1);
-	                			location.href = '<%=request.getContextPath()%>/refundAccess.up?payNo='+payNo
+	    	            		let userNo = $(this).parent().siblings('.payNo').text().substring(start+1,end);
+	    	            		let clNo = $(this).parent().siblings('.clNo').val();
+	    	            		let isucpNo = $(this).parent().siblings('.isucpNo').val();
+	                			location.href = '<%=request.getContextPath()%>/refundAccess.up?payNo='+payNo+'&isucpNo='+isucpNo+'&userNo='+userNo+'&clNo='+clNo
 	                		}
 	                	})
 	                	

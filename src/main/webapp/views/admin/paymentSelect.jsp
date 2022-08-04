@@ -239,16 +239,22 @@
 						if(list[i].refund=='Y'){
 							c = "<td>환불완료</td>"
 						}else{
-							c = "<td>강의구매</td>"	
+							c = "<td>--</td>"	
 						}
-	    			   result += "<tr>"
+	    			   result += '<tr class="def">'
 	    						+	"<td>"+list[i].clNo+"</td>"
 	    						+	"<td>"+list[i].payment+"</td>"
 	    						+	a
 	    						+	"<td>"+list[i].finalPayment+"</td>"
 	    						+	b
 	    						+	c
-	    						+"</tr>";
+	    						+"</tr>"
+	    						+ "<tr class='add' style='display:none;'>"
+	    						+	"<td>1</td>"
+	    						+	"<td colspan='2'>2</td>"
+	    						+	"<td colspan='2'>3</td>"
+	    						+	"<td>4</td>"
+	    						+"</tr>"
 	    			}
 					$('#pagenum').val(list[0].pi.currentPage)
 					$('#userno').val(list[0].userNo)
@@ -263,7 +269,11 @@
 	        			$('.arrowR').css('display','')
 	        		}
 					console.log(parseInt($('#pagenum').val())+1)
+					
 					$('#payselect').html(result)
+					
+					
+					
 				}
 			},error:function(){
 				alert('정보를 찾지 못했습니다');
@@ -273,6 +283,27 @@
 
 		$('.detailInfo').css('display',"")
 	})
+	
+	$(function(){
+		 
+		 $(".def").on("click","tr[class='add']",function(){
+            	console("111")
+            	const $li = $(this).next();
+
+                if( $li.css("display") == "none" ){
+                     
+                      $(this).siblings("tr .add").slideUp();
+                       
+                      $li.slideDown();
+                      
+                  }else{
+                      $li.slideUp(); 
+                      
+                  }
+            })
+              
+        }) 
+	
 	
 	$('.arrowR').click(function(e){
 		$.ajax({
@@ -409,6 +440,8 @@
 			}
 		})
 	})
+	
+	
 	</script>
 </body>
 </html>
