@@ -26,10 +26,8 @@ public class ClassEnrollController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int clNo = Integer.parseInt(request.getParameter("class"));
-		request.setAttribute("clNo", clNo);
-		request.getRequestDispatcher("views/classSelect/classEnrollForm.jsp").forward(request, response);;
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
