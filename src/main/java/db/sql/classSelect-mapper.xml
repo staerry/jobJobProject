@@ -6,6 +6,7 @@
 	<entry key="selectListCountAll">
 		SELECT COUNT(*) AS "COUNT"
 		  FROM CLASS
+		 WHERE CL_GRANT = 'A'
 	</entry>
 	 	
 	<!-- 전체 강의 리스트 최신순 조회 -->
@@ -41,6 +42,7 @@
 		SELECT COUNT(*) AS "COUNT"
 		  FROM CLASS
 		 WHERE CL_CATEGORY = ?
+		   AND CL_GRANT = 'A'
 	</entry>
     
 	<!-- 카테고리별 강의 리스트 최신순 조회 -->
@@ -69,6 +71,7 @@
 	              LEFT JOIN REVIEW USING(CL_NO)
 	             GROUP BY CL_NO) A USING(CL_NO)
 	     WHERE CL_CATEGORY = ?
+	       AND CL_GRANT = 'A'
 	     ORDER 
 	     	BY CL_NO DESC
 	</entry>
@@ -103,6 +106,7 @@
 	     WHERE CL_NO=?
      </entry>
      
+     <!-- 북마크 수 조회 -->
      <entry key="selectBookmarkCount">
      	SELECT 
      		   COUNT(*) AS BOOKMARK_COUNT
@@ -110,6 +114,7 @@
  		 WHERE CL_NO=?
      </entry>
      
+     <!-- 리뷰 조회 -->
      <entry key="selectReview">
      	SELECT 
 		       REVIEW_NO
@@ -150,7 +155,9 @@
 	              FROM CLASS
 	              LEFT JOIN REVIEW USING(CL_NO)
 	             GROUP BY CL_NO) A USING(CL_NO)
+	    WHERE CL_GRANT = 'A'
 	    ORDER BY CL_PRICE DESC
+	    
     </entry>
     
     <entry key="selectListByPrice">
@@ -177,11 +184,13 @@
 	              FROM CLASS
 	              LEFT JOIN REVIEW USING(CL_NO)
 	             GROUP BY CL_NO) A USING(CL_NO)
-	     WHERE CL_CATEGORY = ?        
+	     WHERE CL_CATEGORY = ? 
+	       AND CL_GRANT = 'A'       
 	     ORDER 
 	        BY CL_PRICE DESC
     </entry>
     
+    <!-- 평점 받은 강의들은 기승인된 강의이므로 GRANT 조건 필요 x -->
     <entry key="selectListAllByScore">
 	    SELECT
 	           CL_NO
@@ -267,6 +276,7 @@
 		  FROM CLASS
 		  JOIN USERINFO USING(USER_NO)
 		 WHERE CL_NO = ?
+		   AND CL_GRANT = 'A'
     </entry>
     
         <!-- 회원별 보유 쿠폰 조회 (사용 가능한 쿠폰) -->
