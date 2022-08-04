@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.jj.faq.model.vo.Faq"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.jj.faq.model.vo.Faq, com.jj.faq.model.vo.PageInfoFaq"%>
 <%
 	ArrayList<Faq> list = (ArrayList)request.getAttribute("list");
+	
+	PageInfoFaq pi = (PageInfoFaq)request.getAttribute("pi");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -54,8 +61,8 @@
                   정렬
                 </button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="<%= contextPath %>/sortNew.faq">최신순</a>
-                  <a class="dropdown-item" href="<%= contextPath %>/sortCount.faq">조회수</a>
+                  <a class="dropdown-item" href="<%= contextPath %>/list.faq?cpage=1&sort=1">최신순</a>
+                  <a class="dropdown-item" href="<%= contextPath %>/list.faq?cpage=1&sort=2">조회수</a>
                 </div>
               </div>
           </div>
@@ -83,7 +90,7 @@
                       <h4 class=>1:1 문의하기</h4>
                       <div style="font-size: 10px;">문제가 해결되지 않으셨다면 1:1 로 문의하세요.<br>
                       문의 주신 내용은 48시간 내로 최대한 빠르게 답변드리도록 하겠습니다. 
-                      남겨주신 이메일을 확인해주세요.</div>
+                      이메일을 확인해주세요.</div>
                     </div>
 
                     <hr>
@@ -129,7 +136,6 @@
 
           <tbody align="center">
           	<% if(list.isEmpty()){ %>
-          	
           		<!-- case1: 공지글이 없는 경우 -->
 	            <tr>
 	              <td colspan="2">존재하는 공지사항이 없습니다.</td>
@@ -147,24 +153,24 @@
         </table>
     </div>
 
-    <div class="paging-area">
+    <div class="paging-area" align="center">
         <ul class="pagination justify-content-center" style="margin:20px 0" >
-            <li class="page-item"><a class="page-link" href="#"><<</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#">>></a></li>
+        
+        	<% if(currentPage != 1){ %>
+            	<li class="page-item"><a class="page-link" href="<%=contextPath%>/list.faq?cpage=<%= currentPage-1 %>&sort=<%= (int)request.getAttribute("sort") %>">&lt;</a></li>
+            <% } %>
+            
+            <% for(int p=startPage; p<=endPage; p++){ %>
+            	<li class="page-item"><a class="page-link" href="<%=contextPath%>/list.faq?cpage=<%= p %>&sort=<%= (int)request.getAttribute("sort") %>"><%=p %></a></li>
+            <% } %>
+            
+            <% if(currentPage != maxPage){ %>
+            	<li class="page-item"><a class="page-link" href="<%=contextPath%>/list.faq?cpage=<%= currentPage+1 %>&sort=<%= (int)request.getAttribute("sort") %>">&gt;</a></li>
+			<% } %>
         </ul>
     </div>
-    <br>
-
+  
     <div class="search-area" align="center">
-
-      <input type="checkbox" id="total"><label for="total">전체</label>&nbsp;&nbsp;
-      <input type="checkbox" id="mentor"><label for="mentor">멘토</label>&nbsp;&nbsp;
-      <input type="checkbox" id="user"><label for="user">사용자</label>&nbsp;&nbsp;
 
       <input type="search" class="form-control-sm mr-3" style="border-color: #6363FF;" placeholder="검색어 입력"><i class="fa-solid fa-magnifying-glass"></i> 
 

@@ -1,6 +1,6 @@
 package com.jj.faq.model.dao;
 
-import static com.jj.common.JDBCTemplate.close;
+import static com.jj.common.JDBCTemplate.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.jj.faq.model.vo.PageInfoFaq;
 import com.jj.faq.model.vo.Faq;
 import com.jj.faq.model.vo.MTM;
 
@@ -26,7 +27,7 @@ public class FaqDao {
 		}
 	}
 
-	public ArrayList<Faq> selectFaqList(Connection conn){
+	public ArrayList<Faq> selectFaqList(Connection conn, PageInfoFaq pi){
 		// select문 => result set에 담김 (여러행조회) => ArrayList<Faq>에 담음
 		ArrayList<Faq> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -35,6 +36,12 @@ public class FaqDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getFaqLimit() + 1;
+			int endRow = startRow + pi.getFaqLimit() - 1;
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -133,34 +140,9 @@ public class FaqDao {
 		}
 		return fq;
 	}
+
 	
-	public ArrayList<Faq> selectNewFaqList(Connection conn){
-		// select문 => result set에 담김 (여러행조회) => ArrayList<Faq>에 담음
-		ArrayList<Faq> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectNewFaqList");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				list.add(new Faq(rset.getInt("faq_no"),
-								 rset.getString("faq_title")
-						));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
-		}
-		return list;
-	}
-	
-	public ArrayList<Faq> selectCountFaqList(Connection conn){
+	public ArrayList<Faq> selectCountFaqList(Connection conn, PageInfoFaq pi){
 		// select문 => result set에 담김 (여러행조회) => ArrayList<Faq>에 담음
 		ArrayList<Faq> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -169,6 +151,12 @@ public class FaqDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			int startRow = (pi.getCurrentPage() - 1) * pi.getFaqLimit() + 1;
+			int endRow = startRow + pi.getFaqLimit() - 1;
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -187,7 +175,30 @@ public class FaqDao {
 		return list;
 	}
 	
-	
+	public int selectListCount(Connection conn) {
+		// select문 => ResultSet 한행 조회
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("COUNT");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+	}
 	
 	
 }

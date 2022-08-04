@@ -18,7 +18,7 @@
                 <p>
                     <a href="">공지사항</a>
                     &nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp
-                    <a href="<%=request.getContextPath()%>/list.faq">고객센터</a>
+                    <a href="<%=request.getContextPath()%>/list.faq?cpage=1&sort=1">고객센터</a>
                     &nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp
                     <a href="">이용약관</a>
                     &nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp
