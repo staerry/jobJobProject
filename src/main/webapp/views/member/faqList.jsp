@@ -172,8 +172,7 @@
   
     <div class="search-area" align="center">
 
-      <input type="search" class="form-control-sm mr-3" style="border-color: #6363FF;" placeholder="검색어 입력"><i class="fa-solid fa-magnifying-glass"></i> 
-
+		<input type="text" name="searchWord" id="aaa" class="form-control-sm mr-3" style="border-color: #6363FF;" placeholder="검색어 입력"><i style="cursor:pointer" class="fa-solid fa-magnifying-glass" onclick="searchFaq();"></i>
     </div>
 
     <script>
@@ -182,13 +181,14 @@
 
             const num = $(this).children().eq(0).text(); // 클릭했을 때의 글 번호
 
-            // 요청할 url ? 키 = 벨류 & 키 = 벨류
-            // 요청시 전달값 '키=벨류' 로 넘기는걸 => 쿼리스트링
-            // /web/list.faq.no?no=xx
             location.href = '<%= contextPath %>/detail.faq?no=' + num;
 
         })
       })
+      
+      function searchFaq(){
+    	  location.href = "<%=contextPath%>/list.faq?cpage=1&sort=1&searchWord=" + $('#aaa').val();
+      }
     </script>
 
 
