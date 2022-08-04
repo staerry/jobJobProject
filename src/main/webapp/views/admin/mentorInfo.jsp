@@ -54,7 +54,7 @@
 						<input type="checkbox" id="check2" name="check" value="2" class="set" checked> 
 						<label for="check2">강의자</label>
 						<input type="checkbox" id="check3" name="check" value="3" > 
-						<label for="check3">탈퇴한멘토</label> &nbsp;&nbsp;
+						<label for="check3">거절/탈퇴멘토</label> &nbsp;&nbsp;
 						<input type="text" name="search" style="line-height: 30px; width: 200px; text-align:center" id="searchclick" placeholder="이름또는 회원번호로 검색" >
 						<button type="submit" id="searchbtn" style="line-height: 30px;" class="btnpurple">검색</button>
 					</form>
