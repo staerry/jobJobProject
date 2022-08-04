@@ -14,9 +14,9 @@
 	      FROM CLASS C
 	      JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
 	      JOIN CL_CATEGORY CC ON (C.CL_CATEGORY = CC.CLCG_NO)
-	      WHERE CL_TITLE LIKE ?
-	         OR CL_SUBTITLE LIKE ?
-	         OR USER_NAME LIKE ?
+	      WHERE CL_TITLE LIKE UPPER(?)
+	         OR CL_SUBTITLE LIKE UPPER(?)
+	         OR USER_NAME LIKE UPPER(?)
 	       )
 </entry>
 
@@ -29,9 +29,9 @@
 	      FROM LECTURER L
 	      JOIN USERINFO U ON (L.USER_NO = U.USER_NO)
 	      JOIN MENTOR M ON (L.USER_NO = M.USER_NO)
-	     WHERE USER_NAME LIKE ?
-	        OR MT_COMPANY LIKE ?
-	        OR MT_COMPANY LIKE ?
+	     WHERE USER_NAME LIKE UPPER(?)
+	        OR MT_COMPANY LIKE UPPER(?)
+	        OR MT_COMPANY LIKE UPPER(?)
 	       )
 </entry>
 
@@ -47,9 +47,9 @@
 	         , CM_LIKE_COUNT
 	     FROM COMMUNITY C
 	     JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
-	    WHERE USER_NAME LIKE ?
-	       OR CM_TITLE LIKE ?
-	       OR CM_CONTENT LIKE ?
+	    WHERE USER_NAME LIKE UPPER(?)
+	       OR CM_TITLE LIKE UPPER(?)
+	       OR CM_CONTENT LIKE UPPER(?)
 	       )
 </entry>
 
