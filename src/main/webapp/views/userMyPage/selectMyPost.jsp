@@ -24,7 +24,7 @@
     <div class="container">
       <br><br>
         <h2>내 게시글</h2>
-        <form action="/myPostSearch.do">
+
           <div class="form-check-inline">
             <label class="form-check-label" for="all">
               <input type="radio" class="form-check-input" id="all" name="category" value="all" checked>전체
@@ -54,79 +54,106 @@
           <input type="text" placeholder="키워드 입력">
           <button type="submit" class="btn" style="background-color: #6363FF; color: white;">검색</button>
           <br>
-          <!--
 
-            <script>
-              $(function(){
-                $(".form-check-input").change(function(){
-                  switch($(this).val()){
-                    case "QnA" : $.ajax(){
-                      
-                    }
-                  }
-                })
-              })
-            </script>
-          -->
-          <!--검색결과 조회 시 -->
           <br>
           <span>검색결과 조회</span>
           <br><br>
+          <div class="checkbox-group">
           <table class="table table-hover">
             <thead>
 
                 <tr style="background-color:whitesmoke">
-                    <th colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;
-                    <label><input type="checkbox" id="checkAll" onclick="checkAll();">&nbsp;&nbsp;전체선택&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                    <button class="btn btn-sm btn-danger">삭제</button></th>
-                </tr>
-            </thead>
-            <thead align="center">
-              <tr>
-                <th></th>
-                <th>글 번호</th>
-                <th>제목</th>
-                <th>글쓴이</th>
-                <th>작성일</th>
-                <th>조회수</th>
-              </tr>
-            </thead>
-            <tbody align="center">
-            <% if(list.isEmpty()) { %>
-              <tr>
-                <td colspan="6">조회된 게시글이 없습니다.</td>
-              </tr>
-              <%} else{ %>
-                <%for(Post p : list){ %>
-              <tr>
-                <td><input type="checkbox" class="checkEach"></td>
-                <td><p><%= p.getCmNo()%></p></td>
-                <td><p><%= p.getCmTitle()%></p></td>
-                <td><p><%= p.getUserName()%></p></td>
-                <td><p><%= p.getCmEnrollDate()%></p></td>
-                <td>
-                	<p><%= p.getCmCount()%></p>
-		      		<script>
-		      			$(function(){
-		      				$.ajax({
-		      					url : /*서블릿호출값 */
-		      					data : {no : $("#no").text()}, /*<- 키값 no입니다 서블릿에서 request.getParameter로 값 받아서 사용하세요*/
-		      					success : function(){
-		      						console.log("이게뜨면삭제댄거");
-		      					},
-		      					error : function(){
-		      						console.log("ajax통신 실패");
-		      					}
-		      				})
-		      			})
-		      		</script>
-                </td>
-              </tr>
-   				<% } %>
-			<% } %> 
+                  <th colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" name="check" id="checkAll">
+                    <label for="checkAll">전체선택</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-sm btn-danger" onclick="deleteChecked();">삭제</button></th>
+                  </tr>
+                </thead>
+                <thead align="center">
+                  <tr>
+                    <th></th>
+                    <th>글 번호</th>
+                    <th>제목</th>
+                    <th>글쓴이</th>
+                    <th>작성일</th>
+                    <th>조회수</th>
+                  </tr>
+                </thead>
+                <tbody align="center">
+                  <% if(list.isEmpty()) { %>
+                    <tr>
+                      <td colspan="6">조회된 게시글이 없습니다.</td>
+                    </tr>
+                    <%} else{ %>
+                      <%for(Post p : list){ %>
+                        <tr>
+                          <td><input type="checkbox" class="selectedCheck" name="check" value="<%= p.getCmNo()%>"></td>
+                          <td><p><%= p.getCmNo()%></p></td>
+                          <td><p><%= p.getCmTitle()%></p></td>
+                          <td><p><%= p.getUserName()%></p></td>
+                          <td><p><%= p.getCmEnrollDate()%></p></td>
+                          <td><p><%= p.getCmCount()%></p></td>
+                        </tr>
+                        <% } %>
+                        <% } %> 
+                      </tbody>
+                    </table>
+                  </div>
+                  
+    <script>
 
-            </tbody>
-          </table>
+	    $(".checkbox-group").on("click", "#checkAll", function(){
+        	$(this).parents(".checkbox-group").find("input").prop("checked", $(this).is(":checked"));
+        	
+        });
+        
+	    $(".checkbox-group").on("click", ".selectedCheck", function(){
+	        var isChecked = true;
+	
+	        $(".checkbox-group .selectedCheck").each(function(){
+	            isChecked = isChecked && $(this).is(":checked");
+	        });
+	
+	        $("#checkAll").prop("checked", isChecked);
+	
+	      });
+         
+      	// 선택 삭제에 대한 함수
+         function deleteChecked(){
+            
+            var deleteElement = "";
+            
+            // 체크된 상품에 순차적으로 접근해 해당 요소의 val()값을 ,로 연결해 하나의 문자열 만들기
+            $("input[name=check]:checked").each(function(){
+               deleteElement = deleteElement + ($(this).val()) + ",";
+            })   
+                 
+            // "value값, value값, ... value값," 와 같은 형태의 문자열이 만들어지므로
+            // 마지막 ","을 삭제해야 "value값, ... value값" 형태로 WHERE CM_NO IN ( ? ) 안에 넣을 수 있음
+            // => 이것을 "동적 SQL문"이라고 함!!
+            deleteElement = deleteElement.substring(0, deleteElement.lastIndexOf(","));
+                  
+            $.ajax({
+               url:"<%=contextPath%>/myPostDelete.my", // 서블릿주소
+               data:{
+                  userNo:$("<%=loginUser.getUserNo()%>").val(),
+                  cmNo:deleteElement // 삭제할 요소들 (3, 4, 5, ... 번호)
+                  },
+               success:function(result){
+            	  if(result > 0){
+                      alert("선택한 게시글 삭제에 성공하였습니다.");
+                      location.reload(); // = url재요청
+            		  
+            	  }
+               }, 
+               error:function(){
+                  alert("선택한 게시글 삭제에 실패하였습니다.");
+               }
+            })
+            
+          }
+      
+     </script>
  
         <div class="paging-area" style="margin:auto;">
             <ul class="pagination justify-content-center" style="margin:20px 0">
@@ -140,39 +167,6 @@
               </ul>
         </div>
 
-      </form>
-      <script>
-           // 전체선택 checkbox에 대한 함수
-      function checkAll(){
-        if( $("#checkAll").is(':checked') ){
-         $(".checkEach").prop('checked', true);
-        }else {
-         $(".checkEach").prop('checked', false)
-        }
-      }
-      
-      // 선택삭제 checkbox에 대한 함수
-      function deleteChecked(){
-        $(".check-review:checked").each(function(){
-         $(this).parent().parent().remove();
-        })
-      }
-
-      // document-ready-function area
-      $(function(){
-
-         // 개별 checkbox가 하나라도 해제됐을 때 전체선택 checkbox의 'checked'를 false로 만드는 함수
-         $(".checkEach").change(function(){ 
-            // .check-review에 change이벤트가 발생했을 때 실행
-            //   ** document ready function은 문서의 요소가 '다 만들어지자마자' 실행되므로, 이 시점에 모든 checkbox는 체크되지 않은 상태
-            //       => 따라서, 각 checkbox에 변화가 생길 때(change이벤트 발생할 때)마다 조건검사 해주어야 제대로 작동
-            $(".checkEach").each(function(){
-               if(!$(this).prop('checked')){
-                  $("#checkAll").prop('checked', false);
-               }
-            })
-         })
-      </script>
     </div>
     <%@ include file="../common/footer.jsp" %>
 
