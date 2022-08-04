@@ -152,6 +152,22 @@ public class AdminService {
 		return result;
 	}
 	
+	public int insertNotice(String noticeTitle, String noticeContent, int userId) {
+		Connection conn = getConnection();
+		
+		int result = new AdminDao().insertNotice(conn, noticeTitle, noticeContent, userId);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
 	/**
 	 * 공지사항 총 게시물 갯수 조회 요청을 처리해주는 메소드
 	 * @return 공지사항 게시물 총 갯수
