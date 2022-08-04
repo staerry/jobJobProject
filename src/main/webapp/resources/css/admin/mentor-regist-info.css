@@ -15,7 +15,8 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		margin-top : 50px
+		margin-top : 50px;
+		width : 800px;
 	}
 
 	.mentoRegistInfo-controller-btn>.left-controller>:first-child{
