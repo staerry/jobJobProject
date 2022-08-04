@@ -87,15 +87,31 @@
                 <%for(Post p : list){ %>
               <tr>
                 <td><input type="checkbox"></td>
-                <td><p><%= p.getCmNo()%></p></td>
+                <td><p id="no"><%= p.getCmNo()%></p></td>
                 <td><p><%= p.getCmTitle()%></p></td>
                 <td><p><%= p.getUserName()%></p></td>
                 <td><p><%= p.getCmEnrollDate()%></p></td>
-                <td><p><%= p.getCmCount()%></p></td>
+                <td>
+                	<p><%= p.getCmCount()%></p>
+		      		<script>
+		      			$(function(){
+		      				$.ajax({
+		      					url : /*서블릿호출값 */
+		      					data : {no : $("#no").text()} /*<- 키값 no입니다 서블릿에서 request.getParameter로 값 받아서 사용하세요*/
+		      					success : function(){
+		      						console.log("이게뜨면삭제댄거");
+		      					},
+		      					error : function(){
+		      						console.log("ajax통신 실패");
+		      					}
+		      				})
+		      			})
+		      		</script>
+                </td>
               </tr>
    				<% } %>
 			<% } %> 
-      
+
             </tbody>
           </table>
  
