@@ -451,7 +451,20 @@ public class AdminService2 {
 	 */
 	public int upMenCate(int no,int grade,int cate) {
 		Connection conn = getConnection();
-		int result = new AdminDao2().upMenCate(conn,no,grade,cate);
+		int result = 0;
+		int result1=0;
+		int result2=0;
+		
+		if(grade == 2) {
+			result1 = new AdminDao2().upMenCate(conn,no,grade,cate);
+			result2 = new AdminDao2().insertLect(conn,no);
+		}else if (grade == 1) {
+			result1 = new AdminDao2().upMenCate(conn,no,grade,cate);
+			result2 = new AdminDao2().deleteLect(conn,no);
+		}else{}
+		
+		result = result1*result2;
+		
 		if(result>0) {
 			commit(conn);
 		}else {
