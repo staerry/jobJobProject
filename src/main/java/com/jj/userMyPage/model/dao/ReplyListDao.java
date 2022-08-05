@@ -58,7 +58,7 @@ public class ReplyListDao {
 			return list;
 		}
 	
-	public int deleteMyPost(Connection conn, int userNo, String replyNo) {
+	public int deleteMyReply(Connection conn, int userNo, String replyNo) {
 		
 		System.out.println(userNo);
 		System.out.println(replyNo);
