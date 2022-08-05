@@ -801,6 +801,12 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	 WHERE CP_NO = ?
 </entry>
 
+<entry key="deleteLect">
+	DELETE
+	  FROM LECTURER
+	WHERE USER_NO = ?
+</entry>
+
 <entry key="deleteUserCp">
 	DELETE 
 	  FROM ISSUANCECOUPON
@@ -859,6 +865,12 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	INSERT 
 	  INTO ISSUANCECOUPON (ISUCP_NO,USER_NO,CP_NO) 
 	VALUES (SEQ_ISUCP.NEXTVAL,?,?)
+</entry>
+
+<entry key="insertLect">
+	INSERT
+	  INTO LECTURER(USER_NO)
+	VALUES (?)
 </entry>
 
 <entry key="totalMember">
