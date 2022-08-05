@@ -50,7 +50,7 @@
 
                     <tr>
                         <td colspan="3" style="font-size: 14px;">
-                            <textarea name="content" cols="100" rows="10" style="resize:none; border: 1px solid lightgray; border-radius: 5px;"><%= fq.getFaqAnswer() %></textarea>
+                            <textarea name="content" cols="100" rows="10" style="resize:none; border: 1px solid lightgray; border-radius: 5px;" readonly="readonly" disabled><%= fq.getFaqAnswer() %></textarea>
                             <!--<p style="height: 300px; border: 1px solid lightgray; border-radius: 5px;"><%= fq.getFaqAnswer() %></p>-->
                         </td>
                     </tr>
@@ -70,7 +70,7 @@
                             
                         </td>
                         <td>
-                            <a href="<%=contextPath %>/list.faq?cpage=1" class="btn btn-sm"  style="float:right; background: #6363FF; color: white;">목록으로</a>
+                            <a href="<%=contextPath %>/list.faq?cpage=1&sort=1" class="btn btn-sm"  style="float:right; background: #6363FF; color: white;">목록으로</a>
                         </td>
                     </tr>
 
