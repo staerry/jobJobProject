@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "java.util.ArrayList, com.jj.userMyPage.model.vo.Payment" %>
+<%
+  ArrayList<Payment> list = (ArrayList<Payment>)request.getAttribute("list");		
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,10 +38,10 @@
             </thead>
             <tbody align="center">
               <tr>
-                <td>xxxxxx</td>
+                <td><%= p.getpayNo()%></td>
                 <td>
                   <img src="../../resources/image/mentorSelect/sampleProfile.jpeg" class="img-thumbnail" alt="Cinque Terre" width="100" height="100"> 
-                  <span>&nbsp;&nbsp;&nbsp;남궁성의 누구나 쉽게 따라할 수 있는 A-Z까지 JAVA의 모든 것</span>
+                  <span>&nbsp;&nbsp;&nbsp;<%= p.getClTitle()%></span>
                 </td>
                 <td>
                   <p>판매가 : 25000원</p>
