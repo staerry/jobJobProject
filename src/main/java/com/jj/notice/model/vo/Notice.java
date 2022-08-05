@@ -8,31 +8,45 @@ public class Notice {
 	private String noticeTitle;
 	private String noticeContent;
 	private Date noticeEnrolldate;
-	private Date noticeModifyDate;
+	private Date noticeModifydate;
 	private int noticeCount;
 	
-	public Notice() {
-		
-	}
+	public Notice() {}
 
-	public Notice(int noticeNo, String userNo, String noticeTitle, String noticeContent, Date noticeEnrolldate) {
+	public Notice(int noticeNo, String userNo, String noticeTitle, String noticeContent, int noticeCount) {
 		super();
 		this.noticeNo = noticeNo;
 		this.userNo = userNo;
 		this.noticeTitle = noticeTitle;
 		this.noticeContent = noticeContent;
+		this.noticeCount = noticeCount;
+	}
+
+	public Notice(int noticeNo, String noticeTitle, String noticeContent, String userNo, Date noticeEnrolldate) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.userNo = userNo;
 		this.noticeEnrolldate = noticeEnrolldate;
+	}
+
+	public Notice(int noticeNo, String noticeTitle, int noticeCount) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.noticeCount = noticeCount;
 	}
 
 	public Notice(int noticeNo, String userNo, String noticeTitle, String noticeContent, Date noticeEnrolldate,
-			Date noticeModifyDate, int noticeCount) {
+			Date noticeModifydate, int noticeCount) {
 		super();
 		this.noticeNo = noticeNo;
 		this.userNo = userNo;
 		this.noticeTitle = noticeTitle;
 		this.noticeContent = noticeContent;
 		this.noticeEnrolldate = noticeEnrolldate;
-		this.noticeModifyDate = noticeModifyDate;
+		this.noticeModifydate = noticeModifydate;
 		this.noticeCount = noticeCount;
 	}
 
@@ -76,12 +90,12 @@ public class Notice {
 		this.noticeEnrolldate = noticeEnrolldate;
 	}
 
-	public Date getNoticeModifyDate() {
-		return noticeModifyDate;
+	public Date getNoticeModifydate() {
+		return noticeModifydate;
 	}
 
-	public void setNoticeModifyDate(Date noticeModifyDate) {
-		this.noticeModifyDate = noticeModifyDate;
+	public void setNoticeModifydate(Date noticeModifydate) {
+		this.noticeModifydate = noticeModifydate;
 	}
 
 	public int getNoticeCount() {
@@ -95,7 +109,8 @@ public class Notice {
 	@Override
 	public String toString() {
 		return "Notice [noticeNo=" + noticeNo + ", userNo=" + userNo + ", noticeTitle=" + noticeTitle
-				+ ", noticeContent=" + noticeContent + ", noticeEnrolldate=" + noticeEnrolldate + ", noticeModifyDate="
-				+ noticeModifyDate + ", noticeCount=" + noticeCount + "]";
+				+ ", noticeContent=" + noticeContent + ", noticeEnrolldate=" + noticeEnrolldate + ", noticeModifydate="
+				+ noticeModifydate + ", noticeCount=" + noticeCount + "]";
 	}
+
 }
