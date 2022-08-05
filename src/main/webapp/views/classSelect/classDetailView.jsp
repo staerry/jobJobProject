@@ -67,8 +67,7 @@
                 <h4>멘토 소개</h4>
                 <div class="lecturer-set">
                     <div class="lecturer-photo">
-                        <%= c.getLtrProfilePath() %>
-                        <img src="프로필이미지경로" id="ltr-profile">
+                        <img src="<%= c.getLtrProfilePath() %>" id="ltr-profile">
                     </div>
 
                     <div class="lecturer-profile">

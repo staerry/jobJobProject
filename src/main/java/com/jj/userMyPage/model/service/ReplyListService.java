@@ -20,10 +20,10 @@ public class ReplyListService {
 		
 	}
 	
-	public int deleteMyPost(int userNo, String replyNo) {
+	public int deleteMyReply(int userNo, String replyNo) {
 		
 		Connection conn = getConnection();
-		int result = new PostListDao().deleteMyPost(conn, userNo, replyNo);
+		int result = new ReplyListDao().deleteMyReply(conn, userNo, replyNo);
 		close(conn);
 		return result;
 	}

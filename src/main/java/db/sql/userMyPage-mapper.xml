@@ -115,5 +115,40 @@ DELETE
 
 </entry>
 
+<entry key="myPaymentList">
+
+SELECT 
+    CL_TITLE
+    , USER_NAME
+    , PAY_DATE
+FROM PAY P
+JOIN CLASS C USING(CL_NO)
+JOIN USERINFO U ON(C.USER_NO = U.USER_NO)
+WHERE P.USER_NO = ?
+
+</entry>
+
+<entry key="myPaymentDetails">
+
+SELECT 
+         P.PAY_NO
+       , CL.CL_TITLE
+       , CL.CL_PRICE
+       , P.FINAL_PAYMENT
+       , C.DISCOUNT
+       , P.REFUND
+       , P.PAYMENT
+       , P.PAY_DATE
+       , P.ORDER_NAME
+       , P.ORDER_PHONE
+       , P.ORDER_EMAIL
+FROM PAY P
+JOIN CLASS CL ON(P.CL_NO = CL.CL_NO)
+LEFT JOIN ISSUANCECOUPON I ON(I.ISUCP_NO = P.ISUCP_NO)
+JOIN COUPON C ON(I.CP_NO = C.CP_NO)
+WHERE P.CL_NO = ?
+
+</entry>
+
 
 </properties>
