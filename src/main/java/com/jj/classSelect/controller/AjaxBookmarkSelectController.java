@@ -1,4 +1,4 @@
-package com.jj.member.controller;
+package com.jj.classSelect.controller;
 
 import java.io.IOException;
 
@@ -7,22 +7,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.jj.member.model.service.MemberService;
+import com.jj.classSelect.model.service.ClassService;
 import com.jj.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberLogoutController
+ * Servlet implementation class AjaxBookmarkSelectController
  */
-@WebServlet("/userlogout.me")
-public class MemberLogoutController extends HttpServlet {
+@WebServlet("/checkBm.cl")
+public class AjaxBookmarkSelectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberLogoutController() {
+    public AjaxBookmarkSelectController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,15 +30,15 @@ public class MemberLogoutController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
 		
-		int result = new MemberService().accessDate(userNo);
+		int clNo = Integer.parseInt(request.getParameter("clNo"));
+		int userNo = (int)((Member)request.getSession().getAttribute("loginUser")).getUserNo();
 		
-		HttpSession session = request.getSession();
-		session.invalidate();
-		response.sendRedirect(request.getContextPath() + "/userlogin.me");
-	
+		// 이전에 찜 한 이력이 있는지 먼저 확인한 후 버튼에 출력할 html 결정
+		int likeCheck = new ClassService().selectBookmark(clNo, userNo);
+		
+		response.getWriter().print(likeCheck);
+		
 	}
 
 	/**

@@ -271,9 +271,9 @@
                     <ul class="big_menu">
                         <li class="large">마이페이지 <i class="arrow fas fa-angle-right"></i></li>
                         <ul class="small_menu">
-                            <li><a href="#">개인정보 수정</a></li>
+                            <li><a href="<%=request.getContextPath()%>/updateInfo.me">개인정보 수정</a></li>
                             
-                            <li><a href="">회원 탈퇴</a></li>
+                            <li><a href="<%=request.getContextPath()%>/deleteFirst.me">회원 탈퇴</a></li>
                         </ul>
                     </ul>
                     
@@ -301,8 +301,8 @@
                     <ul class="big_menu">
                         <li class="large">커뮤니티 <i class="arrow fas fa-angle-right"></i></li>
                         <ul class="small_menu">
-                            <li><a href="#">내 게시글</a></li>
-                            <li><a href="#">내 댓글</a></li>
+                            <li><a href="<%=request.getContextPath()%>/myPost.my">내 게시글</a></li>
+                            <li><a href="<%=request.getContextPath()%>/myReply.my">내 댓글</a></li>
                         </ul>
                     </ul>
                     

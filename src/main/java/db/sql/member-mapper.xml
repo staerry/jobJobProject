@@ -134,8 +134,10 @@
 		 WHERE USER_NAME = ?
 	</entry>
 	
-	
-
-
+	<entry key="accessDate">
+	UPDATE USERINFO
+	   SET ACCESSDATE = SYSDATE
+	 WHERE USER_NO = ?
+	</entry>
 
 </properties>

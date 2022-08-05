@@ -50,8 +50,8 @@ public class firstAdminpage extends HttpServlet {
 		request.setAttribute("totalMentor", totalMentor);
 		
 		// 일일 접속자 수 ==> 유저테이블에 USER_RECENTDATE 컬럼 추가하면 주석풀기 ==> <%=request.getAttribute("todayConnect") %> login.jsp에 넣기
-		//int todayConnect = new AdminService2().todayConnect();
-		//request.setAttribute("todayConnect", todayConnect);
+		int todayConnect = new AdminService2().todayConnect();
+		request.setAttribute("todayConnect", todayConnect);
 		
 		// 1대1 문의 번호, 제목, 날짜
 		ArrayList<Mtm> mtmList = new AdminService().selectMtmList();

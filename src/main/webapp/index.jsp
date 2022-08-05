@@ -139,8 +139,15 @@
 									url : "ajaxLoginProfile.me",
 									data : {no : <%= loginUser.getUserNo() %>},
 									success : function(result){
-										let value = '<img class="login-profile-img" src="' + result + '" alt="profile">'
-										$(".main-profile-img").html(value);
+										
+										let value = "";
+										if(<%= loginUser.getMtGrade() != 2 %>){
+											value = '<img class="login-profile-img" src="resources/image/defaultProfile.jpg" alt="profile">'
+											$(".main-profile-img").html(value);
+										}else{
+											value = '<img class="login-profile-img" src="' + result + '" alt="profile">'
+											$(".main-profile-img").html(value);
+										}
 									},
 									error : function(){
 										console.log("프로필 이미지 부분 ajax통신 실패");

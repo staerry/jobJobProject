@@ -214,13 +214,6 @@ public class MemberDao {
 	}
 
 	
-	
-	
-	
-	
-	
-	
-	
 	public int updateInfo(Connection conn, String userId, String userPwd, String userNewPwd, String userEmail, String userPhone) {
 		   int result = 0;
 		   PreparedStatement pstmt = null;
@@ -270,4 +263,25 @@ public class MemberDao {
 		
 		return classIngCount;
 	}
+	
+	public int accessDate(Connection conn, int userNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("accessDate");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
 }

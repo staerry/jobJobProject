@@ -113,4 +113,23 @@ public class MemberService {
 		return classIngCount;
 	}
 	
+	public int accessDate(int userNo) {
+		
+		Connection conn = getConnection();
+		int result = new MemberDao().accessDate(conn, userNo);
+		
+		Member updateMem = null;
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
 }

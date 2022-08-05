@@ -80,7 +80,7 @@
 					<div class="item4">
 						<div class="text">
 							<span>일일 접속자</span><br>
-							<span></span>
+							<span><%=request.getAttribute("todayConnect") %></span>
 						</div>
 						<div class="img">
 							<i class="fas fa-user-friends"></i>

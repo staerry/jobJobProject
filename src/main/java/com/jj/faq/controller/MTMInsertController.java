@@ -38,7 +38,12 @@ public class MTMInsertController extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
+		System.out.println("loginUser : " + ((Member)session.getAttribute("loginUser")).getUserNo());
+		
 		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+		
+		System.out.println("userNo : " + userNo);
+		
 		String mtmTitle = request.getParameter("mtmTitle");
 		String mtmContent = request.getParameter("mtmContent");
 		
@@ -51,10 +56,10 @@ public class MTMInsertController extends HttpServlet {
 		
 		if(result > 0) { // 1:1문의 insert성공
 			session.setAttribute("alertMsg", "1:1문의가 정상적으로 처리되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/list.faq");
+			response.sendRedirect(request.getContextPath() + "/list.faq?cpage=1&sort=1");
 		}else { // 1:1문의 insert실패
 			session.setAttribute("alertMsg", "1:1문의에 실패했습니다.");
-			response.sendRedirect(request.getContextPath() + "/list.faq");
+			response.sendRedirect(request.getContextPath() + "/list.faq?cpage=1&sort=1");
 		}
 	
 	}

@@ -151,7 +151,7 @@
                    
                     <% if(loginUser != null) {%>
                     <button class="class-buy" onclick="location.href='<%= contextPath %>/enrollForm.cl?class=<%=c.getClNo()%>';">수강신청 하기</button><br><br>
-                    <button class="class-zzim" onclick="zzim()">❤️ 강의 찜하기</button>
+                    <button class="class-zzim" onclick="zzim()"><span id="my-zzim"></span></button>
                     
                     <% }else { %>
 					<button class="class-buy" onclick="alert('로그인 후 이용 가능한 서비스입니다.');">수강신청 하기</button><br><br>
@@ -162,18 +162,55 @@
                 </div>
                 
                 <script>
+                
+                $(function(){
+                	<% if(loginUser != null) { %>	// 로그인한 회원일 때만 찜했는지 안했는지 확인
+                	zzimCheck();
+                	<% } %>
+                })
+                
+                function zzimCheck(){	// 찜한 강의인지 아니인지 먼저 확인
+                	 $.ajax({
+ 						url: "<%= contextPath %>/checkBm.cl",
+ 						data: {
+ 							clNo:<%= c.getClNo() %>},
+ 						type: "post",
+ 						success: function (likeCheck) {
+ 							if(likeCheck == 0){
+ 								var value ="<span style='color:red'>♡</span>&nbsp;이 강의 찜하기";
+ 								$("#my-zzim").html(value);
+ 								 								
+ 							}else if(likeCheck == 1){
+ 								var value ="내가 찜한 강의&nbsp;<span style='color:red'>♥</span>";
+ 								$("#my-zzim").html(value);
+ 							}
+ 							console.log("성공");
+ 						}, error: function () {
+ 							console.log("강의 찜하기용 AJAX 통신 실패");
+ 						}
+ 					})
+                }
 				
 				function zzim(){
 	                $.ajax({
-						url: "<%= contextPath %>/insert.bm",
+						url: "<%= contextPath %>/insertBm.cl",
 						data: {
 							clNo:<%= c.getClNo() %>},
 						type: "post",
-						success: function (likeCount) {
-							if(likeCount == 0){
-								alert("찜 성공!");
-							}else if(likeCount == 1){
-								alert("찜 취소 ㅠㅠ");
+						success: function (a) {
+							if(a.likeCheck == 0){
+								alert("이 강의를 찜했습니다. 😘❤");
+								
+								value = "내가 찜한 강의&nbsp;<span style='color:red'>♥</span>";
+								$("#my-zzim").html(value);
+								$("#zzim-count").html(a.likeCount);
+								
+							}else if(a.likeCheck == 1){
+								alert("️이 강의를 마음에서 떠나보냈습니다..😭💔	");
+								
+								value = "<span style='color:red'>♡</span>&nbsp;이 강의 찜하기";
+								$("#my-zzim").html(value);
+								$("#zzim-count").html(a.likeCount);
 							}
 							console.log("성공");
 						}, error: function () {
@@ -201,7 +238,7 @@
                     </table>
                     <div class="heart-icon">
                         <span><i class="bi bi-suit-heart-fill" id="heart"></i></span>
-                        <span><%= bookmarkCount %></span></td>
+                        <span id="zzim-count"><%= bookmarkCount %></span></td>
                     </div>
 
                 </div>

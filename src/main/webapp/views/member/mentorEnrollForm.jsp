@@ -101,7 +101,7 @@
                                     <input type="text" class="form-control" placeholder="현재 소속된 회사" name="mtCompany" required>
                                 </div><br>
                                 <div class="col">
-                                    <input type="text" class="form-control" placeholder="현재 직급" name="mtPosition" required>
+                                    <input type="text" class="form-control" placeholder="현재 직무" name="mtPosition" required>
                                 </div><br>
 
                                 <div class="col">

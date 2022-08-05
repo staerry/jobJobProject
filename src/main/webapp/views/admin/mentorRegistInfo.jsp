@@ -43,7 +43,7 @@
 						<td><%= mentorApproval.getMtCompany() %></td>
 					</tr>
 					<tr>
-						<th>직급</th>
+						<th>직무</th>
 						<td><%= mentorApproval.getMtJob() %></td>
 					</tr>
 					<tr>
