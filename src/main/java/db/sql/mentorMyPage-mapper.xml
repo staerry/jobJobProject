@@ -23,7 +23,7 @@ INSERT
 	)
 	VALUES
 	(
-	SEQ_CL
+	SEQ_CL.NEXTVAL	
 	,?
 	,?
 	,?
@@ -31,6 +31,8 @@ INSERT
 	,?
 	,?
 	,?
+	,default
+	,default
 	,?
 	)
 

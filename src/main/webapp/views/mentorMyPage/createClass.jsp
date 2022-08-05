@@ -109,7 +109,7 @@ padding-right: 3px;
 						        <br>
 						    </p>
 						
-				    	<form action="<%=contextPath%>/createClassInfo.my"  method="post" enctype="multipart/form-data">
+				    	<form action="<%=contextPath%>/createClass.my"  method="post" enctype="multipart/form-data">
 				        <div class="open-class-body">
 				            <h3>강의 분야(1개만 선택)</h3>
 				            <div class="col">
@@ -156,7 +156,7 @@ padding-right: 3px;
 					
 					        <div class="open-class-body">
 					                <h3>어떤 클래스인가요? (강의소개)</h3>
-					                <input type="text" name="classInfo" id="classDetail" placeholder="* 무엇을 배울 수 있나요, 무엇을 얻을 수 있나요?" required>
+					                <input type="text" name="classInfo" id="classInfo" placeholder="* 무엇을 배울 수 있나요, 무엇을 얻을 수 있나요?" required>
 					                
 					         
 					         </div>
@@ -166,24 +166,25 @@ padding-right: 3px;
 					            <input type="text" name="curri" id="class-detail" placeholder="* 자세한 강의 커리큘럼을 적어주세요." required>
 					        </div>
 					            
-					       <!--  <div class="open-class-body">
+					       <div class="open-class-body">
 					            <p>
-					            <span id="grey-area-top" style="font-size:1.5em; font-weight:bolder">마지막으로, 수강료를 입력해 주세요.</span> <br>
+					            <span id="grey-area-top" style="font-size:1.5em; font-weight:bolder">마지막으로, 수강료를 입력해 주세요.<i class="fa-solid fa-sack-dollar" style="color:orange"></i> </span> <br>
 					            <span class="grey-area "style="color:grey">(수강생이 지불하는 최종 수강료로, VAT 10%가 포함된 가격입니다.)</span>
-					            <h2>최종 수강료</h2>
-					            <br><br>
+					           
 					            <input type="text" class="won" name="clPrice" id="finalprice1" placeholder="원" required>
-					        </div> -->
-					        <br>
-					    <!-- <input type="text" name="" id="" placeholder=""> -->
+					        </div> 
+					        <br> 
+					 
+							<br>
+                            <button type="submit"  style="border:none; background-color:#6363ff; color:white; width:130px; height:50px; align:center; border-radius:4px">최종제출</button>
+						</form>
 	
 	
-	
-	            <div class="fianlprofit">
+	            <!-- <div class="fianlprofit">
 	                    <label id=grey-area-top style="color:#6363FF; font-size:2em; font-weight:bolder">최종 정산금 안내 <i class="fa-solid fa-sack-dollar" style="color:orange"></i> </label><br>
 	                    <span class="grey-area ">멘토님께 정산되는 금액으로, 최종 수강료에서 VAT, 연결 수수료, 소득세 원청징수가 제외됩니다.</span>
-	                    
-	                    <!-- <div class="final-wrapper">
+						 -->
+	                   	<!-- <div class="final-wrapper">
 	                        <div class="final">
 	                            <p>최종 수강료</p>
 	                            <input type="text" class="won" name="finalprice2" id="finalprice2" placeholder="원">
@@ -194,28 +195,26 @@ padding-right: 3px;
 	                        <div class="final">
 	                            <p>세금포함 수수료30%</p>
 	                            <input type="text" class="won" name="vat" id="vat" placeholder="원">
-	                        </div>
+	                        </div> -->
 	
 	                       
                            
                             
 
-                   		 </div> -->
+                   		 </div> 
                      
                	 </div>
                	 
                	 
 
                     <div  style="display:flex; width:200px; justify-content:end;">
-                    	<div class="final-result" style="margin: 0 10px 10px 400px">
+                    	<!-- <div class="final-result" style="margin: 0 10px 10px 400px">
                                 <i class="fa-solid fa-equals" ></i></div>
-                           <div>  <input type="text" class="won" name="finalprofit" id="finalprofit" placeholder="원">
+                           <div>  <input type="text" class="won" name="clPrice" id="finalprofit" placeholder="원">
                             </div>
                            <br>
-                           </div>
-                        	<br>
-                            <button type="submit" onclick="location.href='<%=contextPath%>/classWating.my'" style="border:none; background-color:#6363ff; color:white; width:130px; height:50px; align:center; border-radius:4px">최종제출</button>
-                             	</form>
+                           </div> -->
+                        
     
                  	</div>
 	            	
@@ -235,4 +234,8 @@ padding-right: 3px;
 <%@ include file="../common/footer.jsp" %>
   
 </body>
+<script>
+
+
+</script>
 </html>

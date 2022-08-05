@@ -37,7 +37,7 @@ Properties prop = new Properties();
 		int result=0;
 		PreparedStatement pstmt = null;
 	
-		String sql = prop.getProperty("crateClass");
+		String sql = prop.getProperty("createClass");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -50,7 +50,7 @@ Properties prop = new Properties();
 			pstmt.setInt(7, cc.getClPrice());
 			pstmt.setString(8,cc.getClImg());
 			
-			
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
