@@ -2,7 +2,6 @@ package com.jj.userMyPage.controller;
 
 import java.io.IOException;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jj.member.model.vo.Member;
-import com.jj.userMyPage.model.service.PostListService;
+import com.jj.userMyPage.model.service.ReplyListService;
 
 /**
  * Servlet implementation class SelectMyPostDeleteController
@@ -38,9 +37,9 @@ public class SelectMyReplyDeleteController extends HttpServlet {
 		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		
 		
-		String replyNo = request.getParameter("replyNo"); // "21,41"
+		String replyNo = request.getParameter("replyNo");
 		
-		int result = new PostListService().deleteMyPost(userNo, replyNo);
+		int result = new ReplyListService().deleteMyReply(userNo, replyNo);
 		 
 		response.getWriter().print(result);
 		
