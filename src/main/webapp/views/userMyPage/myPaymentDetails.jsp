@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "java.util.ArrayList, com.jj.userMyPage.model.vo.Payment" %>
+<%@ page import = "com.jj.userMyPage.model.vo.Payment" %>
 <%
-  ArrayList<Payment> list = (ArrayList<Payment>)request.getAttribute("list");		
+  Payment p = (Payment)request.getAttribute("p");	
+
 %>
 <!DOCTYPE html>
 <html>
@@ -38,19 +39,19 @@
             </thead>
             <tbody align="center">
               <tr>
-                <td><%= p.getpayNo()%></td>
+                <td><%= p.getPayNo()%></td>
                 <td>
                   <img src="../../resources/image/mentorSelect/sampleProfile.jpeg" class="img-thumbnail" alt="Cinque Terre" width="100" height="100"> 
                   <span>&nbsp;&nbsp;&nbsp;<%= p.getClTitle()%></span>
                 </td>
                 <td>
-                  <p>판매가 : 25000원</p>
-                  <p>쿠폰할인 : -2000원</p>
+                  <p>판매가 : <%= p.getClPrice()%></p>
+                  <p>쿠폰할인 : <%= p.getDiscount()%></p>
                   <hr>
-                  <p>결제금액 : 23000원</p>
+                  <p>결제금액 : <%= p.getFinalPayment()%></p>
                 </td>
                 <td>
-                  <span>결제완료</span>
+                  <span><%= p.getRefund()%></span>
                 </td>
               </tr>
           </table>
@@ -67,9 +68,9 @@
               </thead>
               <tbody align="center">
                 <tr>
-                  <td colspan="2">카드</td>
-                  <td colspan="2">xxxx-xx-xx</td>
-                  <td colspan="2">23000원</td>
+                  <td colspan="2"><%= p.getPayment()%></td>
+                  <td colspan="2"><%= p.getPayDate()%></td>
+                  <td colspan="2"><%= p.getFinalPayment()%></td>
                 </tr>
             </table>
 
@@ -78,15 +79,15 @@
               <table class="table table-hover table-bordered">
                   <tr>
                     <th style="background-color:whitesmoke; width: 80px;">이름</th>
-                    <td>xxx</td>
+                    <td><%= p.getOrderName()%></td>
                   </tr>
                   <tr>
                     <th style="background-color:whitesmoke">연락처</th>
-                    <td>010-xxxx-xxxx</td>
+                    <td><%= p.getOrderPhone()%></td>
                   </tr>
                   <tr>
                     <th style="background-color:whitesmoke">이메일</th>
-                    <td>user01@naver.com</td>
+                    <td><%= p.getOrderEmail()%></td>
                   </tr>
               </table>
 

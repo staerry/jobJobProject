@@ -19,11 +19,11 @@ public class MyPaymentService {
 		return list;
 	}
 	
-	public ArrayList<Payment> myPaymentDetails(int userNo){
+	public Payment myPaymentDetails(int payNo){
 		
 		Connection conn = getConnection();
-		ArrayList<Payment> list = new MyPaymentDao().myPaymentDetails(conn, userNo);
+		Payment p = new MyPaymentDao().myPaymentDetails(conn, payNo);
 		close(conn);
-		return list;
+		return p;
 	}
 }

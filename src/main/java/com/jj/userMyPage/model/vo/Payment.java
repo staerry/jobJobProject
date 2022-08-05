@@ -43,8 +43,9 @@ public class Payment {
 	}
 	
 	
-	public Payment(String clTitle, String userName, Date payDate) {
+	public Payment(int payNo, String clTitle, String userName, Date payDate) {
 		super();
+		this.payNo = payNo;
 		this.payDate = payDate;
 		this.clTitle = clTitle;
 		this.userName = userName;

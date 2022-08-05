@@ -42,7 +42,9 @@ public class MyPaymentDao {
 			
 			while(rset.next()) {
 						
-				list.add(new Payment(rset.getString("CL_TITLE")
+				list.add(new Payment(
+						   rset.getInt("pay_no")
+						 , rset.getString("CL_TITLE")
 						 , rset.getString("USER_NAME")
 						 , rset.getDate("PAY_DATE")
 					
@@ -61,9 +63,9 @@ public class MyPaymentDao {
 			return list;
 		}
 	
-	public ArrayList<Payment> myPaymentDetails(Connection conn, int userNo){
+	public Payment myPaymentDetails(Connection conn, int payNo){
 		
-		ArrayList <Payment> list = new ArrayList<>();
+		Payment p = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset =null;
 		
@@ -71,12 +73,12 @@ public class MyPaymentDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, userNo);
+			pstmt.setInt(1, payNo);
 			rset = pstmt.executeQuery();
 			
-			while(rset.next()) {
+			if(rset.next()) {
 						
-				list.add(new Payment(rset.getInt("PAY_NO")
+				p = new Payment(rset.getInt("PAY_NO")
 						, rset.getString("PAYMENT")
 						, rset.getString("REFUND")
 						, rset.getInt("FINAL_PAYMENT")
@@ -87,7 +89,7 @@ public class MyPaymentDao {
 						 , rset.getString("CL_TITLE")
 						 , rset.getInt("CL_PRICE")
 						 , rset.getInt("DISCOUNT")
-					));
+					);
 			
 				
 				}
@@ -99,7 +101,7 @@ public class MyPaymentDao {
 				close(pstmt);
 			}
 			
-			return list;
+			return p;
 		}
 	
 	

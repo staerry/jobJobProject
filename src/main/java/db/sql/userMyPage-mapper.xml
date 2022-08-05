@@ -118,7 +118,8 @@ DELETE
 <entry key="myPaymentList">
 
 SELECT 
-    CL_TITLE
+       P.PAY_NO
+    , CL_TITLE
     , USER_NAME
     , PAY_DATE
 FROM PAY P
@@ -132,21 +133,21 @@ WHERE P.USER_NO = ?
 
 SELECT 
          P.PAY_NO
-       , CL.CL_TITLE
-       , CL.CL_PRICE
-       , P.FINAL_PAYMENT
-       , C.DISCOUNT
-       , P.REFUND
        , P.PAYMENT
-       , P.PAY_DATE
+       , P.REFUND
+       , P.FINAL_PAYMENT
        , P.ORDER_NAME
        , P.ORDER_PHONE
        , P.ORDER_EMAIL
+       , P.PAY_DATE
+       , CL.CL_TITLE
+       , CL.CL_PRICE
+       , C.DISCOUNT
 FROM PAY P
 JOIN CLASS CL ON(P.CL_NO = CL.CL_NO)
 LEFT JOIN ISSUANCECOUPON I ON(I.ISUCP_NO = P.ISUCP_NO)
 JOIN COUPON C ON(I.CP_NO = C.CP_NO)
-WHERE P.CL_NO = ?
+WHERE P.PAY_NO = ?
 
 </entry>
 

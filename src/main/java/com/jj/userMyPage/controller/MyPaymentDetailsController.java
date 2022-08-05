@@ -34,20 +34,22 @@ public class MyPaymentDetailsController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		HttpSession session = request.getSession();
+		//HttpSession session = request.getSession();
 		
-		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+		//int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+		
+		int payNo = Integer.parseInt(request.getParameter("payNo"));
 		
 		
-		ArrayList <Payment> list = new MyPaymentService().myPaymentDetails(userNo);
+		Payment p = new MyPaymentService().myPaymentDetails(payNo);
 		 
 		
 		
-		request.setAttribute("list", list);
+		request.setAttribute("p", p);
 
 		request.getRequestDispatcher("views/userMyPage/myPaymentDetails.jsp").forward(request, response);
 		
-		System.out.println(list);
+		System.out.println(p);
 		
 	}
 
