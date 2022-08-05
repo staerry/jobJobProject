@@ -37,7 +37,8 @@ margin-bottom:30px;}
             </div>
             <form action="<%=contextPath%>/uploadVod.my"
                 method="post"
-                enctype="multipart/form-data">
+                enctype="multipart/form-data"
+                accept-charset="UTF-8">
             <div class="class-body" id="cl-number"><div><h3>${vodNo}회차 강의 등록</h3></div>
             
                 
