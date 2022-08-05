@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="selectListCount">
+		SELECT COUNT(*) as "COUNT"
+		  FROM NOTICE
+		 WHERE NOTICE_TITLE LIKE ?
+		    OR NOTICE_CONTENT LIKE ?
+	</entry>
+	
+	<entry key="selectNoticeList">
+		SELECT * 
+		  FROM(
+		        SELECT ROWNUM RNUM, A.*
+		          FROM (
+		                SELECT
+		                        NOTICE_NO
+		                      , USER_ID
+		                      , NOTICE_TITLE
+		                      , NOTICE_CONTENT
+		                      , NOTICE_COUNT
+		                  FROM NOTICE
+		                  JOIN USERINFO USING(USER_NO)
+		                 WHERE NOTICE_TITLE LIKE ?
+			    		    OR NOTICE_CONTENT LIKE ?
+		                 ORDER
+		                    BY NOTICE_NO DESC   
+		            ) A
+		    ) 
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectCountNoticeList">
+		SELECT * 
+		  FROM(
+		        SELECT ROWNUM RNUM, A.*
+		          FROM (
+		                SELECT
+		                        NOTICE_NO
+		                      , NOTICE_TITLE
+		                      , NOTICE_COUNT
+		                  FROM NOTICE
+		                 WHERE NOTICE_TITLE LIKE ?
+		    		        OR NOTICE_CONTENT LIKE ?
+		                 ORDER
+		                    BY NOTICE_COUNT DESC   
+		            ) A
+		    ) 
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="increaseNoticeCount">
+		UPDATE NOTICE
+		   SET NOTICE_COUNT = NOTICE_COUNT + 1
+		 WHERE NOTICE_NO = ?
+	</entry>
+	
+	<entry key="selectNotice">
+		SELECT
+		        NOTICE_NO
+		      , NOTICE_TITLE
+		      , NOTICE_CONTENT
+		      , USER_ID
+		      , NOTICE_ENROLLDATE
+		  FROM NOTICE
+		  JOIN USERINFO USING(USER_NO)
+		 WHERE NOTICE_NO = ?
+	</entry>
+
+
+</properties>

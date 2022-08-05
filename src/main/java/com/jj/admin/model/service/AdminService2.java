@@ -929,8 +929,10 @@ public class AdminService2 {
 	
 	public int totalMember() {
 		Connection conn = getConnection();
-		int totalMember = new AdminDao2().totalMember(conn);
+		int totalMember1 = new AdminDao2().totalMember(conn);
+		int totalMember2 = new AdminDao2().totalMember2(conn);
 		close(conn);
+		int totalMember=totalMember1+totalMember2;
 		return totalMember;
 	}
 	

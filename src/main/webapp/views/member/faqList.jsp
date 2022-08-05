@@ -68,6 +68,7 @@
           </div>
         </td>
 
+	<% if(loginUser != null){ %>
       <td>
           <div class="container">
             <!-- 모달 여는 버튼 -->
@@ -119,6 +120,8 @@
 
           </div>
         </td>
+        
+        <% } %>
       </tr>
     </table>
 

@@ -1,4 +1,4 @@
-package com.jj.faq.controller;
+package com.jj.notice.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,22 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jj.faq.model.service.FaqService;
+import com.jj.notice.model.service.NoticeService;
+import com.jj.notice.model.vo.Notice;
 import com.jj.faq.model.vo.Faq;
 import com.jj.faq.model.vo.PageInfoFaq;
-import com.jj.faq.model.service.FaqService;
-
 
 /**
- * Servlet implementation class FaqListController
+ * Servlet implementation class NoticeListController
  */
-@WebServlet("/list.faq")
-public class FaqListController extends HttpServlet {
+@WebServlet("/list.no")
+public class NoticeListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FaqListController() {
+    public NoticeListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,10 +34,9 @@ public class FaqListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// Notice 목록 조회
 		
-		// FAQ목록 조회용
-		
-		// ---페이징바---
 		int listCount; // 게시글 총 갯수
 		int currentPage; // 현재 사용자가 요청한 페이지의 no
 		int pageLimit; // 페이징바 몇개 단위씩 할건지 (쪽수)
@@ -46,17 +46,17 @@ public class FaqListController extends HttpServlet {
 		int startPage; // 페이징바의 시작수 
 		int endPage; // 페이징바의 끝수
 		
-		int sort = Integer.parseInt(request.getParameter("sort"));
-				
-		String searchWord = "";
-		if(request.getParameter("searchWord") != null) {
-			searchWord = request.getParameter("searchWord");
+		int nsort = Integer.parseInt(request.getParameter("nsort"));
+		
+		String keyWord = "";
+		if(request.getParameter("keyWord") != null) {
+			keyWord = request.getParameter("keyWord");
 		}
 		
-		if(sort == 1) {// 최신순일 때
-			listCount = new FaqService().selectListCount(searchWord);
+		if(nsort == 1) {// 최신순일 때
+			listCount = new NoticeService().selectListCount(keyWord);
 			
-			currentPage = Integer.parseInt(request.getParameter("cpage"));
+			currentPage = Integer.parseInt(request.getParameter("npage"));
 			
 			pageLimit = 5;
 			
@@ -74,17 +74,17 @@ public class FaqListController extends HttpServlet {
 			
 			PageInfoFaq pi = new PageInfoFaq(listCount, currentPage, pageLimit, faqLimit, maxPage, startPage, endPage);
 		
-			ArrayList<Faq> list = new FaqService().selectFaqList(pi, searchWord);
+			ArrayList<Notice> list = new NoticeService().selectNoticeList(pi, keyWord);
 			
-			request.setAttribute("sort", sort);
+			request.setAttribute("nsort", nsort);
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
-			request.getRequestDispatcher("views/member/faqList.jsp").forward(request, response);
+			request.getRequestDispatcher("views/member/noticeList.jsp").forward(request, response);
 			
 		}else {// 조회순일때
-			listCount = new FaqService().selectListCount(searchWord);
+			listCount = new NoticeService().selectListCount(keyWord);
 			
-			currentPage = Integer.parseInt(request.getParameter("cpage"));
+			currentPage = Integer.parseInt(request.getParameter("npage"));
 			
 			pageLimit = 5;
 			
@@ -105,14 +105,19 @@ public class FaqListController extends HttpServlet {
 			
 			PageInfoFaq pi = new PageInfoFaq(listCount, currentPage, pageLimit, faqLimit, maxPage, startPage, endPage);
 			
-			ArrayList<Faq> list = new FaqService().selectCountFaqList(pi, searchWord);
+			ArrayList<Notice> list = new NoticeService().selectCountNoticeList(pi, keyWord);
 			
-			request.setAttribute("sort", sort);
+			request.setAttribute("nsort", nsort);
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
-			request.getRequestDispatcher("views/member/faqList.jsp").forward(request, response);
+			request.getRequestDispatcher("views/member/noticeList.jsp").forward(request, response);
 		}
-		
+	
+	
+	
+	
+	
+	
 	}
 
 	/**
