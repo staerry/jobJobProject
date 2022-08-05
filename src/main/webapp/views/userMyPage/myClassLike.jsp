@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.List, com.jj.userMyPage.model.vo.Bookmark"%>
     
-<% List<Bookmark> list = (List<Bookmark>)request.getAttribute("list");  %>
+<% List<Bookmark> bookmark = (List<Bookmark>)request.getAttribute("list");  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,13 +40,13 @@
 			
 			            <div class="main-window">
 			                <div class="main-container">
-			                <% for(Bookmark b : list) {%>
+			                <% for(Bookmark b : bookmark) {%>
 			                    <div class="vod">
-			                        <h4><%=b.cls.getClTitle %></h4>
-			                        <p><%=b.getUserName %>&nbsp&nbsp&nbsp&nbsp<%=b.getMtCompany %></p>
+			                        <h4><%=b.getCls().getClTitle() %></h4>
+			                        <p><%=b.getCls().getMember().getUserName() %>&nbsp&nbsp&nbsp&nbsp <%=b.getCls().getMember().getMtCompany() %>/p>
 			                        
 			                        <!--  -->
-			                        <div class="class-thumbnail"></div>
+			                        <div class="class-thumbnail">< <%=b.getCls().getClThumbnailPath() %> </div>
 			                        <span>
 			                            <i class="fas fa-heart"></i>
 			                        </span>

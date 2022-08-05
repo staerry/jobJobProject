@@ -56,7 +56,7 @@ public class UploadVodController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		
+		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
 		
 		Member member =(Member) session.getAttribute("loginUser");
@@ -84,7 +84,7 @@ public class UploadVodController extends HttpServlet {
 				// 2. 파일 저장 후 DB에 insert
 				String vodTitle = multiRequest.getParameter("vodTitle");
 				int clNo = Integer.parseInt(multiRequest.getParameter("clNo"));
-				
+				String clTitle = multiRequest.getParameter("clTitle");
 //				File upFile = multiRequest.getFile("vodFile");
 //				System.out.println(upFile);
 				// Class 테이블에 insert, SlideAttachment에 insert
@@ -103,7 +103,7 @@ public class UploadVodController extends HttpServlet {
 				
 				if(result > 0) { // Class에 insert됨 => 대기중 화면으로 이동
 					
-					response.sendRedirect(request.getContextPath() + "/classDetail.my");
+					response.sendRedirect(request.getContextPath() + "/myVodList.my?clNo="+clNo+"&clTitle="+clTitle);
 					
 				}else { // 실패 가입에 실패했습니다. 이 페이지 머무르기 가능? & 파일 삭제
 					

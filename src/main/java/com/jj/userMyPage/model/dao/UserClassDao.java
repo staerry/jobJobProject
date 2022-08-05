@@ -51,10 +51,10 @@ public class UserClassDao {
 				
 				bookmark.setCls(cls);
 				
-//				Member clMember = new Member();
-//				clMember.setUserNo(rset.getInt("cl_user_no"));
-//				clMember.setUserId(rset.getString("cl_user_id"));
-//				clMember.setUserName(rset.getString("cl_user_name"));
+				Member clMember = new Member();
+				clMember.setUserNo(rset.getInt("cl_user_no"));
+				clMember.setUserId(rset.getString("cl_user_id"));
+				clMember.setUserName(rset.getString("cl_user_name"));
 				
 				
 				bookmark.setClLikeDate(rset.getDate("CL_LIKEDATE"));

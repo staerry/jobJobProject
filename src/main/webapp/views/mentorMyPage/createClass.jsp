@@ -166,14 +166,14 @@ padding-right: 3px;
 					            <input type="text" name="curri" id="class-detail" placeholder="* 자세한 강의 커리큘럼을 적어주세요." required>
 					        </div>
 					            
-					        <div class="open-class-body">
+					       <!--  <div class="open-class-body">
 					            <p>
 					            <span id="grey-area-top" style="font-size:1.5em; font-weight:bolder">마지막으로, 수강료를 입력해 주세요.</span> <br>
 					            <span class="grey-area "style="color:grey">(수강생이 지불하는 최종 수강료로, VAT 10%가 포함된 가격입니다.)</span>
-					            <!-- <h2>최종 수강료</h2> -->
+					            <h2>최종 수강료</h2>
 					            <br><br>
-					            <input type="text" class="won" name="clPrice" id="finalprice1" placeholder="원">
-					        </div>
+					            <input type="text" class="won" name="clPrice" id="finalprice1" placeholder="원" required>
+					        </div> -->
 					        <br>
 					    <!-- <input type="text" name="" id="" placeholder=""> -->
 	

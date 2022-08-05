@@ -68,6 +68,7 @@ margin-bottom:30px;}
                             <br>
                             
                             <input type="hidden" name="clNo" value="${clNo}">
+                            <input type="hidden" name="clTitle" value="${clTitle}">
                             <button type="submit" onclick="alert('성공적으로 등록되었습니다. 승인을 기다려 주세요')" class="btn btn-info" id="upload-btn" style="background-color:#6363FF; color:white">업로드</button>
                 
                         <!-- </div> -->

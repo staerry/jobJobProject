@@ -56,9 +56,7 @@ public class CreateClassInfoController extends HttpServlet {
 					int maxSize = 10 * 1024 * 1024;
 					
 					// 1_2) 전달된 파일을 저장시킬 폴더의 경로 알아내기
-					
-						// 멘토 사원증 저장할 폴더 : mentorEmpCardFiles
-						// 멘토 신분증 저장할 폴더 : mentorIdCardFIles
+//					폴더 : classCreateImgFiles
 					//
 					String savePath = session.getServletContext().getRealPath("/resources/image/classCreateImgFiles/");
 					
@@ -66,7 +64,6 @@ public class CreateClassInfoController extends HttpServlet {
 					MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 					
 					// 2. 파일 저장 후 DB에 insert
-					//  > 아이디, 비번, 이름, 이메일, 핸드폰 번호 => Member테이블에 insert 
 					int clCategory = Integer.parseInt(multiRequest.getParameter("clCategory"));
 					String clTitle = multiRequest.getParameter("className");
 					String clsubTitle = multiRequest.getParameter("classSubName");
@@ -76,9 +73,7 @@ public class CreateClassInfoController extends HttpServlet {
 					int clPrice = Integer.parseInt(multiRequest.getParameter("clPrice"));
 					
 					
-					// Class 테이블에 insert, SlideAttachment에 insert
-					// 클래스 썸네일 사진 ( 원본명,  수정명, 저장경로 알아야함) = EmpCard
-					// multiRequest.getOriginalFileName("사원증 사진의 name값 = mtEmpCard") : 원본파일명 알아내는 메소드
+					
 					CreateClass cc = null;
 					
 //					mt = new Mentor();
@@ -102,9 +97,9 @@ public class CreateClassInfoController extends HttpServlet {
 					if(result > 0) { // Class에 insert됨 => 대기중 화면으로 이동
 						
 						
-						response.sendRedirect(request.getContextPath() + "/classWating.my");
+						response.sendRedirect(request.getContextPath() + "/views/mentorMyPage/mentorClassManage");
 						
-					}else { // 실패 가입에 실패했습니다. 이 페이지 머무르기 가능? & 파일 삭제
+					}else { // 실패 등록에 실패했습니다. 이 페이지 머무르기 가능? & 파일 삭제
 						
 						if(cc != null) {
 							new File(savePath + multiRequest.getFilesystemName("clImg")).delete();
@@ -112,7 +107,8 @@ public class CreateClassInfoController extends HttpServlet {
 						}
 						
 						session.setAttribute("alertMsg", "클래스 등록에 싫패했습니다.");
-						response.sendRedirect(request.getContextPath()+ "/classWating.my");
+//						response.sendRedirect(request.getContextPath()+ "/classWating.my");
+						response.sendRedirect(request.getContextPath()+ "/myPage.my");
 //						//마이페이지 메인 = 클래스관리 페이지로 가고싶은데..??모르겠어요
 					}
 					
