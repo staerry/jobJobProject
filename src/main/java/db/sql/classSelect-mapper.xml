@@ -216,6 +216,7 @@
 	              FROM CLASS
 	              LEFT JOIN REVIEW USING(CL_NO)
 	             GROUP BY CL_NO) A USING(CL_NO)
+	     WHERE CL_GRANT = 'A'         
 	     ORDER 
 	    	BY REVIEW_SCORE DESC
     </entry>
@@ -245,6 +246,7 @@
 	              LEFT JOIN REVIEW USING(CL_NO)
 	             GROUP BY CL_NO) A USING(CL_NO)
 	     WHERE C.CLCG_NO = ?
+	       AND CL_GRANT = 'A' 
 	     ORDER 
 	        BY REVIEW_SCORE DESC
     </entry>
@@ -259,12 +261,13 @@
 		  FROM CLASS C
 		  JOIN USERINFO U ON (C.USER_NO = U.USER_NO)
 		  JOIN CL_CATEGORY CC ON (C.CL_CATEGORY = CC.CLCG_NO)
-		  WHERE CL_TITLE LIKE UPPER(?)
+		  WHERE CL_GRANT = 'A' 
+		  	AND (CL_TITLE LIKE UPPER(?)
 		     OR CL_SUBTITLE LIKE UPPER(?)
-		     OR USER_NAME LIKE UPPER(?)
+		     OR USER_NAME LIKE UPPER(?))
     </entry>
     
-        <!-- 수강신청용 강의 정보 -->
+    <!-- 수강신청용 강의 정보 -->
     <entry key="selectClassEnroll">
 	    SELECT
 		       CL_NO
@@ -280,7 +283,7 @@
 		   AND CL_GRANT = 'A'
     </entry>
     
-        <!-- 회원별 보유 쿠폰 조회 (사용 가능한 쿠폰) -->
+    <!-- 회원별 보유 쿠폰 조회 (사용 가능한 쿠폰) -->
     <entry key="selectCouponList">
 	    SELECT
 		       ISUCP_NO
