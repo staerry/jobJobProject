@@ -65,23 +65,25 @@
 				})
 			</script>
 			
-            <div class="paging-area">
-            	<% if(pageInfo.getCurrentPage() != 1){ %>
-                	<a href="<%= contextPath %>/<%= contextPath %>/mentorVodApprovalListView.ad?cpage=<%= pageInfo.getCurrentPage() - 1 %>">&lt</a>
-                <% } %>
-                
-                <% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++){ %>
-               		<% if(pageInfo.getCurrentPage() == i){ %> 	
-                		<a href="<%= contextPath %>/mentorVodApprovalListView.ad?cpage=<%= i %>" style="background-color : gray;"><%= i %></a>
-               		<% } else { %>
-                		<a href="<%= contextPath %>/mentorVodApprovalListView.ad?cpage=<%= i %>"><%= i %></a>
-                	<% } %>
-                <% } %>
-                
-                <% if(pageInfo.getCurrentPage() != pageInfo.getMaxPage()){ %>
-                	<a href="<%= contextPath %>/<%= contextPath %>/mentorVodApprovalListView.ad?cpage=<%= pageInfo.getCurrentPage() - 1 %>">&gt</a>
-                <% } %>
-            </div>
+			<% if(!list.isEmpty()){ %>
+	            <div class="paging-area">
+	            	<% if(pageInfo.getCurrentPage() != 1){ %>
+	                	<a href="<%= contextPath %>/<%= contextPath %>/mentorVodApprovalListView.ad?cpage=<%= pageInfo.getCurrentPage() - 1 %>">&lt</a>
+	                <% } %>
+	                
+	                <% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++){ %>
+	               		<% if(pageInfo.getCurrentPage() == i){ %> 	
+	                		<a href="<%= contextPath %>/mentorVodApprovalListView.ad?cpage=<%= i %>" style="background-color : gray;"><%= i %></a>
+	               		<% } else { %>
+	                		<a href="<%= contextPath %>/mentorVodApprovalListView.ad?cpage=<%= i %>"><%= i %></a>
+	                	<% } %>
+	                <% } %>
+	               
+	                <% if(pageInfo.getCurrentPage() != pageInfo.getMaxPage()){ %>
+	                	<a href="<%= contextPath %>/<%= contextPath %>/mentorVodApprovalListView.ad?cpage=<%= pageInfo.getCurrentPage() - 1 %>">&gt</a>
+	                <% } %>
+	            </div>
+            <% } %>
 		</div>
 	</div>
 	<% } %>

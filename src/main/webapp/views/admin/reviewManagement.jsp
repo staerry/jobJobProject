@@ -102,6 +102,9 @@
 	            	<% if(pageInfo.getCurrentPage() != 1){ %>
 	                	<a href="<%= contextPath %>/reviewListView.ad?cpage=<%= pageInfo.getCurrentPage()-1 %>">&lt</a>
 	                <% } %>
+	                <% if(pageInfo.getCurrentPage() > 5){ %>
+	                	<a href="<%= contextPath %>/reviewListView.ad?cpage=1">1</a><span>&nbsp;···&nbsp;</span>
+	                <% } %>
 	                <% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++){ %>
 	                	<% if(i == pageInfo.getCurrentPage()){ %>
 	                		<a href="<%= contextPath %>/reviewListView.ad?cpage=<%= i %>" style="background-color : gray;"><%= i %></a>
@@ -110,6 +113,9 @@
 	                	<% } %>
 					<% } %>
 					<% if(pageInfo.getCurrentPage() != pageInfo.getMaxPage()){ %>
+		                <% if(pageInfo.getMaxPage() > 5){ %>
+			                <span>&nbsp;···&nbsp;</span><a href="<%= contextPath %>/reviewListView.ad?cpage=<%= pageInfo.getMaxPage() %>"><%= pageInfo.getMaxPage() %></a>                
+		                <% } %>
 	                	<a href="<%= contextPath %>/reviewListView.ad?cpage=<%= pageInfo.getCurrentPage()+1 %>">&gt</a>
 	                <% } %>
 	            </div>
