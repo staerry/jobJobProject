@@ -154,18 +154,7 @@
           }
       
      </script>
- 
-        <div class="paging-area" style="margin:auto;">
-            <ul class="pagination justify-content-center" style="margin:20px 0">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-              </ul>
-        </div>
+
 
     </div>
     <%@ include file="../common/footer.jsp" %>

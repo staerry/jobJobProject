@@ -63,7 +63,7 @@
                 
                 <tr style="background-color:whitesmoke">
                   <th colspan="6">
-                    <input type="checkbox" name="check" id="checkAll">
+                    <input type="checkbox" id="checkAll">
                     <label for="checkAll">전체선택</label>&nbsp;&nbsp;&nbsp;&nbsp;
                     <button class="btn btn-sm btn-danger" onclick="deleteChecked();">삭제</button></th>
                   </tr>
@@ -77,7 +77,7 @@
                     <%} else{ %>
                       <%for(Reply r : list){ %>
                         <tr>
-                          <td><input type="checkbox" class="selectedCheck" name="check"></td>
+                          <td><input type="checkbox" class="selectedCheck" name="check" value="<%= r.getReplyNo()%>"></td>
                           <td>
                             <p><%= r.getReplyEnrollDate() %></p>
                             <p><%= r.getReplyContent() %></p>
@@ -143,17 +143,6 @@
                         }
                         </script>
                     
-        <div class="paging-area" style="margin:auto;">
-            <ul class="pagination justify-content-center" style="margin:20px 0">
-                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-              </ul>
-        </div>
 
     
 </div>
