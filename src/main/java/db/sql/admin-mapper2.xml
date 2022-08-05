@@ -864,6 +864,17 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	  FROM USERINFO
 	 WHERE USER_STATUS = 'N'
 	   AND ADMIN_STATUS = 'N'
+	   AND USER_DIVISION = 1
+</entry>
+
+<entry key="totalMember2">
+	SELECT COUNT(*) AS "COUNT"
+	  FROM USERINFO U
+      JOIN MENTOR M ON(M.USER_NO=U.USER_NO)
+	 WHERE USER_STATUS  = 'N'
+	   AND U.ADMIN_STATUS = 'N'
+	   AND U.USER_DIVISION = 2
+	   AND M.MT_GRANT = 'A'
 </entry>
 
 <entry key="totalStu">
@@ -888,6 +899,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	  SELECT COUNT(*) AS "COUNT"
 		FROM USERINFO U
 	   WHERE TO_CHAR(U.ACCESSDATE,'YYYY/MM/DD') = TO_CHAR(SYSDATE,'YYYY/MM/DD')
+	     AND ADMIN_STATUS = 'N'
 </entry>
 
 <entry key="todayPay">

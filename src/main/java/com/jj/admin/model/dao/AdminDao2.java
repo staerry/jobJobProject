@@ -2118,6 +2118,27 @@ public class AdminDao2 {
 		return totalMember;
 	}
 	
+	public int totalMember2(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("totalMember2");
+		int totalMember = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				totalMember = rset.getInt("COUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return totalMember;
+	}
+	
 	public int totalStu(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
