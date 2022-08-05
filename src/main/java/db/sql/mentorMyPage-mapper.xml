@@ -70,13 +70,45 @@ insert into vod values(
 	default
 )
 </entry>
-
+<!--1개의 클래스 상세조회  -->
 <entry key="selectOneClass">
 select 
 	* 
-from
-	class 
+FROM CLASS 
 where 
 	cl_no = ?
 </entry>
+
+<!-- 멘토의 모든 질문답변 조회 -->
+<entry key="selectAllQuestion">
+SELECT 
+MT_QUE_NO,
+
+QUE_TITLE,
+QUE_CONTENT,
+QUE_ENROLLDATE,
+
+ANS_NO,
+ANS_CONTENT,
+ANS_DATE
+
+FROM MT_QUE
+WHERE USER_NO = ?
+	
+
+</entry>
+
+<entry key="selectVodList">
+select
+	v.*,
+	c.cl_title
+from
+	vod v join class c on v.cl_no = c.cl_no
+where 
+v.cl_no = ?
+	
+
+</entry>
+
+
 </properties>

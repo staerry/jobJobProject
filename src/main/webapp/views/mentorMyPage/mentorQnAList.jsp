@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "java.util.ArrayList, com.jj.userMyPage.model.vo.Post" %>
+<%@ page  import="java.util.ArrayList, com.jj.common.model.vo.PageInfo, com.jj.mentorMyPage.model.vo.MtQuestion"%>
 <%
-	
+	ArrayList<MtQuestion> list =  (ArrayList<MtQuestion>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +23,7 @@
   
     <div class="container">
       <br><br>
-        <h2>내 질문답변</h2>
+        <h2>내 답변</h2>
         
          
           <table class="table table-hover">
@@ -37,29 +37,34 @@
             </thead>
             <thead align="center">
               <tr>
-                <th></th>
-                <th>글 번호</th>
-                <th>질문 내용</th>
-                <th>작성자</th>
-                <th>작성일</th>
-                <th>좋아요</th>
-                <th>내 답변 상태</th>
-                <th>답변 내용</th>
-                <th>답변일</th>
-              </tr>
-            </thead>
-            <tbody align="center">
-            <% if(list.isEmpty()) { %>
+                <% if(list.isEmpty()) { %>
               <tr>
                 <td colspan="6">조회된 게시글이 없습니다.</td>
               </tr>
               <%} else{ %>
-                <%for(Post p : list){ %>
+                <%for(MtQuestion m : list){ %>
+              
+                <th><%= m.getMtQueNo() %></th>
+                <th><%= m.getQueContent()  %></th>
+                
+                <th><%=m.getQueEnrolldate()  %></th>
+               <!--  <th>내 답변 상태</th> -->
+                <%if(m.getAnsDate() != null){ %> 
+                <th><%= m.getQueContent()  %></th>
+                <th><%= m.getAnsDate()  %></th>
+                <%} else{%>
+                <th>답변대기중</th>
+                
+              </tr>
+            </thead>
+            <tbody align="center">
+          
               <tr>
-                <td><p>%=></p></td>
+                <td><p></p></td>
               
    				<% } %>
-			<% } %> 
+			<% } %>   
+			<% } %>   
       
             </tbody>
           </table>

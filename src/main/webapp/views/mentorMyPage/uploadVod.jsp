@@ -37,7 +37,8 @@ margin-bottom:30px;}
             </div>
             <form action="<%=contextPath%>/uploadVod.my"
                 method="post"
-                enctype="multipart/form-data">
+                enctype="multipart/form-data"
+                accept-charset="UTF-8">
             <div class="class-body" id="cl-number"><div><h3>${vodNo}회차 강의 등록</h3></div>
             
                 
@@ -68,6 +69,7 @@ margin-bottom:30px;}
                             <br>
                             
                             <input type="hidden" name="clNo" value="${clNo}">
+                            <input type="hidden" name="clTitle" value="${clTitle}">
                             <button type="submit" onclick="alert('성공적으로 등록되었습니다. 승인을 기다려 주세요')" class="btn btn-info" id="upload-btn" style="background-color:#6363FF; color:white">업로드</button>
                 
                         <!-- </div> -->

@@ -7,10 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import static com.jj.common.JDBCTemplate.close;
 import com.jj.member.model.vo.Member;
 import com.jj.mentorMyPage.model.vo.CreateClass;
+import com.jj.mentorMyPage.model.vo.MtQuestion;
 import com.jj.mentorMyPage.model.vo.Vod;
 import com.jj.userMyPage.model.vo.Class;
 
@@ -91,6 +94,9 @@ Properties prop = new Properties();
 		return list;
 	}
 
+	
+	
+		
 
 	public int selectVodNo(Connection conn, int clNo) {
 		int vodNo = 0;
@@ -139,7 +145,7 @@ Properties prop = new Properties();
 		return result;
 	}
 
-
+//	1개의 클래스 상세조회  
 	public Class selectOneClass(Connection conn, int clNo) {
 		Class cls = new Class();;
 		PreparedStatement pstmt = null;
@@ -170,10 +176,86 @@ Properties prop = new Properties();
 		}
 		return cls;
 	}
+
+
+	
+
+	public ArrayList<MtQuestion> selectAllQuestion(Connection conn, int userNo) {
+		ArrayList<MtQuestion> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectAllQuestion");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new MtQuestion(rset.getInt("mt_que_no")
+			              , rset.getString("que_title")
+			              , rset.getString("que_content")
+			              , rset.getDate("que_enrolldate")
+			              , rset.getString("ans_content")
+			              , rset.getDate("ans_date")
+			              ));
+			
+			}
+			
+			} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return list;
+	}
+
+
+	public List<Vod> selectVodList(Connection conn, int clNo) {
+		List<Vod> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectVodList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Vod vod = new Vod();
+				vod.setVodNo(rset.getInt("vod_no"));
+//				Class cls = new Class();
+//				cls.setClNo(clNo);
+//				vod.setCls(cls);
+				vod.setVodTitle(rset.getString("vod_title"));
+				vod.setVodStatus(rset.getString("vod_status"));
+					
+				list.add(vod);
+			}
+			
+			} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return list;
+
+	}
+		
+		
+	}
 	
 	
 	
 	
 	
 	
-}

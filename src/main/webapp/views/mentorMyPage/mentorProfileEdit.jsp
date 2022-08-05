@@ -8,7 +8,7 @@
 <!-- css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/userMypage/mainTemplate.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/setting.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mentorMypage/mentorProfileEdit.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mentorMyPage/mentorProfileEdit.css">
 
 
 
@@ -87,6 +87,7 @@ width:80%;
                             <td>%= 직무 %</td>
                         </tr>
                     </table>
+                    <button type="submit" onclick="location.href='<%=contextPath%>/classWating.my'" style="border:none; background-color:#6363ff; color:white; width:130px; height:50px; margin:60px; border-radius:4px">수정하기</button> 
                 </div>
             </div>
 
@@ -96,7 +97,7 @@ width:80%;
                   <table>
                     <tr>
                     <td><h4 class="flex1">대표 멘토링 분야</h4></td>
-                <td><button type="submit" class="flex1" id="editbtn" style="margin-left:auto; border:none;padding-left:220px;">수정하기</button></td>
+                <!-- <td><button type="submit" class="flex1" id="editbtn" style="margin-left:auto; border:none;padding-left:220px;">수정하기</button></td> -->
                 </tr>
                 </table>
                  
@@ -109,7 +110,7 @@ width:80%;
                     <table>
                         <tr>
                         <td><h4 class="flex1">멘토 소개</h4></td>
-                    <td><button type="submit" class="flex1" id="editbtn" style="margin-left:0; border:none;">수정하기</button></td>
+                    <!-- <td><button type="submit" class="flex1" id="editbtn" style="margin-left:0; border:none;">수정하기</button></td> -->
                     </tr>
                     </table>
                     <textarea  class="te" cols="100" rows="5">&nbsp;&nbsp;%멘토소개%</textarea>
@@ -119,13 +120,13 @@ width:80%;
                     <table>
                         <tr>
                         <td><h4 class="flex1">주요 경력</h4></td>
-                    <td><button type="submit" class="flex1" id="editbtn" style="margin-left:auto; border:none">수정하기</button></td>
+                    <!-- <td><button type="submit" class="flex1" id="editbtn" style="margin-left:auto; border:none">수정하기</button></td> -->
                     </tr>
                     </table>
               
                     <textarea  class="te" cols="100" rows="5" style="resize:none;">&nbsp;&nbsp;%주요경력%  </textarea>
 
-                      
+                   
                 </div>
             </div>
 

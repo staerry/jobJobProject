@@ -291,7 +291,7 @@
 								<% }else { // 강의자상태  %>
                            
                             <li><a href="<%=request.getContextPath() %>/mtProEdit.my">나의 프로필 관리</a></li>
-                            <li><a href="#">질문답변</a></li>
+                            <li><a href="<%=request.getContextPath() %>/qnaList.my">질문답변</a></li>
                             <%} %>
                             <!-- <li><a href="">소메뉴1-3</a></li>
                             <li><a href="#">소메뉴1-4</a></li> -->

@@ -45,8 +45,10 @@ public class MentorMyService {
 		return list;
 	}
 
-	public List<MtQuestion> selectAllQuestion(String userId) {
-		return null;
+	public ArrayList<MtQuestion> selectAllQuestion(int userNo) {
+		Connection conn = getConnection();
+		ArrayList<MtQuestion> list = new MentorMyDao().selectAllQuestion(conn, userNo);
+		return list;
 	}
 
 	public int insertVod(Vod vod) {
@@ -62,10 +64,20 @@ public class MentorMyService {
 		int vodNo = new MentorMyDao().selectVodNo(conn, clNo);
 		return vodNo;
 	}
-
+	
+	
+	
+//	멘토 마이클래스에서 하나의 강의만을 골라 회차업로드 
 	public Class selectOneClass(int clNo) {
 		Connection conn = getConnection();
 		Class cls = new MentorMyDao().selectOneClass(conn, clNo);
 		return cls;
+	}
+
+	public List<Vod> selectVodList(int clNo) {
+		Connection conn = getConnection();
+		List<Vod> list = new MentorMyDao().selectVodList(conn, clNo);
+		
+		return list;
 	}
 }

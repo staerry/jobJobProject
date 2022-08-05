@@ -67,7 +67,7 @@
 		                <input type="checkbox" id="check2" name="check" value="2"> 
 		                <label for="check2">탈퇴한회원</label> 
 		                &nbsp;&nbsp;
-		                <input type="text" style="line-height: 30px; width: 200px; text-align:center" id="searchclick" placeholder="이름,회원번호,결제번호" name="search">
+		                <input type="text" style="line-height: 30px; width: 200px; text-align:center" id="searchclick" placeholder="이름,회원번호로 검색" name="search">
 		                <label for="searchclick"><button id="searchbtn" style="line-height: 30px;" class="btnpurple">검색</button></label>
 		            </form>
 		        </div>

@@ -146,6 +146,7 @@
 											$(".main-profile-img").html(value);
 										}else{
 											value = '<img class="login-profile-img" src="' + result + '" alt="profile">'
+											console.log(result);
 											$(".main-profile-img").html(value);
 										}
 									},

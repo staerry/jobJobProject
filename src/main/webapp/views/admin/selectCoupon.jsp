@@ -211,7 +211,7 @@
 		            	<%if(currentPage != maxPage){ %>
 							<a href="<%=request.getContextPath()%>/selectCoupon.li?p=<%=currentPage+1%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&gt</a>
 						<%} %>
-						<%if(currentPage < maxPage - pageLimit ){ %>
+						<%if(currentPage <= maxPage - pageLimit ){ %>
 							<a href="<%=request.getContextPath()%>/selectCoupon.li?p=<%=doubleNext%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&gt&gt</a>
 						<%} %>
 	            </div>

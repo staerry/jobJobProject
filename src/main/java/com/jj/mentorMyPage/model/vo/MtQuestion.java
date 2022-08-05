@@ -21,10 +21,36 @@ public class MtQuestion {
 //	private String ansWriterName;
 	private String ansContent;
 	private Date ansEnrollDate;	// 답변 작성일
-	private String ansDate;	// TO_CHAR 사용
+	private Date ansDate;	// TO_CHAR 사용
 
-	public MtQuestion() {}
+//	MT_QUE_NO,
+//
+//	QUE_TITLE,
+//	QUE_CONTENT,
+//	QUE_ENROLLDATE,
+//
+//	ANS_NO,
+//	ANS_CONTENT,
+//	ANS_DATE
 	
+	public MtQuestion() {
+		
+	}
+	
+	
+	
+	
+	public MtQuestion(int mtQueNo, String queTitle, String queContent, Date queEnrolldate, String ansContent,
+			Date ansDate) {
+		super();
+		this.mtQueNo = mtQueNo;
+		this.queTitle = queTitle;
+		this.queContent = queContent;
+		this.queEnrolldate = queEnrolldate;
+		this.ansContent = ansContent;
+		this.ansDate = ansDate;
+	}
+
 	/**
 	 * 관리자 페이지 멘토 질문/답변 관리 페이지 생성자
 	 */
@@ -113,11 +139,11 @@ public class MtQuestion {
 //		this.ansWriterName = ansWriterName;
 //	}
 
-	public String getAnsDate() {
+	public Date getAnsDate() {
 		return ansDate;
 	}
 
-	public void setAnsDate(String ansDate) {
+	public void setAnsDate(Date ansDate) {
 		this.ansDate = ansDate;
 	}
 

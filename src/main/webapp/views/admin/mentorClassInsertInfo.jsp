@@ -3,6 +3,7 @@
     
 <%
 	Class classInfo = (Class)request.getAttribute("class");
+    int userNo = (int)request.getAttribute("userno");
 %>
 <!DOCTYPE html>
 <html>
@@ -62,12 +63,12 @@
 					<button type="button" onclick="approval(1)">승인</button>
 					<button type="button" onclick="approval(2)">거절</button>
 				</div>
-				
+
 				<script>
 					function approval(answer){
 						if(answer == 1){
 							if(confirm("승인 하시겠습니까?")){
-								location.href='<%= contextPath %>/classApproval.ad?no=<%= classInfo.getClNo() %>';
+								location.href='<%= contextPath %>/classApproval.ad?userno=<%= userNo %>&no=<%= classInfo.getClNo() %>';
 							}
 						}else{
 							if(confirm("거절 하시겠습니까?")){

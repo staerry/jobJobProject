@@ -1120,6 +1120,28 @@ public class AdminService {
 		return result;
 	}
 	
+	/**
+	 * 현직자를 강의자로 수정 요청 처리해주는 메소드
+	 * @param userNo : 수정할 유저 번호
+	 * @return 업데이트된 행 갯수
+	 * @author youngheonchoi
+	 */
+	public int gradeLecturer(int userNo) {
+		Connection conn = getConnection();
+		
+		int result2 = new AdminDao().gradeLecturer(conn, userNo);
+		
+		if(result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result2;
+	}
+	
 	
 	
 	

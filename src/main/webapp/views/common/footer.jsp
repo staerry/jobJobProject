@@ -16,7 +16,7 @@
         <div class="footer-area">
             <div class="left-footer">
                 <p>
-                    <a href="">공지사항</a>
+                    <a href="<%=request.getContextPath()%>/list.no?npage=1&nsort=1">공지사항</a>
                     &nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp
                     <a href="<%=request.getContextPath()%>/list.faq?cpage=1&sort=1">고객센터</a>
                     &nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp

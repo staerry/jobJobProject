@@ -47,7 +47,7 @@ public class FaqListController extends HttpServlet {
 		int endPage; // 페이징바의 끝수
 		
 		int sort = Integer.parseInt(request.getParameter("sort"));
-		
+				
 		String searchWord = "";
 		if(request.getParameter("searchWord") != null) {
 			searchWord = request.getParameter("searchWord");

@@ -30,10 +30,12 @@ public class MentorClassApprovalInfoPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int classNo = Integer.parseInt(request.getParameter("no"));
+		int userNo = Integer.parseInt(request.getParameter("userno"));
 		
 		Class classInfo = new AdminService().selectClassApproval(classNo);
 		
 		request.setAttribute("class", classInfo);
+		request.setAttribute("userno", userNo);
 		request.getRequestDispatcher("views/admin/mentorClassInsertInfo.jsp").forward(request, response);
 	}
 

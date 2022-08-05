@@ -30,10 +30,12 @@ public class MentorClassApprovalController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int classNo = Integer.parseInt(request.getParameter("no"));
+		int userNo = Integer.parseInt(request.getParameter("userno"));
 		
 		int result = new AdminService().classApproval(classNo);
+		int result2 = new AdminService().gradeLecturer(userNo);
 		
-		if(result > 0) {
+		if(result > 0 & result2 > 0) {
 			request.getSession().setAttribute("alertMsg", "승인 했습니다.");
 		}else {
 			request.getSession().setAttribute("alertMsg", "승인을 실패했습니다.");
