@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.jj.member.model.service.MemberService;
+import com.jj.member.model.vo.Member;
+
 /**
  * Servlet implementation class MemberLogoutController
  */
@@ -29,6 +32,10 @@ public class MemberLogoutController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUserNo();
+		
+		int result = new MemberService().accessDate(userNo);
+		
 		HttpSession session = request.getSession();
 		session.invalidate();
 		response.sendRedirect(request.getContextPath() + "/userlogin.me");

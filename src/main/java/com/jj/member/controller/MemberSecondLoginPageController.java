@@ -47,6 +47,7 @@ public class MemberSecondLoginPageController extends HttpServlet {
 			
 		}else {// 로그인 성공
 			session.setAttribute("loginUser", loginUser);
+			int result = new MemberService().accessDate(loginUser.getUserNo());
 			
 			if (loginUser.getMtGrade() == 1) { // mtgrade = 1 >> 현직자
 
