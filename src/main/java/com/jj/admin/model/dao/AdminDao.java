@@ -1290,8 +1290,8 @@ public class AdminDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, postNo);
-			pstmt.setInt(2, postCategory);
+			pstmt.setInt(1, postCategory);
+			pstmt.setInt(2, postNo);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
