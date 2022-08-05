@@ -64,7 +64,7 @@
 
                 <tr style="background-color:whitesmoke">
                   <th colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="check" id="checkAll">
+                    <input type="checkbox" id="checkAll">
                     <label for="checkAll">전체선택</label>&nbsp;&nbsp;&nbsp;&nbsp;
                     <button class="btn btn-sm btn-danger" onclick="deleteChecked();">삭제</button></th>
                   </tr>
