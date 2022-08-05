@@ -27,7 +27,7 @@ public class CreateClassWaitingController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		request.getRequestDispatcher("views/mentorMyPage/createClassWating.jsp").forward(request, response);
+		request.getRequestDispatcher("views/mentorMyPage/mentorClassManage.jsp").forward(request, response);
 //		response.sendRedirect(request.getContextPath() + "/myPage.my");
 	}
 

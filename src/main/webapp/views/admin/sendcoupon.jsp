@@ -224,7 +224,7 @@
                     <button type="button" class="button1" id="sendcp">쿠폰발송</button>
                 </div>
                 <script>
-            		let rNo = [0];
+            		let rNo = [];
             		let lNo = [];
             		
                 	$('.rbtn').on('click',function(){

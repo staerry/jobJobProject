@@ -1,6 +1,7 @@
 package com.jj.mentorMyPage.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -39,7 +40,9 @@ public class MentorMyAnsController extends HttpServlet {
 		
 		Member member = (Member) session.getAttribute("loginUser");
 		if(member != null) {
-			List<MtQuestion> list = new MentorMyService().selectAllQuestion(member.getUserId());
+			ArrayList<MtQuestion> list = new MentorMyService().selectAllQuestion(member.getUserNo());
+			session.setAttribute("list", list);
+			System.out.println("list");
 		}else {
 			request.setAttribute("alertMsg", "로그인이 필요합니다.");
 			request.getRequestDispatcher("views/member/memberLoginSecond.jsp").forward(request, response);

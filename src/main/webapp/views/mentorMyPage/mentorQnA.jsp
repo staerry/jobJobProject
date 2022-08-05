@@ -12,12 +12,8 @@
 
 
 
- <!--  <style>
-        .wrap{
-            width:1000px;
-            margin-left:20px;
-        }
-
+  <style>
+      
         .head{
             display:flex;
             width:600px;
@@ -54,6 +50,7 @@
             color:grey;
             margin-left:10px;
         }
+       
         .body>input{
             width:600px;
             /* height:50px; */
@@ -91,12 +88,12 @@
 
 
 
-    </style> -->
-    
+    </style> 
+
     </head>
     
 		<body>
-		
+		    
 		    <%@ include file="../common/menubar.jsp" %>
 		    <div class="content-wrap">
 			    <!--이 부분에 좌측메뉴 넣으세요-->
@@ -111,46 +108,50 @@
 	
 	    <!--이 부분은 우측 컨텐츠 입니다.-->
 	    <div class="right">
-	        <h3 style="color : #6363ff">넌모야</h3>
+	       
 	        
-	  
+                    <div class="mycontent">
 	
-  <div class="wrap">
-            <div class="head">
-            <h3 class="head-line">프론트 엔드와 백엔드의 차이점이 무엇인가요?</h3>
-            <h4 class="head-line" id="">QUE_ENROLLDATE(작성일)</h4>
-            </div>
+                                                                        <div class="wrap">
+                                                                                    <div class="head">
+                                                                                    <h3 class="head-line">프론트 엔드와 백엔드의 차이점이 무엇인가요?</h3>
+                                                                                    <h4 class="head-line" id="">QUE_ENROLLDATE(작성일)</h4>
+                                                                                    </div>
 
-    
-      
-       <input type="text" class="body" id="text-body" value="content">
-       
-        <br><br><br>     <br><br><br>    
-        <div class=answer-wrapper>
-                            <div class="body" id="answerNum" style="display:flex;">
-                                    <div class="num" ><h3>답변</h3></div>
-                                    <div class="num" id="num"><h4>2개</h4></div>
-                                </div> 
+                                                                            
+                                                    
+                                                    <input type="text" class="body" id="text-body" value="content">
+                                                    
+                                                        <br><br><br>     <br><br><br>    
+                                                      
+                                                                            
+                                                                                <table>
+                                                                                    <tr width="200px;">
+                                                                                    <h3>답변</h3>
+                                                                                    
+                                                                                
+                                                                            
+                                                                                
 
-                                <div class="body"><input type="text" id="reply-content-form" style="height:30px" placeholder="답변을 입력하세요."></div>
+                                                                               <tr><input type="text" id="reply-content-form" style="height:30px" placeholder="답변을 입력하세요."></tr> <br>
+                                                                                                   
+                                                                               <tr>  <button type="submit" style="text-align:center; margin:20px; color:white; border:none; width:80px; height:35px; border-radius: 4px; background-color: #6363FF;">목록으로</button></tr> 
+                                                                <!-- 답변페이지 -->
+<!--                                                                                                     
+                                                                <div class="."id="mentor-profile-photo-container">
+                                                                    <div  class="1" id="mentor-profile-photo"><img src="멘토 프로필 사진 경로" style="width:20%";></div> -->
+                                                                
+                                                                                <!-- <div class="1" id=name-company-container>
+                                                                                                    <div class="mentor-info-right" id="nameandcompany" style="margin-bottom:auto;">
+                                                                                                            <div class="name-company" id="mentor-name" style="margin-right:10px;"><label>멘토이름</label></div>
+                                                                                                            <div class="name-company" id="company"><label>소속</label></div>
+                                                                                                            <br><br>
+                                                                                                    </div>
 
-                                <!-- 답변페이지 -->
-
-                              
-                                <div class="body"id="mentor-profile-photo-container">
-                                    <div  class="1" id="mentor-profile-photo"><img src="멘토 프로필 사진 경로" style="width:20%";></div>
-                                
-                                                <div class="1" id=name-company-container>
-                                                                    <div class="mentor-info-right" id="nameandcompany" style="margin-bottom:auto;">
-                                                                            <div class="name-company" id="mentor-name" style="margin-right:10px;"><label>멘토이름</label></div>
-                                                                            <div class="name-company" id="company"><label>소속</label></div>
-                                                                            <br><br>
-                                                                    </div>
-
-                                                                   
+                                                                
                                                                             <div class="6" id="replied-content"style="border:none; height:auto%;"><p>답변내용</p></div>
-                                                                     
-                                                                 
+                                                                    
+                                                                                                </div>
 
                                                                     <div class="mentor-info-right" id="answer-bottom" style="display:inline-flex; flex-direction:row;">
                                                                                 <div class="5-reply-right-bottom"><p>xxx 시간전(작성시간)</p></div>
@@ -158,19 +159,13 @@
                                                                                 <div class="5-reply-right-bottom"><i class="fa-regular fa-heart" style="margin-top:20px; padding:0 10px; resize: none;"></i></div>
                                                                             
                                                                                 <div class="5-reply-right-bottom"> <p>답글</p></div>
-                                                                    
-                                                                
-                                                                    </div>
-                                                            </div>
-                                                </div>
-                                        </div>
-                                       
-                                        <button type="submit" style="margin:auto;display:block; margin-top:40px; margin-left:550px;color:white; border:none; width:80px; height:35px; border-radius: 4px; background-color: #6363FF;">목록으로</button>
+                                                                            -->
+                                            
                                     </div>
-                                </div>
-                                
-                            </div>
-  
+                    </div>
+               </div>
+                           
+                        </div>
   
 
 

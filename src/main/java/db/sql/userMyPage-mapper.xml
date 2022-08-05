@@ -64,23 +64,23 @@ SELECT
 
 <entry key="selectListWish">
 
-	select
-  	  u.user_no,
-    u.user_id,
+	SELECT
+  	  u.USER_NO,
+    u.USER_ID,
     b.*,
-    c.cl_no,
-    c.cl_title,
-    c.cl_thumbnailpath,
-    u2.user_no cl_user_no,
-    u2.user_id cl_user_id,
-    u2.user_name cl_user_name
-from 
-    userinfo u join bookmark b on u.user_no = b.user_no
-    join class c on b.cl_no = c.cl_no 
-    join userinfo u2 on c.user_no = u2.user_no
-where
+    c.CL_NO,
+    c.CL_TITLE,
+    c.CL_THUMBNAILPATH,
+    u2.USER_NO CL_USER_NO,
+    u2.USER_ID CL_USER_ID,
+    u2.USER_NAME CL_USER_NAME
+FROM 
+    USERINFO u JOIN bookmark b on u.user_no = b.user_no
+    JOIN CLASS c on b.cl_no = c.cl_no 
+    JOIN USERINFO u2 on c.user_no = u2.user_no
+WHERE
     c.cl_grant = 'A'
-and
+AND
     u.user_no = ?
 </entry>
 

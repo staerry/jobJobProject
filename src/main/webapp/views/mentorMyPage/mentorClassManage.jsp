@@ -120,7 +120,7 @@ width:200px;
 								  
 								<% for(CreateClass c : list){%>
 								 <tbody>
-								    <tr onclick="location.href='<%=contextPath %>/classDetail.my?clNo=<%=c.getClNo()%>'">
+								    <tr onclick="location.href='<%=contextPath %>/myVodList.my?clNo=<%=c.getClNo()%>&clTitle=<%= c.getClTitle() %>'">
 								      <td><%= c.getClNo() %></td>
 								      <td><%= c.getClCategory()%></td>
 								      <td><%= c.getClTitle() %></td>
@@ -136,7 +136,7 @@ width:200px;
 								
 								</table>
 								
-								<div class="paging-area" style="margin:auto;">
+						<!-- 		<div class="paging-area" style="margin:auto;">
             <ul class="pagination justify-content-center" style="margin:20px 0">
                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                 <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -146,7 +146,7 @@ width:200px;
                 <li class="page-item"><a class="page-link" href="#">5</a></li>
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
               </ul>
-        </div>
+        </div> -->
 		   <%} %>			 	
 						
 								<button onclick="location.href='<%=contextPath %>/createClass.my';" id=btn-upload class="btn btn-primary btn-lg" style="background-color:#6363FF; color:white"
