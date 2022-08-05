@@ -398,7 +398,8 @@ public class AdminDao2 {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, search);
-			pstmt.setString(2, a);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -1290,9 +1291,10 @@ public class AdminDao2 {
 			int endRow = startRow + pi.getBoardLimit()-1;
 			
 			pstmt.setString(1, search);
-			pstmt.setString(2, a);
-			pstmt.setInt(3,startRow);
-			pstmt.setInt(4,endRow);
+			pstmt.setString(2, search);
+			pstmt.setString(3, a);
+			pstmt.setInt(4,startRow);
+			pstmt.setInt(5,endRow);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
