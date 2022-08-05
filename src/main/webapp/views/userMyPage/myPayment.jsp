@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "java.util.ArrayList, com.jj.userMyPage.model.vo.Payment" %>
+<%
+  ArrayList<Payment> list = (ArrayList<Payment>)request.getAttribute("list");		
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +25,6 @@
           <table class="table table-hover">
             <thead align="center">
               <tr>
-                <th>번호</th>
                 <th>강의명</th>
                 <th>강사명</th>
                 <th>결제일자</th>
@@ -29,37 +32,25 @@
               </tr>
             </thead>
             <tbody align="center">
+              <% if(list.isEmpty()) { %>
+                <tr>
+                  <td>결제내역이 없습니다.</td>
+                </tr>
+                <%} else{ %>
+                  <%for(Payment p : list){ %>
               <tr>
-                <td>10</td>
-                <td>남궁성의 java A-Z까지</td>
-                <td>남궁성</td>
-                <td>xxxx-xx-xx</td>
+                <td><%= p.getClTitle()%></td>
+                <td><%= p.getUserName()%></td>
+                <td><%= p.getPayDate()%></td>
                 <td>
                   <button onclick="location.href='<%=contextPath%>/paymentDetails.my'" class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
                   <button onclick="location.href='<%=contextPath%>/paymentRefund.my'"class="btn btn-danger">환불신청</button>
                 
                 </td>
               </tr>
-              <tr>
-                <td>10</td>
-                <td>남궁성의 java A-Z까지</td>
-                <td>남궁성</td>
-                <td>xxxx-xx-xx</td>
-                <td>
-                  <button onclick="location.href='<%=contextPath%>/paymentDetails.my'"class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
-                  <button class="btn btn-danger">환불신청</button>
-                </td>
-              </tr>
-              <tr>
-                <td>10</td>
-                <td>남궁성의 java A-Z까지</td>
-                <td>남궁성</td>
-                <td>xxxx-xx-xx</td>
-                <td>
-                  <button onclick="location.href='<%=contextPath%>/paymentDetails.my'"class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button></a>
-                  <button onclick="refund();" class="btn btn-danger">환불신청</button>
-                </td>
-              </tr>
+              <% } %>
+            <% } %> 
+           
     
             </tbody>
           </table>
