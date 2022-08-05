@@ -41,17 +41,22 @@
               <tr>
                 <td><%= p.getPayNo()%></td>
                 <td>
-                  <img src="../../resources/image/mentorSelect/sampleProfile.jpeg" class="img-thumbnail" alt="Cinque Terre" width="100" height="100"> 
                   <span>&nbsp;&nbsp;&nbsp;<%= p.getClTitle()%></span>
                 </td>
                 <td>
-                  <p>판매가 : <%= p.getClPrice()%></p>
-                  <p>쿠폰할인 : <%= p.getDiscount()%></p>
+                  <p>판매가 : <%= p.getClPrice()%>원</p>
+                  <p>쿠폰할인 : -<%= p.getDiscount()%>원</p>
                   <hr>
-                  <p>결제금액 : <%= p.getFinalPayment()%></p>
+                  <p>결제금액 : <%= p.getFinalPayment()%>원</p>
                 </td>
                 <td>
-                  <span><%= p.getRefund()%></span>
+                  <%if(p.getRefund().equals("N")) { %>
+                    <span>결제완료</span>
+                  <%}if(p.getRefund().equals("W")){ %>
+                    <span>환불확인중</span>
+                  <%}if(p.getRefund().equals("Y")){ %>
+                    <span>환불완료</span>
+                  <% } %>
                 </td>
               </tr>
           </table>
@@ -61,16 +66,16 @@
             <table class="table table-hover table-bordered">
               <thead align="center">
                 <tr>
-                  <th colspan="2">결제방식</th>
-                  <th colspan="2">승인일시</th>
-                  <th colspan="2">결제금액</th>
+                  <th>결제방식</th>
+                  <th>승인일시</th>
+                  <th>결제금액</th>
                 </tr>
               </thead>
               <tbody align="center">
                 <tr>
-                  <td colspan="2"><%= p.getPayment()%></td>
-                  <td colspan="2"><%= p.getPayDate()%></td>
-                  <td colspan="2"><%= p.getFinalPayment()%></td>
+                  <td><%= p.getPayment()%></td>
+                  <td><%= p.getPayDate()%></td>
+                  <td><%= p.getFinalPayment()%>원</td>
                 </tr>
             </table>
 
