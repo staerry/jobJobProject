@@ -17,15 +17,15 @@ public class MentorApproval {
 		
 	}
 
-	public MentorApproval(String userNo, String userName, String userPhone, String mtCompany, String mtJob,
-			String userEmail) {
+	public MentorApproval(String userNo, String userName, String userEmail, String userPhone, String mtCompany,
+			String mtJob) {
 		super();
 		this.userNo = userNo;
 		this.userName = userName;
+		this.userEmail = userEmail;
 		this.userPhone = userPhone;
 		this.mtCompany = mtCompany;
 		this.mtJob = mtJob;
-		this.userEmail = userEmail;
 	}
 	
 	public MentorApproval(String userNo, String userName, String userPhone, String mtCompany, String mtJob,
