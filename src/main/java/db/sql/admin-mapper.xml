@@ -553,6 +553,7 @@ SELECT *
 	    SELECT ROWNUM RNUM, A.*
 	      FROM (
 	        SELECT CL_NO
+	             , U.USER_NO
 	             , USER_NAME
 	             , CLCG_NAME
 	             , CL_TITLE
@@ -734,6 +735,10 @@ SELECT *
 	     , ?
 	     , SYSDATE
 	       )
+</entry>
+
+<entry key="gradeLecturer">
+	INSERT INTO LECTURER VALUES (?, NULL, NULL, DEFAULT)
 </entry>
 
 

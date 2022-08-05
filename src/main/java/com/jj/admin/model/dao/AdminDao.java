@@ -1490,7 +1490,8 @@ public class AdminDao {
 			
 			while(rset.next()) {
 				list.add(new Class(rset.getInt("cl_no")
-						         , rset.getString("user_name")
+								, rset.getString("user_no")
+								, rset.getString("user_name")
 						         , rset.getString("clcg_name")
 						         , rset.getString("cl_title")));
 			}
@@ -1909,6 +1910,27 @@ public class AdminDao {
 		}
 		
 		return result;
+	}
+	
+	public int gradeLecturer(Connection conn, int userNo) {
+		int result2 = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("gradeLecturer");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			
+			result2 = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result2;
 	}
 	
 	

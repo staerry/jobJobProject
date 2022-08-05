@@ -50,7 +50,8 @@
 		                        <td><%= i.getClNo() %></td>
 		                        <td><%= i.getClTitle() %></td>
 		                        <td><%= i.getClCategory() %></td>
-		                        <td><%= i.getUserNo() %></td>
+		                        <td><%= i.getUserName() %></td>
+		          				<td style="display : none;"><%= i.getUserNo() %></td>
 		                    </tr>
 	                    <% } %>
                 	<% } %>
@@ -60,7 +61,7 @@
 			<script>
 				$(function(){
 					$(".admin-table > tbody > tr").click(function(){
-						location.href='<%= contextPath %>/mentorClassApprovalInfoView.ad?no=' + $(this).children().eq(0).text();
+						location.href='<%= contextPath %>/mentorClassApprovalInfoView.ad?userno=' + $(this).children().eq(4).text() + '&no=' + $(this).children().eq(0).text();
 					})
 				})
 			</script>

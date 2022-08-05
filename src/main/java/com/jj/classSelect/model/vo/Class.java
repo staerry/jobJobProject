@@ -20,6 +20,7 @@ public class Class {
 	private String ltrCareer;
 	private String ltrProfilePath;
 	private double clScore;
+	private String userName;
 	
 	public Class() {
 		
@@ -89,10 +90,11 @@ public class Class {
 		this.clEnrolldate = clEnrolldate;
 	}
 
-	public Class(int clNo, String userNo, String clCategory, String clTitle) {
+	public Class(int clNo, String userNo, String userName, String clCategory, String clTitle) {
 		super();
 		this.clNo = clNo;
 		this.userNo = userNo;
+		this.userName = userName;
 		this.clCategory = clCategory;
 		this.clTitle = clTitle;
 	}
@@ -349,11 +351,23 @@ public class Class {
 		this.clPriceWon = clPriceWon;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	@Override
 	public String toString() {
 		return "Class [clNo=" + clNo + ", userNo=" + userNo + ", mtCompany=" + mtCompany + ", clCategory=" + clCategory
 				+ ", clTitle=" + clTitle + ", clSubtitle=" + clSubtitle + ", clInfo=" + clInfo + ", clCurri=" + clCurri
-				+ ", clPrice=" + clPrice + ", clEnrolldate=" + clEnrolldate + ", clGrant=" + clGrant
-				+ ", clThumbnailPath=" + clThumbnailPath + "]";
+				+ ", clPrice=" + clPrice + ", clPriceWon=" + clPriceWon + ", clEnrolldate=" + clEnrolldate
+				+ ", clGrant=" + clGrant + ", clThumbnailPath=" + clThumbnailPath + ", ltrInfo=" + ltrInfo
+				+ ", ltrCareer=" + ltrCareer + ", ltrProfilePath=" + ltrProfilePath + ", clScore=" + clScore
+				+ ", userName=" + userName + "]";
 	}
+
+
 }
