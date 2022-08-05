@@ -38,7 +38,7 @@
 					<tr>
 						<th>강의 영상 첨부파일</th>
 						<td>
-							<video src="<%= contextPath %>/<%= vod.getVodFile() %>">강의 영상</video>
+							<video src="<%= contextPath %>/<%= vod.getVodFile() %>" autoplay loop muted>강의 영상</video>
 						</td>
 					</tr>
 			</table>
