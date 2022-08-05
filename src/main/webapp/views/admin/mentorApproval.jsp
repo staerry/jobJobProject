@@ -37,7 +37,7 @@
 	                        <th width="100">이름</th>
 	                        <th width="150">전화번호</th>
 	                        <th width="200">소속회사</th>
-	                        <th width="100">직급</th>
+	                        <th width="100">직무</th>
 	                        <th width="150">이메일</th>
 	                    </tr>
 	                </thead>
