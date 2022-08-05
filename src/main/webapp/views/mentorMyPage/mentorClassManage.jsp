@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.jj.mentorMyPage.model.vo.CreateClass"%>
+    
+    <% ArrayList<CreateClass> list = (ArrayList<CreateClass>)request.getAttribute("list"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,13 +85,13 @@ width:200px;
 			            <!--여기에 컨텐츠-->
 			             <div class="container">
 		
-								    <h3 style="color : #6363ff; margin-bottom:40px;">나의 클래스 관리</h3>
+								    <h3 style="color : #6363ff;">나의 클래스 관리</h3>
 								  
 								  <div style="display:inline-flex; margin-top: auto;">
-								  <div class="category" style="margin-right:10px;margin-top:auto;"><h5>카테고리</h5></div>
+								<!--   <div class="category" style="margin-right:10px;margin-top:auto;"><h5>카테고리</h5></div> -->
 								
-								<div style="margin-top:auto"><h4 style="margin-top:auto">클래스 제목</h4></div>
-								<h5 style="margin-top:auto">클래스 소제목</h5>
+								<!-- <div style="margin-top:auto"><h4 style="margin-top:auto">클래스 제목</h4></div>
+								<h5 style="margin-top:auto">클래스 소제목</h5> -->
 								</div> 
 								
 								
@@ -97,48 +99,39 @@ width:200px;
 										
 										<div class="boxbox">클래스를 등록하고 강의자가 되어보세요</div>
 			
-								<% }else { // 강의자상태  %>
-								
+								<% }else  { // 강의자상태  %>
+								 
 							
 			
 						<div class="container">
 								<table class="table table-hover">
 								  <thead>
 								    <tr>
-								      <th width="50px">클래스고유번호(CL_NO)</th>
-								      <th width="180px">해당 회차 강의 제목(CL_TITLE)</th>
-								      <th width="80px">수강회원 수</th>
+								      <th width="100px">클래스번호</th>
+								      <th width="100px">카테고리</th>
+								      <th width="180px">클래스 제목</th>
 								      <th width="120px">강의 시작일</th>
-								      <th width="80px">승인 상태</th>
+								      <th width="100px">승인 상태</th>
 								    </tr>
 								  </thead>
 								
 								
-								  <tbody>
-								    <tr>
-								      <td>2</td>
-								      <td>한번에 끝내는 자바</td>
-								      <td>n명</td>
-								      <td>2022-08-12</td>
-								      <td class="btn btn-primary btn-sm">대기중</td>
+								 
+								  
+								<% for(CreateClass c : list){%>
+								 <tbody>
+								    <tr onclick="location.href='<%=contextPath %>/classDetail.my?clNo=<%=c.getClNo()%>'">
+								      <td><%= c.getClNo() %></td>
+								      <td><%= c.getClCategory()%></td>
+								      <td><%= c.getClTitle() %></td>
+								      <td><%= c.getClEnrollDate() %></td>
+								      <td  width="100px;"style="text-align:center; color :red; font-weight:bolder"><%= c.getClGrant() %></td>
 								    </tr>
+								    	  </tbody>
+								<%} %> 
 								
-								    <tr>
-								      <td>1</td>
-								      <td>Moe</td>
-								      <td>n명</td>
-								      <td>2022-08-12</td>
-								      <td class="btn btn-primary">대기중</td>
-								    </tr>
-								
-								    <tr>
-								      <td>0</td>
-								      <td>Dooley</td>
-								      <td>n명</td>
-								      <td>2022-08-12</td>
-								      <td class="btn btn-primary">대기중</td>
-								    </tr>
-								  </tbody>
+								    
+							
 								
 								
 								</table>
@@ -154,9 +147,9 @@ width:200px;
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
               </ul>
         </div>
-		    <%} %>						
+		   <%} %>			 	
 						
-								<button onclick="location.href='<%= contextPath %>/createClass.my';" id=btn-upload class="btn btn-primary btn-lg" style="background-color:#6363FF; color:white"
+								<button onclick="location.href='<%=contextPath %>/createClass.my';" id=btn-upload class="btn btn-primary btn-lg" style="background-color:#6363FF; color:white"
 								
 								 >새로운 클래스 등록</button>
 				

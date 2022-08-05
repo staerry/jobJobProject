@@ -653,6 +653,77 @@ public class ClassDao {
 		
 	}
 	
+	public int selectBookmark(Connection conn, int clNo, int userNo) {
+		int likeCheck = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectBookmark");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clNo);
+			pstmt.setInt(2, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				likeCheck = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return likeCheck;
+		
+	}
+	
+	public int insertBookmark(Connection conn, int clNo, int userNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertBookmark");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, clNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public int deleteBookmark(Connection conn, int clNo, int userNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteBookmark");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, clNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+
+	
 }
 
 

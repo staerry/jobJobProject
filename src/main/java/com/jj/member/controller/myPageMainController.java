@@ -2,6 +2,7 @@ package com.jj.member.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jj.member.model.vo.Member;
+import com.jj.mentorMyPage.model.service.MentorMyService;
+import com.jj.mentorMyPage.model.vo.CreateClass;
 import com.jj.userMyPage.model.service.CouponListService;
 import com.jj.userMyPage.model.vo.UCoupon;
 
@@ -36,57 +39,32 @@ public class myPageMainController extends HttpServlet {
 	
 		
 		//		request.getRequestDispatcher("views/userMyPage/userMyPageMain.jsp").forward(request, response);;
+		
+		
 		HttpSession session = request.getSession();
+		System.out.println(session);
 		
-		
-		
-		Member m =(Member) session.getAttribute("loginUser");
-		int userDivision = m.getUserDivision();
-		
-		int mtGrade = m.getMtGrade();
-		
-//		
-//		if(loginUser == null) {// 로그인 실패
-//			
-//			session.setAttribute("alertMsg", "회원 로그인 실패");
-//			response.sendRedirect(request.getContextPath() + "/userlogin.me");
-//			
-//		}else {// 로그인 성공
-//			session.setAttribute("loginUser", loginUser);
-//			
-//			if (loginUser.getMtGrade() == 1) { // mtgrade = 1 >> 현직자
-//
-//				session.setAttribute("alertMsg", "현직자 로그인 성공");
-//				response.sendRedirect(request.getContextPath() + "/userlogin.me");
-//
-//			} else if (loginUser.getMtGrade() == 0) { // mtgrade = 0 >> 사용자
-//				
-//				session.setAttribute("alertMsg", "사용자 로그인 성공");
-//				response.sendRedirect(request.getContextPath() + "/userlogin.me");
-//				
-//			} else { // mtgrade = 2 >> 강의자
-//
-//				session.setAttribute("alertMsg", "강의자 로그인 성공");
-//				response.sendRedirect(request.getContextPath() + "/userlogin.me");
-//			}
-//			
+		Member member =(Member) session.getAttribute("loginUser");
+		System.out.println("loginUser: " + member);
+//		int userDivision = m.getUserDivision();
 
-	 if(userDivision ==1){ //일반회원
+		
+
+	 if(member.getUserDivision() == 1){ //일반회원
 //		
 			request.getRequestDispatcher("views/userMyPage/userMyPageMain2.jsp").forward(request, response);
 			
 			
 		
-		}else if(userDivision ==2) {//멘토회원
+		}else if(member.getUserDivision() == 2) {//멘토회원
 			
-			if(mtGrade==1) {	//  mtgrade = 1 >> 현직자
-				request.getRequestDispatcher("views/mentorMyPage/mentorClassManage.jsp").forward(request, response);
-				
-			}else {
+				//  mtgrade = 1 >> 현직자
 				 // mtgrade = 2 >> 강의자
-				request.getRequestDispatcher("views/mentorMyPage/mentorClassManage.jsp").forward(request, response);
-			}
-			
+			List<CreateClass> list = new MentorMyService().selectClass(member.getUserNo());
+			System.out.println(list);
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("views/mentorMyPage/mentorClassManage.jsp").forward(request, response);
+				
 		}else {
 			
 			session.setAttribute("alertMsg", "로그인 후 이용 가능한 서비스 입니다.");
@@ -94,15 +72,8 @@ public class myPageMainController extends HttpServlet {
 			
 			
 		}
-//			 int userNo = (Member)(request.getSession().getAttribute("loginUser").getUserNo());
-		
-//			 HttpSession session = request.getSession();
-//			 int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
-//			int userNo = ((Member)(request.getSession().getAttribute("userNo"));
-//			현직자인지 강의자인지 찾을 서비스이고 userNo을 들고
-//			return 값은 int (1번 현직자 )
-//					userNo을 가진사람이 1번인지2번인지
-					
+
+}			
 					
 ////			if(조회해온 멘토 값이 현직자이면) {
 //				request.getRequestDispatcher("views/mentorMyPage/mentorMyPageMain.jsp").forward(request, response);
@@ -116,7 +87,6 @@ public class myPageMainController extends HttpServlet {
 
 
 	
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

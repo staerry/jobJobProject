@@ -34,6 +34,7 @@
 	              FROM CLASS
 	              LEFT JOIN REVIEW USING(CL_NO)
 	             GROUP BY CL_NO) A USING(CL_NO)
+	    WHERE CL_GRANT = 'A'
 	    ORDER BY CL_NO DESC
     </entry>
     
@@ -382,5 +383,35 @@
     
     </entry>
     
-    
+    	<entry key="selectBookmark">
+		SELECT COUNT(*) AS COUNT
+		  FROM BOOKMARK
+		 WHERE 
+		       CL_NO = ?
+		   AND USER_NO = ?
+	</entry>
+
+	<entry key="insertBookmark">
+		INSERT
+		  INTO BOOKMARK
+		  ( 
+		    USER_NO
+		  , CL_NO
+		  )
+		   VALUES
+		   (
+		     ?
+		   , ?
+		   )  
+	
+	</entry>
+	
+	<entry key="deleteBookmark">
+		DELETE
+		       BOOKMARK
+		 WHERE
+		       USER_NO = ?
+		   AND CL_NO = ?    
+	</entry>
+	    
 </properties>
