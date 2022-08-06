@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.jj.userMyPage.model.vo.Lecturer"%>
+<% Lecturer lecturer = (Lecturer)request.getAttribute("lecturer"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,24 +70,24 @@ width:80%;
                 <!-- 멘토 사진 감싸는 부분 -->
                 <div class="image-wrap">
                     <div class="image-inner">
-                        <img src="../../resources/image/mentorSelect/sampleProfile.jpeg" id="mentor-image">
+                        <img src="<%= lecturer.getProfilePath() %>" id="mentor-image">
                     </div>
                 </div>
                 
                 <div class="profile-wrap">
                     <table id="mentor-profile">
                         <tr id="mentor-field">
-                            <td>%= 분야명 %</td>
+                            <td><%= lecturer.getClCategory().getClcgName() %></td>
                         </tr>
                         <tr id="mentor-name">
-                            <td> %= 회원 이름 %<span>&nbsp;멘토</span></td>
+                            <td><%= lecturer.getMember().getUserName() %><span>&nbsp;멘토</span></td>
                         </tr>
                         <tr id="mentor-job">
-                            <td>%= 소속회사 %</td>
+                            <td><%= lecturer.getMentor().getMtCompany() %></td>
                         </tr>
-                        <tr id="mentor-stat">
+                        <!-- <tr id="mentor-stat">
                             <td>%= 직무 %</td>
-                        </tr>
+                        </tr> -->
                     </table>
                     <button type="submit" onclick="location.href='<%=contextPath%>/classWating.my'" style="border:none; background-color:#6363ff; color:white; width:130px; height:50px; margin:60px; border-radius:4px">수정하기</button> 
                 </div>
@@ -96,12 +98,12 @@ width:80%;
                 <div class="mentor-info">
                   <table>
                     <tr>
-                    <td><h4 class="flex1">대표 멘토링 분야</h4></td>
+                    <!-- <td><h4 class="flex1">대표 멘토링 분야</h4></td> -->
                 <!-- <td><button type="submit" class="flex1" id="editbtn" style="margin-left:auto; border:none;padding-left:220px;">수정하기</button></td> -->
                 </tr>
                 </table>
                  
-<textarea  class="te" cols="100" rows="5">&nbsp;&nbsp;%대표 멘토링 분야% </textarea>
+<!-- <textarea  class="te" cols="100" rows="5"> </textarea> -->
 
                     
                     <br><br>
@@ -113,7 +115,7 @@ width:80%;
                     <!-- <td><button type="submit" class="flex1" id="editbtn" style="margin-left:0; border:none;">수정하기</button></td> -->
                     </tr>
                     </table>
-                    <textarea  class="te" cols="100" rows="5">&nbsp;&nbsp;%멘토소개%</textarea>
+                    <textarea  class="te" cols="100" rows="5"><%= lecturer.getLtrInfo() %></textarea>
                     
                     <br>  <br>
 
@@ -124,7 +126,7 @@ width:80%;
                     </tr>
                     </table>
               
-                    <textarea  class="te" cols="100" rows="5" style="resize:none;">&nbsp;&nbsp;%주요경력%  </textarea>
+                    <textarea  class="te" cols="100" rows="5" style="resize:none;">&nbsp;&nbsp;<%= lecturer.getLtrCareer() %>  </textarea>
 
                    
                 </div>

@@ -12,10 +12,13 @@ import java.util.List;
 import java.util.Properties;
 import static com.jj.common.JDBCTemplate.close;
 import com.jj.member.model.vo.Member;
+import com.jj.member.model.vo.Mentor;
 import com.jj.mentorMyPage.model.vo.CreateClass;
 import com.jj.mentorMyPage.model.vo.MtQuestion;
 import com.jj.mentorMyPage.model.vo.Vod;
+import com.jj.mentorSelect.model.vo.ClCategory;
 import com.jj.userMyPage.model.vo.Class;
+import com.jj.userMyPage.model.vo.Lecturer;
 
 
 public class MentorMyDao {
@@ -277,9 +280,53 @@ Properties prop = new Properties();
 		return result;
 		
 	}
+
+
+	public Lecturer selectLecturerByUserNo(Connection conn, Member member) {
+		Lecturer lecturer = new Lecturer();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectLecturerByUserNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, member.getUserNo());
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Member lectMember = new Member();
+				lectMember.setUserNo(rset.getInt("USER_NO"));
+				lectMember.setUserName(rset.getString("user_name"));
+				
+				lecturer.setMember(lectMember);
+				lecturer.setLtrInfo(rset.getString("LTR_INFO"));
+				lecturer.setLtrCareer(rset.getString("LTR_CAREER"));
+				lecturer.setProfilePath(rset.getString("PROFILE_PATH"));
+				
+				Mentor mentor = new Mentor();
+				mentor.setMtCompany(rset.getString("mt_company"));
+				lecturer.setMentor(mentor);
+				
+				ClCategory category = new ClCategory();
+				category.setClcgName(rset.getString("clcg_name"));
+				lecturer.setClCategory(category);
+				
+			}
+			
+			} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
 		
 		
+		return lecturer;
 	}
+		
+		
+}
 	
 	
 	

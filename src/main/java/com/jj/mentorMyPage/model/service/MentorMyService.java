@@ -17,6 +17,7 @@ import com.jj.mentorMyPage.model.vo.MtQuestion;
 import com.jj.mentorMyPage.model.vo.Vod;
 import com.jj.userMyPage.model.dao.ReplyListDao;
 import com.jj.userMyPage.model.vo.Class;
+import com.jj.userMyPage.model.vo.Lecturer;
 
 public class MentorMyService {
 
@@ -90,6 +91,14 @@ public class MentorMyService {
 			close(conn);
 			return result;
 		}
+
+	public Lecturer selectLecturerByUserNo(Member member) {
+		Connection conn = getConnection();
+		Lecturer lecturer = new MentorMyDao().selectLecturerByUserNo(conn, member);
+		close(conn);
+		
+		return lecturer;
+	}
 
 	
 	}
