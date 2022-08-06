@@ -15,6 +15,10 @@ import com.jj.member.model.vo.Member;
 import com.jj.mentorMyPage.model.service.MentorMyService;
 import com.jj.mentorMyPage.model.vo.CreateClass;
 import com.jj.userMyPage.model.service.CouponListService;
+import com.jj.userMyPage.model.service.UserClassService;
+import com.jj.userMyPage.model.vo.Bookmark;
+import com.jj.userMyPage.model.vo.Class;
+import com.jj.userMyPage.model.vo.ClassIng;
 import com.jj.userMyPage.model.vo.UCoupon;
 
 /**
@@ -51,8 +55,17 @@ public class myPageMainController extends HttpServlet {
 		
 
 	 if(member.getUserDivision() == 1){ //일반회원
-//		
-			request.getRequestDispatcher("views/userMyPage/userMyPageMain2.jsp").forward(request, response);
+//			
+		 List<ClassIng> classList = new UserClassService().selectClassingList(member);
+		 System.out.println(classList);
+		 List<Bookmark> wishList = new UserClassService().selectWishList(member);
+		 System.out.println(wishList);
+		 
+		 request.setAttribute("classList", classList);
+		 request.setAttribute("wishList", wishList);
+		 
+		 
+		 request.getRequestDispatcher("views/userMyPage/userMyPageMain2.jsp").forward(request, response);
 			
 			
 		

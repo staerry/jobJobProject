@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.List, com.jj.userMyPage.model.vo.Bookmark"%>
-    
-<% List<Bookmark> bookmark = (List<Bookmark>)request.getAttribute("list");  %>
+    pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="com.jj.userMyPage.model.vo.Bookmark"%>
+<% List<Bookmark> list = (List<Bookmark>)request.getAttribute("list");  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,18 +41,17 @@
 			
 			            <div class="main-window">
 			                <div class="main-container">
-			                <% for(Bookmark b : bookmark) {%>
-			                    <div class="vod">
-			                        <h4><%=b.getCls().getClTitle() %></h4>
-			                        <p><%=b.getCls().getMember().getUserName() %>&nbsp&nbsp&nbsp&nbsp <%=b.getCls().getMember().getMtCompany() %>/p>
-			                        
-			                        <!--  -->
-			                        <div class="class-thumbnail">< <%=b.getCls().getClThumbnailPath() %> </div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <%} %>
+								<% for(Bookmark bookmark : list){%>
+									<div class="vod">
+										<a href="${pageContext.request.contextPath}/detail.cl?class=<%= bookmark.getCls().getClNo() %>">
+											<h4><%= bookmark.getCls().getClTitle() %></h4>
+											<p><%= bookmark.getMember().getUserName() %>&nbsp&nbsp&nbsp&nbsp<%= bookmark.getMember().getMtCompany() %></p>
+											<div class="class-thumbnail">
+												<img src="<%= bookmark.getCls().getClThumbnailPath() %>" alt="">
+											</div>
+										</a>
+									</div>
+								<% }%>
 								
 			                    
 			                </div>

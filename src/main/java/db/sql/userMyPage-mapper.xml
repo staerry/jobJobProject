@@ -63,25 +63,56 @@ SELECT
 </entry>
 
 <entry key="selectListWish">
-
-	SELECT
-  	  u.USER_NO,
-    u.USER_ID,
+<![CDATA[
+select   
+    *
+from
+    (select
+    rownum rn,
     b.*,
-    c.CL_NO,
-    c.CL_TITLE,
-    c.CL_THUMBNAILPATH,
-    u2.USER_NO CL_USER_NO,
-    u2.USER_ID CL_USER_ID,
-    u2.USER_NAME CL_USER_NAME
-FROM 
-    USERINFO u JOIN bookmark b on u.user_no = b.user_no
-    JOIN CLASS c on b.cl_no = c.cl_no 
-    JOIN USERINFO u2 on c.user_no = u2.user_no
-WHERE
-    c.cl_grant = 'A'
-AND
-    u.user_no = ?
+    c.cl_title,
+    c.cl_thumbnailpath,
+    um.user_name,
+    m.mt_company
+    from
+    bookmark b join userinfo u
+    on b.user_no = u.user_no
+    join class c 
+    on b.cl_no = c.cl_no
+    join mentor m
+    on c.user_no = m.user_no
+    join userinfo um
+    on m.user_no = um.user_no
+    where
+        b.user_no = ?
+    order by
+        b.cl_likedate desc
+    )
+where
+    rn <= 4 
+]]>
+</entry>
+<entry key="selectWishAllList">
+select
+    b.*,
+    c.cl_title,
+    c.cl_thumbnailpath,
+    um.user_name,
+    m.mt_company
+from
+    bookmark b join userinfo u
+    on b.user_no = u.user_no
+    join class c 
+    on b.cl_no = c.cl_no
+    join mentor m
+    on c.user_no = m.user_no
+    join userinfo um
+    on m.user_no = um.user_no
+where
+    b.user_no = ?
+order by
+    b.cl_likedate desc
+
 </entry>
 
 <entry key="">
@@ -150,6 +181,56 @@ LEFT JOIN COUPON C ON(I.CP_NO = C.CP_NO)
 WHERE P.PAY_NO = ?
 
 </entry>
+<entry key="selectClassingList">
+<![CDATA[
+select   
+    *
+from
+    (select
+	    rownum rn,
+	    ci.*,
+	    c.cl_title,
+	    c.cl_thumbnailpath,
+	    um.user_name,
+	    m.mt_company
+    from
+	    class_ing ci join userinfo u
+	    	on ci.user_no = u.user_no
+	    join class c 
+	    	on ci.cl_no = c.cl_no
+	    join mentor m
+	    	on c.user_no = m.user_no
+	    join userinfo um
+	    	on m.user_no = um.user_no
+    where
+        ci.user_no = ?
+    order by
+        ci.cl_startdate desc
+    )
+where
+    rn <= 4
+    ]]>
+</entry>
+<entry key="selectClassIngAllList">
+select
+    ci.*,
+    c.cl_title,
+    c.cl_thumbnailpath,
+    um.user_name,
+    m.mt_company
+from
+    class_ing ci join userinfo u
+    	on ci.user_no = u.user_no
+    join class c 
+    	on ci.cl_no = c.cl_no
+    join mentor m
+    	on c.user_no = m.user_no
+    join userinfo um
+    	on m.user_no = um.user_no
+where
+    ci.user_no = ?
+order by
+    ci.cl_startdate desc
 
-
+</entry>
 </properties>

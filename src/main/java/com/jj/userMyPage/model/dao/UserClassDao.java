@@ -28,7 +28,8 @@ public class UserClassDao {
 			e.printStackTrace();
 		}
 	}
-	public List<Bookmark> selectAllWishList(Connection conn, Member member) {
+//	
+	public List<Bookmark> selectWishList(Connection conn, Member member) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<Bookmark> list = new ArrayList<Bookmark>();
@@ -40,7 +41,7 @@ public class UserClassDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-						
+				
 				Bookmark bookmark = new Bookmark();
 				
 				bookmark.setMember(member);
@@ -51,13 +52,11 @@ public class UserClassDao {
 				
 				bookmark.setCls(cls);
 				
-				Member clMember = new Member();
-				clMember.setUserNo(rset.getInt("cl_user_no"));
-				clMember.setUserId(rset.getString("cl_user_id"));
-				clMember.setUserName(rset.getString("cl_user_name"));
+				Member mentor = new Member();
+				mentor.setUserName(rset.getString("user_name"));
+				mentor.setMtCompany(rset.getString("mt_company"));
 				
-				
-				bookmark.setClLikeDate(rset.getDate("CL_LIKEDATE"));
+				bookmark.setMember(mentor);
 				
 				list.add(bookmark);
 				
@@ -72,7 +71,48 @@ public class UserClassDao {
 		
 		return list;
 	}
-//	
+	public List<Bookmark> selectWishAllList(Connection conn, Member member) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Bookmark> list = new ArrayList<Bookmark>();
+		String sql = prop.getProperty("selectWishAllList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, member.getUserNo());
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Bookmark bookmark = new Bookmark();
+				
+				bookmark.setMember(member);
+				Class cls = new Class();
+				cls.setClNo(rset.getInt("CL_NO"));
+				cls.setClTitle(rset.getString("CL_TITLE"));
+				cls.setClThumbnailPath(rset.getString("cl_thumbnailpath"));
+				
+				bookmark.setCls(cls);
+				
+				Member mentor = new Member();
+				mentor.setUserName(rset.getString("user_name"));
+				mentor.setMtCompany(rset.getString("mt_company"));
+				
+				bookmark.setMember(mentor);
+				
+				list.add(bookmark);
+				
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 //	public ArrayList<ClassIng> selectClassIng(Connection conn, Member member) {
 //		
 //		PreparedStatement pstmt = null;
@@ -118,4 +158,82 @@ public class UserClassDao {
 //		return list;
 //
 //}
+	
+	//데이터 4개만 로드함
+	public List<ClassIng> selectClassingList(Connection conn, Member member) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<ClassIng> list = new ArrayList<ClassIng>();
+		String sql = prop.getProperty("selectClassingList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, member.getUserNo());
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+						
+				ClassIng cing = new ClassIng();
+				Class cls = new Class();
+				cls.setClNo(rset.getInt("cl_no"));
+				cls.setClTitle(rset.getString("cl_title"));
+				cls.setClThumbnailPath(rset.getString("cl_thumbnailpath"));
+				cing.setCls(cls);
+				Member mentor = new Member();
+				mentor.setUserName(rset.getString("user_name"));
+				mentor.setMtCompany(rset.getString("mt_company"));
+				cing.setMember(mentor);
+				
+				
+				list.add(cing);
+				
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	public List<ClassIng> selectClassIngAllList(Connection conn, Member member) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<ClassIng> list = new ArrayList<ClassIng>();
+		String sql = prop.getProperty("selectClassIngAllList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, member.getUserNo());
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+						
+				ClassIng cing = new ClassIng();
+				Class cls = new Class();
+				cls.setClNo(rset.getInt("cl_no"));
+				cls.setClTitle(rset.getString("cl_title"));
+				cls.setClThumbnailPath(rset.getString("cl_thumbnailpath"));
+				cing.setCls(cls);
+				Member mentor = new Member();
+				mentor.setUserName(rset.getString("user_name"));
+				mentor.setMtCompany(rset.getString("mt_company"));
+				cing.setMember(mentor);
+				
+				
+				list.add(cing);
+				
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 }

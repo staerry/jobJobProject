@@ -11,10 +11,41 @@ public class ClassIng {
 	
 	private Member member; //userNo
 	private Class cls;
-	
-	
-	private int clNo; //수강중 클래스 고유번호
-	
 	private Date clStartDate;  //수강시작일 
+	public Member getMember() {
+		return member;
+	}
+	
+	public ClassIng() {
+		super();
+	}
+	
+	public void setMember(Member member) {
+		this.member = member;
+	}
+	public Class getCls() {
+		return cls;
+	}
+	public void setCls(Class cls) {
+		this.cls = cls;
+	}
+	public Date getClStartDate() {
+		return clStartDate;
+	}
+	public void setClStartDate(Date clStartDate) {
+		this.clStartDate = clStartDate;
+	}
+	public ClassIng(Member member, Class cls, Date clStartDate) {
+		super();
+		this.member = member;
+		this.cls = cls;
+		this.clStartDate = clStartDate;
+	}
+	@Override
+	public String toString() {
+		return "ClassIng [member=" + member + ", cls=" + cls + ", clStartDate=" + clStartDate + "]";
+	}
+	
+	
 	
 }

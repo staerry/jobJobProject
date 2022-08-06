@@ -39,7 +39,7 @@ public class MyClassLikeController extends HttpServlet {
 		
 		Member member = (Member) session.getAttribute("loginUser");
 		if(member != null) {
-			List<Bookmark> list = new UserClassService().selectAllWishList(member);
+			List<Bookmark> list = new UserClassService().selectWishAllList(member);
 			System.out.println(list);
 			
 			request.setAttribute("list", list);

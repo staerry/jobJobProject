@@ -2,6 +2,7 @@ package com.jj.userMyPage.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,16 +39,16 @@ public class MyClassIng extends HttpServlet {
 
 		Member member = (Member) session.getAttribute("loginUser");
 		if(member != null) {
-			ArrayList<ClassIng> list = new UserClassService().selectClassIng(member);
+			List<ClassIng> list = new UserClassService().selectClassIngAllList(member);
 			System.out.println(list);
 			
 			request.setAttribute("list", list);
+			request.getRequestDispatcher("views/userMyPage/userMyClassIng.jsp").forward(request, response);
 		}else {
 			request.setAttribute("alertMsg", "로그인이 필요합니다");
 			request.getRequestDispatcher("views/member/memberLoginSecond.jsp").forward(request, response);
 		}
 		
-		request.getRequestDispatcher("views/userMyPage/userMyClassIng.jsp").forward(request, response);
 	
 	
 	}

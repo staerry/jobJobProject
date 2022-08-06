@@ -13,16 +13,37 @@ import com.jj.userMyPage.model.vo.ClassIng;
 
 public class UserClassService {
 
-	public List<Bookmark> selectAllWishList(Member member) {
+	//4개만 검색
+	public List<Bookmark> selectWishList(Member member) {
 		Connection conn = getConnection();
-		List<Bookmark> list = new UserClassDao().selectAllWishList(conn, member);
+		List<Bookmark> list = new UserClassDao().selectWishList(conn, member);
+		close(conn);
+		
+		return list;
+	}
+	public List<Bookmark> selectWishAllList(Member member) {
+		Connection conn = getConnection();
+		List<Bookmark> list = new UserClassDao().selectWishAllList(conn, member);
 		close(conn);
 		
 		return list;
 	}
 
-	public ArrayList<ClassIng> selectClassIng(Member member) {
-		return null;
+	//4개만 검색
+	public List<ClassIng> selectClassingList(Member member) {
+		Connection conn = getConnection();
+		List<ClassIng> list = new UserClassDao().selectClassingList(conn, member);
+		close(conn);
+		
+		return list;
+	}
+
+	public List<ClassIng> selectClassIngAllList(Member member) {
+		Connection conn = getConnection();
+		List<ClassIng> list = new UserClassDao().selectClassIngAllList(conn, member);
+		close(conn);
+		
+		return list;
 	}
 
 }

@@ -1,5 +1,10 @@
+<%@page import="com.jj.userMyPage.model.vo.Bookmark"%>
+<%@page import="com.jj.userMyPage.model.vo.ClassIng"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% List<ClassIng> classList = (List<ClassIng>) request.getAttribute("classList"); %>
+<% List<Bookmark> wishList = (List<Bookmark>) request.getAttribute("wishList"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,83 +36,32 @@
 					<!--vod 부분-->
 					<div class="main-vod-title">
 						<h2>수강중인 클래스</h2>
-						<p><b><a href="<%=request.getContextPath() %>/myClassIng.my">더보기</a></b></p>
+						<% if(classList.size() > 0){ %>
+							<p><b><a href="<%=request.getContextPath() %>/myClassIng.my">더보기</a></b></p>
+						<% } %>
 					</div>
 					<div class="main-vod-list">
 						
 			
 			            <div class="main-window">
 			                <div class="main-container">
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
+								<% if(classList.size() == 0){ %>
+									<p>수강 목록이 없습니다.</p>
+								<% } else {%>
+									<% for(ClassIng cing : classList){%>
+									<div class="vod">
+										<a href="${pageContext.request.contextPath}/detail.cl?class=<%= cing.getCls().getClNo() %>">
+											<h4><%= cing.getCls().getClTitle() %></h4>
+											<p><%= cing.getMember().getUserName() %>&nbsp&nbsp&nbsp&nbsp<%= cing.getMember().getMtCompany() %></p>
+											<div class="class-thumbnail">
+												<img src="<%= cing.getCls().getClThumbnailPath() %>" alt="">
+											</div>
+										</a>
+									</div>
+									<% }%> 
+								<% }%> 
 			                </div>
-			                
-			              
 			            </div>
-			
-						
 					</div>
 					
 					
@@ -120,70 +74,21 @@
 						
 			            <div class="main2-window">
 			                <div class="main2-container">
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
-			                    <div class="vod">
-			                        <h4>클래스명이 들어갈 자리</h4>
-			                        <p>멘토명&nbsp&nbsp&nbsp&nbsp멘토소속</p>
-			                        <div class="class-thumbnail"></div>
-			                        <span>
-			                            <i class="fas fa-heart"></i>
-			                        </span>
-			                    </div>
+								<% if(classList.size() == 0){ %>
+									<p>수강 목록이 없습니다.</p>
+								<% } else {%>
+									<% for(Bookmark bookmark : wishList){%>
+									<div class="vod">
+										<a href="${pageContext.request.contextPath}/detail.cl?class=<%= bookmark.getCls().getClNo() %>">
+											<h4><%= bookmark.getCls().getClTitle() %></h4>
+											<p><%= bookmark.getMember().getUserName() %>&nbsp&nbsp&nbsp&nbsp<%= bookmark.getMember().getMtCompany() %></p>
+											<div class="class-thumbnail">
+												<img src="<%= bookmark.getCls().getClThumbnailPath() %>" alt="">
+											</div>
+										</a>
+									</div>
+									<% }%>
+								<% }%> 
 			                </div>
 			                
 			              
