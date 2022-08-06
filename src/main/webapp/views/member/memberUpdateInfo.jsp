@@ -46,7 +46,7 @@
             <input type="tel" id="userPhone" class="form-control" value="<%= loginUser.getUserPhone() %>" name="userPhone">
         </div>
         <div class="notice">
-            <span>* 현직자의 소속 회사 / 직급 변경에 관한 문의는 1:1 게시판을 이용해주시기 바랍니다.</span>
+            <span>* 현직자의 소속 회사 / 직무 변경에 관한 문의는 1:1 게시판을 이용해주시기 바랍니다.</span>
         </div>
         <br><br>
         <div class="submit" align="center">
