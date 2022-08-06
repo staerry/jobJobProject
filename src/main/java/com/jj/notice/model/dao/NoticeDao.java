@@ -167,7 +167,8 @@ public class NoticeDao {
 						     rset.getString("notice_title"),
 						     rset.getString("notice_content"),
 							 rset.getString("user_id"),
-							 rset.getDate("notice_enrolldate")
+							 rset.getDate("notice_enrolldate"),
+							 rset.getDate("notice_modifydate")
 						);
 			}
 			

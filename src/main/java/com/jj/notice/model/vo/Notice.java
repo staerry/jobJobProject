@@ -22,13 +22,14 @@ public class Notice {
 		this.noticeCount = noticeCount;
 	}
 
-	public Notice(int noticeNo, String noticeTitle, String noticeContent, String userNo, Date noticeEnrolldate) {
+	public Notice(int noticeNo, String noticeTitle, String noticeContent, String userNo, Date noticeEnrolldate, Date noticeModifydate) {
 		super();
 		this.noticeNo = noticeNo;
 		this.noticeTitle = noticeTitle;
 		this.noticeContent = noticeContent;
 		this.userNo = userNo;
 		this.noticeEnrolldate = noticeEnrolldate;
+		this.noticeModifydate = noticeModifydate;
 	}
 
 	public Notice(int noticeNo, String noticeTitle, int noticeCount) {

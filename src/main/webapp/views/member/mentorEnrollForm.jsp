@@ -19,7 +19,13 @@
     flex-direction:row;
     justify-content: space-between;
     padding:28px 16px 100px 34px;
-}
+    }
+    input[type="text"]{
+        width: 300px;
+    }
+    input[type="file"]{
+        width: 300px;
+    }
 </style>
 </head>
 <body>
@@ -47,14 +53,16 @@
                                 <input type="text" class="form-control" placeholder="이메일 주소 입력" name="mtId" required>
                                 </div><br>
                                 <div class="col">
-                                    <input type="password" class="form-control" placeholder="비밀번호 입력" name="mtPwd" required>
+                                    <input type="password" id="pwd" class="form-control" placeholder="비밀번호 입력" name="mtPwd" required onkeyup="checkPW();">
                                 </div><br>
                                 <div class="col">
-                                    <input type="password" class="form-control" placeholder="비밀번호 재입력" required>
+                                    <input type="password" id="checkPwd" class="form-control" placeholder="비밀번호 재입력" required onkeyup="checkPW();">
+                                    <span id="show"></span>
                                 </div><br>
                                 
                                 <div class="col">
-                                    <input type="text" class="form-control" placeholder="핸드폰 번호 입력" name="mtPhone" required>
+                                    <input type="text" id="userPhone" class="form-control" placeholder="핸드폰 번호 입력" name="mtPhone" required onkeyup="phoneCheck();">
+                                	<span id="check"></span>
                                 </div><br>
                                 
                                 <div class="col">
@@ -92,7 +100,7 @@
                     <td>
                         <div class="confirm">
 
-                            <h2 align="center">현직자 인증하기</h2><br>
+                            <h2 align="center">현직자 인증하기</h2>
                             
                             <div class="right">
                                 <h4 align="center">서류인증 (신분증 + 사원증)</h4><br>
@@ -129,6 +137,34 @@
 
         </table>
         <br><br>
+        
+        <script>
+	        function checkPW(){
+	            var pwd1 = $('#pwd').val(); 
+	            var pwd2 = $('#checkPwd').val();
+	            if(pwd1 != pwd2){
+	                $('#show').html('비밀번호가 서로 일치하지 않습니다');
+	                document.getElementById('show').style.color = "red";
+	            } else {
+	                $('#show').html('일치!');
+	                document.getElementById('show').style.color = "blue";
+	            }
+	        }
+	        
+	        function phoneCheck(){
+	        	var phone = $('#userPhone').val();
+	        	
+	        	let regPhone = /^\d{3}-\d{4}-\d{4}$/;
+	        	if(regPhone.test(phone)){//핸드폰 형식 맞음
+	        		$('#check').html('');
+	        	}else{ // 핸드폰 형식 아님
+	        		$('#check').html('핸드폰 번호를 입력해주세요.');
+	        	}
+	        }
+        </script>
+        
+       
+        
     </div>
     
     <%@ include file="../common/footer.jsp" %>
