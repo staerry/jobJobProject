@@ -141,7 +141,7 @@
 		            <table class="table table-bordered table-hover stutable">
 		                <thead>
 		                    <tr>
-		                        <th width="100">번호(회원고유번호)</th>
+		                        <th width="100">조회번호 (회원고유번호)</th>
 		                        <th width="100">이름</th>
 		                        <th width="130">아이디</th>
 		                        <th width="80">회원등급</th>
@@ -184,7 +184,7 @@
 						<%} %>
 						<%for(int i=startPage;i<=endPage;i++){ %>
 			            	<%if(i==currentPage){ %>
-			            		<a href="<%=request.getContextPath()%>/paymentselect.bo?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check[0]%>"><%=i %></a>
+			            		<a href="<%=request.getContextPath()%>/paymentselect.bo?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check[0]%>"  style="background:#6363ff; color:white;"><%=i %></a>
 			            	<%}else{ %>
 			            		<a href="<%=request.getContextPath()%>/paymentselect.bo?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check[0]%>"><%=i %></a>
 			            	<%} %>
@@ -192,7 +192,7 @@
 		            	<%if(currentPage != maxPage){ %>
 							<a href="<%=request.getContextPath()%>/paymentselect.bo?p=<%=currentPage+1%>&search=<%=request.getAttribute("search")%>&check=<%=check[0]%>">&gt</a>
 						<%} %>
-						<%if(currentPage < maxPage - pageLimit ){ %>
+						<%if(currentPage <= maxPage - pageLimit ){ %>
 							<a href="<%=request.getContextPath()%>/paymentselect.bo?p=<%=doubleNext%>&search=<%=request.getAttribute("search")%>&check=<%=check[0]%>">&gt&gt</a>
 						<%} %>
 					</div>

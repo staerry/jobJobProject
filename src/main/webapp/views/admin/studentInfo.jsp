@@ -61,7 +61,7 @@
 			<table class="table table-bordered table-hover stutable">
 				<thead>
 					<tr>
-						<th width="100">번호(회원고유번호)</th>
+						<th width="100">조회번호(회원고유번호)</th>
 						<th width="100">이름</th>
 						<th width="150">아이디</th>
 						<th width="150">이메일</th>
@@ -79,7 +79,7 @@
 				<%}else{ %>
 					<%for(int i=0;i<list.size();i++){ %>
 						<tr>
-							<td><%=lpage-i %>(<%=list.get(i).getUserNo() %>)</td>
+							<td><%=lpage-i %> (<%=list.get(i).getUserNo() %>)</td>
 							<td id="idt"><%=list.get(i).getUserName() %></td>
 							<td><%=list.get(i).getUserId() %></td>
 							<td>
@@ -122,7 +122,7 @@
 				<%} %>
 				<%for(int i=startPage;i<=endPage;i++){ %>
 	            	<%if(i==currentPage){ %>
-	            		<a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check%>"><%=i %></a>
+	            		<a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check%>" style="background:#6363ff; color:white;"><%=i %></a>
 	            	<%}else{ %>
 	            		<a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check%>"><%=i %></a>
 	            	<%} %>
@@ -130,7 +130,7 @@
             	<%if(currentPage != maxPage){ %>
 					<a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=currentPage+1%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&gt</a>
 				<%} %>
-				<%if(currentPage < maxPage - pageLimit ){ %>
+				<%if(currentPage <= maxPage - pageLimit ){ %>
 				<a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=doubleNext%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&gt&gt</a>
 				<%} %>
 			</div>

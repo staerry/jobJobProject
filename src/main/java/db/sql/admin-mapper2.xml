@@ -53,8 +53,10 @@ SELECT COUNT(*) AS "LISTCOUNT"
 <entry key="selectMentorListCount">
 		SELECT COUNT(*) AS "LISTCOUNT"
 		  FROM USERINFO
+		  JOIN MENTOR USING(USER_NO)
 		 WHERE USER_STATUS = 'N'
 		   AND USER_DIVISION = 2
+		   AND MT_GRANT = 'A'
 		   AND (USER_NO = ? OR USER_NAME LIKE ?)
 </entry>
 
@@ -65,8 +67,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	   WHERE USER_STATUS = 'N'
 		 AND USER_DIVISION = 2
 		 AND MT_GRADE = 1
-		 AND (MT_GRANT = 'A'
-		  OR MT_GRANT = 'W')
+		 AND (MT_GRANT = 'A')
 		 AND (USER_NO = ? OR USER_NAME LIKE ?)
 </entry>
 
@@ -221,8 +222,10 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                     , ADMIN_STATUS
 	                     , USER_DIVISION
 	                  FROM USERINFO
+	                  JOIN MENTOR USING(USER_NO)
 	                 WHERE  USER_DIVISION = 2
 	                   AND USER_STATUS= 'N'
+	                   AND MT_GRANT = 'A'
 	                   AND (USER_NO = ? OR USER_NAME LIKE ?)
 	                   ORDER 
 		                    BY USER_NO DESC) A)
@@ -248,7 +251,7 @@ SELECT COUNT(*) AS "LISTCOUNT"
 	                   WHERE USER_STATUS = 'N'
 	                     AND USER_DIVISION = 2
 	                     AND MT_GRADE = 1
-	                     AND (MT_GRANT = 'A' OR MT_GRANT = 'W')
+	                     AND (MT_GRANT = 'A')
 	                     AND (USER_NO = ? OR USER_NAME LIKE ?)
 	                   ORDER 
 		                    BY USER_NO DESC) A)

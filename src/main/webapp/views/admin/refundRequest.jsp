@@ -136,11 +136,12 @@
 	                	
 	                	
 		            </script>
-		            
+		            <%if(!(list.isEmpty())){ %>
 		            <span class="totalpage">
 		               <%=currentPage %> 페이지 / <%=maxPage %> 페이지  
 		            </span>
-		
+					<%} %>
+					
 		            <div class="paging-area">
 		                <%if(currentPage > pageLimit ){ %>
 						 <a href="<%=request.getContextPath()%>/paymentselect.bo?p=<%=doublePrev%>&search=<%=request.getAttribute("search")%>">&lt&lt</a>
@@ -150,7 +151,7 @@
 						<%} %>
 						<%for(int i=startPage;i<=endPage;i++){ %>
 			            	<%if(i==currentPage){ %>
-			            		<a href="<%=request.getContextPath()%>/paymentselect.bo?p=<%=i%>&search=<%=request.getAttribute("search")%>>"><%=i %></a>
+			            		<a href="<%=request.getContextPath()%>/paymentselect.bo?p=<%=i%>&search=<%=request.getAttribute("search")%>>" style="background:#6363ff; color:white;"><%=i %></a>
 			            	<%}else{ %>
 			            		<a href="<%=request.getContextPath()%>/paymentselect.bo?p=<%=i%>&search=<%=request.getAttribute("search")%>"><%=i %></a>
 			            	<%} %>
@@ -158,7 +159,7 @@
 		            	<%if(currentPage != maxPage && currentPage < maxPage){ %>
 							<a href="<%=request.getContextPath()%>/paymentselect.bo?p=<%=currentPage+1%>&search=<%=request.getAttribute("search")%>">&gt</a>
 						<%} %>
-						<%if(currentPage < maxPage - pageLimit ){ %>
+						<%if(currentPage <= maxPage - pageLimit ){ %>
 							<a href="<%=request.getContextPath()%>/paymentselect.bo?p=<%=doubleNext%>&search=<%=request.getAttribute("search")%>">&gt&gt</a>
 						<%} %>
 		            </div>

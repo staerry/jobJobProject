@@ -203,7 +203,7 @@
 						<%} %>
 						<%for(int i=startPage;i<=endPage;i++){ %>
 			            	<%if(i==currentPage){ %>
-			            		<a href="<%=request.getContextPath()%>/selectCoupon.li?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check%>"><%=i %></a>
+			            		<a href="<%=request.getContextPath()%>/selectCoupon.li?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check%>" style="background:#6363ff; color:white;"><%=i %></a>
 			            	<%}else{ %>
 			            		<a href="<%=request.getContextPath()%>/selectCoupon.li?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check%>"><%=i %></a>
 			            	<%} %>

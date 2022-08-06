@@ -135,7 +135,7 @@
 						<%} %>
 						<%for(int i=startPage;i<=endPage;i++){ %>
 			            	<%if(i==currentPage){ %>
-			            		<a href="<%=request.getContextPath()%>/sendCoupon.ad?p=<%=i%>"><%=i %></a>
+			            		<a href="<%=request.getContextPath()%>/sendCoupon.ad?p=<%=i%>" style="background:#6363ff; color:white;"><%=i %></a>
 			            	<%}else{ %>
 			            		<a href="<%=request.getContextPath()%>/sendCoupon.ad?p=<%=i%>"><%=i %></a>
 			            	<%} %>

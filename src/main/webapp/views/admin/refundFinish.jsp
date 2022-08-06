@@ -145,7 +145,7 @@
 						<%} %>
 						<%for(int i=startPage;i<=endPage;i++){ %>
 			            	<%if(i==currentPage){ %>
-			            		<a href="<%=request.getContextPath()%>/refundFinish.li?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check%>"><%=i %></a>
+			            		<a href="<%=request.getContextPath()%>/refundFinish.li?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check%>" style="background:#6363ff; color:white;"><%=i %></a>
 			            	<%}else{ %>
 			            		<a href="<%=request.getContextPath()%>/refundFinish.li?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check%>"><%=i %></a>
 			            	<%} %>
@@ -153,7 +153,7 @@
 		            	<%if(currentPage != maxPage){ %>
 							<a href="<%=request.getContextPath()%>/refundFinish.li?p=<%=currentPage+1%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&gt</a>
 						<%} %>
-						<%if(currentPage < maxPage - pageLimit ){ %>
+						<%if(currentPage <= maxPage - pageLimit ){ %>
 							<a href="<%=request.getContextPath()%>/refundFinish.li?p=<%=doubleNext%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&gt&gt</a>
 						<%} %>
 		            </div>
