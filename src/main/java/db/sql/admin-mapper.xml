@@ -737,11 +737,63 @@ SELECT *
 	       )
 </entry>
 
-<entry key="gradeLecturer">
-	INSERT INTO LECTURER VALUES (?, NULL, NULL, DEFAULT)
+	<entry key="gradeLecturer">
+		INSERT INTO LECTURER VALUES (?, NULL, NULL, DEFAULT)
 </entry>
 
+<entry key="insertChat">
+	INSERT
+	  INTO CHAT
+	       (
+	       CHAT_NO
+	     , USER_NO
+	     , SEND_TO
+	     , MESSAGE
+	     , SEND_DATE
+	       )
+	VALUES (
+	       SEQ_CHAT.NEXTVAL
+	     , ?
+	     , '관리자1'
+	     , ?
+	     , SYSDATE
+	     )
+</entry>
 
+<entry key="selectChatList">
+	SELECT CHAT_NO
+	     , USER_NO
+	     , SEND_TO
+	     , MESSAGE
+	     , SEND_DATE
+	  FROM CHAT
+	 WHERE USER_NO = ?
+</entry>
+
+<entry key="selectChatName">
+	SELECT DISTINCT USER_NAME, USER_NO
+	  FROM CHAT
+	  JOIN USERINFO USING (USER_NO)
+</entry>
+
+<entry key="insertChat2">
+	INSERT
+	  INTO CHAT
+	       (
+	       CHAT_NO
+	     , USER_NO
+	     , SEND_TO
+	     , MESSAGE
+	     , SEND_DATE
+	       )
+	VALUES (
+	       SEQ_CHAT.NEXTVAL
+	     , ?
+	     , '1'
+	     , ?
+	     , SYSDATE
+	     )
+</entry>
 
 
 

@@ -44,6 +44,113 @@
         	font-weight : bold;
         	font-size : 16px;
         }
+
+		/*채팅버튼 부분*/
+		.chat-area{
+			width : 300px;
+			height : 470px;
+			position : absolute;
+			bottom : 100px;
+			right : 80px;
+			display : flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			align-items :flex-end;
+			z-index : 999;
+		}
+
+		.chat-btn{
+			width : 70px;
+			height : 70px;
+			background-color: #6363ff;
+			color : white;
+			font-size : 32px;
+			text-align: center;
+			line-height: 70px;
+			border-radius: 70%;
+			float : right;
+			transition: all 0.3s;
+			box-shadow: 3px 3px 10px #ccc;
+			cursor: pointer;
+		}
+
+		.chat-btn:hover{
+			transform: scale(1.1);
+		}
+
+		.message-area{
+			width : 300px;
+			height : 470px;
+			border-radius: 10px;
+			background-color: white;
+			box-shadow: 3px 3px 10px #ccc;
+			padding : 10px;
+			display : flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		.chat-send{
+			width : 100%;
+			height : 40px;
+			display : flex;
+			justify-content: space-between;
+		}
+
+		.chat-send .message{
+			width : 80%;
+			height : 100%;
+			font-size : 14px;
+			border: 1px solid #6363ff;
+			padding : 3px;
+			border-radius: 5px;
+		}
+
+		.chat-send .message:focus,
+		.chat-view .you-chat:focus,
+		.chat-view .my-chat:focus{
+			outline: none;
+		}
+
+		.chat-send button{
+			width : 18%;
+			height : 100%;
+			font-size : 14px;
+			background-color: #6363ff;
+			border-radius: 5px;
+			color : white;
+			border-style : none;
+		}
+
+		.chat-view{
+			overflow: auto;
+			width : 100%;
+			height : 335px;
+		}
+
+		.chat-view .you-chat{
+			background : rgb(236, 236, 236);
+			display : inline-block;
+			padding : 5px;
+			border-radius: 5px;
+			border-style : none;
+			margin-bottom: 10px;
+			font-size : 14px;
+			float : left;
+		}
+
+		.chat-view .my-chat{
+			background : #6363ff;
+			color : white;
+			display : inline-block;
+			padding : 5px;
+			border-radius: 5px;
+			border-style : none;
+			text-align: right;
+			float : right;
+			margin-bottom: 10px;
+			font-size : 14px;
+		}
         </style>
 </head>
 <body>
@@ -106,6 +213,94 @@
 				</p><!-- 로그인 전 보여질 부분 끝 -->
 			<!-- 로그인 후 보여질 부분 -->
 			<% } else { %>
+				
+			    <!-- 채팅창 부분 (로그인시 나오게 해야함) -->
+				<div class="chat-area">
+					<div class="message-area" style="display : none;">
+							<div class="chat-view">
+								<!--ajax출력중-->
+							</div>
+							<div class="chat-send">
+								<textarea class="message" placeholder="실시간 문의를 해보세요!" style="resize : none;"></textarea>
+								<button onclick="sendMessage();">전송</button>
+							</div>
+					</div>
+			
+					<div class="chat-btn">
+						<i class="fas fa-comment"></i>
+					</div>
+				</div>
+				
+				<script>
+					/*채팅 버튼이 따라오는 기능*/
+					$(document).ready(function(){
+						var btnCurrentPosition = parseInt($(".chat-area").css("top"));
+			
+						$(window).scroll(function() {
+							var btnPosition = $(window).scrollTop(); 
+							$(".chat-area").stop().animate({"top":btnPosition+btnCurrentPosition+"px"},500);
+						});
+			
+						/*버튼 클릭하면 채팅창이 나오는 기능*/
+						$(".chat-btn").click(function(){
+							$(".message-area").toggle();
+						})
+					})
+				</script>
+				
+				<script>
+					/*메세지를 보내면 db에 저장하는 ajax*/
+					function sendMessage(){
+						$.ajax({
+							url : "chatting.me",
+							data : {userno : <%= loginUser.getUserNo() %>,
+									message : $(".message").val()
+								   },
+							success : function(result){
+								/*메세지가 db에 삽입되면 textarea창을 비우고 스크롤을 가장 아래로 내려줌*/
+								$(".message").val("");
+								$(".chat-view").scrollTop($(".chat-view")[0].scrollHeight);
+							},
+							error : function(){
+								console.log("채팅부분 ajax통신 실패");	
+							}
+						})
+					}
+				</script>
+				
+				<script>
+					setInterval(function(){
+						selectChatList();
+					}, 1000);
+				</script>
+				
+				<script>
+					/*메세지를 계속 출력해주는 ajax*/
+						function selectChatList(){
+							/*db에 있는 유저의 메세지를 출력하기위해 db에 insert되었을 때 ajax를 재호출 함*/
+							$.ajax({
+								url : "selectChatting.me",
+								data : {userno : <%= loginUser.getUserNo() %>},
+								success : function(result){
+									let value = "";
+									for(let i = 0; i < result.length; i++){
+										if(result[i].sendTo == "관리자1"){
+											value +=  '<textarea class="my-chat" style="resize : none;" readonly>' + result[i].message + '</textarea><br>'
+										}else{
+											value += '<textarea class="you-chat" style="resize : none;" readonly>' + result[i].message + '</textarea><br>'
+										}
+										
+										$(".chat-view").html(value);
+									}
+								},
+								error : function(){
+									console.log("채팅 메세지 출력 부분 ajax통신 실패");
+								}
+							})
+						}
+				</script>
+				<!-- 채팅창 부분 끝 -->
+				
 				<p class="main-logout"><b><a href="<%=contextPath%>/userlogout.me">로그아웃</a></b></p>
 				<div class="main-profile-img">
 					<!-- ajax조회 중 -->
@@ -131,7 +326,7 @@
 								})
 							<% } %>
 						})
-						
+
 						<!-- 프로필 이미지 ajax -->
 						$(document).ready(function(){
 							<% if(loginUser != null){ %>
@@ -202,7 +397,6 @@
 						url : "ajaxClassList.me",
 						data : {},
 						success : function(result){
-							
 							let value = "";
 							for(let i = 0; i < 9; i++){
 								value += '<div class="vod" onclick="location.href=\'<%= contextPath %>\/detail.cl?class=' + result[i].clNo +'\'">'
