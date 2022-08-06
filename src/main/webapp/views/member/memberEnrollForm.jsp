@@ -91,7 +91,7 @@
     
                     <tr>
                         <td></td>
-                        <td><input type="password" name="pwd" id="pwd" maxlength="20" class="form-control" placeholder="비밀번호 입력" required onkeyup="pwdCheck();"></td>
+                        <td><input type="password" name="userPwd" id="pwd" maxlength="20" class="form-control" placeholder="비밀번호 입력" required onkeyup="pwdCheck();"></td>
                         <td></td>
                         <td></td>
                     </tr>
