@@ -1,6 +1,9 @@
 package com.jj.classSelect.model.service;
 
-import static com.jj.common.JDBCTemplate.*;
+import static com.jj.common.JDBCTemplate.close;
+import static com.jj.common.JDBCTemplate.commit;
+import static com.jj.common.JDBCTemplate.getConnection;
+import static com.jj.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -193,5 +196,26 @@ public class ClassService {
 		
 	}
 	
+	public ArrayList<Review> selectReviewByDate(int clNo) {
+		Connection conn = getConnection();
+		ArrayList<Review> sortedList = new ClassDao().selectReviewByDate(conn, clNo);
+		close(conn);
+		return sortedList;
+	}
+	
+	public ArrayList<Review> selectReviewByScoreDesc(int clNo){
+		Connection conn = getConnection();
+		ArrayList<Review> sortedList = new ClassDao().selectReviewByScoreDesc(conn, clNo);
+		close(conn);
+		return sortedList;
+			
+	}
+	
+	public ArrayList<Review> selectReviewByScoreAsc(int clNo){
+		Connection conn = getConnection();
+		ArrayList<Review> sortedList = new ClassDao().selectReviewByScoreAsc(conn, clNo);
+		close(conn);
+		return sortedList;
+	}
 
 }

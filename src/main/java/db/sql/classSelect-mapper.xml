@@ -416,5 +416,54 @@
 		       USER_NO = ?
 		   AND CL_NO = ?    
 	</entry>
+	
+     <!-- 등록일순 리뷰 조회 -->
+     <entry key="selectReviewDate">
+     	SELECT 
+		       REVIEW_NO
+		     , CL_NO
+		     , USER_NAME
+		     , REVIEW_SCORE
+		     , REVIEW_CONTENT
+		     , TO_CHAR(REVIEW_ENROLLDATE, 'YYYY-MM-DD HH:MI') AS REVIEW_CREATEDATE
+		  FROM REVIEW
+		  JOIN USERINFO USING(USER_NO)
+		 WHERE CL_NO = ?
+		 ORDER
+		    BY REVIEW_CREATEDATE DESC
+     </entry>
+	     
+     <!--  평점 높은 순 조회 -->
+     <entry key="selectReviewByScoreDesc">
+     	SELECT 
+		       REVIEW_NO
+		     , CL_NO
+		     , USER_NAME
+		     , REVIEW_SCORE
+		     , REVIEW_CONTENT
+		     , TO_CHAR(REVIEW_ENROLLDATE, 'YYYY-MM-DD HH:MI') AS REVIEW_CREATEDATE
+		  FROM REVIEW
+		  JOIN USERINFO USING(USER_NO)
+		 WHERE CL_NO = ?
+		 ORDER
+		    BY REVIEW_SCORE DESC, REVIEW_CREATEDATE DESC
+     </entry>
+
+     <!--  평점 낮은 순 조회 -->
+     <entry key="selectReviewByScoreAsc">
+     	SELECT 
+		       REVIEW_NO
+		     , CL_NO
+		     , USER_NAME
+		     , REVIEW_SCORE
+		     , REVIEW_CONTENT
+		     , TO_CHAR(REVIEW_ENROLLDATE, 'YYYY-MM-DD HH:MI') AS REVIEW_CREATEDATE
+		  FROM REVIEW
+		  JOIN USERINFO USING(USER_NO)
+		 WHERE CL_NO = ?
+		 ORDER
+		    BY REVIEW_SCORE ASC, REVIEW_CREATEDATE DESC
+     </entry>
+     
 	    
 </properties>

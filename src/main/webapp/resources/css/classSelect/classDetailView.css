@@ -217,3 +217,16 @@ li>a{color: #abb0b5;}
     font-weight:600;
     font-size:16px;
 }
+
+.review-sorting button{
+	border:none;
+	background-color:#fff;
+	color:#999999;
+	margin-right:10px;
+	font-size:14px;
+}
+
+.review-sorting button:hover{
+	color:#6363ff;
+}
+

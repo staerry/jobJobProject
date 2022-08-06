@@ -722,6 +722,96 @@ public class ClassDao {
 		return result;
 	}
 	
+	public ArrayList<Review> selectReviewByDate(Connection conn, int clNo) {
+		ArrayList<Review> sortedList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReviewDate");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				sortedList.add(new Review(rset.getInt("review_no"),
+								 		  rset.getString("cl_no"),
+								 		  rset.getString("user_name"),
+								 		  rset.getInt("review_score"),
+								 		  rset.getString("review_content"),
+								 		  rset.getString("review_createdate")
+										 ));	
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return sortedList;
+	}
+	
+	public ArrayList<Review> selectReviewByScoreDesc(Connection conn, int clNo){
+		ArrayList<Review> sortedList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReviewByScoreDesc");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clNo);
+			rset = pstmt.executeQuery();
+
+			while(rset.next()) {
+				sortedList.add(new Review(rset.getInt("review_no"),
+									  rset.getString("cl_no"),
+									  rset.getString("user_name"),
+									  rset.getInt("review_score"),
+									  rset.getString("review_content"),
+									  rset.getString("review_createdate")
+						  ));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("리스트 : " + sortedList);
+		return sortedList;
+	}
+	
+	public ArrayList<Review> selectReviewByScoreAsc(Connection conn, int clNo){
+		ArrayList<Review> sortedList = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReviewByScoreAsc");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+			sortedList.add(new Review(rset.getInt("review_no"),
+									  rset.getString("cl_no"),
+									  rset.getString("user_name"),
+									  rset.getInt("review_score"),
+									  rset.getString("review_content"),
+									  rset.getString("review_createdate")
+						  ));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return sortedList;
+	}
 
 	
 }
