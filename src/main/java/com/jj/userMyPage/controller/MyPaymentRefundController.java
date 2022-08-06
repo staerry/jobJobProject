@@ -1,11 +1,15 @@
 package com.jj.userMyPage.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.jj.userMyPage.model.service.MyPaymentService;
 
 /**
  * Servlet implementation class MyPaymentRefund
@@ -27,8 +31,27 @@ public class MyPaymentRefundController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/userMyPage/myPaymentRefund.jsp").forward(request, response);
+		int payNo = Integer.parseInt(request.getParameter("payNo"));
+		
+		int result = new MyPaymentService().myPaymentRefund(payNo);
+	
+		request.setAttribute("payNo", payNo);
+		
+		System.out.println(result);
+		
+		if(result > 0) {
+			
+			request.getRequestDispatcher("views/userMyPage/myPaymentRefund.jsp").forward(request, response);
+			
+		}else {
+			
+			response.sendRedirect(request.getContextPath());
+			
+			
+		}
+		
 	}
+		
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

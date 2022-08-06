@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.ArrayList, com.jj.userMyPage.model.vo.Payment" %>
 <%
-  ArrayList<Payment> list = (ArrayList<Payment>)request.getAttribute("list");	
+  ArrayList<Payment> list = (ArrayList<Payment>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -44,7 +44,7 @@
 	                <td><%= p.getPayDate()%></td>
 	                <td>
 	                  <button onclick="location.href='<%=contextPath%>/paymentDetails.my?payNo=<%= p.getPayNo() %>'" class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
-	                  <button onclick="refund();"class="btn btn-danger">환불신청</button>
+	                  <button onclick="location.href='<%=contextPath%>/paymentRefund.my?payNo=<%= p.getPayNo() %>'" class="btn btn-danger">환불신청</button>
 	                
 	                </td>
 	              </tr>
@@ -62,9 +62,12 @@
              
             	if (window.confirm("환불신청 하시겠습니까?")){
             		window.alert("환불신청 성공");
-            		location ="<%=contextPath%>/paymentRefund.my";
+            		return true;
+            		
+            	
             	}else{
             		window.alert("환불신청 취소")
+            		return false;
             	}
                   
         

@@ -26,4 +26,12 @@ public class MyPaymentService {
 		close(conn);
 		return p;
 	}
+	
+	public int myPaymentRefund(int payNo){
+		
+		Connection conn = getConnection();
+		int result = new MyPaymentDao().myPaymentRefund(conn, payNo);
+		close(conn);
+		return result;
+	}
 }

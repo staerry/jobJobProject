@@ -151,5 +151,11 @@ WHERE P.PAY_NO = ?
 
 </entry>
 
+<entry key = "myPaymentRefund">
+	UPDATE PAY
+	   SET REFUND = 'W'
+	 WHERE PAY_NO = ?  
+</entry>
+
 
 </properties>
