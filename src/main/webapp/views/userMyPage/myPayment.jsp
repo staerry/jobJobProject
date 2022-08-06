@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.ArrayList, com.jj.userMyPage.model.vo.Payment" %>
 <%
-  ArrayList<Payment> list = (ArrayList<Payment>)request.getAttribute("list");		
+  ArrayList<Payment> list = (ArrayList<Payment>)request.getAttribute("list");	
 %>
 <!DOCTYPE html>
 <html>
@@ -38,16 +38,16 @@
                 </tr>
                 <%} else{ %>
                   <%for(Payment p : list){ %>
-              <tr>
-                <td><%= p.getClTitle()%></td>
-                <td><%= p.getUserName()%></td>
-                <td><%= p.getPayDate()%></td>
-                <td>
-                  <button onclick="location.href='<%=contextPath%>/paymentDetails.my'" class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
-                  <button onclick="location.href='<%=contextPath%>/paymentRefund.my'"class="btn btn-danger">환불신청</button>
-                
-                </td>
-              </tr>
+	              <tr>
+	                <td><%= p.getClTitle()%></td>
+	                <td><%= p.getUserName()%></td>
+	                <td><%= p.getPayDate()%></td>
+	                <td>
+	                  <button onclick="location.href='<%=contextPath%>/paymentDetails.my?payNo=<%= p.getPayNo() %>'" class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
+	                  <button onclick="refund();"class="btn btn-danger">환불신청</button>
+	                
+	                </td>
+	              </tr>
               <% } %>
             <% } %> 
            
@@ -55,29 +55,16 @@
             </tbody>
           </table>
  
-        <div class="paging-area" style="margin:auto;">
-            <ul class="pagination justify-content-center" style="margin:20px 0">
-                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-              </ul>
-        </div>
-        
-          
-
           <script>
           
    
             function refund(){
              
-            	if (widow.confirm("환불신청 하시겠습니까?")){
+            	if (window.confirm("환불신청 하시겠습니까?")){
             		window.alert("환불신청 성공");
+            		location ="<%=contextPath%>/paymentRefund.my";
             	}else{
-            		window.alert("취소 버튼을 클릭했습니다")
+            		window.alert("환불신청 취소")
             	}
                   
         

@@ -171,7 +171,7 @@
 					<table class="table table-bordered table-hover stutable">
 						<thead>
 							<tr>
-								<th width="100">번호(회원고유번호)</th>
+								<th width="100">조회번호(회원고유번호)</th>
 								<th width="100">이름</th>
 								<th width="130">아이디</th>
 								<th width="120">이메일</th>
@@ -189,7 +189,7 @@
 						 <tbody>
 							<%for(int i=0;i<list.size();i++){ %>
 								<tr>
-									<td class="notext"><%=lpage-i %>(<%=list.get(i).getUserNo() %>)</td>
+									<td class="notext"><%=lpage-i %> (<%=list.get(i).getUserNo() %>)</td>
 									<td class="idtext"><%=list.get(i).getUserName() %></td>
 									<td><%=list.get(i).getUserId() %></td>
 									<td>
@@ -207,7 +207,7 @@
 									</td>
 									<td><%=list.get(i).getEnrollDate() %></td>
 									<td>
-										<%if(list.get(i).getUserStatus().equals("N")){ %>
+										<%if(list.get(i).getUserStatus().equals("N")  ){ %>
 											<button type="button" class="button1">수정</button>
 											<button type="button" class="outbutton">탈퇴</button>
 										<%}else{ %>
@@ -234,7 +234,7 @@
 						<%} %>
 						<%for(int i=startPage;i<=endPage;i++){ %>
 			            	<%if(i==currentPage){ %>
-			            		<a href="<%=request.getContextPath()%>/mentorInfo.li?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check%>"><%=i %></a>
+			            		<a href="<%=request.getContextPath()%>/mentorInfo.li?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check%>" style="background:#6363ff; color:white;"><%=i %></a>
 			            	<%}else{ %>
 			            		<a href="<%=request.getContextPath()%>/mentorInfo.li?p=<%=i%>&search=<%=request.getAttribute("search")%>&check=<%=check%>"><%=i %></a>
 			            	<%} %>
@@ -242,7 +242,7 @@
 		            	<%if(currentPage != maxPage){ %>
 							<a href="<%=request.getContextPath()%>/mentorInfo.li?p=<%=currentPage+1%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&gt</a>
 						<%} %>
-						<%if(currentPage < maxPage - pageLimit ){ %>
+						<%if(currentPage <= maxPage - pageLimit ){ %>
 							<a href="<%=request.getContextPath()%>/stuInfo.li?p=<%=doubleNext%>&search=<%=request.getAttribute("search")%>&check=<%=check%>">&gt&gt</a>
 						<%} %>
 					</div>

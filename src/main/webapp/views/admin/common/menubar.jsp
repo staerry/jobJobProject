@@ -35,6 +35,7 @@
             <li onclick="linkbutton(9);">1대1문의관리</li>
             <li onclick="linkbutton(17);">슬라이드관리</li>
             <li onclick="linkbutton(10);">쿠폰관리</li>
+            <li onclick="linkbutton(20);">테스트</li>
         </ul>
         <br><br>
 
@@ -123,6 +124,9 @@
                 	break;
                 case 17: 
                 	location.href="<%= request.getContextPath() %>/slideListView.ad"; 
+                	break;
+                case 20: 
+                	location.href="<%= request.getContextPath() %>/graph.gh"; 
                 	break;
             }
         }

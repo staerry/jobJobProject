@@ -1,30 +1,23 @@
-package com.jj.userMyPage.controller;
+package com.jj.admin.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import com.jj.member.model.vo.Member;
-import com.jj.userMyPage.model.service.MyPaymentService;
-import com.jj.userMyPage.model.vo.Payment;
 
 /**
- * Servlet implementation class MyPaymentDetailsController
+ * Servlet implementation class GraphDetailController
  */
-@WebServlet("/paymentDetails.my")
-public class MyPaymentDetailsController extends HttpServlet {
+@WebServlet("/graphDetail.de")
+public class GraphDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPaymentDetailsController() {
+    public GraphDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,24 +26,9 @@ public class MyPaymentDetailsController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		//HttpSession session = request.getSession();
-		
-		//int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
-		
-		int payNo = Integer.parseInt(request.getParameter("payNo"));
-		
-		
-		Payment p = new MyPaymentService().myPaymentDetails(payNo);
-		 
-		
-		
-		request.setAttribute("p", p);
-
-		request.getRequestDispatcher("views/userMyPage/myPaymentDetails.jsp").forward(request, response);
-		
-		System.out.println(p);
-		
+		System.out.println(request.getParameter("lastdate"));
+		System.out.println(request.getParameter("currentdate"));
+		System.out.println();
 	}
 
 	/**

@@ -136,7 +136,7 @@
                     	})
                     	
                     	$(".cpDe").click(function(){
-                    		if(confirm($(this).parent().siblings('.cpName').text()+'을(를) 삭제하시겠습니까?')){
+                    		if(confirm($(this).parent().siblings('.cpName').text()+'을(를) 삭제하시면 이쿠폰을 보유한 \n모든회원의 쿠폰이 삭제됩니다. 정말로삭제하시겠습니까?')){
                     			location.href = '<%=request.getContextPath()%>/couponDelete.de?no='+$(this).parent().siblings('.cpNo').text()
                     		}
                     	})
@@ -156,7 +156,7 @@
 						<%} %>
 						<%for(int i=startPage;i<=endPage;i++){ %>
 			            	<%if(i==currentPage){ %>
-			            		<a href="<%=request.getContextPath()%>/couponManage.ad?p=<%=i%>"><%=i %></a>
+			            		<a href="<%=request.getContextPath()%>/couponManage.ad?p=<%=i%>" style="background:#6363ff; color:white;"><%=i %></a>
 			            	<%}else{ %>
 			            		<a href="<%=request.getContextPath()%>/couponManage.ad?p=<%=i%>"><%=i %></a>
 			            	<%} %>
@@ -164,7 +164,7 @@
 		            	<%if(currentPage != maxPage){ %>
 							<a href="<%=request.getContextPath()%>/couponManage.ad?p=<%=currentPage+1%>">&gt</a>
 						<%} %>
-						<%if(currentPage < maxPage - pageLimit ){ %>
+						<%if(currentPage <= maxPage - pageLimit ){ %>
 							<a href="<%=request.getContextPath()%>/couponManage.ad?p=<%=doubleNext%>">&gt&gt</a>
 						<%} %>
                     </div>

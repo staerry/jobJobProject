@@ -24,16 +24,16 @@ public class MailSender {
 		Session session = Session.getInstance(props, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("gjswns21@gmail.com", "xundsjwmtjoedbos");
+				return new PasswordAuthentication("chldudgjsTest@gmail.com", "xmndwnrkqrgoczyk");
 			}
 		});
 		
 		String receiver = userEmail.getUserNo(); // 메일 받을 주소
-		String title = "니잡내잡 운영자 답변입니다.";
-		String content = "<h2 style='color:blue'>" + mtmAnswer + "</h2>";
+		String title = "[니잡내잡]문의하신 내용에 대한 답변입니다.";
+		String content = mtmAnswer;
 		Message message = new MimeMessage(session);
 		try {
-			message.setFrom(new InternetAddress("gjswns21@gmail.com", "니잡내잡", "utf-8"));
+			message.setFrom(new InternetAddress("chldudgjsTest@gmail.com", "니잡내잡", "utf-8"));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
 			message.setSubject(title);
 			message.setContent(content, "text/html; charset=utf-8");
