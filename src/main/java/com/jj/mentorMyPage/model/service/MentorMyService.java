@@ -15,6 +15,7 @@ import com.jj.mentorMyPage.model.dao.MentorMyDao;
 import com.jj.mentorMyPage.model.vo.CreateClass;
 import com.jj.mentorMyPage.model.vo.MtQuestion;
 import com.jj.mentorMyPage.model.vo.Vod;
+import com.jj.userMyPage.model.dao.ReplyListDao;
 import com.jj.userMyPage.model.vo.Class;
 
 public class MentorMyService {
@@ -80,4 +81,16 @@ public class MentorMyService {
 		
 		return list;
 	}
-}
+//	멘토 답변들 삭제
+	public int deleteMyAns(int userNo, String replyNo) {
+	
+			
+			Connection conn = getConnection();
+			int result = new MentorMyDao().deleteMyAns(conn, userNo, replyNo);
+			close(conn);
+			return result;
+		}
+
+	
+	}
+ 

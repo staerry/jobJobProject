@@ -112,5 +112,78 @@ v.cl_no = ?
 
 </entry>
 
+<!-- 멘토의 모든 내 답변 조회 -->
+<entry key="deleteMyAns">
+DELETE
+  FROM REPLY
+ WHERE USER_NO = ?
+
+
+</entry>
+
+	
+<!--질문 / 답변 따로 조회해올 것임 ==> X 같이 조회함 태은언니부분
+질문 : 게시물 번호, 질문자 고유번호, 질문자 이름, 질문 제목, 질문 내용, 질문 작성일, 
+답변 : 게시물 번호, 답변자 멘토 고유번호, 답변자 이름, 답변 내용, 답변 작성일
+넘길 값 : 멘토 고유번호
+-->
+
+	<!-- <!-- 질문 조회 -->
+	<!-- <entry key="selectQuestion">
+		SELECT 
+		       MT_QUE_NO
+		     , USER_NO AS QUE_USER_NO 질문자 고유번호  
+		     , USER_NAME AS QUE_USER_NAME 질문자 이름
+		     , QUE_TITLE
+		     , QUE_CONTENT
+		     , QUE_ENROLLDATE
+		  FROM MT_QUE
+		  JOIN USERINFO USING(USER_NO)
+		 WHERE ANS_NO = ?	
+	</entry>
+	
+	멘토에게 질문 & 답변 조회
+	<entry key="selectQna">
+		SELECT 
+		       MT_QUE_NO
+		     , Q.USER_NO AS QUE_USER_NO
+		     , U.USER_NAME AS QUE_USER_NAME
+		     , TO_CHAR(QUE_ENROLLDATE, 'YYYY-MM-DD HH:MI:SS') AS QUE_DATE
+		     , QUE_TITLE
+		     , QUE_CONTENT
+		     , ANS_NO AS ANS_USER_NO
+		     , I.USER_NAME AS ANS_USER_NAME
+		     , TO_CHAR(ANS_DATE, 'YYYY-MM-DD HH:MI:SS') AS ANS_DATE
+		     , ANS_CONTENT 
+		  FROM MT_QUE Q
+		  JOIN USERINFO U ON(U.USER_NO = Q.USER_NO)
+		  JOIN USERINFO I ON(I.USER_NO = Q.ANS_NO)
+		 WHERE ANS_NO = ?
+		 ORDER
+		    BY MT_QUE_NO DESC
+ 	</entry>
+ 	
+ 	멘토의 답변 테이블에 입력
+ 	
+ 	<entry key="insertAnswer">
+ 		INSERT
+ 		  INTO MT_QUE
+		  ( MT_QUE_NO
+		  , USER_NO
+		  , QUE_TITLE
+		  , QUE_CONTENT
+		  , ANS_NO
+		  , ANS_CONTENT
+		  , ANS_DATE
+		  ) 	
+		  VALUES
+		  ( SEQ_MTQU.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  )	 
+ 	</entry> -->
+ -->
 
 </properties>

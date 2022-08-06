@@ -168,10 +168,10 @@ padding-right: 3px;
 					            
 					       <div class="open-class-body">
 					            <p>
-					            <span id="grey-area-top" style="font-size:1.5em; font-weight:bolder">마지막으로, 수강료를 입력해 주세요.<i class="fa-solid fa-sack-dollar" style="color:orange"></i> </span> <br>
+					            <span id="grey-area-top" style="font-size:1.5em; font-weight:bolder; color:#6363ff; ">마지막으로, 수강료를 입력해 주세요.<i class="fa-solid fa-sack-dollar" style="color:orange"></i> </span> <br>
 					            <span class="grey-area "style="color:grey">(수강생이 지불하는 최종 수강료로, VAT 10%가 포함된 가격입니다.)</span>
 					           
-					            <input type="text" class="won" name="clPrice" id="finalprice1" placeholder="원" required>
+					            <input type="text" class="won" name="clPrice" id="finalprice1" style="margin:20px 5px;"placeholder="원" required>
 					        </div> 
 					        <br> 
 					 

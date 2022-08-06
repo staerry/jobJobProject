@@ -36,19 +36,24 @@ public class MentorMyAnsController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //	 멘토 나의 답변 조회해오는 컨트롤러임
 		HttpSession session = request.getSession();
-		System.out.println(session);
+//		System.out.println(session);
 		
 		Member member = (Member) session.getAttribute("loginUser");
 		if(member != null) {
-			ArrayList<MtQuestion> list = new MentorMyService().selectAllQuestion(member.getUserNo());
+			ArrayList<MtQuestion>list = new ArrayList<>();
+			 list = new MentorMyService().selectAllQuestion(member.getUserNo());
 			session.setAttribute("list", list);
+			
+			request.setAttribute("list",list);
 			System.out.println("list");
+			request.getRequestDispatcher("views/mentorMyPage/mentorQnAList.jsp").forward(request, response);
+
 		}else {
 			request.setAttribute("alertMsg", "로그인이 필요합니다.");
 			request.getRequestDispatcher("views/member/memberLoginSecond.jsp").forward(request, response);
 		}
 //	서비스 더 써야함
-	
+		
 	}
 
 	/**

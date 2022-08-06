@@ -27,7 +27,7 @@
 <style>
 .main-web-wrap{
 display:inline-flex;
-padding-left:310px;}
+padding-left:100px;}
 h3{
 margin-left:40px;
 margin-bottom:10px;

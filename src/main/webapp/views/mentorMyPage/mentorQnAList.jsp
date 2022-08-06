@@ -25,50 +25,114 @@
       <br><br>
         <h2>내 답변</h2>
         
+
+        <div class="checkbox-group">
          
+        
           <table class="table table-hover">
             <thead>
-
-                <tr style="background-color:whitesmoke">
-                    <th colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox">&nbsp;&nbsp;전체선택&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-sm btn-danger">삭제</button></th>
+              
+              <tr style="background-color:whitesmoke">
+                <th colspan="6">
+                  <input type="checkbox" id="checkAll">
+                  <label for="checkAll">전체선택</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <button class="btn btn-sm btn-danger" onclick="deleteChecked();">삭제</button></th>
                 </tr>
-            </thead>
-            <thead align="center">
-              <tr>
+                <tr>
+                  <th>&nbsp;</th>
+                  <th>질문 내용</th>
+                  <th>질문 등록일</th>
+                  <th>내  답변상태</th>
+                </tr>
+              </thead>
+              
+              <tbody>
                 <% if(list.isEmpty()) { %>
               <tr>
                 <td colspan="6">조회된 게시글이 없습니다.</td>
               </tr>
-              <%} else{ %>
+              <%} else{ %> 
                 <%for(MtQuestion m : list){ %>
-              
-                <th><%= m.getMtQueNo() %></th>
-                <th><%= m.getQueContent()  %></th>
+                  <tr>
+                    <td><input type="checkbox" class="selectedCheck" name="check" value="><%= m.getMtQueNo() %>"></td>
+                    <td>
+                <p><%= m.getMtQueNo() %></p>
+                <p><%= m.getQueContent()  %></p>
                 
                 <th><%=m.getQueEnrolldate()  %></th>
-               <!--  <th>내 답변 상태</th> -->
-                <%if(m.getAnsDate() != null){ %> 
-                <th><%= m.getQueContent()  %></th>
-                <th><%= m.getAnsDate()  %></th>
-                <%} else{%>
-                <th>답변대기중</th>
                 
-              </tr>
-            </thead>
-            <tbody align="center">
-          
-              <tr>
-                <td><p></p></td>
-              
-   				<% } %>
-			<% } %>   
-			<% } %>   
+                                 <%if(m.getAnsDate() != null){ %> 
+                                <th><%= m.getQueContent()  %></th>
+                                <th><%= m.getAnsDate()  %></th>
+                                <%} else{%>
+                                <td>답변대기중</td>
+                                <% } %>
+                              </td>               
+                              </tr>
+            
+                          
+                           
+              <% } %>                
+			
+		 <% } %>    
       
             </tbody>
           </table>
- 
+
+          <script>
+
+            $(".checkbox-group").on("click", "#checkAll", function(){
+                $(this).parents(".checkbox-group").find("input").prop("checked", $(this).is(":checked"));
+                
+              });
+              
+            $(".checkbox-group").on("click", ".selectedCheck", function(){
+                var isChecked = true;
+        
+                $(".checkbox-group .selectedCheck").each(function(){
+                    isChecked = isChecked && $(this).is(":checked");
+                });
+        
+                $("#checkAll").prop("checked", isChecked);
+        
+              });
+               
+              // 선택 삭제에 대한 함수
+               function deleteChecked(){
+                  
+                  var deleteElement = "";
+                  
+                  // 체크된 게시글에 순차적으로 접근해 해당 요소의 val()값을 ,로 연결해 하나의 문자열 만들기
+                  $("input[name=check]:checked").each(function(){
+                     deleteElement = deleteElement + ($(this).val()) + ",";
+                  })   
+                       
+                  // "value값, value값, ... value값," 와 같은 형태의 문자열이 만들어지므로
+                  // 마지막 ","을 삭제해야 "value값, ... value값" 형태로 WHERE CM_NO IN ( ? ) 안에 넣을 수 있음
+                  // => 이것을 "동적 SQL문"이라고 함!!
+                  deleteElement = deleteElement.substring(0, deleteElement.lastIndexOf(","));
+                        
+                  $.ajax({
+                     url:"<%=contextPath%>/myReplyDelete.my", // 서블릿주소
+                     data:{
+                        userNo:$("<%=loginUser.getUserNo()%>").val(),
+                        replyNo:deleteElement // 삭제할 요소들 (3, 4, 5, ... 번호)
+                        },
+                     success:function(result){
+                      if(result > 0){
+                            alert("선택한 댓글 삭제에 성공하였습니다.");
+                            location.reload(); // = url재요청
+                        
+                      }
+                     }, 
+                     error:function(){
+                        alert("선택한 댓글 삭제에 실패하였습니다.");
+                     }
+                  })
+                  
+                }
+                </script>
+  </div>
         <div class="paging-area" style="margin:auto;">
             <ul class="pagination justify-content-center" style="margin:20px 0">
                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -81,7 +145,7 @@
               </ul>
         </div>
 
-      </form>
+   
     </div>
     <%@ include file="../common/footer.jsp" %>
 

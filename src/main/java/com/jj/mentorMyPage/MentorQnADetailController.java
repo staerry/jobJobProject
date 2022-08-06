@@ -26,7 +26,7 @@ public class MentorQnADetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+//		게시글의 질문과 답변 창 보여주는 뷰 
 		request.getRequestDispatcher("views/mentorMyPage/mentorQnA.jsp").forward(request, response);;
 	}
 

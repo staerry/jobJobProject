@@ -6,18 +6,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.jj.member.model.vo.Member;
+import com.jj.mentorMyPage.model.service.MentorMyService;
+import com.jj.userMyPage.model.service.ReplyListService;
 
 /**
- * Servlet implementation class mentorQnAListController
+ * Servlet implementation class MentorAnswerDeleteController
  */
-@WebServlet("/qnaList.my")
-public class mentorQnAListController extends HttpServlet {
+@WebServlet("/myAnswerDelete.my")
+public class MentorAnswerDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public mentorQnAListController() {
+    public MentorAnswerDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,9 +31,20 @@ public class mentorQnAListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//			여기서 값담아서 넘기면 detail로 /qnaDetail.my
+	HttpSession session = request.getSession();
 		
-		request.getRequestDispatcher("views/mentorMyPage/mentorQnAList.jsp").forward(request, response);
+		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+		
+		
+		String replyNo = request.getParameter("replyNo");
+		
+		int result = new MentorMyService().deleteMyAns(userNo, replyNo);
+		 
+		response.getWriter().print(result);
+		
+		System.out.println(result);	
+	
+	
 	
 	}
 

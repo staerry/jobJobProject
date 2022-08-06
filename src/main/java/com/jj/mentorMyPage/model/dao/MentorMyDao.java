@@ -250,6 +250,33 @@ Properties prop = new Properties();
 		return list;
 
 	}
+
+//	멘토의 나의답변 리스트에서 답변을 삭제하는 기능
+	public int deleteMyAns(Connection conn, int userNo, String replyNo) {
+		System.out.println(userNo);
+		System.out.println(replyNo);
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteMyAns");
+		
+		sql += "AND REPLY_NO IN (" + replyNo + ")";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
 		
 		
 	}
