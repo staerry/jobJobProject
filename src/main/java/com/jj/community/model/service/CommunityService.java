@@ -156,4 +156,40 @@ public class CommunityService {
 		close(conn);
 		return list;
 	}
+	
+	public int selectLike(int userNo, int commNo) {
+		Connection conn = getConnection();
+		int likeCheck = new CommunityDao().selectLike(conn, userNo, commNo);
+		close(conn);
+		return likeCheck;
+	}
+	
+	public int insertLike(int userNo, int commNo) {
+		Connection conn = getConnection();
+		int result = new CommunityDao().insertLike(conn, userNo, commNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+	
+	public int deleteLike(int userNo, int commNo) {
+		Connection conn = getConnection();
+		int result = new CommunityDao().deleteLike(conn, userNo, commNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+	
+	public int selectLikeCount(int commNo) {
+		Connection conn = getConnection();
+		int likeCount = new CommunityDao().selectLikeCount(conn, commNo);
+		close(conn);
+		return likeCount;
+	}
 }

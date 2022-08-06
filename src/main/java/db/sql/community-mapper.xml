@@ -21,7 +21,9 @@
 						     , CM_CONTENT
 						     , CM_ENROLLDATE
 						     , CM_COUNT
-						     , CM_LIKE_COUNT
+						     , (SELECT COUNT(*)
+						          FROM COMMUNITY_LIKE L
+						         WHERE L.CM_NO = C.CM_NO) AS CM_LIKE_COUNT
 						     , (SELECT COUNT(*)
                                   FROM REPLY R
                                  WHERE R.CM_NO = C.CM_NO) AS REPLYCOUNT
@@ -145,7 +147,9 @@
 						     , CM_CONTENT
 						     , CM_ENROLLDATE
 						     , CM_COUNT
-						     , CM_LIKE_COUNT
+						     , (SELECT COUNT(*)
+						          FROM COMMUNITY_LIKE L
+						         WHERE L.CM_NO = C.CM_NO) AS CM_LIKE_COUNT
 						     , (SELECT COUNT(*)
                                   FROM REPLY R
                                  WHERE R.CM_NO = C.CM_NO) AS REPLYCOUNT
@@ -174,7 +178,9 @@
 						     , CM_CONTENT
 						     , CM_ENROLLDATE
 						     , CM_COUNT
-						     , CM_LIKE_COUNT
+						     , (SELECT COUNT(*)
+						          FROM COMMUNITY_LIKE L
+						         WHERE L.CM_NO = C.CM_NO) AS CM_LIKE_COUNT
 						     , (SELECT COUNT(*)
                                   FROM REPLY R
                                  WHERE R.CM_NO = C.CM_NO) AS REPLYCOUNT
@@ -247,6 +253,39 @@
 		WHERE USER_NAME LIKE UPPER(?)
 		   OR CM_TITLE LIKE UPPER(?)
 		   OR CM_CONTENT LIKE UPPER(?)
+	</entry>
+	
+	<entry key="selectLike">
+		SELECT COUNT(*) AS LIKE_CHECK
+		  FROM COMMUNITY_LIKE
+		 WHERE CM_NO = ?
+	       AND USER_NO = ?	
+	</entry>
+	
+	<entry key="insertLike">
+		INSERT 
+ 		  INTO COMMUNITY_LIKE
+		     ( CM_NO
+		     , USER_NO
+		     )
+		     VALUES
+		     ( ?
+		     , ?
+		     )
+	</entry>
+	
+	<entry key ="deleteLike">
+		DELETE
+		  FROM COMMUNITY_LIKE
+		 WHERE 
+		       CM_NO = ?
+		   AND USER_NO = ?
+	</entry>
+	
+	<entry key="selectLikeCount">
+		SELECT COUNT(*) AS LIKE_COUNT
+  		  FROM COMMUNITY_LIKE
+	     WHERE CM_NO = ?	
 	</entry>
 
 </properties>

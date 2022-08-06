@@ -79,13 +79,71 @@
         
             <br>
 
-            <!-- 뒤로가기(목록으로), 찜 버튼 -->
+            <!-- 뒤로가기(목록으로), 좋아요 버튼 -->
             <div class="back-zzim-btn">
                 <button onclick="history.back();"><i class="fas fa-arrow-left"></i></button>
-                <button onclick=""><i class="far fa-heart">&nbsp;<%= c.getLikeCount() %></i></button>
-                <!-- 찜 누르기 전에는 빈 하트, 나중에는 찬 하트로 바뀌게 구현 -->
+                <% if(loginUser != null) { %>
+                <button onclick="likeThis()" id="cm-heart"><span class="like-count"></span></button>
+                <% } else { %>
+                <button onclick="alert('로그인 후 이용 가능한 서비스입니다.');"><span class="like-count">♥&nbsp;<%= c.getLikeCount() %></span></button>
+                <% } %>
+                <!-- 좋아요 누르기 전에는 빈 하트, 나중에는 찬 하트로 바뀌게 구현 -->
             </div>
 
+                <script>
+                
+                $(function(){
+                	<% if(loginUser != null) { %>	// 로그인한 회원일 때만 좋아요 했는지 안했는지 확인
+                	likeCheck();
+                	<% } %>
+                })
+                                
+                function likeCheck(){	// 좋아요 한 게시물인지 아닌지 먼저 확인
+                	 $.ajax({
+ 						url: "<%= contextPath %>/checkLk.cm",
+ 						data: {
+ 							cmNo:<%= c.getCommNo() %>},
+ 						type: "post",
+ 						success: function (a) {
+ 							if(a.likeCheck == 0){
+ 								var value ="♡&nbsp;" + a.likeCount;
+ 								$(".like-count").html(value);
+ 							}else if(a.likeCheck == 1){
+ 								var value ="♥&nbsp;" + a.likeCount;
+ 								$(".like-count").html(value);
+ 								console.log(likeCheck);
+ 							}
+ 							console.log("좋아요 조회용 성공");
+ 						}, error: function () {
+ 							console.log("커뮤니티 좋아요용 AJAX 통신 실패");
+ 						}
+ 					})
+                }
+				
+				function likeThis(){
+	                $.ajax({
+						url: "<%= contextPath %>/insertLk.cm",
+						data: {
+							cmNo:<%= c.getCommNo() %>},
+						type: "post",
+						success: function (b) {
+							if(b.likeCheck == 0){	
+								alert("이 게시물을 좋아합니다.");
+								var value = "♥&nbsp;"+ b.likeCount;
+								$(".like-count").html(value);
+								
+							}else if(b.likeCheck == 1){
+								alert("좋아요가 취소되었습니다.");
+								var value = "♡&nbsp;" + b.likeCount;
+								$(".like-count").html(value);
+							}
+							console.log("좋아요 성공");
+						}, error: function () {
+							console.log("커뮤니티 좋아요용 AJAX 통신 실패");
+						}
+					})
+                 }             
+                </script>
             <!-- 댓글 작성 영역 -->
             <div class="reply-area">
                 <table class="community-reply">
