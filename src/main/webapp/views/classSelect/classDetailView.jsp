@@ -205,7 +205,7 @@
 								$("#zzim-count").html(a.likeCount);
 								
 							}else if(a.likeCheck == 1){
-								alert("️이 강의를 마음에서 떠나보냈습니다..😭💔	");
+								alert("️이 강의를 마음에서 떠나보냈습니다..😭💔");
 								
 								value = "<span style='color:red'>♡</span>&nbsp;이 강의 찜하기";
 								$("#my-zzim").html(value);
