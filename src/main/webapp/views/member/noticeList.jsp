@@ -127,6 +127,10 @@
 
 		<input type="text" name="keyhWord" id="bbb" class="form-control-sm mr-3" style="border-color: #6363FF;" placeholder="검색어 입력"><i style="cursor:pointer" class="fa-solid fa-magnifying-glass" onclick="searchNotice();"></i>
     </div>
+    
+    <br><br><br>
+    
+    <%@ include file="../common/footer.jsp" %>
 
     <script>
       $(function(){
@@ -144,7 +148,7 @@
       }
     </script>
 
-    <br><br><br>
+    
 
     <br><br><br><br>
 </body>

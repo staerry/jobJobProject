@@ -35,12 +35,10 @@
 
             <br>
 
-            <form action="" method="post">
-
                 <table>
                     <tr>
                         <td colspan="2" width="200"><p style="font-size: 20px; border: 1px solid lightgray; border-radius: 5px; margin: 0;"><%= n.getNoticeTitle() %></p></td>
-                        <td width="200" style="text-align:right; font-size: 12px;"><%= n.getNoticeEnrolldate() %></td>
+                        <td width="200" style="text-align:right; font-size: 12px;">등록일 : <%= n.getNoticeEnrolldate() %></td>
                     </tr>
 
                     <tr>
@@ -50,12 +48,11 @@
                     <tr>
                         <td colspan="3" style="font-size: 14px;">
                             <textarea name="content" cols="100" rows="10" style="resize:none; border: 1px solid lightgray; border-radius: 5px;" readonly="readonly" disabled><%= n.getNoticeContent() %></textarea>
-                            <!--<p style="height: 300px; border: 1px solid lightgray; border-radius: 5px;"><%= n.getNoticeContent() %></p>-->
                         </td>
                     </tr>
                     
                     <tr>
-                        <td colspan="3"><hr></td>
+                        <td colspan="3" style="text-align: right; font-size: 12px">수정일 : <%= n.getNoticeModifydate() %></td>
                     </tr>
 
                     <tr>
@@ -74,7 +71,6 @@
                     </tr>
 
                 </table>
-            </form>
 
         </div>
     </div>
