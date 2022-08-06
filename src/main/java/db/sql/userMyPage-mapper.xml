@@ -233,4 +233,11 @@ order by
     ci.cl_startdate desc
 
 </entry>
+<entry key = "myPaymentRefund">
+	UPDATE PAY
+	   SET REFUND = 'W'
+	 WHERE PAY_NO = ?  
+</entry>
+
+
 </properties>

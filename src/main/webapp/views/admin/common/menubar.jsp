@@ -33,6 +33,7 @@
             <li onclick="linkbutton(7);">공지사항관리</li>
             <li onclick="linkbutton(8);">FAQ관리</li>
             <li onclick="linkbutton(9);">1대1문의관리</li>
+            <li onclick="linkbutton(30);">실시간 문의관리</li>
             <li onclick="linkbutton(17);">슬라이드관리</li>
             <li onclick="linkbutton(10);">쿠폰관리</li>
             <li onclick="linkbutton(20);">테스트</li>
@@ -127,6 +128,9 @@
                 	break;
                 case 20: 
                 	location.href="<%= request.getContextPath() %>/graph.gh"; 
+                	break;
+                case 30: 
+                	location.href="<%= request.getContextPath() %>/chatManagement.ad"; 
                 	break;
             }
         }

@@ -41,7 +41,7 @@ public class MemberDeleteLastPageController extends HttpServlet {
 			
 			session.setAttribute("alertMsg", "회원탈퇴 성공");
 			session.removeAttribute("loginUser");
-			request.getRequestDispatcher("views/member/memberDeleteLastPage.jsp").forward(request, response);
+			request.getRequestDispatcher("views/userMyPage/myPaymentRefund.jsp").forward(request, response);
 			
 			
 		}else {

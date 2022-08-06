@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "java.util.ArrayList, com.jj.userMyPage.model.vo.Payment" %>
 <%
-  ArrayList<Payment> list = (ArrayList<Payment>)request.getAttribute("list");	
+  ArrayList<Payment> list = (ArrayList<Payment>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -43,36 +43,38 @@
 	                <td><%= p.getUserName()%></td>
 	                <td><%= p.getPayDate()%></td>
 	                <td>
-	                  <button onclick="location.href='<%=contextPath%>/paymentDetails.my?payNo=<%= p.getPayNo() %>'" class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
-	                  <button onclick="refund();"class="btn btn-danger">환불신청</button>
-	                
-	                </td>
-	              </tr>
-              <% } %>
-            <% } %> 
-           
-    
+                    <button onclick="location.href='<%=contextPath%>/paymentDetails.my?payNo=<%= p.getPayNo() %>'" class="btn" style="background-color: #6363FF; color: white;">결제상세내역</button>
+	                <button onclick="refund(<%= p.getPayNo() %>);" class="btn btn-danger">환불신청</button>
+                    </td>
+              	  </tr>
+                	<% } %>
+ 
+                <% } %> 
+            	
             </tbody>
           </table>
- 
           <script>
           
    
-            function refund(){
+            function refund(payNo){
              
             	if (window.confirm("환불신청 하시겠습니까?")){
-            		window.alert("환불신청 성공");
-            		location ="<%=contextPath%>/paymentRefund.my";
+            		window.alert("성공적으로 환불신청 되었습니다.");
+            		location = "<%=contextPath%>/paymentRefund.my?payNo=" + payNo;
             	}else{
-            		window.alert("환불신청 취소")
+            		window.alert("환불신청을 취소하셨습니다.")
+            		
             	}
-                  
-        
-          }
-            
+			}
           </script>
         
 		</div>
+    
+            	
+                  
+        
+            
+          
 
  <%@ include file="../common/footer.jsp" %>
 </body>

@@ -105,4 +105,25 @@ public class MyPaymentDao {
 		}
 	
 	
+	public int myPaymentRefund(Connection conn, int payNo) {
+		
+		   int result = 0;
+		   PreparedStatement pstmt = null;
+		   String sql = prop.getProperty("myPaymentRefund");
+		   
+		   try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, payNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		   return result;
+		
+	}
+
 }
