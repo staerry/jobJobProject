@@ -92,21 +92,19 @@
             <div class="class-review">
                 <div class="review-header">
                     <h4>수강후기</h4>
-                    <span class="review-sorting">
-                        <ul class="sorting-standard">
-                            <li><a href="">최신 순</a></li>
-                            <li><a href="">좋아요 순</a></li>
-                            <li><a href="">높은 평점 순</a></li>
-                            <li><a href="">낮은 평점 순</a></li>
-                        </ul>
-                    </span>
+                    <div class="review-sorting">
+                            <button type="button" id="sort-date" value="date" >최신 순</button>
+                            <button type="button" id="sort-high" value="highScore">높은 평점 순</button>
+                            <button type="button" id="sort-low" value="lowScore">낮은 평점 순</button>
+                    </div>
                 </div>
 
-                <div class="review-detail">
+                <div id="review-detail">
                 <% if(list.isEmpty()) { %>
                 	<p id="no-reivew"> 아직 등록된 수강후기가 없습니다. </p>
                 <% }else { %>
-                	<% for(Review r : list) { %>
+                	<div id="review-table-area">
+                	<% for(Review r : list) { %>	<!-- 리뷰 리스트 시작 부분 -->
                     <table class="user-review">
                         <tr>
                         	<% if(r.getReviewScore() == 5) { %>
@@ -130,9 +128,154 @@
                     </table>
 				<% } %>
 				<% } %>
+				</div>
                 </div>
             </div>
         </div>
+        
+        <script>
+	
+        $("#sort-date").click(function(){
+        	
+        	$.ajax({
+				url: "<%= contextPath %>/review.cl",
+				data: {
+					clNo: <%= c.getClNo() %>,
+					standard: $("#sort-date").val()
+				},
+				type: "post",
+				success: function (list) {
+					console.log("최신순 리뷰 조회용 AJAX 통신 성공");
+					var value = "";
+				
+                    for(let i=0; i<list.length; i++) {
+                    value +=  "<table class='user-review'>"
+		                 	+ "<tr>"
+                	  	if(list[i].reviewScore == 5) {
+                    	value += "<td>" + list[i].userNo + "&nbsp;&nbsp;⭐️⭐️⭐️⭐️⭐ <span class='review-score'>" + list[i].reviewScore + "</span></td>";
+                    	} else if(list[i].reviewScore == 4) {
+		                value += "<td>" + list[i].userNo + "&nbsp;&nbsp;⭐️⭐⭐️⭐ <span class='review-score'>" + list[i].reviewScore + "</span></td>";
+                   	    } else if(list[i].reviewScore == 3) {
+                    	value += "<td>" + list[i].userNo + "&nbsp;&nbsp;⭐️️⭐️⭐ <span class='review-score'>" + list[i].reviewScore + "</span></td>";
+                   		} else if(list[i].reviewScore == 2) {
+                   		value += "<td>" + list[i].userNo + "&nbsp;&nbsp;⭐️️️⭐ <span class='review-score'>" + list[i].reviewScore + "</span></td>";
+                   		} else {
+                    	value += "<td>" + list[i].userNo + "&nbsp;&nbsp;⭐ <span class='review-score'>" + list[i].reviewScore + "</span></td>";
+                    	}
+	                    value +=  "</tr>"
+                   				+ "<tr>"
+                        		+ "<td id='review-date'>" + list[i].reviewCreatedate + "</td>"
+                    			+ "</tr>"
+                    			+ "<tr>"
+                        		+ "<td><p id='review-content'>" + list[i].reviewContent + "</p></td>"
+                    			+ "</tr>"
+			                	+ "</table>";
+                    }
+                    
+                    $("#review-detail").html(value);
+					
+				}, error: function () {
+					console.log("리뷰 조회용 AJAX 통신 실패");
+				}
+			})
+        })
+        
+        $("#sort-high").click(function(){
+        	
+        	$.ajax({
+				url: "<%= contextPath %>/review.cl",
+				data: {
+					clNo: <%= c.getClNo() %>,
+					standard: $("#sort-high").val()
+				},
+				type: "post",
+				success: function (list) {
+					console.log("높은 평점순 리뷰 조회용 AJAX 통신 성공");
+					/* console.log(list); */
+					
+					var value = "";
+					
+                    for(let i=0; i<list.length; i++) {
+                    value +=  "<table class='user-review'>"
+		                 	+ "<tr>"
+                	  	if(list[i].reviewScore == 5) {
+                    	value += "<td>" + list[i].userNo + "&nbsp;&nbsp;⭐️⭐️⭐️⭐️⭐ <span class='review-score'>" + list[i].reviewScore + "</span></td>";
+                    	} else if(list[i].reviewScore == 4) {
+		                value += "<td>" + list[i].userNo + "&nbsp;&nbsp;⭐️⭐⭐️⭐ <span class='review-score'>" + list[i].reviewScore + "</span></td>";
+                   	    } else if(list[i].reviewScore == 3) {
+                    	value += "<td>" + list[i].userNo + "&nbsp;&nbsp;⭐️️⭐️⭐ <span class='review-score'>" + list[i].reviewScore + "</span></td>";
+                   		} else if(list[i].reviewScore == 2) {
+                   		value += "<td>" + list[i].userNo + "&nbsp;&nbsp;⭐️️️⭐ <span class='review-score'>" + list[i].reviewScore + "</span></td>";
+                   		} else {
+                    	value += "<td>" + list[i].userNo + "&nbsp;&nbsp;⭐ <span class='review-score'>" + list[i].reviewScore + "</span></td>";
+                    	}
+	                    value +=  "</tr>"
+                   				+ "<tr>"
+                        		+ "<td id='review-date'>" + list[i].reviewCreatedate + "</td>"
+                    			+ "</tr>"
+                    			+ "<tr>"
+                        		+ "<td><p id='review-content'>" + list[i].reviewContent + "</p></td>"
+                    			+ "</tr>"
+			                	+ "</table>";
+                    }
+                    
+                    $("#review-detail").html(value);
+                    
+				}, error: function () {
+					console.log("리뷰 조회용 AJAX 통신 실패");
+				}
+			})
+        })
+        
+        $("#sort-low").click(function(){
+        	
+        	$.ajax({
+				url: "<%= contextPath %>/review.cl",
+				data: {
+					clNo: <%= c.getClNo() %>,
+					standard: $("#sort-low").val()
+				},
+				type: "post",
+				success: function (list) {
+					console.log("낮은 평점순 리뷰 조회용 AJAX 통신 성공");
+					
+					var value = "";
+					
+                    for(let i=0; i<list.length; i++) {
+                    value +=  "<table class='user-review'>"
+		                 	+ "<tr>"
+                	  	if(list[i].reviewScore == 5) {
+                    	value += "<td>" + list[i].userNo + "&nbsp;&nbsp;⭐️⭐️⭐️⭐️⭐ <span class='review-score'>" + list[i].reviewScore + "</span></td>";
+                    	} else if(list[i].reviewScore == 4) {
+		                value += "<td>" + list[i].userNo + "&nbsp;&nbsp;⭐️⭐⭐️⭐ <span class='review-score'>" + list[i].reviewScore + "</span></td>";
+                   	    } else if(list[i].reviewScore == 3) {
+                    	value += "<td>" + list[i].userNo + "&nbsp;&nbsp;⭐️️⭐️⭐ <span class='review-score'>" + list[i].reviewScore + "</span></td>";
+                   		} else if(list[i].reviewScore == 2) {
+                   		value += "<td>" + list[i].userNo + "&nbsp;&nbsp;⭐️️️⭐ <span class='review-score'>" + list[i].reviewScore + "</span></td>";
+                   		} else {
+                    	value += "<td>" + list[i].userNo + "&nbsp;&nbsp;⭐ <span class='review-score'>" + list[i].reviewScore + "</span></td>";
+                    	}
+	                    value +=  "</tr>"
+                   				+ "<tr>"
+                        		+ "<td id='review-date'>" + list[i].reviewCreatedate + "</td>"
+                    			+ "</tr>"
+                    			+ "<tr>"
+                        		+ "<td><p id='review-content'>" + list[i].reviewContent + "</p></td>"
+                    			+ "</tr>"
+			                	+ "</table>";
+                    }
+                    
+                    $("#review-detail").html(value);
+					
+				}, error: function () {
+					console.log("리뷰 조회용 AJAX 통신 실패");
+				}
+			})
+        })
+        
+        
+        
+        </script>
 
         <!-- 오른쪽 수강신청 메뉴 영역 -->
         <div class="floating-area">
@@ -175,6 +318,7 @@
  							clNo:<%= c.getClNo() %>},
  						type: "post",
  						success: function (likeCheck) {
+ 							console.log("찜 여부 확인용 AJAX 통신 성공");
  							if(likeCheck == 0){
  								var value ="<span style='color:red'>♡</span>&nbsp;이 강의 찜하기";
  								$("#my-zzim").html(value);
@@ -198,6 +342,7 @@
 						type: "post",
 						success: function (a) {
 							if(a.likeCheck == 0){
+								console.log("찜하기용 AJAX 통신 성공");
 								alert("이 강의를 찜했습니다. 😘❤");
 								
 								value = "내가 찜한 강의&nbsp;<span style='color:red'>♥</span>";
@@ -213,7 +358,7 @@
 							}
 							console.log("성공");
 						}, error: function () {
-							console.log("멘토에게 질문 작성용 AJAX 통신 실패");
+							console.log("찜하기용 AJAX 통신 실패");
 						}
 					})
                  }             
