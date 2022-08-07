@@ -20,31 +20,31 @@
 	                  </li>
 	                  <li>
 	                      <input type="checkbox" id="it" name="category" value="1">
-	                      <label for="it">IT 개발</label>
+	                      <label for="it">IT • 개발</label>
 	                  </li>
 	                  <li>
 	                      <input type="checkbox" id="marketing" name="category" value="2">
-	                      <label for="marketing">마케팅•MD•영업</label>
+	                      <label for="marketing">마케팅 • MD • 영업</label>
 	                  </li>
 	                  <li>
 	                      <input type="checkbox" id="accounting" name="category" id="accounting" value="3">
-	                      <label for="accounting">회계•재무•금융</label>
+	                      <label for="accounting">회계 • 재무 • 금융</label>
 	                  </li>
 	                  <li>
 	                      <input type="checkbox" id="strategy" name="category" id="strategy" value="4">
-	                      <label for="strategy">전략•기획</label>
+	                      <label for="strategy">전략 • 기획</label>
 	                  </li>
 	                  <li>
 	                      <input type="checkbox" id="distribution" name="category" id="distribution" value="5">
-	                      <label for="distribution">유통•무역•구매</label>
+	                      <label for="distribution">유통 • 무역 • 구매</label>
 	                  </li>
 	                  <li>
 	                      <input type="checkbox" id="public" name="category" id="public" value="6">
-	                      <label for="public">공사•공기업•공무원</label>
+	                      <label for="public">공사 • 공기업 • 공무원</label>
 	                  </li>
 	                  <li>
 	                      <input type="checkbox" id="special" name="category" id="special" value="7">
-	                      <label for="special">전문•특수</label>
+	                      <label for="special">전문 • 특수</label>
 	                  </li>
 	              </ul>  
 	              
