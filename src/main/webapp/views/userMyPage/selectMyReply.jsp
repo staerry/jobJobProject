@@ -21,38 +21,7 @@
     <br><br>
     <div class="container">
         <h2>내 댓글</h2>
-        
-          <div class="form-check-inline">
-            <label class="form-check-label" for="all">
-              <input type="radio" class="form-check-input" id="all" name="category" value="all" checked>전체
-            </label>
-          </div>
-          <div class="form-check-inline">
-            <label class="form-check-label" for="QnA">
-              <input type="radio" class="form-check-input" id="QnA" name="category" value="QnA">질문&답변
-            </label>
-          </div>
-          <div class="form-check-inline">
-            <label class="form-check-label" for="study">
-              <input type="radio" class="form-check-input" id="study" name="category" value="study">스터디
-            </label>
-          </div>
-          <div class="form-check-inline">
-            <label class="form-check-label" for="counsel">
-              <input type="radio" class="form-check-input" id="counsel" name="category" value="counsel">고민상담
-            </label>
-          </div>
-          <div class="form-check-inline">
-            <label class="form-check-label" for="review">
-              <input type="radio" class="form-check-input" id="review" name="category" value="review">후기
-            </label>
-          </div>
-          <br><br>
-          <input type="text" placeholder="키워드 입력">
-          <button type="submit" class="btn" style="background-color: #6363FF; color: white;">검색</button>
-          <br>
-
-          
+          <hr>
           <br>
           <span>검색결과 조회</span>
           <br><br>
