@@ -21,7 +21,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/newrefundFinish.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin/newsrefundFinish.css">
 <title>Insert title here</title>
 </head>
 <body>
