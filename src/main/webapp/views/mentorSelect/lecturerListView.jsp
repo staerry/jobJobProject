@@ -37,7 +37,7 @@
         <div class="mentor-list-area">
             <!-- 멘토 목록 헤더 -->
             <div class="mentor-list-header">
-                <h2>멘토링</h2>
+                <h3>멘토링</h3>
                 <p>업계 선배들 혹은 동료들에게서 인사이트를 얻어보세요.</p>
             </div>
 
@@ -76,18 +76,6 @@
                 <% } %>
             </div>
             
-            <div class="paging-area">
-                <ul class="pagination">
-                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                  </ul>
-            </div>
-
         </div>
 
     </div> 

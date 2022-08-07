@@ -113,7 +113,7 @@
  								$(".like-count").html(value);
  								console.log(likeCheck);
  							}
- 							console.log("좋아요 조회용 성공");
+ 							console.log("좋아요 조회용 AJAX 통신 성공");
  						}, error: function () {
  							console.log("커뮤니티 좋아요용 AJAX 통신 실패");
  						}
@@ -137,7 +137,7 @@
 								var value = "♡&nbsp;" + b.likeCount;
 								$(".like-count").html(value);
 							}
-							console.log("좋아요 성공");
+							console.log("좋아요 추가/해제용 AJAX 통신 성공");
 						}, error: function () {
 							console.log("커뮤니티 좋아요용 AJAX 통신 실패");
 						}
