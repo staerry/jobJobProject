@@ -121,12 +121,21 @@ public class ClassService {
 		return listCount;
 	}
 	
+	public int selectBuyFirst(int userNo) {
+		Connection conn = getConnection();
+		int firstCheck = new ClassDao().selectBuyFirst(conn, userNo);
+		close(conn);
+		return firstCheck;
+		
+	}
+	
 	// orderName, orderPhone, orderEmail, payment, finalPayment, isuCpNo
-	public int enrollClass(int userNo, int clNo, String orderName, String orderPhone, String orderEmail, String payment, int finalPayment, String isuCpNo) {
+	public int enrollClass(int userNo, int clNo, String orderName, String orderPhone, String orderEmail, String payment, int finalPayment, String isuCpNo, int firstBuy) {
 		
 		// 1) PAY 테이블에 INSERT
 		// 2) ISSUANCECOUPON 테이블에 UPDATE
 		// 3) CLASS_ING 테이블에 INSERT
+		// 4) 수강신청 이력이 없는 경우, 즉 firstCheck == 0 일 때는 ISSUANCECOUPON 테이블에 INSERT
 		
 		Connection conn = getConnection();
 		
@@ -147,8 +156,18 @@ public class ClassService {
 		// 쿠폰과 상관 없이 class_ing 테이블은 항상 update
 		int ingResult = new ClassDao().insertClassIng(conn, userNo, clNo);
 		
-		if(payResult > 0 && couponResult > 0  && ingResult > 0) {
+		// 수강 이력이 없는 첫 구매인 경우 첫 구매 쿠폰 발급
+		if(firstBuy == 0) {
+			int issueFirstCpResult = new ClassDao().insertIssuanceFirstCoupon(conn, userNo);
+			
+			if(payResult > 0 && couponResult > 0  && ingResult > 0 && issueFirstCpResult > 0) {
+				result = 1;
+			}
+			
+		} else { 
+			if(payResult > 0 && couponResult > 0  && ingResult > 0) {
 			result = 1;
+			}
 		}
 		
 		if(result > 0) {
@@ -162,7 +181,7 @@ public class ClassService {
 		System.out.println("ing : " + ingResult);
 		
 		return result;
-		
+				
 	}
 	
 	public int selectBookmark(int clNo, int userNo) {
@@ -216,6 +235,13 @@ public class ClassService {
 		ArrayList<Review> sortedList = new ClassDao().selectReviewByScoreAsc(conn, clNo);
 		close(conn);
 		return sortedList;
+	}
+	
+	public int selectNoRefund(int clNo) {
+		Connection conn = getConnection();
+		int noRefund = new ClassDao().selectNoRefund(conn, clNo);
+		close(conn);
+		return noRefund;
 	}
 
 }
