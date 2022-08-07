@@ -66,7 +66,7 @@
 	    <option value=5 >5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
 	    <option value=7>7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
     </select>
-    <span style="padding-left: 25%">
+    <span style="padding-left: 30%">
     <input type="date" value="" id="selDate">
     </span>
     </div>
