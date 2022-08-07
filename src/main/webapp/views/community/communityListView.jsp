@@ -13,6 +13,8 @@
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
 	
+	String sort = (String)request.getAttribute("sort");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -73,7 +75,7 @@
                 <span class="community-sorting-order">
                     <ul class="community-sorting-standard"> 
                         <li onclick="location.href='<%= contextPath %>/list.co?category=<%= categoryNo %>&sort=no&cpage=1'">• 최신 순</li>
-                        <li onclick="location.href='<%= contextPath %>/list.co?category=<%= categoryNo %>&sort=replyCnt&cpage=1'">• 조회수 순</li>
+                        <li onclick="location.href='<%= contextPath %>/list.co?category=<%= categoryNo %>&sort=count&cpage=1'">• 조회수 순</li>
 						<li onclick="location.href='<%= contextPath %>/list.co?category=<%= categoryNo %>&sort=likeCnt&cpage=1'">• 좋아요 순</li>
                     </ul>                
                 </span>
@@ -129,24 +131,38 @@
             <!-- 페이징바 영역 -->
             <div class="paging-area">
                 <ul class="pagination">
-                	<% if(currentPage != 1) { %>	<!-- 보고 있는 페이지가 1번 페이지일 때 이전 버튼선택 X -->
-                    	<li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage-1 %>">&lt;</a></li>
+                	<% if(sort == null) { %>
+	                	<% if(currentPage != 1) { %>	<!-- 보고 있는 페이지가 1번 페이지일 때 이전 버튼선택 X -->
+	                    	<li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage-1 %>">&lt;</a></li>
+		                <% } %>
+		                
+		                <% for(int p=startPage; p<=endPage; p++) { %>
+		                    <li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= p %>"><%= p %></a></li>
+		                <% } %>
+		                
+		                <% if(currentPage != maxPage) { %>    
+		                    <li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage+1 %>">&gt;</a></li>
+		                <% } %>  
+		                  
+	                <% }else { %>
+   	                	<% if(currentPage != 1) { %>	<!-- 보고 있는 페이지가 1번 페이지일 때 이전 버튼선택 X -->
+	                    	<li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&sort=<%= sort %>&cpage=<%= currentPage-1 %>">&lt;</a></li>
+		                <% } %>
+		                
+		                <% for(int p=startPage; p<=endPage; p++) { %>
+		                    <li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&sort=<%= sort %>&cpage=<%= p %>"><%= p %></a></li>
+		                <% } %>
+		                
+		                <% if(currentPage != maxPage) { %>    
+		                    <li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&sort=<%= sort %>&cpage=<%= currentPage+1 %>">&gt;</a></li>
+		                <% } %>    
 	                <% } %>
-	                
-	                <% for(int p=startPage; p<=endPage; p++) { %>
-	                    <li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= p %>"><%= p %></a></li>
-	                <% } %>
-	                
-	                <% if(currentPage != maxPage) { %>    
-	                    <li class="page-item"><a class="page-link" href="<%= contextPath %>/list.co?category=<%= categoryNo %>&cpage=<%= currentPage+1 %>">&gt;</a></li>
-	                <% } %>    
                   </ul>
             </div>
 
         </div>
 
     </div>
-
 
  	<%@ include file="../common/footer.jsp" %>
 </body>
