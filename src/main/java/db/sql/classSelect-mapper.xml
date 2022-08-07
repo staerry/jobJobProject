@@ -465,5 +465,34 @@
 		    BY REVIEW_SCORE ASC, REVIEW_CREATEDATE DESC
      </entry>
      
+     <!-- 수강신청 이력이 있는 회원인지 확인 -->
+     <entry key="selectBuyFirst">
+     	SELECT COUNT(*) AS FIRST_CHECK
+     	  FROM CLASS_ING
+     	 WHERE USER_NO = ?
+     </entry>
+     
+     <!-- 첫 강의 구매 쿠폰 발급 -->
+     <entry key="insertIssuanceFirstCoupon">
+     	INSERT 
+     	  INTO ISSUANCECOUPON
+     	  ( ISUCP_NO
+     	  , USER_NO
+     	  , CP_NO
+     	  )
+     	  VALUES
+     	  ( SEQ_ISUCP.NEXTVAL
+     	  , ?
+     	  , 500001
+     	  )
+     </entry>
+     
+     <entry key="selectNoRefund">
+	     SELECT REFUND
+	  	   FROM PAY
+		  WHERE USER_NO = ?
+	   	    AND REFUND = 'Y'
+     
+     </entry>
 	    
 </properties>

@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <!-- css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/setting.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/classSelect/classEnrollResult.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/classSelect/classFirstEnrollResult.css">
 
 <!-- 부트스트랩 아이콘 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
@@ -24,11 +24,16 @@
 
     <div class="container">
         <div class="result-area">
-                <i class="bi bi-check2-circle bi" id="check-icon"></i>
-            
-            <h2>수강신청이 완료되었습니다.</h2>
+            <i class="fas fa-gift" id="gift-icon"></i>
+            <div><h2>✨ 깜짝 선물이 도착했습니다! 🎉 </h2></div>
             <br>
-            <h3>지금부터 모든 강의 콘텐츠를 이용하실 수 있습니다.</h3>
+            <div class="coupon-gift">
+                <div class="coupon-inner">
+                    <div id="gift-title"><h3>첫 강의 구매 기념 할인쿠폰</h3></div>
+                    <div id="gift-won"><h3><i class="fas fa-won-sign"></i> 20,000</h3></div>
+                    <div id="gift-won"><h5>(유효기간 : 발급일로부터 한 달)</h5></div>
+                </div>
+            </div>
             <br>
             <br>
             <div class="button-area">
@@ -36,7 +41,12 @@
                 <button id="go-mypage"><a href="<%= contextPath %>/myClassIng.my">내 강의 보러가기</a></button>
             </div>            
         </div>
-
+        
+        <br>
+        <br>
+        <br>
+        <br>
+        
     </div>
 
 
