@@ -179,9 +179,20 @@
 							<td colspan="2" align="center">회원 본인은 주문 내용을 확인했으며, 구매조건 및 개인정보 취급방침과 결제에 동의합니다.</td>
 						</tr>
 						<tr>
-							<td colspan="2" align="center"><button type="submit" id="class-enroll-btn">결제하기</button></td>
+							<td colspan="2" align="center"><button type="submit" id="class-enroll-btn" onclick="return payConfirm();">결제하기</button></td>
 						</tr>
 						</table>
+						
+						<script>
+                           	function payConfirm() {
+                           		if(confirm('결제를 진행하시겠습니까?')) {
+                           			return true;
+                           		}else {
+                           			return false;
+                           		}
+                           	}
+                        </script>
+	                            
 					</div>
 				</div>
 			</form>

@@ -82,6 +82,12 @@
     
 }
 
+.mentor-card:hover{
+    transform: scale(1.05);
+    transition: all 0.3s;
+}
+
+
 .mentor-photo-wrap{
     width:100px;
     height:100px;
@@ -119,10 +125,3 @@
     border:1px solid #6353ff;
 }
 
-.paging-area {
-    display: flex;
-    justify-content: center;
-}
-.pagination a{
-    color:#6353ff
-}

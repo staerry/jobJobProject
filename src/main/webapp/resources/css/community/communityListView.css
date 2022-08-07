@@ -146,7 +146,7 @@ a {
 
 #community-title{
     width:70%;
-    font-weight:550;
+    font-weight:510;
    	cursor:pointer;
 }
 
@@ -159,6 +159,7 @@ a {
     height:70px;
     color:#616568;
     line-height:1.5;
+    font-size:15px;
 }
 
 .list-table-foot td {

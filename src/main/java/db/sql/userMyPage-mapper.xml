@@ -239,5 +239,31 @@ order by
 	 WHERE PAY_NO = ?  
 </entry>
 
+<entry key = "selectVodListByClNo">
+select
+    v.*,
+    c.cl_title,
+    c.cl_subtitle
+from 
+    vod v join class c
+    on v.cl_no = c.cl_no
+where
+    v.cl_no = ?
+and
+    v.vod_status = 'A'
+</entry>
+<entry key = "selectOneVod">
+select
+    v.*,
+    c.cl_title
+from
+    vod v join class c
+    on v.cl_no = c.cl_no
+where 
+    vod_no = ?
+and
+    vod_status = 'A'
+</entry>
+
 
 </properties>

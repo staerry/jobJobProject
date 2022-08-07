@@ -107,7 +107,6 @@ li>a{color:black;}
     color:black;
 }
 
-
 .class-sort > i {
     width:20px;
     height:20px;
@@ -132,13 +131,14 @@ li>a{color:black;}
 
 .class-cover {
     width: 230px;
-    height: 250px;
+    height: 260px;
     border:1px solid #e5e7eb;
     border-radius: 4px;
     padding:10px 15px 10px 15px;
     box-shadow:0 4px 24px 0 rgb(0 0 0 / 4%);
     cursor:pointer;
     margin:17px;
+   
 }
 
 .class-cover:hover{
@@ -161,10 +161,9 @@ li>a{color:black;}
 
 #class-cover-img{
 	margin-top:3px;
-	margin-bottom:3px;
+	margin-bottom:10px;
 }
 
 #zzim-count{
-	margin-top:3px;
     margin-right:10px;
 }

@@ -141,4 +141,28 @@ where
     l.user_no = ?
 </entry>
 
+<entry key="selectProfile">
+select 
+	PROFILE_PATH 
+from 
+	lecturer 
+where 
+	user_no = ?
+</entry>
+
+<entry key="updateLecturer">
+update 
+	lecturer 
+set 
+	ltr_info = ?, 
+	ltr_career = ?, 
+	profile_path = ?
+where 
+	user_no = ?
+
+</entry>
+
+
+
+
 </properties>

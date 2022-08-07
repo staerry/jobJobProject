@@ -161,7 +161,7 @@ import="com.jj.mentorSelect.model.vo.Lecturer, com.jj.classSelect.model.vo.Class
 										<td><textarea row="3" cols="50" style="resize:none"
 												id="question-content"
 												minlength="50"
-												onclick="if(this.value=='최소 50자 이상으로 작성해 주세요.'){this.value=''}">최소 50자 이상으로 작성해 주세요.</textarea></td>
+												onclick="if(this.value=='서로 예의를 지켜 존중하는 문화를 만들어가요.'){this.value=''}">서로 예의를 지켜 존중하는 문화를 만들어가요.</textarea></td>
 									</tr>
 									<tr>
 										<td align="right"><button id="question-enroll-btn"
@@ -190,13 +190,14 @@ import="com.jj.mentorSelect.model.vo.Lecturer, com.jj.classSelect.model.vo.Class
 										ansNo:<%= l.getUserNo() %>},
 									type: "post",
 									success: function (result) {
+										console.log("멘토에게 질문하기 질문 작성용 AJAX 통신 성공")
 										if (result > 0) {    // 성공했을 경우 새 댓글이 아래 보이게 함
 											selectQnaList();
 											$("#question-title").val("");
 											$("#question-content").val("");
 										}
 									}, error: function () {
-										console.log("멘토에게 질문 작성용 AJAX 통신 실패");
+										console.log("멘토에게 질문하기 질문 작성용 AJAX 통신 실패");
 									}
 								})
 
@@ -229,7 +230,7 @@ import="com.jj.mentorSelect.model.vo.Lecturer, com.jj.classSelect.model.vo.Class
 										url: "<%= contextPath %>/qlist.lt",
 										data: { ltrNo:<%= l.getUserNo() %>},
 										success: function (list) {
-											console.log(list);
+											console.log("멘토에게 질문하기 질문 조회용 AJAX 통신 성공");
 
 											let value = "";     // 질문 + 답변을 한 쌍으로 반복                                
 
@@ -258,7 +259,7 @@ import="com.jj.mentorSelect.model.vo.Lecturer, com.jj.classSelect.model.vo.Class
 												$(".question-reply-select").html(value);
 											}
 										}, error: function () {
-											console.log("댓글목록 조회용 ajax 통신 실패");
+											console.log("멘토에게 질문하기 질문 조회용 ajax 통신 실패");
 										}
 									})
 								}

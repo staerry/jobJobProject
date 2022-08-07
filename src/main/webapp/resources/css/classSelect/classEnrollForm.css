@@ -3,7 +3,7 @@
 .container {
     width:1190px;
     height:auto;
-    border:1px solid blue;
+    /* border:1px solid blue; */
     padding:28px 16px 100px 34px;
 
 }
