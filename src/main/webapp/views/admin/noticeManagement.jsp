@@ -56,7 +56,7 @@
 			                        
 			                        	<script>
 									        function deleteContent(num){
-									            if(confirm("정말 삭제 하시겠습니끼?")){
+									            if(confirm("정말 삭제 하시겠습니까?")){
 									            	location.href='<%= contextPath %>/noticeDelete.ad?no=' + num;
 									            }
 									        }
