@@ -372,7 +372,7 @@
 
 		<!--vod 부분-->
 		<div class="main-vod-title">
-			<h2>강의목록</h2>
+			<h2>클래스목록</h2>
 			<p><b><a href="">더보기</a></b></p>
 		</div>
 		<div class="main-vod-list">
