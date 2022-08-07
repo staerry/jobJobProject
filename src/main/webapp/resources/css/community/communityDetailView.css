@@ -43,6 +43,7 @@ a {
     border:1px solid #6363ff;
     background-color: #6363ff;
     border-radius:4px;
+    cursor:default;
 }
 
 .edit-delete-btn {

@@ -115,8 +115,8 @@
                 <br>
     
                 <div align="center">
-                    <button type="submit" disabled>다음</button>
-                    <button type="reset">초기화</button>
+                    <button type="submit" class="btn btn-primary" style="background: #6363FF; border: none; width: 100px;" disabled>다음</button>
+                    <button type="reset" class="btn btn-primary" style="background: #6363FF; border: none; width: 100px;">초기화</button>
                 </div>
                 
                 <script>
@@ -140,6 +140,7 @@
 
                         if(regPhone.test(phone)){ // true 조건 맞음
                             $('#check').html('GOOD!');
+                            $("#enroll-form :submit").removeAttr("disabled");
                         }else{
                             $('#check').html('다시 입력해주세요.');
                         }
@@ -172,7 +173,7 @@
                 					$idInput.focus(); // id입력칸 깜빡이도록
                 				}else{// 사용 가능일 경우
                 					if(confirm("멋진 아이디네요! 사용하시겠습니까?")){//사용하겠다
-                						$("#enroll-form :submit").removeAttr("disabled");
+                						//$("#enroll-form :submit").removeAttr("disabled");
                 						$idInput.attr("readonly", true);
                 					}else{//사용안하겠다
                 						$idInput.focus();

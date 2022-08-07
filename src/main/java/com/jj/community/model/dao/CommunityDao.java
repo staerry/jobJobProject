@@ -329,11 +329,11 @@ public class CommunityDao {
 		
 	}
 	
-	public ArrayList<Community> selectListByReply(Connection conn, PageInfo pi, int category) {
+	public ArrayList<Community> selectListByCount(Connection conn, PageInfo pi, int category) {
 		ArrayList<Community> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectListByReply");	// 미완성된 sql
+		String sql = prop.getProperty("selectListByCount");	// 미완성된 sql
 			
 		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
 		int endRow = startRow + pi.getBoardLimit() - 1;

@@ -95,6 +95,8 @@ public class MentorInsertController extends HttpServlet {
 					
 			int result = new MemberService().insertMentorTo_UserInfo_Mentor(m, mt);
 			
+			System.out.println("멘토 : " + mt);
+			
 			if(result > 0) { // USERINFO & MENTOR에 제대로 insert됨 => 대기중 화면으로 이동
 				
 				session.setAttribute("alertMsg", "성공적으로 가입되었습니다!");
