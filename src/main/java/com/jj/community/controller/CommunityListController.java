@@ -67,12 +67,12 @@ public class CommunityListController extends HttpServlet {
 		ArrayList<Community> list = new ArrayList<>();
 		
 		// 현재 요청한 페이지(currentPage)에 보여질 게시글 리스트 조회
-		// 최신순, 좋아요순, 댓글순 정렬
+		// 최신순, 좋아요순, 조회순 정렬
 		if(sort != null) {
 			switch(sort) {
 			case "no" : list = new CommunityService().selectList(pi, category); break;
 			case "likeCnt" : list = new CommunityService().selectListByLike(pi, category); break;
-			case "replyCnt" : list = new CommunityService().selectListByReply(pi, category); break;
+			case "count" : list = new CommunityService().selectListByCount(pi, category); break;
 			}			
 		}else {
 			list = new CommunityService().selectList(pi, category);
@@ -80,6 +80,7 @@ public class CommunityListController extends HttpServlet {
 
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
+		request.setAttribute("sort", sort);
 		request.setAttribute("categoryNo", category);
 		
 		request.getRequestDispatcher("views/community/communityListView.jsp").forward(request, response);

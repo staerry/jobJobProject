@@ -43,6 +43,9 @@ public class CommunityDetailController extends HttpServlet {
 			
 			request.setAttribute("c", c);
 			request.getRequestDispatcher("views/community/communityDetailView.jsp").forward(request, response);
+		}else {
+			request.getSession().setAttribute("alertMsg", "문제가 발생했습니다. 잠시 후에 다시 시도해 주세요.");
+			response.sendRedirect(request.getContextPath()+"/list.cm");
 		}
 	}
 

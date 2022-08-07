@@ -165,7 +165,7 @@
 	  		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
-		<entry key="selectListByReply">
+		<entry key="selectListByCount">
 		SELECT * 
 		  FROM (
 		  		 SELECT ROWNUM AS RNUM, A.* 

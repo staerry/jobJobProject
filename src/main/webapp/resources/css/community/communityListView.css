@@ -105,8 +105,8 @@ a {
 
 .community-sorting-standard li {
     margin-right:25px;
-    color:#ABB0B5;
-    font-size:14px;
+    color:#999999;
+    font-size:15px;
     cursor:pointer;
 }
 
@@ -186,4 +186,25 @@ a {
 }
 .pagination a{
     color:#6353ff
+}
+
+.page-link {
+  color: #6363FF; 
+  background-color: #fff;
+  border: 1.5px solid #6363FF; 
+}
+
+.page-item.active .page-link {
+ z-index: 1;
+ color: #555;
+ font-weight:bold;
+ background-color: #f1f1f1;
+ border-color: #ccc;
+ 
+}
+
+.page-link:focus, .page-link:hover {
+  color: white;
+  background-color: #6363FF; 
+  border-color: #ccc;
 }

@@ -36,7 +36,7 @@
                 <tr>
                     <td colspan="2">
                         <div class="board-btns">
-                            <span><button id="content-category"><%= c.getCommCategory() %></button></span>
+                            <span><button id="content-category"> <%= c.getCommCategory() %></button></span>
                              
                              <!--로그인 + 글 주인 회원에게만 수정, 버튼이 보이게 함 -->
                              <%if(loginUser != null && loginUser.getUserId().equals(c.getCommWriterId())) { %>                                                       	
@@ -192,6 +192,7 @@
             		},
             		type:"post",
             		success:function(result){
+            			console.log("댓글 작성용 AJAX 통신 성공");
             			if(result > 0) {
             				selectReplyList();
             				$("#reply-body").val("");	// 댓글 작성 완료 시 textarea 초기화
@@ -224,6 +225,7 @@
                 			url:"<%= contextPath %>/rlist.co",
                 			data:{contentNo:<%= c.getCommNo() %>},
                 			success:function(list){
+                				console.log("댓글 조회용 AJAX 통신 성공");
                 				let value ="";
                 				
                 				if(Array.isArray(list) && list.length==0) {
