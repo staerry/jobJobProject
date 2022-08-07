@@ -4,10 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
 <style>
      button{
-        width: 200px;
+        width: 300px;
         height: 30px;
         border-style: none;
         border-radius: 5px;
@@ -36,10 +41,10 @@
 
             <br><br>
 
-            <h2>비밀번호 찾기</h2><br>
+            <h2>비밀번호 찾기</h2>	
             <span style="font-size: 10px; text-align: center;">계정으로 사용하는 이메일을 입력하면, 비밀번호 찾기 링크를 전송해 드립니다.</span><br><br>
 
-            <input type="text" name="pwdEmail" placeholder="이메일 주소 입력"><br><br>
+            <input type="text" name="pwdEmail" class="form-control" style="width: 300px;" placeholder="이메일 주소 입력"><br>
 
             <button type="submit" onclick="checkEmail();">비밀번호 찾기 이메일 발송</button>
         
