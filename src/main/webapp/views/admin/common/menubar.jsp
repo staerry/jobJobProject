@@ -36,7 +36,7 @@
             <li onclick="linkbutton(30);">실시간 문의관리</li>
             <li onclick="linkbutton(17);">슬라이드관리</li>
             <li onclick="linkbutton(10);">쿠폰관리</li>
-            <li onclick="linkbutton(20);">테스트</li>
+            <li onclick="linkbutton(20);">홈페이지정보</li>
         </ul>
         <br><br>
 

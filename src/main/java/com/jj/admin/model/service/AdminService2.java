@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import com.jj.admin.model.dao.AdminDao;
 import com.jj.admin.model.dao.AdminDao2;
+import com.jj.admin.model.vo.BoardData;
+import com.jj.admin.model.vo.GraphDate;
 import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.classSelect.model.vo.ClassIng;
 import com.jj.common.model.vo.PageInfo;
@@ -982,5 +984,26 @@ public class AdminService2 {
 		int rqRefundCount = new AdminDao2().rqRefundCount(conn);
 		close(conn);
 		return rqRefundCount;
+	}
+	
+	public ArrayList<GraphDate> graph(ArrayList<GraphDate> list){
+		Connection conn = getConnection();
+		ArrayList<GraphDate> list1 = new AdminDao2().graph(conn,list);
+		close(conn);
+		return list1;
+	}
+	
+	public ArrayList<GraphDate> graph2(ArrayList<GraphDate> list,int s){
+		Connection conn = getConnection();
+		ArrayList<GraphDate> list1 = new AdminDao2().graph2(conn,list,s);
+		close(conn);
+		return list1;
+	}
+	
+	public ArrayList<BoardData> boardDetail(ArrayList<BoardData> list){
+		Connection conn = getConnection();
+		ArrayList<BoardData> list1 = new AdminDao2().boardDetail(conn,list);
+		close(conn);
+		return list1;
 	}
 }
