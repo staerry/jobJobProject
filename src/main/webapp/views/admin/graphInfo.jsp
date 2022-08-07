@@ -245,6 +245,11 @@
     })
     
     $('#selDate').change(function(){
+    	if($('#selDate').val()>currentdate){
+    		alert('유효한 날짜로 검색해주세요.')
+    		$('#selDate').val(currentdate)
+    	}else{
+    	
     	$.ajax({
     		url:"<%=request.getContextPath()%>/boardDetail.de",
     		data:{
@@ -322,6 +327,7 @@
     			alert('error')
     		}
     	})
+    	}
     })
     
     $(function(){
@@ -391,6 +397,7 @@
     	console.log($('#lastDate').val())
 		if($('#lastDate').val()>$('#currentDate').val() || $('#currentDate').val()>currentdate){
 			alert('정확한범위를 설정하세요.')
+			$('#lastDate').val(lastdate)
 		}else{
     	
     	$.ajax({
@@ -574,9 +581,10 @@
 	})
 	
 	$('#currentDate').change(function(){
-    	console.log($('#lastDate').val())
+    	
 		if($('#lastDate').val()>$('#currentDate').val() || $('#currentDate').val()>currentdate){
 			alert('정확한범위를 설정하세요.')
+			$('#currentDate').val(currentdate)
 		}else{
     	
     	$.ajax({
