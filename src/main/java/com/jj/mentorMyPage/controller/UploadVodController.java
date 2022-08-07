@@ -2,6 +2,8 @@ package com.jj.mentorMyPage.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -86,6 +88,7 @@ public class UploadVodController extends HttpServlet {
 				String vodTitle = multiRequest.getParameter("vodTitle");
 				int clNo = Integer.parseInt(multiRequest.getParameter("clNo"));
 				String clTitle = multiRequest.getParameter("clTitle");
+				System.out.println(clTitle);
 //				File upFile = multiRequest.getFile("vodFile");
 //				System.out.println(upFile);
 				// Class 테이블에 insert, SlideAttachment에 insert
@@ -103,7 +106,7 @@ public class UploadVodController extends HttpServlet {
 				int result = new MentorMyService().insertVod(vod);
 				
 				if(result > 0) { // Class에 insert됨 => 대기중 화면으로 이동
-					
+					clTitle = URLEncoder.encode(clTitle, "UTF-8");
 					response.sendRedirect(request.getContextPath() + "/myVodList.my?clNo="+clNo+"&clTitle="+clTitle);
 					
 				}else { // 실패 가입에 실패했습니다. 이 페이지 머무르기 가능? & 파일 삭제

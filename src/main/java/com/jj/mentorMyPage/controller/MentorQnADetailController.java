@@ -1,4 +1,4 @@
-package com.jj.mentorMyPage;
+package com.jj.mentorMyPage.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MentorQnADetailController
+ * Servlet implementation class MentorQnADetailController2
  */
 @WebServlet("/qnaDetail.my")
 public class MentorQnADetailController extends HttpServlet {
@@ -27,8 +27,8 @@ public class MentorQnADetailController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		게시글의 질문과 답변 창 보여주는 뷰 
-		request.getRequestDispatcher("views/mentorMyPage/mentorQnA.jsp").forward(request, response);;
-	}
+		request.getRequestDispatcher("views/mentorMyPage/mentorQnA.jsp").forward(request, response);
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

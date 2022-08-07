@@ -32,6 +32,7 @@ public class MyVodListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
 		int clNo = Integer.parseInt(request.getParameter("clNo"));
 		String clTitle = request.getParameter("clTitle");
 		List<Vod> list = new MentorMyService().selectVodList(clNo);
