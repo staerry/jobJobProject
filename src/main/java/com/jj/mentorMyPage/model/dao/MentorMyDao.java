@@ -324,6 +324,59 @@ Properties prop = new Properties();
 		
 		return lecturer;
 	}
+
+
+	public String selectProfile(Connection conn, Member member) {
+		String profile = "/resources/image/mentorProfileImg/defaultProfile.jpg";
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProfile");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, member.getUserNo());
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				profile = rset.getString("PROFILE_PATH");
+					
+			}
+			
+			} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return profile;
+	}
+
+
+	public int updateLecturer(Connection conn, Member member, Lecturer lecturer) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateLecturer");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, lecturer.getLtrInfo());
+			pstmt.setString(2, lecturer.getLtrCareer());
+			pstmt.setString(3, lecturer.getProfilePath());
+			pstmt.setInt(4, member.getUserNo());
+			
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+
+			close(pstmt);
+		}
+		return result;
+	}
 		
 		
 }

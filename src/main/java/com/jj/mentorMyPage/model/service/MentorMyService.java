@@ -86,11 +86,11 @@ public class MentorMyService {
 	public int deleteMyAns(int userNo, String replyNo) {
 	
 			
-			Connection conn = getConnection();
-			int result = new MentorMyDao().deleteMyAns(conn, userNo, replyNo);
-			close(conn);
-			return result;
-		}
+		Connection conn = getConnection();
+		int result = new MentorMyDao().deleteMyAns(conn, userNo, replyNo);
+		close(conn);
+		return result;
+	}
 
 	public Lecturer selectLecturerByUserNo(Member member) {
 		Connection conn = getConnection();
@@ -98,6 +98,21 @@ public class MentorMyService {
 		close(conn);
 		
 		return lecturer;
+	}
+
+	public String selectProfile(Member member) {
+		Connection conn = getConnection();
+		String profile = new MentorMyDao().selectProfile(conn, member);
+		close(conn);
+		
+		return profile;
+	}
+
+	public int updateLecturer(Member member, Lecturer lecturer) {
+		Connection conn = getConnection();
+		int result = new MentorMyDao().updateLecturer(conn, member, lecturer);
+		close(conn);
+		return result;
 	}
 
 	
