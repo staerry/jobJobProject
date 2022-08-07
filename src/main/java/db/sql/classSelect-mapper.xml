@@ -494,5 +494,21 @@
 	   	    AND REFUND = 'Y'
      
      </entry>
-	    
+	 
+	 
+	 <!--작성자 이지원  -->
+    <entry key="selectIsClassing">
+    select 
+    	count(*) count
+	from
+	class_ing ci join userinfo u
+	    on ci.user_no = u.user_no
+	join class c
+	    on ci.cl_no = c.cl_no
+	where
+	    ci.user_no = ?
+	and
+	    ci.cl_no = ?
+    </entry>
+	
 </properties>

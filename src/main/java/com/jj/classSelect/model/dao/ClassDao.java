@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.jj.classSelect.model.vo.Class;
 import com.jj.community.model.vo.Review;
 import com.jj.coupon.vo.IssuanceCoupon;
+import com.jj.member.model.vo.Member;
 
 public class ClassDao {
 	
@@ -877,6 +878,30 @@ public class ClassDao {
 		return noRefund;
 		
 		
+	}
+	//작성자 이지원 
+	public int selectIsClassing(Connection conn, Member member, int clNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectIsClassing");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, member.getUserNo());
+			pstmt.setInt(2, clNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
 	}
 }
 

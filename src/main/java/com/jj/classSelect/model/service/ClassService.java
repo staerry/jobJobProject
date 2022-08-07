@@ -12,6 +12,7 @@ import com.jj.classSelect.model.dao.ClassDao;
 import com.jj.classSelect.model.vo.Class;
 import com.jj.community.model.vo.Review;
 import com.jj.coupon.vo.IssuanceCoupon;
+import com.jj.member.model.vo.Member;
 
 public class ClassService {
 	
@@ -242,6 +243,14 @@ public class ClassService {
 		int noRefund = new ClassDao().selectNoRefund(conn, clNo);
 		close(conn);
 		return noRefund;
+	}
+
+	//작성자 이지원 
+	public int selectIsClassing(Member member, int clNo) {
+		Connection conn = getConnection();
+		int result = new ClassDao().selectIsClassing(conn, member, clNo);
+		close(conn);
+		return result;
 	}
 
 }
