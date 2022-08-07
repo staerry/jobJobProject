@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 <% List<Vod> list = (List<Vod>) request.getAttribute("list"); %>
 <% String classTitle = list.get(0).getCls().getClTitle(); %>
+<% int classNo = list.get(0).getCls().getClNo(); %>
 <% String classSubTitle = list.get(0).getCls().getClSubtitle(); %>
 
 <!DOCTYPE html>
@@ -31,6 +32,7 @@ margin-right:80px;
 }
 .right-content{
 margin: 0px 20px 80px 100px;
+width: 90%;
 }
 h2{
 font-weight:40px;
@@ -57,7 +59,12 @@ margin:20px 0px;
     font-size:30px;
     margin-bottom: 50px;
 }
-
+.right-title{
+    display: flex;
+}
+.right-title-content{
+    width: 70%;
+}
 </style>
 <body>
 	<%@ include file="../common/menubar.jsp" %>
@@ -68,27 +75,32 @@ margin:20px 0px;
             <%@ include file="common/myPageSidebarUser.jsp" %>
         </div>
         
-        
         <div class="right-content">
+            <button class="btn btn-primary" style="background-color: #6363FF; border-color: #6363FF;" onclick="location.href='<%= contextPath %>/reviewEnroll.my?clNo=<%=classNo%>';">후기쓰러가기</button>
+            <hr>
             <!--여기에 컨텐츠-->
-            
-            
-            <h2><%= classTitle %></h2>
+            <div class="right-title">
+                <div class="right-title-content">
+                    <h2><%= classTitle %></h2>
+                </div>
+
+            </div>
             
             <h3><%= classSubTitle %></h3>
             
-             <div id="vod-list"> 
-            
+            <div id="vod-list"> 
+                
                 <ul>
                     <% for(Vod vod : list) {%>
-                    <li>
-                        <a href="${pageContext.request.contextPath}/userVodDetail.my?vodNo=<%= vod.getVodNo() %>">
-                            <i id="pbtn" class="fa-regular fa-circle-play fa xs"></i> 
-                            <span><%= vod.getVodTitle() %></span> 
-                        </a>
-                    </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/userVodDetail.my?vodNo=<%= vod.getVodNo() %>">
+                                <i id="pbtn" class="fa-regular fa-circle-play fa xs"></i> 
+                                <span><%= vod.getVodTitle() %></span> 
+                            </a>
+                        </li>
                     <% } %>
                 </ul>
+                    
 			            
             
 					            

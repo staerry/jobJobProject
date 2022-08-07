@@ -17,6 +17,7 @@ import com.jj.mentorMyPage.model.vo.Vod;
 import com.jj.userMyPage.model.vo.Bookmark;
 import com.jj.userMyPage.model.vo.Class;
 import com.jj.userMyPage.model.vo.ClassIng;
+import com.jj.userMyPage.model.vo.Review;
 import com.jj.userMyPage.model.vo.UCoupon;
 
 public class UserClassDao {
@@ -303,4 +304,81 @@ public class UserClassDao {
 		
 		return vod;
 	}
+
+	public Class selectClassInfo(Connection conn, int clNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Class cls = new Class();
+		String sql = prop.getProperty("selectClassInfo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				cls.setClNo(rset.getInt("cl_no"));
+				cls.setClTitle(rset.getString("cl_title"));
+				
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return cls;
+	}
+	public int insertReview(Connection conn, Review review) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, review.getClNo());
+			pstmt.setInt(2, review.getUserNo());
+			pstmt.setInt(3, review.getReviewScore());
+			pstmt.setString(4, review.getReviewContent());
+			
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	public int selectReviewCount(Connection conn, int clNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int count = 0;
+		String sql = prop.getProperty("selectReviewCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				count = rset.getInt("count");
+				
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return count;
+	}
+
 }

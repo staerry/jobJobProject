@@ -5,8 +5,10 @@
     pageEncoding="UTF-8" %>
     
 <% 
-List<Vod> list = (List<Vod>) request.getAttribute("list"); 
-  
+  request.setCharacterEncoding("EUC-KR");
+  List<Vod> list = (List<Vod>) request.getAttribute("list"); 
+  String clTitle = (String) request.getAttribute("clTitle");
+
   %>
 <!DOCTYPE html>
 <html>
@@ -14,10 +16,11 @@ List<Vod> list = (List<Vod>) request.getAttribute("list");
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> 
  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> 
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/d9c0959348.js" crossorigin="anonymous"></script>
 <!-- css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/setting.css">
 
@@ -102,7 +105,7 @@ width:200px;
 								<div class="checkbox-group">
           <table class="table table-hover">
             <thead>
-                <h3>${clTitle}</h3>
+                <h3><%=clTitle %></h3>
                 <tr style="background-color:whitesmoke">
                   <th colspan="6">&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="checkbox" name="check" id="checkAll">

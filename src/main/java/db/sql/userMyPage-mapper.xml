@@ -264,6 +264,33 @@ where
 and
     vod_status = 'A'
 </entry>
+<entry key ="selectClassInfo">
+select
+    cl_no,
+    cl_title
+from
+    class
+where 
+    cl_no = ?
 
+</entry>
+<entry key ="insertReview">
+insert into review values(
+    seq_rev.nextval,
+    ?,
+    ?,
+    ?,
+    ?,
+    sysdate
+)
+</entry>
+<entry key ="selectReviewCount">
+select
+    count(*) count
+from
+    review
+where 
+    cl_no = ?
+</entry>
 
 </properties>

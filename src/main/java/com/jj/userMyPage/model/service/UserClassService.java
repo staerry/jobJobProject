@@ -10,7 +10,9 @@ import com.jj.member.model.vo.Member;
 import com.jj.mentorMyPage.model.vo.Vod;
 import com.jj.userMyPage.model.dao.UserClassDao;
 import com.jj.userMyPage.model.vo.Bookmark;
+import com.jj.userMyPage.model.vo.Class;
 import com.jj.userMyPage.model.vo.ClassIng;
+import com.jj.userMyPage.model.vo.Review;
 
 public class UserClassService {
 
@@ -59,6 +61,27 @@ public class UserClassService {
 		close(conn);
 		
 		return vod;
+	}
+
+	public Class selectClassInfo(int clNo) {
+		Connection conn = getConnection();
+		Class cls = new UserClassDao().selectClassInfo(conn, clNo); 
+		close(conn);
+		
+		return cls;
+	}
+	public int insertReview(Review review) {
+		Connection conn = getConnection();
+		int result = new UserClassDao().insertReview(conn, review); 
+		close(conn);
+		return result;
+	}
+	public int selectReviewCount(int clNo) {
+		Connection conn = getConnection();
+		int count = new UserClassDao().selectReviewCount(conn, clNo); 
+		close(conn);
+		
+		return count;
 	}
 
 }
