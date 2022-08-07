@@ -50,6 +50,8 @@ public class MentorMyService {
 	public ArrayList<MtQuestion> selectAllQuestion(int userNo) {
 		Connection conn = getConnection();
 		ArrayList<MtQuestion> list = new MentorMyDao().selectAllQuestion(conn, userNo);
+		close(conn);
+		
 		return list;
 	}
 
@@ -111,6 +113,21 @@ public class MentorMyService {
 	public int updateLecturer(Member member, Lecturer lecturer) {
 		Connection conn = getConnection();
 		int result = new MentorMyDao().updateLecturer(conn, member, lecturer);
+		close(conn);
+		return result;
+	}
+
+	public MtQuestion selectOneMtQuestion(int queNo) {
+		Connection conn = getConnection();
+		MtQuestion mtQuestion = new MentorMyDao().selectOneMtQuestion(conn, queNo);
+		close(conn);
+		
+		return mtQuestion;
+	}
+
+	public int insertMtAnswer(int queNo, String ansContent) {
+		Connection conn = getConnection();
+		int result = new MentorMyDao().insertMtAnswer(conn, queNo, ansContent);
 		close(conn);
 		return result;
 	}

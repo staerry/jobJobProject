@@ -15,7 +15,12 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="https://kit.fontawesome.com/d9c0959348.js" crossorigin="anonymous"></script>
+<style>
+  a{
+    color: #212529;
+  }
+</style>
 </head>
 
 <body>
@@ -40,42 +45,41 @@
                 </tr>
                 <tr>
                   <th>&nbsp;</th>
-                  <th>질문 내용</th>
-                  <th>질문 등록일</th>
-                  <th>내  답변상태</th>
+                  <th>번호</th>
+                  <th>제목</th>
+                  <th>작성자</th>
+                  <th>작성일</th>
+                  <th>내 답변 상태</th>
                 </tr>
               </thead>
               
               <tbody>
                 <% if(list.isEmpty()) { %>
-              <tr>
-                <td colspan="6">조회된 게시글이 없습니다.</td>
-              </tr>
+                  <tr>
+                    <td colspan="6">조회된 게시글이 없습니다.</td>
+                  </tr>
               <%} else{ %> 
                 <%for(MtQuestion m : list){ %>
                   <tr>
                     <td><input type="checkbox" class="selectedCheck" name="check" value="><%= m.getMtQueNo() %>"></td>
+                    <td><%= m.getMtQueNo() %></td>
                     <td>
-                <p><%= m.getMtQueNo() %></p>
-                <p><%= m.getQueContent()  %></p>
-                
-                <th><%=m.getQueEnrolldate()  %></th>
-                
-                                 <%if(m.getAnsDate() != null){ %> 
-                                <th><%= m.getQueContent()  %></th>
-                                <th><%= m.getAnsDate()  %></th>
-                                <%} else{%>
-                                <td>답변대기중</td>
-                                <% } %>
-                              </td>               
-                              </tr>
-            
-                          
-                           
-              <% } %>                
+                      <a href="${pageContext.request.contextPath}/myAnsEnroll.my?queNo=<%= m.getMtQueNo() %>">
+                        <%= m.getQueTitle() %></td>
+                      </a>
+                    <td><%= m.getQueUser().getUserName() %></td>
+                    <td><%=m.getQueEnrolldate() %></td>
+
+                    <%if(m.getAnsContent() != null){ %> 
+                      <td>답변 완료</td>
+                    <%} else{%>
+                      <td>답변대기중</td>
+                    <% } %> 
+                  </tr>       
+                             
 			
-		 <% } %>    
-      
+		            <% } %>    
+              <% } %>  
             </tbody>
           </table>
 

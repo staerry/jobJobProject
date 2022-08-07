@@ -48,6 +48,8 @@ public class MentorProfileEditController extends HttpServlet {
 		// 멘토 프로필 수정  - 정보 담아서 보내야함
 		HttpSession session = request.getSession();
 		
+		
+		
 		Member member = (Member) session.getAttribute("loginUser");
 		if(member != null) {
 			Lecturer lecturer = new MentorMyService().selectLecturerByUserNo(member);	

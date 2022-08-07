@@ -19,13 +19,13 @@ import com.jj.mentorMyPage.model.vo.MtQuestion;
  * Servlet implementation class MentorMyAnsController
  */
 @WebServlet("/myAnsList.my")
-public class MentorMyAnsController extends HttpServlet {
+public class MentorMyAnsListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MentorMyAnsController() {
+    public MentorMyAnsListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,15 +37,14 @@ public class MentorMyAnsController extends HttpServlet {
 //	 멘토 나의 답변 조회해오는 컨트롤러임
 		HttpSession session = request.getSession();
 //		System.out.println(session);
-		
+//		int mtQueNo = Integer.parseInt(request.getParameter(""));
 		Member member = (Member) session.getAttribute("loginUser");
 		if(member != null) {
 			ArrayList<MtQuestion>list = new ArrayList<>();
-			 list = new MentorMyService().selectAllQuestion(member.getUserNo());
-			session.setAttribute("list", list);
+			list = new MentorMyService().selectAllQuestion(member.getUserNo());
 			
+//			System.out.println(list);
 			request.setAttribute("list",list);
-			System.out.println("list");
 			request.getRequestDispatcher("views/mentorMyPage/mentorQnAList.jsp").forward(request, response);
 
 		}else {
@@ -61,7 +60,8 @@ public class MentorMyAnsController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		
 	}
 
 }
