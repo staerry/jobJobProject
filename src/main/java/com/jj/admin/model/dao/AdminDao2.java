@@ -2360,6 +2360,7 @@ public class AdminDao2 {
 					if(j==1) {
 						pstmt=conn.prepareStatement(sql1);
 						String dd = (list1.get(i).getDate()).replace("-", "");
+						System.out.println(dd);
 						pstmt.setString(1, dd);
 						pstmt.setString(2, dd);
 						rset = pstmt.executeQuery();

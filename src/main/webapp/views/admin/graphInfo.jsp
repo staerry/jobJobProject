@@ -677,6 +677,8 @@
 
         
     </script>
+    </div>
+    </div>
 	 <%} %>   
         
 </body>
