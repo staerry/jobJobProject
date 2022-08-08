@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+.container {
+    width:1190px;
+    height:100%;
+    /*border:1px solid blue;*/
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result-area {
+	margin-top:50px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#gift-icon {
+    color:#6363ff;
+    font-size:70px;
+    margin-bottom:15px;
+}
+
+.button-area button{
+    border-radius:4px;
+    height:50px;
+}
+
+#return-main {
+    width:150px;
+    background-color: #fff;
+    border:1px solid #ABB0B5;
+    margin-right:20px;
+}
+
+#return-main a {
+    font-size:18px;
+    color:#6363ff;
+}
+
+#go-mypage {
+    width:200px;
+    background-color: #6363ff;
+    border:1px solid #6363ff;
+}
+
+#go-mypage a{
+    font-size:18px;
+    color:white;
+}
+
+.coupon-gift{
+    border:1px solid #9CB7FF;
+    width:480px;
+    height:230px;
+    background-color: #9CB7FF;
+}
+
+.coupon-inner{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width:450px;
+    height:200px;
+    background-color: #6363ff;
+    color:#fff;
+    margin:auto;
+    margin-top:15px;
+    border:7px solid #fff;
+    align-items: center;
+    
+}
+
+.coupon-inner div {
+    letter-spacing: -.3px;
+}

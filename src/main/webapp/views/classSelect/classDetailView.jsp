@@ -6,6 +6,7 @@
 	ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
 	int studentCount = (int)request.getAttribute("studentCount");
 	int bookmarkCount = (int)request.getAttribute("bookmarkCount");
+	boolean isClassing = (boolean)request.getAttribute("isClassing");
 	
 %>    
     
@@ -289,20 +290,27 @@
 
                 <div class="order-btn">
                     <br>
+                    
+                    <!-- 작성자 이지원 -->
                     <!-- 로그인한 사용자에게만 다음 페이지 이동 허용 -->
                    
                     <% if(loginUser != null) {%>
-                    <button class="class-buy" onclick="location.href='<%= contextPath %>/enrollForm.cl?class=<%=c.getClNo()%>';">수강신청 하기</button><br><br>
-                    <button class="class-zzim" onclick="zzim()"><span id="my-zzim"></span></button>
-                    
+						<!-- 로그인 사용자가 수강신청중인 경우 -->
+						<% if(isClassing) {%>
+							<button class="class-buy" onclick="location.href='<%= contextPath %>/userVodList.my?class=<%=c.getClNo()%>';">수강하러가기</button><br><br>
+						<% }else { %>
+							<!-- 로그인 사용자가 수강신청을 하지 않을 경우 -->
+							<button class="class-buy" onclick="location.href='<%= contextPath %>/enrollForm.cl?class=<%=c.getClNo()%>';">수강신청 하기</button><br><br>
+						<% } %>
+							<button class="class-zzim" onclick="zzim()"><span id="my-zzim"></span></button>
                     <% }else { %>
 					<button class="class-buy" onclick="alert('로그인 후 이용 가능한 서비스입니다.');">수강신청 하기</button><br><br>
                     <button class="class-zzim" onclick="alert('로그인 후 이용 가능한 서비스입니다.');">❤️ 강의 찜하기</button>
                     <% } %>
+                <!-- 이지원 작성 끝 -->
                     
                     <br><br>
                 </div>
-                
                 <script>
                 
                 $(function(){

@@ -13,9 +13,11 @@ import java.util.List;
 import java.util.Properties;
 
 import com.jj.member.model.vo.Member;
+import com.jj.mentorMyPage.model.vo.Vod;
 import com.jj.userMyPage.model.vo.Bookmark;
 import com.jj.userMyPage.model.vo.Class;
 import com.jj.userMyPage.model.vo.ClassIng;
+import com.jj.userMyPage.model.vo.Review;
 import com.jj.userMyPage.model.vo.UCoupon;
 
 public class UserClassDao {
@@ -236,4 +238,147 @@ public class UserClassDao {
 		
 		return list;
 	}
+	public List<Vod> selectVodListByClNo(Connection conn, int clNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Vod> list = new ArrayList<Vod>();
+		String sql = prop.getProperty("selectVodListByClNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+						
+				Vod vod = new Vod();
+				vod.setVodNo(rset.getInt("vod_no"));
+				vod.setVodTitle(rset.getString("VOD_TITLE"));
+				
+				Class cls = new Class();
+				cls.setClNo(clNo);
+				cls.setClTitle(rset.getString("cl_title"));
+				cls.setClSubtitle(rset.getString("cl_subtitle"));
+				vod.setCls(cls);
+
+				list.add(vod);
+				
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	public Vod selectOneVod(Connection conn, int vodNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Vod vod = new Vod();
+		String sql = prop.getProperty("selectOneVod");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, vodNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				vod.setVodNo(vodNo);
+				Class cls = new Class();
+				cls.setClTitle(rset.getString("cl_title"));
+				vod.setCls(cls);
+				vod.setVodTitle(rset.getString("VOD_TITLE"));
+				vod.setVodFile(rset.getString("VOD_FILE"));
+				
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return vod;
+	}
+
+	public Class selectClassInfo(Connection conn, int clNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Class cls = new Class();
+		String sql = prop.getProperty("selectClassInfo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				cls.setClNo(rset.getInt("cl_no"));
+				cls.setClTitle(rset.getString("cl_title"));
+				
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return cls;
+	}
+	public int insertReview(Connection conn, Review review) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, review.getClNo());
+			pstmt.setInt(2, review.getUserNo());
+			pstmt.setInt(3, review.getReviewScore());
+			pstmt.setString(4, review.getReviewContent());
+			
+
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	public int selectReviewCount(Connection conn, int clNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int count = 0;
+		String sql = prop.getProperty("selectReviewCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, clNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				count = rset.getInt("count");
+				
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return count;
+	}
+
 }

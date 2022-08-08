@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.jj.admin.model.vo.BoardData;
+import com.jj.admin.model.vo.GraphDate;
 import com.jj.admin.model.vo.UserInfoAd;
 import com.jj.classSelect.model.vo.ClassIng;
 import com.jj.common.model.vo.PageInfo;
@@ -2278,5 +2280,140 @@ public class AdminDao2 {
 			close(pstmt);
 		}
 		return rqRefundCount;
+	}
+	
+	public ArrayList<GraphDate> graph(Connection conn,ArrayList<GraphDate> list){
+		ArrayList<GraphDate> list1 = list;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("graph");
+		
+		try {
+			for(int i=0;i<list1.size();i++) {
+				pstmt = null;
+				rset = null;
+				pstmt = conn.prepareStatement(sql);
+				String a = (list1.get(i).getX()).replace("-", "");
+				pstmt.setString(1,a);
+				rset = pstmt.executeQuery();
+				if(rset.next()){
+					list1.get(i).setY(rset.getInt("COUNT"));
+				}
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list1;
+	}
+	
+	public ArrayList<GraphDate> graph2(Connection conn,ArrayList<GraphDate> list,int s){
+		ArrayList<GraphDate> list1 = list;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("graph2");
+		
+		try {
+			for(int i=0;i<list1.size()-s;i++) {
+				pstmt = null;
+				rset = null;
+				pstmt = conn.prepareStatement(sql);
+				String a = (list1.get(i).getX()).replace("-", "");
+				pstmt.setString(1,a);
+				rset = pstmt.executeQuery();
+				if(rset.next()){
+					list1.get(i+s).setY(rset.getInt("COUNT"));
+				}
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list1;
+	}
+	
+	public ArrayList<BoardData> boardDetail(Connection conn,ArrayList<BoardData> list){
+		ArrayList<BoardData> list1 = list;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql1 = prop.getProperty("boardDetail1");
+		String sql2 = prop.getProperty("boardDetail2");
+		String sql3 = prop.getProperty("boardDetail3");
+		String sql4 = prop.getProperty("boardDetail4");
+		String sql5 = prop.getProperty("boardDetail5");
+		
+		try {
+			for(int i=0;i<7;i++) {
+				for(int j=1;j<=5;j++) {
+					pstmt = null;
+					rset = null;
+					
+					
+					if(j==1) {
+						pstmt=conn.prepareStatement(sql1);
+						String dd = (list1.get(i).getDate()).replace("-", "");
+						pstmt.setString(1, dd);
+						pstmt.setString(2, dd);
+						rset = pstmt.executeQuery();
+						int c = 0;
+						rset.next();
+						c = c + rset.getInt("COUNT");
+						rset.next();
+						c = c - rset.getInt("COUNT");
+						list1.get(i).setClassBuy(c);
+					}else if(j==2) {
+						pstmt=conn.prepareStatement(sql2);
+						pstmt.setString(1, (list1.get(i).getDate()).replace("-", ""));
+						pstmt.setString(2, (list1.get(i).getDate()).replace("-", ""));
+						rset = pstmt.executeQuery();
+						int c = 0;
+						while(rset.next()) {
+							if(rset.getString("refund").equals("Y")) {
+								c = c-rset.getInt("final_payment");
+							}else {
+								c = c+rset.getInt("final_payment");
+							}
+						}
+						list1.get(i).setSale(c);
+					}else if(j==3) {
+						pstmt=conn.prepareStatement(sql3);
+						pstmt.setString(1, (list1.get(i).getDate()).replace("-", ""));
+						rset = pstmt.executeQuery();
+						rset.next();
+						list1.get(i).setJoin(rset.getInt("COUNT"));
+					}else if(j==4) {
+						pstmt=conn.prepareStatement(sql4);
+						pstmt.setString(1, (list1.get(i).getDate()).replace("-", ""));
+						rset = pstmt.executeQuery();
+						rset.next();
+						list1.get(i).setQue(rset.getInt("COUNT"));
+					}else if(j==5) {
+						pstmt=conn.prepareStatement(sql5);
+						pstmt.setString(1, (list1.get(i).getDate()).replace("-", ""));
+						pstmt.setString(2, (list1.get(i).getDate()).replace("-", ""));
+						rset = pstmt.executeQuery();
+						int c = 0;
+						while(rset.next()) {
+							c = c + rset.getInt("COUNT");
+						}
+						list1.get(i).setBoard(c);
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list1;
 	}
 }

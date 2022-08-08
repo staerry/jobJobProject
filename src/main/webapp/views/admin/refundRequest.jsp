@@ -14,8 +14,21 @@
 	int maxPage = pi.getMaxPage();
 	int pageLimit = pi.getPageLimit();
 	
-	int doublePrev = pageLimit*(currentPage/pageLimit);
-	int doubleNext = pageLimit*(currentPage/pageLimit+1)+1;
+	int doublePrev;
+	int doubleNext;
+	
+	
+	if(currentPage%pageLimit==0){
+		doublePrev = pageLimit*((currentPage-1)/pageLimit);
+	}else{
+		doublePrev = pageLimit*(currentPage/pageLimit);
+	}
+	
+	if(currentPage%pageLimit==0){
+		doubleNext = pageLimit*(currentPage/pageLimit)+1;
+	}else{
+		doubleNext = pageLimit*(currentPage/pageLimit+1)+1;
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -159,7 +172,7 @@
 		            	<%if(currentPage != maxPage && currentPage < maxPage){ %>
 							<a href="<%=request.getContextPath()%>/paymentselect.bo?p=<%=currentPage+1%>&search=<%=request.getAttribute("search")%>">&gt</a>
 						<%} %>
-						<%if(currentPage <= maxPage - pageLimit ){ %>
+						<%if(currentPage <= maxPage  ){ %>
 							<a href="<%=request.getContextPath()%>/paymentselect.bo?p=<%=doubleNext%>&search=<%=request.getAttribute("search")%>">&gt&gt</a>
 						<%} %>
 		            </div>

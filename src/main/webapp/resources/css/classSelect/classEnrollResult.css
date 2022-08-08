@@ -2,7 +2,7 @@
 
 .container {
     width:1190px;
-    height:100vh;
+    height:100%;
     /*border:1px solid blue;*/
     display:flex;
     flex-direction: column;

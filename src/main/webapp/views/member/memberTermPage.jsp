@@ -21,7 +21,7 @@
         text-decoration-thickness: 3px;
     }
     button{
-    width: 200px;
+    width: 300px;
     height: 30px;
     border-style: none;
     border-radius: 5px;
@@ -30,10 +30,10 @@
     }
     
     .outer{
-        border: 3px solid rgb(190, 190, 190); 
+        /*border: 3px solid rgb(190, 190, 190);*/
         margin: auto;
         box-sizing: border-box;
-        width: 600px;
+        width: 450px;
     }
 
     .checkbox-group{
@@ -64,28 +64,28 @@
             <input type="hidden" name="userPwd" value="<%=userPwd%>">
             <input type="hidden" name="userPhone" value="<%=userPhone%>">
 
-            <div class="checkbox-group" align="left">
+            <div class="checkbox-group" align="left" style="font-size: 12px;">
 
                 <input type="checkbox" id="checkAll">
                 <label for="agreeAll">전체동의</label><br><br>
 
                 <input type="checkbox" id="check1" class="normal">
                 <label for="event">이벤트 정보 수신 동의(선택)</label><br>
-                <span>시들어 가는 노년에게서 구하지 못할 바이며 <br>
-                    오직 우리 청춘에서만 구할 수 있는 것이다<br>
-                    청춘은 인생의 황금시대다 </span><br><br>
+                <span>맞춤 서비스 제공, 서비스 안내 및 이용권유, 
+                 서비스 개선 및 신규 서비스 개발을 위한 통계 및 접속빈도 파악,
+                 통계학적 특성에 따른 광고 게재, 이벤트 정보 및 참여기회 제공</span><br><br>
 
                 <input type="checkbox" id="check2" class="normal requiredCheck">
                 <label for="event">서비스 이용약관(필수)</label><br>
-                <span>시들어 가는 노년에게서 구하지 못할 바이며 <br>
-                        오직 우리 청춘에서만 구할 수 있는 것이다<br>
-                        청춘은 인생의 황금시대다 </span><br><br>
+                <span>서비스에서 얻은 정보를 사이트의 사전승낙 없이 회원의 이용 
+                이외의 목적으로 복제하거나 이를 변경, 출판 및 방송 등에 
+                사용하거나 타인에게 제공하는 행위</span><br><br>
 
                 <input type="checkbox" id="check3" class="normal requiredCheck">
                 <label for="event">개인정보처리방침(필수)</label><br>
-                <p>시들어 가는 노년에게서 구하지 못할 바이며 <br>
-                    오직 우리 청춘에서만 구할 수 있는 것이다<br>
-                    청춘은 인생의 황금시대다 </p><br>
+                <p>고객 가입의사 확인, 고객에 대한 서비스 제공에 따른 본인 식별.인증, 
+                회원자격 유지.관리, 물품 또는 서비스 공급에 따른 금액 결제, 
+                물품 또는 서비스의 공급.배송</p><br>
 
             </div>
             

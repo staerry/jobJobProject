@@ -83,19 +83,28 @@ where
 
 <!-- 멘토의 모든 질문답변 조회 -->
 <entry key="selectAllQuestion">
-SELECT 
-MT_QUE_NO,
+select
+    mt.*,
+    ui.user_name que_user_name
+from 
+    mt_que mt join userinfo ui
+    on mt.user_no = ui.user_no
+where
+    mt.ans_no = ?
+order by
+    mt.que_enrolldate desc
+	
 
-QUE_TITLE,
-QUE_CONTENT,
-QUE_ENROLLDATE,
-
-ANS_NO,
-ANS_CONTENT,
-ANS_DATE
-
-FROM MT_QUE
-WHERE USER_NO = ?
+</entry>
+<entry key="selectOneMtQuestion">
+select
+    mt.*,
+    ui.user_name que_user_name
+from 
+    mt_que mt join userinfo ui
+    on mt.user_no = ui.user_no
+where
+    mt.mt_que_no = ?
 	
 
 </entry>
@@ -140,5 +149,39 @@ join cl_category c
 where
     l.user_no = ?
 </entry>
+
+<entry key="selectProfile">
+select 
+	PROFILE_PATH 
+from 
+	lecturer 
+where 
+	user_no = ?
+</entry>
+
+<entry key="updateLecturer">
+update 
+	lecturer 
+set 
+	ltr_info = ?, 
+	ltr_career = ?, 
+	profile_path = ?
+where 
+	user_no = ?
+
+</entry>
+<entry key="insertMtAnswer">
+update 
+	mt_que 
+set 
+	ans_content = ?, 
+	ans_date = sysdate 
+where 
+	mt_que_no = ?
+
+</entry>
+
+
+
 
 </properties>

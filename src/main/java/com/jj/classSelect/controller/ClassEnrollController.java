@@ -38,6 +38,23 @@ public class ClassEnrollController extends HttpServlet {
 		
 		int userNo = (int)((Member)request.getSession().getAttribute("loginUser")).getUserNo();
 		
+		// 사용자가 첫 수강신청하는 회원인지 아닌지 확인
+		int firstCheck = new ClassService().selectBuyFirst(userNo);
+		// firstCheck == 0 : 처음 수강신청하는 경우 첫 구매 쿠폰 발급
+		// firstCheck > 0 : 일반 수강신청 진행
+		
+		// 환불 이력이 없는지도 확인
+		int noRefund = new ClassService().selectNoRefund(userNo);
+		// noRefund == 0 : 환불 이력 없음
+
+		int firstBuy = 0;
+		
+		if(firstCheck != 0 || noRefund != 0) {
+			firstBuy = 1;
+		}
+		
+		System.out.println("firstBuy : " + firstBuy);
+		
 		String orderName = request.getParameter("orderName");
 		String orderPhone = request.getParameter("orderPhone");
 		String orderEmail = request.getParameter("orderEmail");
@@ -60,10 +77,15 @@ public class ClassEnrollController extends HttpServlet {
 		System.out.println("finalPayment : " + finalPayment);
 		System.out.println("isuCpNo : " + isuCpNo);
 		
-		int result = new ClassService().enrollClass(userNo, clNo, orderName, orderPhone, orderEmail, payment, finalPayment, isuCpNo);
+		int result = new ClassService().enrollClass(userNo, clNo, orderName, orderPhone, orderEmail, payment, finalPayment, isuCpNo, firstBuy);
 		
 		if(result > 0) {
-			request.getRequestDispatcher("views/classSelect/classEnrollResult.jsp").forward(request, response);
+			if(firstBuy == 0) {	// 첫 번째 강의 쿠폰 발급 화면으로 이동
+				request.getRequestDispatcher("views/classSelect/classFirstEnrollResult.jsp").forward(request, response);
+			}
+			else {	// 수강신청 완료 화면으로 이동
+				request.getRequestDispatcher("views/classSelect/classEnrollResult.jsp").forward(request, response);
+			}
 		}else {
 			session.setAttribute("alertMsg", "문제가 발생했습니다. 잠시 후에 다시 시도해 주세요.");
 			response.sendRedirect(request.getContextPath() + "/list.cl");

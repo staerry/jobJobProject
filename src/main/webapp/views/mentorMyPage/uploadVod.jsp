@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/setting.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/userMypage/mainTemplate.css">
-<script src="https://kit.fontawesome.com/d9c0959348.js" crossorigin="anonymous"></script>
+
 <title>Insert title here</title>
 </head>
 <style>

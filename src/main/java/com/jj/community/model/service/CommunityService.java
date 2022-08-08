@@ -124,9 +124,9 @@ public class CommunityService {
 		return list;
 	}
 	
-	public ArrayList<Community> selectListByReply(PageInfo pi, int category) {
+	public ArrayList<Community> selectListByCount(PageInfo pi, int category) {
 		Connection conn = getConnection();
-		ArrayList<Community> list = new CommunityDao().selectListByReply(conn, pi, category);
+		ArrayList<Community> list = new CommunityDao().selectListByCount(conn, pi, category);
 		close(conn);
 		return list;	
 	}

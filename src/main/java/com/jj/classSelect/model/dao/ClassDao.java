@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.jj.classSelect.model.vo.Class;
 import com.jj.community.model.vo.Review;
 import com.jj.coupon.vo.IssuanceCoupon;
+import com.jj.member.model.vo.Member;
 
 public class ClassDao {
 	
@@ -812,8 +813,96 @@ public class ClassDao {
 		}
 		return sortedList;
 	}
-
 	
+	public int selectBuyFirst(Connection conn, int userNo) {
+		int firstCheck = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectBuyFirst");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				firstCheck = rset.getInt("first_check");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return firstCheck;
+	}
+	
+	public int insertIssuanceFirstCoupon(Connection conn, int userNo) {
+		int issueFirstCpResult = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertIssuanceFirstCoupon");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			
+			issueFirstCpResult = pstmt.executeUpdate();
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return issueFirstCpResult;
+		
+	}
+	
+	public int selectNoRefund(Connection conn, int userNo) {
+		int noRefund = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectNoRefund");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				noRefund = rset.getInt("refund");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return noRefund;
+		
+		
+	}
+	//작성자 이지원 
+	public int selectIsClassing(Connection conn, Member member, int clNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectIsClassing");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, member.getUserNo());
+			pstmt.setInt(2, clNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
 }
 
 

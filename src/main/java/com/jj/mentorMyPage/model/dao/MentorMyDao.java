@@ -196,14 +196,19 @@ Properties prop = new Properties();
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new MtQuestion(rset.getInt("mt_que_no")
-			              , rset.getString("que_title")
-			              , rset.getString("que_content")
-			              , rset.getDate("que_enrolldate")
-			              , rset.getString("ans_content")
-			              , rset.getDate("ans_date")
-			              ));
-			
+				MtQuestion mtQuestion = new MtQuestion();
+				mtQuestion.setMtQueNo(rset.getInt("MT_QUE_NO"));
+				
+				Member queMember = new Member();
+				queMember.setUserNo(rset.getInt("user_no"));
+				queMember.setUserName(rset.getString("que_user_name"));
+				
+				mtQuestion.setQueUser(queMember);
+				mtQuestion.setQueTitle(rset.getString("QUE_TITLE"));
+				mtQuestion.setQueEnrolldate(rset.getDate("QUE_ENROLLDATE"));
+				mtQuestion.setAnsContent(rset.getString("ANS_CONTENT"));
+
+				list.add(mtQuestion);
 			}
 			
 			} catch (SQLException e) {
@@ -323,6 +328,122 @@ Properties prop = new Properties();
 		
 		
 		return lecturer;
+	}
+
+
+	public String selectProfile(Connection conn, Member member) {
+		String profile = "/resources/image/mentorProfileImg/defaultProfile.jpg";
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProfile");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, member.getUserNo());
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				profile = rset.getString("PROFILE_PATH");
+					
+			}
+			
+			} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return profile;
+	}
+
+
+	public int updateLecturer(Connection conn, Member member, Lecturer lecturer) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateLecturer");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, lecturer.getLtrInfo());
+			pstmt.setString(2, lecturer.getLtrCareer());
+			pstmt.setString(3, lecturer.getProfilePath());
+			pstmt.setInt(4, member.getUserNo());
+			
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+	public MtQuestion selectOneMtQuestion(Connection conn, int queNo) {
+		MtQuestion mtQuestion = new MtQuestion();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectOneMtQuestion");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, queNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				mtQuestion.setMtQueNo(rset.getInt("MT_QUE_NO"));
+				
+				Member queMember = new Member();
+				queMember.setUserNo(rset.getInt("user_no"));
+				queMember.setUserName(rset.getString("que_user_name"));
+				
+				mtQuestion.setQueUser(queMember);
+				mtQuestion.setQueTitle(rset.getString("QUE_TITLE"));
+				mtQuestion.setQueContent(rset.getString("QUE_CONTENT"));
+				mtQuestion.setQueEnrolldate(rset.getDate("QUE_ENROLLDATE"));
+				mtQuestion.setAnsContent(rset.getString("ANS_CONTENT"));
+				mtQuestion.setAnsDate(rset.getDate("ANS_DATE"));
+					
+			}
+			
+			} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return mtQuestion;
+	}
+
+//update 지만 등록이니 insert라고 네이밍함
+	public int insertMtAnswer(Connection conn, int queNo, String ansContent) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertMtAnswer");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ansContent);
+			pstmt.setInt(2, queNo);
+			
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+
+			close(pstmt);
+		}
+		return result;
 	}
 		
 		

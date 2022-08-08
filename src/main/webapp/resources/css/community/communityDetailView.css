@@ -43,6 +43,7 @@ a {
     border:1px solid #6363ff;
     background-color: #6363ff;
     border-radius:4px;
+    cursor:default;
 }
 
 .edit-delete-btn {
@@ -109,13 +110,13 @@ a {
 }
 
 .back-zzim-btn button {
-    width:40px;
-    height:40px;
+    width:50px;
+    height:50px;
     border:1px solid #ABB0B5;
     border-radius: 4px;
     background-color: #fff;
     color:#3e4042;
-    font-size:12px;
+    font-size:14px;
     margin:5px;
 }
 
@@ -154,8 +155,8 @@ a {
 }
 
 #reply-please {
-    font-size:15px;
-    font-weight:700;
+    font-size:16px;
+    font-weight:550;
     line-height:1.47;
     margin-right:10px;
     margin-top:5px;
@@ -166,7 +167,7 @@ a {
 }
 
 #reply-sub-please{
-    font-size:13px;
+    font-size:15px;
     font-weight:400;
     color: #616568;
     letter-spacing: -.3px;
@@ -184,8 +185,10 @@ a {
 }
 
 .reply-list td {
-    padding-top:3px;
-    font-size:14px;
+    padding:5px;
+    font-size:16px;
+    line-height: 1.38;
+    letter-spacing: -.3px;
 }
 
 .reply-list tr {

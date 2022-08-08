@@ -15,8 +15,21 @@
 	int maxPage = pi.getMaxPage();
 	int pageLimit = pi.getPageLimit();
 	
-	int doublePrev = pageLimit*(currentPage/pageLimit);
-	int doubleNext = pageLimit*(currentPage/pageLimit+1)+1;
+	int doublePrev;
+	int doubleNext;
+	
+	
+	if(currentPage%pageLimit==0){
+		doublePrev = pageLimit*((currentPage-1)/pageLimit);
+	}else{
+		doublePrev = pageLimit*(currentPage/pageLimit);
+	}
+	
+	if(currentPage%pageLimit==0){
+		doubleNext = pageLimit*(currentPage/pageLimit)+1;
+	}else{
+		doubleNext = pageLimit*(currentPage/pageLimit+1)+1;
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -85,7 +98,7 @@
                     <thead>
                         <tr>
                             <th width="20">선택</th>
-                            <th width="20">번호</th>
+                            <th width="20">조회번호</th>
                             <th width="50">쿠폰번호</th>
                             <th width="100">쿠폰명</th>
                             <th width="80">할인금액</th>
@@ -143,7 +156,7 @@
 		            	<%if(currentPage != maxPage){ %>
 							<a href="<%=request.getContextPath()%>/sendCoupon.ad?p=<%=currentPage+1%>">&gt</a>
 						<%} %>
-						<%if(currentPage < maxPage - pageLimit ){ %>
+						<%if(currentPage < maxPage  ){ %>
 							<a href="<%=request.getContextPath()%>/sendCoupon.ad?p=<%=doubleNext%>">&gt&gt</a>
 						<%} %>
                 </div>
