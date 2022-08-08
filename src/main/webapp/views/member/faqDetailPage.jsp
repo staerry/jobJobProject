@@ -50,7 +50,7 @@
 
                     <tr>
                         <td colspan="3" style="font-size: 14px;">
-                            <textarea name="content" cols="100" rows="10" style="resize:none; border: 1px solid lightgray; border-radius: 5px;" readonly="readonly" disabled><%= fq.getFaqAnswer() %></textarea>
+                            <textarea name="content" cols="100" rows="10" style="resize:none; border: 1px solid lightgray; border-radius: 5px;" readonly="readonly" disabled wrap=on><%= fq.getFaqAnswer() %></textarea>
                             <!--<p style="height: 300px; border: 1px solid lightgray; border-radius: 5px;"><%= fq.getFaqAnswer() %></p>-->
                         </td>
                     </tr>
@@ -63,7 +63,7 @@
                         <td colspan="2">
                         	<% if(fq.getFaqNo() == 1){ %>
 								<!-- 이전으로 버튼 비활성화 하기 -->
-								                        		
+								                       	 		
                         	<%} else{ %>
                         		<a href="<%= contextPath %>/detail.faq?no=<%= fq.getFaqNo() - 1 %>" class="btn btn-sm" style="background: lightgray;">이전글로</a>
                         	<% } %>
