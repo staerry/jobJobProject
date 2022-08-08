@@ -70,12 +70,12 @@
     margin-top : 30px;
 }
 
-/* .main-vod-list .vod .class-thumbnail{
+.main-vod-list .vod .class-thumbnail{
     width : 100%;
     height : 70px;
     background-color: #ccc;
     margin : 10px 0 5px 0;
-} */
+}
 .class-thumbnail > img{
     width : 100%;
     margin-top: 10px;

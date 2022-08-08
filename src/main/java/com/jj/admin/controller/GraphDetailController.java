@@ -87,7 +87,7 @@ public class GraphDetailController extends HttpServlet {
 			}
 			
 			
-			response.setContentType("applycation/json; charset=UTF-8");
+			response.setContentType("application/json; charset=UTF-8");
 			new Gson().toJson(list,response.getWriter());
 			
 		
