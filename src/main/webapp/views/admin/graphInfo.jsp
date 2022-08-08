@@ -395,6 +395,7 @@
     
     $('#lastDate').change(function(){
     	console.log($('#lastDate').val())
+    	
 		if($('#lastDate').val()>$('#currentDate').val() || $('#currentDate').val()>currentdate){
 			alert('정확한범위를 설정하세요.')
 			$('#lastDate').val(lastdate)
