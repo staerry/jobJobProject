@@ -49,6 +49,7 @@
 
   <%@ include file="../common/menubar.jsp" %>
 
+	
     <br><br>
     <h2 style="margin-left: 5%;">도움이 필요하신가요?</h2><br>
 
@@ -98,11 +99,10 @@
                     
                     <!-- Modal body -->
                     <div class="modal-body" style="padding: 3%;">
-                      <input type="text" name="mtmTitle" placeholder="제목" style="width: 100%;" required><br><br>
-                      <textarea name="mtmContent" style="width:100%; resize: none;" cols="30" rows="10" placeholder="내용" required></textarea><br><br>
-
+                      <input type="text" name="mtmTitle" class="form-control" placeholder="제목" style="width: 100%;" required><br>	
+                      <textarea name="mtmContent" class="form-control" style="width:100%; resize: none;" cols="30" rows="10" placeholder="내용" required></textarea>
                       <div>
-                      <input type="checkbox">
+                      <input type="checkbox" id="checkBox1">
                       <span style="font-size: 10px;">개인정보 수집 및 이용에 동의합니다. 1:1 문의를 위한 최소한의 개인정보만을 수집하고 있습니다. 개인정보는 ‘개인정보 처리방침’에 근거하여 관리됩니다.</span>
                       </div>
 
@@ -110,7 +110,7 @@
                     
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                      <button type="submit" class="btn" style="background: #6363FF; color: white;">문의하기</button>
+                      <button type="submit" id="bbtt" class="btn" style="background: #6363FF; color: white;" disabled>문의하기</button>
                     </div>
                     
                   </div>
@@ -124,6 +124,8 @@
         <% } %>
       </tr>
     </table>
+    
+    
 
     <br>
 
@@ -177,6 +179,11 @@
 
 		<input type="text" name="searchWord" id="aaa" class="form-control-sm mr-3" style="border-color: #6363FF;" placeholder="검색어 입력"><i style="cursor:pointer" class="fa-solid fa-magnifying-glass" onclick="searchFaq();"></i>
     </div>
+    
+    <br><br><br>
+    
+    <%@ include file="../common/footer.jsp" %>
+    
 
     <script>
       $(function(){
@@ -192,12 +199,12 @@
       function searchFaq(){
     	  location.href = "<%=contextPath%>/list.faq?cpage=1&sort=1&searchWord=" + $('#aaa').val();
       }
+      
+      $("#checkBox1").on("click", function(){
+    	  $("#bbtt").removeAttr("disabled");
+      })
+      
     </script>
-
-
-
-
-    <br><br><br>
 
     <br><br><br><br>
 </body>
