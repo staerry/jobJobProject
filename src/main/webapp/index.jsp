@@ -401,7 +401,7 @@
 							for(let i = 0; i < 9; i++){
 								value += '<div class="vod" onclick="location.href=\'<%= contextPath %>\/detail.cl?class=' + result[i].clNo +'\'">'
 								      +  	'<h4>' + result[i].clTitle + '</h4>'
-								      +     '<p>' + result[i].userNo + '&nbsp&nbsp&nbsp&nbsp' + result[i].mtCompany + '<p>'
+								      +     '<p style="margin : 20px;">' + result[i].userNo + '&nbsp&nbsp&nbsp&nbsp' + result[i].mtCompany + '<p>'
 								      +     '<img class="class-thumbnail" src="' + result[i].clThumbnailPath + '" alt="thumbnail' + i + '" width="200">'
 								      +  '</div>'
 							}
