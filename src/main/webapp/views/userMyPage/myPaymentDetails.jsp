@@ -46,7 +46,7 @@
                 <td>
                   <p>판매가 : <%= p.getClPrice()%>원</p>
          
-                  <p>쿠폰할인 : <%= p.getDiscount()%>원</p>
+                  <p>쿠폰할인 : -<%= p.getDiscount()%>원</p>
                   <hr>
                   <p>결제금액 : <%= p.getFinalPayment()%>원</p>
                 </td>
