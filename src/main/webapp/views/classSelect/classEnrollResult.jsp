@@ -36,10 +36,15 @@
                 <button id="go-mypage"><a href="<%= contextPath %>/myClassIng.my">내 강의 보러가기</a></button>
             </div>            
         </div>
-
+	<br>
+	<br>
+	<br>
+	<br>
+	
     </div>
 
 
  	<%@ include file="../common/footer.jsp" %>
+ 	
 </body>
 </html>
