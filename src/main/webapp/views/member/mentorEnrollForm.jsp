@@ -27,7 +27,7 @@
         width: 300px;
     }
     #btn1{
-        width: 100px;
+        width: 300px;
         height: 35px;
         border-style: none;
         border-radius: 5px;
@@ -62,7 +62,7 @@
                                 	<input type="text" class="form-control" placeholder="이메일 주소 입력" name="mtId" required>
                                     <p> </p>
                                     <button type="button" id="btn1" onclick="idCheck();" style="float: right;">중복확인</button>
-                                    <span id="show1"></span>
+                                    <br>
                                     
                                 </div><br>
                                 <div class="col">
